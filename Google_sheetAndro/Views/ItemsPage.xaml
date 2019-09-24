@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:control="clr-namespace:Xamarin.Forms.MaskedEntry;assembly=Xamarin.Forms.MaskedEntry"
+                 xmlns:local="clr-namespace:Google_sheetAndro"
+                 mc:Ignorable="d"
+                 BackgroundColor="#39b1fd"
+                 x:Class="Google_sheetAndro.Views.ItemsPage"
+                 NavigationPage.HasNavigationBar="False"
+                 x:Name="BrowseItemsPage">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout HorizontalOptions="Start" Margin="5,20,5,20">
+                <Grid x:Name="innerGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="210*"/>
+                        <RowDefinition Height="180*"/>
+                        <RowDefinition Height="210*"/>
+                        <RowDefinition Height="180*"/>
+                        <RowDefinition Height="80*"/>
+                        <RowDefinition Height="80*"/>
+                        <RowDefinition Height="52.5*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="gr_1" Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="105"/>
+                            <RowDefinition Height="105"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid RowSpacing="1" Grid.Row="0" Grid.Column="0" VerticalOptions="StartAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Дата" Grid.Column ="0" Grid.Row="0" 
+                                       FontSize="18"
+                                       Margin="10,0,0,0" TextColor="#000000"/>
+                            <DatePicker Grid.Row="1"
+                                            FontAttributes="Bold" HorizontalOptions="Fill" 
+                                            Margin="10,10,10,0" VerticalOptions="Center" 
+                                            MinimumDate="01.01.2000" 
+                                            x:Name="Date_pick" FontSize="18"
+                                        
+                                            />
+                        </Grid>
+                        <Grid RowSpacing="1" Grid.Row="1" Grid.Column="0" VerticalOptions="EndAndExpand" Margin="0,0,0,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Налёт" FontSize="18"
+                                       Grid.Row="0" Grid.ColumnSpan="2"
+                                       Margin="10,0,0,0" TextColor="#000000"/>
+                            <control:MaskedEntry Placeholder="##:##:##" 
+                                                     Mask="XX:XX:XX" 
+                                                     Keyboard="Numeric" 
+                                                     Grid.Row="1"
+                                                     Grid.Column="2"
+                                                     VerticalOptions="Center"
+                                                     HorizontalOptions="FillAndExpand"
+                                                     HorizontalTextAlignment="Center"
+                                                     FontSize="18"
+                                                     TextColor="#000000"
+                                                     Margin="10,10,10,0"
+                                                     x:Name="Time_pick"
+                                                     Text="000000"
+                                                     TextChanged="Time_pick_TextChanged"/>
+                            <local:TagButton                        
+                                    x:Name="btn_minus_time"
+                                    Clicked="Btn_plus_time_Clicked"
+                                    
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Source="m.png"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="10,5,0,0"
+                                    Tag ="-"/>
+                            <local:TagButton                        
+                                    x:Name="btn_plus_time"
+                                    Clicked="Btn_plus_time_Clicked"
+                                    
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    BackgroundColor="Transparent"
+                                Source="p.png"
+                                    VerticalOptions="Center" Margin="0,5,10,0"
+                                    Tag ="+"/>
+                            <local:TagButton                        
+                                    x:Name="btn_minus_time_x2"
+                                    Clicked="Btn_plus_time_Clicked"
+                                    
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="10,5,0,0"
+                                Source="mm.png"
+                                    Tag ="--"/>
+                            <local:TagButton                        
+                                    x:Name="btn_plus_time_x2"
+                                    Clicked="Btn_plus_time_Clicked"
+                                    
+                                    Grid.Row="1"
+                                    Grid.Column="4"
+                                    Tag ="++"
+                                Source="pp.png"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="0,5,10,0"/>
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="gr_2" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="90"/>
+                            <RowDefinition Height="90"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid RowSpacing="1" Grid.Row="0" VerticalOptions="StartAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Ветер" FontSize="18" Grid.Row="0" Grid.Column ="0" 
+                                       Margin="10,0,0,0"
+                                       TextColor="#000000"
+                                       />
+                            <Label x:Name="Wind_Num" Text="0" 
+                                       Grid.Row="1"
+                                       TextColor="#000000" VerticalOptions="Center"
+                                       VerticalTextAlignment="Center" 
+                                       HorizontalTextAlignment="Center" 
+                                       HorizontalOptions="Center" FontSize="18"
+                                       Margin="10,10,10,0"/>
+                            <Slider Minimum="0" Maximum="10"
+                                        Margin="10,0,0,0"
+                                        ThumbColor="#000000" 
+                                        MaximumTrackColor="#FFFA05" MinimumTrackColor="#FFFFFF" 
+                                        HorizontalOptions="Fill"
+                                        Value="0"
+                                        Grid.Row="2"
+                                        ValueChanged="WindSlider_ValueChanged"
+                                        x:Name="WindSlider"/>
+
+                        </Grid>
+                        <Grid RowSpacing="1" Grid.Row="1" VerticalOptions="EndAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Обалчность" FontSize="18" Grid.Row="0" Grid.Column ="0" 
+                                       Margin="10,0,0,0" TextColor="#000000"/>
+                            <Entry x:Name="CloudPicker" 
+                                        TextColor="#000000"
+                                        HorizontalOptions="Fill" 
+                                        Margin="10,10,10,0"
+                                        Grid.Row="1"
+                                        FontSize="18">
+                            </Entry>
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="gr_3" Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="105"/>
+                            <RowDefinition Height="105"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid RowSpacing="1" ColumnSpacing="4" Grid.Row="0" VerticalOptions="StartAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Температура" Grid.Row="0" Grid.Column ="0" 
+                                       Margin="10,0,0,0" TextColor="#000000" FontSize="18"
+                                       Grid.ColumnSpan="5"
+                                       />
+                            <Entry Placeholder="Введите температуру"
+                                       x:Name="Temp_Num"
+                                       Margin="10,10,10,0" TextColor="#000000" 
+                                       Keyboard="Numeric"
+                                       Text="0"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalOptions="Center"
+                                       TextChanged="Temp_Num_TextChanged"
+                                       Grid.Row="1"
+                                       Grid.Column="2"
+                                       />
+                            <Slider Minimum="0" Maximum="100"
+                                        Margin="10,10,10,0"
+                                        ThumbColor="#000000" 
+                                        MaximumTrackColor="#FFFA00" MinimumTrackColor="#FFFFFF" 
+                                        HorizontalOptions="Fill"
+                                        Value="50"
+                                        Grid.Row="2"
+                                        Grid.ColumnSpan="5"
+                                        ValueChanged="TempSlider_ValueChanged"
+                                        x:Name="TempSlider"/>
+                            <local:TagButton
+                                    x:Name="btn_temp_plus"
+                                    Clicked="Btn_temp_plus_Clicked"
+                                     
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="0,5,10,0"
+                                Source="p.png"
+                                    Tag ="+"
+                                    />
+                            <local:TagButton
+                                    x:Name="btn_temp_minus"
+                                    Clicked="Btn_temp_plus_Clicked"
+                                     
+                                    Tag ="-"
+                                Source="m.png"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="10,5,0,0"
+                                    />
+                            <local:TagButton
+                                    x:Name="btn_temp_plus_x2"
+                                    Clicked="Btn_temp_plus_Clicked"
+                                     
+                                    Tag ="++"
+                                Source="pp.png"
+                                    Grid.Row="1"
+                                    Grid.Column="4"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="0,5,10,0"
+                                    />
+                            <local:TagButton
+                                    x:Name="btn_temp_minus_x2"
+                                    Clicked="Btn_temp_plus_Clicked"
+                                     
+                                    Tag ="--"
+                                Source="mm.png"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="10,5,0,0"
+                                    />
+                        </Grid>
+                        <Grid RowSpacing="1" Grid.Row="1" VerticalOptions="EndAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.3*"/>
+                                <RowDefinition Height="0.7*"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Задание №" Grid.Row="0" Grid.Column ="0" 
+                                       Margin="10,0,0,0" TextColor="#000000" FontSize="18"/>
+                            
+                            <Entry Placeholder=""
+                                       x:Name="Task_txt"
+                                       Margin="10,10,10,0" TextColor="#000000" 
+                                       Grid.Row="1"
+                                       HorizontalOptions="Fill" VerticalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       FontSize="18" Keyboard="Default"
+                                       />
+                            <Button
+                                       x:Name="Task_Dialog"
+                                Text="Выбор задач"
+                                       Margin="10,5" TextColor="#000000" 
+                                       Grid.Row="1"
+                                   Grid.Column="1"
+                                       HorizontalOptions="Fill" VerticalOptions="Center"
+                                       FontSize="18"
+                                      FontAttributes="Bold" BackgroundColor="#FFFFFF"
+                                    BorderColor="#0078FF" BorderWidth="2"
+                                    Clicked="Task_txt_Clicked" CornerRadius="5"/>
+                                      
+
+
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="gr_4" Grid.Row="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="90"/>
+                            <RowDefinition Height="90"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid RowSpacing="1" Grid.Row="0" VerticalOptions="StartAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Высота" Grid.Row="0" Grid.ColumnSpan="5"
+                                       Margin="10,0,0,0" TextColor="#000000" FontSize="18"/>
+                            <Entry Placeholder=""
+                                       x:Name="Hight_txt_num"
+                                       Margin="10,10,10,0" TextColor="#000000" FontSize="18"
+                                       Grid.Row="1"
+                                       Grid.Column="2"
+                                       Text="0"
+                                       Keyboard="Numeric"
+                                       HorizontalOptions="Fill" VerticalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       />
+                            <local:TagButton
+                                    x:Name="btn_plus_hi"
+                                    Clicked="Btn_plus_hi_Clicked"
+                                     
+                                    Tag ="+"
+                                Source="p.png"
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="0,5,10,0"
+                                    />
+                            <local:TagButton
+                                    x:Name="btn_minus_hi"
+                                    Clicked="Btn_plus_hi_Clicked"
+                                     
+                                    Tag ="-"
+                                Source="m.png"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="10,5,0,0"
+                                    />
+                            <local:TagButton
+                                    x:Name="btn_plus_hi_x2"
+                                    Clicked="Btn_plus_hi_Clicked"
+                                     
+                                    Tag ="++"
+                                Source="pp.png"
+                                    Grid.Row="1"
+                                    Grid.Column="4"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="0,5,10,0"
+                                    />
+                            <local:TagButton
+                                    x:Name="btn_minus_hi_x2"
+                                    Clicked="Btn_plus_hi_Clicked"
+                                     
+                                    Tag ="--"
+                                Source="mm.png"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="10,5,0,0"
+                                    />
+                        </Grid>
+                        <Grid RowSpacing="1" Grid.Row="1" VerticalOptions="EndAndExpand" Margin="0,0,0,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Дальность" Grid.Row="0" Grid.ColumnSpan="5" 
+                                       Margin="10,0,0,0" TextColor="#000000" FontSize="18"/>
+                            <Entry Placeholder=""
+                                       x:Name="Range_txt"
+                                       Margin="10,10,10,0" TextColor="#000000" 
+                                       Grid.Row="1"
+                                       Grid.Column="2"
+                                       Text="0"
+                                       HorizontalOptions="Fill" VerticalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       Keyboard="Numeric" FontSize="18"
+                                       />
+                            <local:TagButton
+                                    x:Name="btn_plus_len"
+                                    Clicked="Btn_plus_len_Clicked"
+                                     
+                                    Tag ="+"
+                                Source="p.png"
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="0,5,10,0"
+                                    />
+                            <local:TagButton
+                                    x:Name="btn_minus_len"
+                                    Clicked="Btn_plus_len_Clicked"
+                                     
+                                    Tag ="-"
+                                Source="m.png"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="10,5,0,0"
+                                    />
+                            <local:TagButton
+                                    x:Name="btn_plus_len_x2"
+                                    Clicked="Btn_plus_len_Clicked"
+                                     
+                                    Tag ="++"
+                                Source="pp.png"
+                                    Grid.Row="1"
+                                    Grid.Column="4"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="0,5,10,0"
+                                    />
+                            <local:TagButton
+                                    x:Name="btn_minus_len_x2"
+                                    Clicked="Btn_plus_len_Clicked"
+                                     
+                                    Tag ="--"
+                                Source="mm.png"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" Margin="10,5,0,0"
+                                    />
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="gr_5" Grid.Row="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80"/>
+                        </Grid.RowDefinitions>
+                        <Grid RowSpacing="1" Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.3*"/>
+                                <RowDefinition Height="0.7*"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Место" Grid.Row="0" Grid.Column ="0" 
+                                       Margin="10,0,10,0" TextColor="#000000" FontSize="18"/>
+                            <Entry Placeholder=""
+                                       x:Name="Place_txt"
+                                       Margin="10,10,10,0" TextColor="#000000" 
+                                       Grid.Row="1"
+                                       HorizontalOptions="Fill" VerticalOptions="Center" FontSize="18"
+                                       />
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="gr_6" Grid.Row="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80"/>
+                        </Grid.RowDefinitions>
+                        <Grid RowSpacing="1" Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.3*"/>
+                                <RowDefinition Height="0.7*"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Комментарий" Grid.Row="0" Grid.Column ="0" 
+                                       Margin="10,0,10,0" TextColor="#000000"
+                                       FontSize="18"/>
+                            <Entry Placeholder=""
+                                       x:Name="Comment_txt"
+                                       Margin="10,10,10,0" TextColor="#000000"
+                                       FontSize="18"
+                                       Grid.Row="1"
+                                       HorizontalOptions="Fill" VerticalOptions="Center"
+                                       />
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="gr_7" Grid.Row="6" Grid.ColumnSpan="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="52.5"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="Confirm_btn"
+                                    Margin="10,0,10,0"
+                                    Grid.Row="0"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill"
+                                    Text="Записать" TextColor="#0078FF" 
+                                    FontAttributes="Bold" BackgroundColor="#FFFFFF"
+                                    BorderColor="#000000" BorderWidth="2" Padding="0,10"
+                                    FontSize="18"
+                                    Clicked="Confirm_btn_Clicked" CornerRadius="5"/>
+                    </Grid>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>
