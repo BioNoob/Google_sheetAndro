@@ -150,12 +150,15 @@ namespace Google_sheetAndro.Class
                 return $"https://image-charts.com/chart?cht=bvg&chs={Options.opt.Width}x{Options.opt.Height}&chds=a&chg=1,1,0,0&chd=t:{value}&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chof=.png";
         }
         public static string FormerPost(List<ValueDate> vl, List<string> years)
+            //EVERY EDIT 25.09!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             string label = "";
             List<string> mounthList = new List<string>();
             List<object> valueList = new List<object>();
             List<object> valueListOut = new List<object>();
             Dictionary<string, int> help = new Dictionary<string, int>();
+            Dictionary<int, List<string>> mounth_form_val = new Dictionary<int, List<string>>();
+            int m_cnt = 1;
             string value = "";
             string namer = "";
             HashSet<object> unique_items = new HashSet<object>();
@@ -172,87 +175,114 @@ namespace Google_sheetAndro.Class
             {
                 foreach (string item_year in years)//foreach (string item in mounthList)
                 {
-                    switch (Options.opt.SortNum)//Options.opt.SortNum)
+                    try
                     {
-                        case OptionsBuild.SortingEnum.AllYearMid:
-                            valueList.Add(vl.Where(t => t.Mounth == item && t.Year == item_year).Average(u => (double)u.Value));
-                            break;
-                        case OptionsBuild.SortingEnum.AllYearMidEvery:
-                            valueList = vl.Where(t => t.Mounth == item && t.Year == item_year).Select(u => u.Value).ToList();
-                            break;
-                        //нашли максимумы за год по месяцам
-                        case OptionsBuild.SortingEnum.AllYearMax:
-                            valueList.Add(vl.Where(t => t.Mounth == item && t.Year == item_year).Max(u => (double)u.Value));
-                            break;
-                        case OptionsBuild.SortingEnum.AllYearMin:
-                            valueList.Add(vl.Where(t => t.Mounth == item && t.Year == item_year).Min(u => (double)u.Value));
-                            break;
-                        case OptionsBuild.SortingEnum.AllYearCount:
-                            valueList = vl.Where(t => t.Mounth == item && t.Year == item_year).Select(u => u.Value).ToList(); //пассажиры (9 раз) обучение (3 раза)
-                            var _help_dic = Counter_former(valueList);//значение количество (пассажиры, 9)
-                            //это значение для СЕНТЯБРЬ 2016, СЕНТЯБРЬ 2017 следует далее
-                            foreach (string val in _help_dic.Keys)
-                            {
-                                if (help.ContainsKey(val))
-                                    help[val] += _help_dic[val];
-                                else
-                                    help.Add(val, _help_dic[val]);
-                            }
-                            //словарь хелп аккамулирует в себе количество за месяц всех годов
-                            break;
+                        switch (Options.opt.SortNum)//Options.opt.SortNum)
+                        {
+                            case OptionsBuild.SortingEnum.AllYearMid:
+                                valueList.Add(vl.Where(t => t.Mounth == item && t.Year == item_year).Average(u => (double)u.Value));
+                                break;
+                            case OptionsBuild.SortingEnum.AllYearMidEvery:
+                                valueList.Add(vl.Where(t => t.Mounth == item && t.Year == item_year).Sum(u => (double)u.Value));
+                                break;
+                            //нашли максимумы за год по месяцам
+                            case OptionsBuild.SortingEnum.AllYearMax:
+                                valueList.Add(vl.Where(t => t.Mounth == item && t.Year == item_year).Max(u => (double)u.Value));
+                                break;
+                            case OptionsBuild.SortingEnum.AllYearMin:
+                                valueList.Add(vl.Where(t => t.Mounth == item && t.Year == item_year).Min(u => (double)u.Value));
+                                break;
+                            case OptionsBuild.SortingEnum.AllYearCount:
+                                //valueList = vl.Where(t => t.Mounth == item && t.Year == item_year).Select(u => u.Value).ToList(); //пассажиры (9 раз) обучение (3 раза)
+                                //var _help_dic = Counter_former(valueList);//значение количество (пассажиры, 9)
+                                ////это значение для СЕНТЯБРЬ 2016, СЕНТЯБРЬ 2017 следует далее
+                                //foreach (string val in _help_dic.Keys)
+                                //{
+                                //    if (help.ContainsKey(val))
+                                //        help[val] += _help_dic[val];
+                                //    else
+                                //        help.Add(val, _help_dic[val]);
+                                //}
+                                valueList = (from ValueDate vd in vl
+                                             where vd.Mounth == item
+                                             select vd.Value).ToList();
+                                EveryBuilder.SetGroup(item, valueList);
+                                valueList.Clear();
+                                //словарь хелп аккамулирует в себе количество за месяц всех годов
+                                break;
+                        }
                     }
+                    catch (InvalidOperationException)
+                    {
+                        valueList.Add(0);
+                    }
+                    
                 }
-                switch (Options.opt.SortNum)
-                {
-                    case OptionsBuild.SortingEnum.AllYearMidEvery:
-                        valueListOut.Add(valueList.Sum(u => (double)u));
-                        break;
-                    case OptionsBuild.SortingEnum.AllYearMid:
-                        valueListOut.Add(valueList.Average(u => (double)u));
-                        break;
-                    case OptionsBuild.SortingEnum.AllYearMax:
-                        valueListOut.Add(valueList.Max());
-                        break;
-                    case OptionsBuild.SortingEnum.AllYearMin:
-                        valueListOut.Add(valueList.Min());
-                        break;
-                    case OptionsBuild.SortingEnum.AllYearCount:
-                        //нужно вывести в значение собранное за месяц
-                        //точнее добавить в выходы: месяц, занчение, подпись
-                        double help_min = help.Min(t => t.Value);
-                        double help_max = help.Max(t => t.Value);
-                        if (help_min < min)
-                            min = help_min;
-                        if (help_max > max)
-                            max = help_max;
-                        namer += string.Join(",", help.Keys);
-                        value += string.Join(",", help) + "|";
-                        help.Clear();
-                        break;
-                }
+                //switch (Options.opt.SortNum)
+                //{
+                //    case OptionsBuild.SortingEnum.AllYearMidEvery:
+                //        valueListOut.Add(valueList.Sum(Convert.ToDouble));
+                //        break;
+                //    case OptionsBuild.SortingEnum.AllYearMid:
+                //        valueListOut.Add(valueList.Average(Convert.ToDouble));
+                //        break;
+                //    case OptionsBuild.SortingEnum.AllYearMax:
+                //        valueListOut.Add(valueList.Max(Convert.ToDouble));
+                //        break;
+                //    case OptionsBuild.SortingEnum.AllYearMin:
+                //        valueListOut.Add(valueList.Min(Convert.ToDouble));
+                //        break;
+                //    case OptionsBuild.SortingEnum.AllYearCount:
+                //        //нужно вывести в значение собранное за месяц
+                //        //точнее добавить в выходы: месяц, занчение, подпись
+                //        double help_min = help.Min(t => t.Value);
+                //        double help_max = help.Max(t => t.Value);
+                //        if (help_min < min)
+                //            min = help_min;
+                //        if (help_max > max)
+                //            max = help_max;
+                //        namer += string.Join(",", help.Keys);
+                //        value += string.Join(",", help) + "|";
+                //        help.Clear();
+                //        break;
+                //}
                 if (Options.opt.SortNum != OptionsBuild.SortingEnum.AllYearCount)
                 {
-                    double mx = valueListOut.Max(u => (double)u);
-                    double mn = valueListOut.Min(u => (double)u);
+                    double mx = valueList.Max(Convert.ToDouble);
+                    double mn = valueList.Min(Convert.ToDouble);
                     if (mx > max)
                         max = mx;
                     if (mn < min)
                         min = mn;
-                    value += string.Join(",", valueListOut) + "|";
-                    namer += string.Join(",", years);
-                    valueListOut.Clear();
+                    mounth_form_val.Add(m_cnt, valueList.Select(Convert.ToString).ToList()); //мс + вал лист
+                    //value += string.Join(",", valueList) + "|";
+                    //namer += string.Join(",", years);
+                    valueList.Clear();
                 }
+                m_cnt++;
             }
-            value = value.Remove(value.Length - 1, 1);
+            if(Options.opt.SortNum != OptionsBuild.SortingEnum.AllYearCount)
+            {
+                for (int i = 0; i < mounth_form_val.First().Value.Count; i++)
+                {
+                    foreach (int item in mounth_form_val.Keys)
+                    {
+                        value += mounth_form_val[item][i] + ",";
+                    }
+                    value = value.TrimEnd('|', ',') + "|";
+                }
+                namer = string.Join("|", years);
+            }
+            value = value.TrimEnd('|', ',');
             if (max == double.MinValue)
                 max = 50;
             if (min == double.MaxValue)
                 min = 0;
             //додумать функцию градиента? (посмотреть), параметр для отображения размера? зависит от размера итема отображения (или статик?)
             if (namer.Length > 1)
-                return $"https://image-charts.com/chart?cht=bvg&chs=300x500&chd=t:{value}&chg=1,1,0,0&chan&chf=b0,lg,0,FFE7C6,0,76A4FB,1&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chl={namer}&chof=.png";
+                return $"https://image-charts.com/chart?cht=bvg&chs={Options.opt.Width}x{Options.opt.Height}&chds=a&chg=1,1,0,0&chd=t:{value}&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chdl={namer}&chof=.png";
             else
-                return $"https://image-charts.com/chart?cht=bvg&chs=300x500&chd=t:{value}&chg=1,1,0,0&chan&chf=b0,lg,0,FFE7C6,0,76A4FB,1&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chof=.png";
+                return $"https://image-charts.com/chart?cht=bvg&chs={Options.opt.Width}x{Options.opt.Height}&chds=a&chg=1,1,0,0&chd=t:{value}&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chof=.png";
         }
         private static Dictionary<string, int> Counter_former(List<object> list)
         {

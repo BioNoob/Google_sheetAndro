@@ -99,15 +99,23 @@ namespace Google_sheetAndro.Views
         }
         private void VariantView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (((Selectore)VariantView.SelectedItem).Enumer == OptionsBuild.SortingEnum.AllYearMidEvery ||
-                ((Selectore)VariantView.SelectedItem).Enumer == OptionsBuild.SortingEnum.YearEvery)
-                Graph_pick.ItemsSource = Variant_sorting["Summ"];
-            else if(((Selectore)VariantView.SelectedItem).Enumer == OptionsBuild.SortingEnum.YearCount ||
-                ((Selectore)VariantView.SelectedItem).Enumer == OptionsBuild.SortingEnum.AllYearCount)
-                Graph_pick.ItemsSource = Variant_sorting["Count"];
+            Graph_pick.SelectedIndexChanged -= Graph_pick_SelectedIndexChanged;
+            if (VariantView.SelectedItem != null)
+            {
+                if (((Selectore)VariantView.SelectedItem).Enumer == OptionsBuild.SortingEnum.AllYearMidEvery ||
+                    ((Selectore)VariantView.SelectedItem).Enumer == OptionsBuild.SortingEnum.YearEvery)
+                    Graph_pick.ItemsSource = Variant_sorting["Summ"];
+                else if (((Selectore)VariantView.SelectedItem).Enumer == OptionsBuild.SortingEnum.YearCount ||
+                    ((Selectore)VariantView.SelectedItem).Enumer == OptionsBuild.SortingEnum.AllYearCount)
+                    Graph_pick.ItemsSource = Variant_sorting["Count"];
+                else
+                    Graph_pick.ItemsSource = Variant_sorting["etc"];
+                Graph_pick.SelectedItem = null;
+                Graph_pick.IsEnabled = true;
+            }
             else
-                Graph_pick.ItemsSource = Variant_sorting["etc"];
-            Graph_pick.IsEnabled = true;
+                Graph_pick.IsEnabled = false;
+            Graph_pick.SelectedIndexChanged += Graph_pick_SelectedIndexChanged;
         }
         private void DeviceRotated(object s, PageOrientationEventArgs e)
         {
@@ -139,7 +147,10 @@ namespace Google_sheetAndro.Views
         }
         private void Graph_pick_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Graph_create.IsEnabled = true;
+            if(Graph_pick.SelectedItem != null)
+                Graph_create.IsEnabled = true;
+            else
+                Graph_pick.IsEnabled = false;
         }
         //TO DO
         //Каждый в месяце не работает. Количество в месяце не работает. Привести налет к понятному, передавать размер элемента управления, проверить за все года
@@ -174,14 +185,14 @@ namespace Google_sheetAndro.Views
                 {
                     if (item != "Общий налет")
                         Graph_pick_date.Items.Add(item);
-                }   
+                }
             }
             Graph_pick_date.IsEnabled = true;
         }
         bool fl_fst_init = true;
         protected override void OnAppearing()
         {
-            if(fl_fst_init)
+            if (fl_fst_init)
             {
                 tabelValue = Googles.GetValueTabel();
                 foreach (string item in tabelValue.Keys)
@@ -193,6 +204,6 @@ namespace Google_sheetAndro.Views
                 fl_fst_init = false;
             }
         }
-        
+
     }
 }
