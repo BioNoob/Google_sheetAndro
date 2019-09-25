@@ -28,7 +28,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                    <Image x:Name="Out" BackgroundColor="Aqua" Grid.Row="2"
+                    <Image x:Name="Out" BackgroundColor="Aqua" Grid.Row="3"
                            Grid.ColumnSpan="2" Margin="10,5,10,10" HeightRequest="550">
 
                     </Image>
@@ -39,7 +39,7 @@
                 </microcharts:ChartView>-->
 
                 <Picker x:Name="Graph_pick" Grid.Row="0" Grid.Column="1"
-                        Margin="10,5" FontSize="18"
+                        Margin="5,5,10,5" FontSize="18"
                         VerticalOptions="Fill"
                         HorizontalOptions="Fill"
                         IsEnabled="False"
@@ -58,7 +58,7 @@
                     </Picker.Items>
                 </Picker>
                 <Picker x:Name="Graph_pick_date" Grid.Row="0" Grid.Column="0"
-                        Margin="10,5" FontSize="18"
+                        Margin="10,5,5,5" FontSize="18"
                         SelectedIndexChanged="Graph_pick_date_SelectedIndexChanged"
                         VerticalOptions="Fill"
                         IsEnabled="False"
@@ -84,25 +84,35 @@
                     </CarouselView.ItemTemplate>
                 </CarouselView>
                 -->
-                <Picker
+                    <Picker
                     x:Name="VariantView" 
-                    Grid.Row="1" Grid.ColumnSpan="2"
-                    Margin="10,5" 
+                    Grid.Row="1" Grid.ColumnSpan="1"
+                    Margin="10,5,5,5" 
                     FontSize="18"
                     HeightRequest="50"              
                     VerticalOptions="FillAndExpand"          
                     HorizontalOptions="FillAndExpand"
-                    Title="2. Ожидание выбора параметров..."
+                    Title="2. Параметр"
                     IsEnabled="False"
                     SelectedIndexChanged="VariantView_SelectedIndexChanged"
                     >
-                    <Picker.Items>
-                        <x:String>Километраж</x:String>
-                    </Picker.Items>
-                </Picker>
-                <Button x:Name="Graph_create"
+                    </Picker>
+                    <Picker
+                    x:Name="Mounth_pick" 
+                    Grid.Row="1" Grid.ColumnSpan="1"
+                        Grid.Column="1"
+                    Margin="5,5,10,5" 
+                    FontSize="18"
+                    HeightRequest="50"              
+                    VerticalOptions="FillAndExpand"          
+                    HorizontalOptions="FillAndExpand"
+                    Title="4. За месяц"
+                    SelectedIndexChanged="Mounth_pick_SelectedIndexChanged"
+                    >
+                    </Picker>
+                    <Button x:Name="Graph_create"
                                     Margin="10,0,10,10"
-                                    Grid.Row="3"
+                                    Grid.Row="2"
                                     Grid.ColumnSpan="2"
                                     HorizontalOptions="Fill"
                                     VerticalOptions="Fill"

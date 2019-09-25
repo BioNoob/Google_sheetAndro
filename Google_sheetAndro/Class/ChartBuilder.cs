@@ -1,12 +1,10 @@
 ﻿using Google.Apis.Sheets.v4.Data;
+using Google_sheetAndro.Class;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using sd = System.Drawing;
-using System.Text.RegularExpressions;
 using System.Globalization;
-using System.Diagnostics;
-using Google_sheetAndro.Class;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Google_sheetAndro
 {

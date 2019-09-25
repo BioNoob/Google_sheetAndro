@@ -27,6 +27,7 @@
     <PackageReference Include="LiveXAML" Version="2.1.72" />
     <PackageReference Include="Microcharts" Version="0.7.1" />
     <PackageReference Include="Microcharts.Forms" Version="0.7.1" />
+    <PackageReference Include="Naxam.TopTabbedPage.Forms" Version="0.0.3.5" />
     <PackageReference Include="OxyPlot.Core" Version="1.0.0" />
     <PackageReference Include="OxyPlot.Xamarin.Forms" Version="1.0.0" />
     <PackageReference Include="Refractored.XamForms.PullToRefresh" Version="2.4.1" />

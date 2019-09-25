@@ -1,14 +1,8 @@
 ﻿using Google.Apis.Sheets.v4.Data;
-using Refractored.XamForms.PullToRefresh;
 using RefreshSample.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using TableAndro;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -30,7 +24,11 @@ namespace Google_sheetAndro.Views
             Graph_create.IsEnabled = false;
             VariantView.ItemsSource = new List<string> { "Ожидание выбора параметров.." };
             BindingContext = new TestViewModel(this);
-
+            Mounth_pick.ItemsSource = new List<string>()
+            {
+                "Все доступные","январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"
+            };
+            Mounth_pick.SelectedIndex = 0;
         }
         Dictionary<string, ValueRange> tabelValue;
         Dictionary<string, List<Selectore>> Variant = new Dictionary<string, List<Selectore>>
@@ -40,8 +38,8 @@ namespace Google_sheetAndro.Views
                     new Selectore("Сумма за год",OptionsBuild.SortingEnum.AllYearMidEvery),
                     new Selectore("Среднее за год",OptionsBuild.SortingEnum.AllYearMid),
                     new Selectore("Максимум за год",OptionsBuild.SortingEnum.AllYearMax),
-                    new Selectore("Минимум за год",OptionsBuild.SortingEnum.AllYearMin),
-                    new Selectore("Количество за год",OptionsBuild.SortingEnum.AllYearCount)}
+                    new Selectore("Минимум за год",OptionsBuild.SortingEnum.AllYearMin) }
+                    //new Selectore("Количество за год",OptionsBuild.SortingEnum.AllYearCount)}
             },
             {"Year",
                 new List<Selectore> {
@@ -119,11 +117,14 @@ namespace Google_sheetAndro.Views
         }
         private void DeviceRotated(object s, PageOrientationEventArgs e)
         {
+            if(Out.Source != null)
+            {
             string sourse = Out.Source.ToString();
             Out.Source = null;
             sourse = sourse.Replace($"{Options.opt.Width}x{Options.opt.Height}", $"{(int)Out.Width}x{(int)Out.Height}");
             sourse = sourse.Replace("Uri: ", "");
             Out.Source = sourse;
+            }
             Options.opt.Height = (int)Out.Height;
             Options.opt.Width = (int)Out.Width;
         }
@@ -205,5 +206,9 @@ namespace Google_sheetAndro.Views
             }
         }
 
+        private void Mounth_pick_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Options.opt.ActiveMounth = Mounth_pick.SelectedIndex;
+        }
     }
 }

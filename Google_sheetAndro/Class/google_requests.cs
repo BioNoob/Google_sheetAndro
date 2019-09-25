@@ -1,9 +1,5 @@
-﻿using System;
+﻿using Google.Apis.Sheets.v4.Data;
 using System.Collections.Generic;
-using System.Text;
-using Google.Apis.Sheets;
-using Google.Apis.Sheets.v4;
-using Google.Apis.Sheets.v4.Data;
 
 namespace TableAndro
 {

@@ -68,24 +68,26 @@ namespace Google_sheetAndro
         private int _drawingSize_W;
         private int _drawingSize_H;
         //private EnumTyp _activeType_enum;
-        public OptionsBuild(EnumTyp typ, SortingEnum sorting, int drawingSize_W, int drawingSize_H)
+        public OptionsBuild(EnumTyp typ, SortingEnum sorting, int drawingSize_W, int drawingSize_H, int mounth)
         {
             _activeType = (int)typ;
             _activeSort = (int)sorting;
             _drawingSize_H = drawingSize_H;
             _drawingSize_W = drawingSize_W;
+            ActiveMounth = mounth;
         }
         public static OptionsBuild Default
         {
             get
             {
-                return new OptionsBuild(EnumTyp.Time, SortingEnum.AllYearMidEvery, 300, 500);
+                return new OptionsBuild(EnumTyp.Time, SortingEnum.AllYearMidEvery, 300, 500, 0);
             }
         }
         public int ActiveSort { get => _activeSort; set => _activeSort = value; }
         public SortingEnum SortNum { get => (SortingEnum)_activeSort; set => _activeSort = (int)value; }
         public int Width { get => _drawingSize_W; set => _drawingSize_W = value; }
         public int Height { get => _drawingSize_H; set => _drawingSize_H = value; }
+        public int ActiveMounth { get; set; }
         public int ActiveType { get => _activeType; set { _activeType = value; } }//_activeType_enum = (EnumTyp)value;  } }
         //public EnumTyp ActiveType_e { get => _activeType_enum; set { _activeType_enum = value; _activeType = (int)value; } }
     }

@@ -287,7 +287,7 @@
                                        />
                             <Button
                                        x:Name="Task_Dialog"
-                                Text="Выбор задач"
+                                Text="Выбор"
                                        Margin="10,5" TextColor="#000000" 
                                        Grid.Row="1"
                                    Grid.Column="1"

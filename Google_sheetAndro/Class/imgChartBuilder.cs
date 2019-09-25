@@ -1,8 +1,6 @@
-﻿using Google.Apis.Sheets.v4.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Google_sheetAndro.Class
 {
@@ -29,7 +27,10 @@ namespace Google_sheetAndro.Class
                 if (min > 0) min = 0;
                 max = (double)vl.Max(t => t.Value);
             }
-            mounthList = new HashSet<string>(vl.Select(v => v.Mounth).ToList()).ToList();
+            if (Options.opt.ActiveMounth == 0)
+                mounthList = new HashSet<string>(vl.Select(v => v.Mounth).ToList()).ToList();
+            else
+                mounthList.Add(months[Options.opt.ActiveMounth - 1]);
             //mounthList.AddRange(months);
             label = string.Join("|", new HashSet<string>(mounthList).ToList());
             foreach (string item in mounthList)
@@ -169,7 +170,10 @@ namespace Google_sheetAndro.Class
                 min = (double)vl.Min(t => t.Value);
                 max = (double)vl.Max(t => t.Value);
             }
-            mounthList.AddRange(months);
+            if (Options.opt.ActiveMounth == 0)
+                mounthList.AddRange(months);
+            else
+                mounthList.Add(months[Options.opt.ActiveMounth - 1]);
             label = string.Join("|", new HashSet<string>(mounthList).ToList());
             foreach (string item in mounthList)//foreach (string item_year in years)
             {
@@ -203,11 +207,11 @@ namespace Google_sheetAndro.Class
                                 //    else
                                 //        help.Add(val, _help_dic[val]);
                                 //}
-                                valueList = (from ValueDate vd in vl
-                                             where vd.Mounth == item
-                                             select vd.Value).ToList();
-                                EveryBuilder.SetGroup(item, valueList);
-                                valueList.Clear();
+                                //valueList = (from ValueDate vd in vl
+                                //             where vd.Mounth == item
+                                //             select vd.Value).ToList();
+                                //EveryBuilder.SetGroup(item, valueList);
+                                //valueList.Clear();
                                 //словарь хелп аккамулирует в себе количество за месяц всех годов
                                 break;
                         }

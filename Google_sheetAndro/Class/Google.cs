@@ -1,14 +1,9 @@
 ﻿using Android.Widget;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
-using Google_sheetAndro.Views;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
-using System.Text;
-using System.Threading.Tasks;
 using static Google.Apis.Sheets.v4.SpreadsheetsResource;
 
 namespace TableAndro

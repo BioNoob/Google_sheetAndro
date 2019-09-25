@@ -71,6 +71,9 @@
     <PackageReference Include="Microcharts.Forms">
       <Version>0.7.1</Version>
     </PackageReference>
+    <PackageReference Include="Naxam.TopTabbedPage.Forms">
+      <Version>0.0.3.5</Version>
+    </PackageReference>
     <PackageReference Include="OxyPlot.Core">
       <Version>1.0.0</Version>
     </PackageReference>

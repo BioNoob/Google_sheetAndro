@@ -7,16 +7,18 @@
             BackgroundColor="Transparent"
             xmlns:views="clr-namespace:Google_sheetAndro.Views"
             x:Class="Google_sheetAndro.Views.MainPage"
-            BarBackgroundColor="#1976D2">
+            BarBackgroundColor="#1976D2"
+            
+            >
 
     <TabbedPage.Children>
-        <NavigationPage Title="" IconImageSource="new_one.png">
+        <NavigationPage Title="Запись" IconImageSource="new_one.png" d:NavigationPage.HasNavigationBar="False" d:NavigationPage.HasBackButton="False">
             <x:Arguments>
                 <views:ItemsPage />
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="" IconImageSource="out_chart.png">
+        <NavigationPage Title="График" IconImageSource="out_chart.png" d:NavigationPage.HasNavigationBar="False" d:NavigationPage.HasBackButton="False">
             <x:Arguments>
                 <views:Page_out />
             </x:Arguments>
