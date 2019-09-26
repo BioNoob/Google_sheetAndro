@@ -12,27 +12,27 @@
 
   <ItemGroup>
     <None Remove="client_secret.json" />
+    <None Remove="sicret_new.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="client_secret.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="sicret_new.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Google.Apis" Version="1.41.1" />
-    <PackageReference Include="Google.Apis.Drive.v3" Version="1.41.1.1705" />
-    <PackageReference Include="Google.Apis.Sheets.v4" Version="1.41.1.1705" />
-    <PackageReference Include="LiveXAML" Version="2.1.72" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.41.1.1715" />
+    <PackageReference Include="Google.Apis.Sheets.v4" Version="1.41.1.1721" />
     <PackageReference Include="Microcharts" Version="0.7.1" />
     <PackageReference Include="Microcharts.Forms" Version="0.7.1" />
-    <PackageReference Include="Naxam.TopTabbedPage.Forms" Version="0.0.3.5" />
-    <PackageReference Include="OxyPlot.Core" Version="1.0.0" />
-    <PackageReference Include="OxyPlot.Xamarin.Forms" Version="1.0.0" />
     <PackageReference Include="Refractored.XamForms.PullToRefresh" Version="2.4.1" />
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.673156" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.815419" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />  
     <PackageReference Include="Xamarin.Forms.MaskedEntry" Version="1.0.0" />  
     <PackageReference Include="Xamarin.Forms.MultiSelectListView" Version="2.1.0" />
   </ItemGroup>
@@ -44,6 +44,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\InfoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Page_out.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

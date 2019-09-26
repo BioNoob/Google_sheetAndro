@@ -6,6 +6,21 @@ namespace Google_sheetAndro.Class
 {
     public static class imgChartBuilder
     {
+        private static List<SkiaSharp.SKColor> dicColor = new List<SkiaSharp.SKColor>
+            {
+                {SkiaSharp.SKColor.Parse("#3914AF") },
+                {SkiaSharp.SKColor.Parse("#7109AA") },
+                {SkiaSharp.SKColor.Parse("#CD0074") },
+                {SkiaSharp.SKColor.Parse("#FF0000") },
+                {SkiaSharp.SKColor.Parse("#00CC00") },
+                {SkiaSharp.SKColor.Parse("#9FEE00") },
+                {SkiaSharp.SKColor.Parse("#FFFF00") },
+                {SkiaSharp.SKColor.Parse("#FFD300") },
+                {SkiaSharp.SKColor.Parse("#FFAA00") },
+                {SkiaSharp.SKColor.Parse("#FF7400") },
+                {SkiaSharp.SKColor.Parse("#009A9A") },
+                {SkiaSharp.SKColor.Parse("#1240AB") }
+            };
         //строим каждый в месяце
         public static string FormerPost_year(List<ValueDate> vl)
         {
@@ -18,6 +33,7 @@ namespace Google_sheetAndro.Class
             ValueDate def;
             string value = "";
             string namer = "";
+            string color = "";
             HashSet<object> unique_items = new HashSet<object>();
             double min = double.MaxValue; double max = double.MinValue;
             string[] months = { "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь" };
@@ -127,7 +143,7 @@ namespace Google_sheetAndro.Class
                         {
                             if (it > max) max = it;
                             if (it < min) min = it;
-                            value += it + ",";
+                            value += string.Format("{0:0.#}",it) + ",";
                         }
                     }
                     value = value.TrimEnd(',');
@@ -144,11 +160,18 @@ namespace Google_sheetAndro.Class
                 max = 50;
             if (min == double.MaxValue)
                 min = 0;
+            var colr = namer.Split('|');
+            for (int i = 0; i < colr.Length; i++)
+            {
+                var random = new Random();
+                color += String.Format("{0:X6}", random.Next(0x1000000)) + ",";
+            }
+            color = color.TrimEnd(',');
             //додумать функцию градиента? (посмотреть), параметр для отображения размера? зависит от размера итема отображения (или статик?)
             if (namer.Length > 1)
-                return $"https://image-charts.com/chart?cht=bvg&chs={Options.opt.Width}x{Options.opt.Height}&chds=a&chg=1,1,0,0&chd=t:{value}&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chdl={namer}&chof=.png";
+                return $"https://image-charts.com/chart?cht=bvg&chs={Options.opt.Width}x{Options.opt.Height}&chds=a&chg=1,1,0,0&chd=t:{value}&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chdl={namer}&chof=.png&chco={color}";
             else
-                return $"https://image-charts.com/chart?cht=bvg&chs={Options.opt.Width}x{Options.opt.Height}&chds=a&chg=1,1,0,0&chd=t:{value}&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chof=.png";
+                return $"https://image-charts.com/chart?cht=bvg&chs={Options.opt.Width}x{Options.opt.Height}&chds=a&chg=1,1,0,0&chd=t:{value}&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chof=.png&chco={color}";
         }
         public static string FormerPost(List<ValueDate> vl, List<string> years)
             //EVERY EDIT 25.09!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -162,6 +185,7 @@ namespace Google_sheetAndro.Class
             int m_cnt = 1;
             string value = "";
             string namer = "";
+            string color = "";
             HashSet<object> unique_items = new HashSet<object>();
             double min = double.MaxValue; double max = double.MinValue;
             string[] months = { "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь" };
@@ -271,7 +295,7 @@ namespace Google_sheetAndro.Class
                 {
                     foreach (int item in mounth_form_val.Keys)
                     {
-                        value += mounth_form_val[item][i] + ",";
+                        value += string.Format("{0:0.#}", mounth_form_val[item][i]) + ",";
                     }
                     value = value.TrimEnd('|', ',') + "|";
                 }
@@ -282,11 +306,24 @@ namespace Google_sheetAndro.Class
                 max = 50;
             if (min == double.MaxValue)
                 min = 0;
+            var colr = namer.Split('|');
+            if(namer.Length < 1)
+            {
+                var random1 = new Random();
+                color += String.Format("{0:X6}", random1.Next(0x1000000)) + ",";
+            }
+            for (int i = 0; i < colr.Length; i++)
+            {
+                var random2 = new Random();
+                color += String.Format("{0:X6}", random2.Next(0x1000000)) + ",";
+                //color += /*SkiaSharp.Views.Forms.Extensions.ToFormsColor(dicColor[i]).ToHex()*/ + ",";
+            }
+            color = color.TrimEnd(',');
             //додумать функцию градиента? (посмотреть), параметр для отображения размера? зависит от размера итема отображения (или статик?)
             if (namer.Length > 1)
-                return $"https://image-charts.com/chart?cht=bvg&chs={Options.opt.Width}x{Options.opt.Height}&chds=a&chg=1,1,0,0&chd=t:{value}&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chdl={namer}&chof=.png";
+                return $"https://image-charts.com/chart?cht=bvg&chs={Options.opt.Width}x{Options.opt.Height}&chds=a&chg=1,1,0,0&chd=t:{value}&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chdl={namer}&chof=.png&chco={color}";
             else
-                return $"https://image-charts.com/chart?cht=bvg&chs={Options.opt.Width}x{Options.opt.Height}&chds=a&chg=1,1,0,0&chd=t:{value}&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chof=.png";
+                return $"https://image-charts.com/chart?cht=bvg&chs={Options.opt.Width}x{Options.opt.Height}&chds=a&chg=1,1,0,0&chd=t:{value}&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chof=.png&chco={color}";
         }
         private static Dictionary<string, int> Counter_former(List<object> list)
         {

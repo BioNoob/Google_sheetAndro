@@ -1,4 +1,5 @@
-﻿using Google.Apis.Sheets.v4.Data;
+﻿using Android.Widget;
+using Google.Apis.Sheets.v4.Data;
 using RefreshSample.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -162,19 +163,29 @@ namespace Google_sheetAndro.Views
             //var sss = tabelValue[lll];
             Options.opt.Height = (int)Out.Height;
             Options.opt.Width = (int)Out.Width;
-            Options.opt.ActiveSort = (int)((Selectore)VariantView.SelectedItem).Enumer;
-            Options.opt.ActiveType = (int)((Selectore_sorting)Graph_pick.SelectedItem).Enumer;
-            if (Graph_pick_date.SelectedItem.ToString() == "Все года")
+            if (VariantView.SelectedItem != null && Graph_pick_date.SelectedItem != null && Graph_pick.SelectedItem != null)
             {
-                image_source = ChartBuilder.GetBar(tabelValue);
+                Options.opt.ActiveSort = (int)((Selectore)VariantView.SelectedItem).Enumer;
+                Options.opt.ActiveType = (int)((Selectore_sorting)Graph_pick.SelectedItem).Enumer;
+                if (Graph_pick_date.SelectedItem.ToString() == "Все года")
+                {
+                    image_source = ChartBuilder.GetBar(tabelValue);
+                }
+                else
+                    image_source = ChartBuilder.GetBar(tabelValue, Year);
+                //Chart1.Chart = ChartBuilder.GetBar(tabelValue[lll]);
+                //Chart1.Chart.LabelTextSize = 50;
+                //Chart1.Chart.LabelTextSize = 15;
+                Out.Source = image_source;
+                Debug.WriteLine(Out.Source);
             }
             else
-                image_source = ChartBuilder.GetBar(tabelValue, Year);
-            //Chart1.Chart = ChartBuilder.GetBar(tabelValue[lll]);
-            //Chart1.Chart.LabelTextSize = 50;
-            //Chart1.Chart.LabelTextSize = 15;
-            Out.Source = image_source;
-            Debug.WriteLine(Out.Source);
+            {
+                Graph_create.IsEnabled = false;
+                Toast.MakeText(Android.App.Application.Context, "Один из параметров выбран неверно", ToastLength.Long).Show();
+            }
+
+
         }
         public void SetDateFields()
         {

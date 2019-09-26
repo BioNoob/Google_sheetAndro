@@ -14,21 +14,7 @@ namespace Google_sheetAndro
     }
     public static class ChartBuilder
     {
-        private static Dictionary<string, SkiaSharp.SKColor> dicColor = new Dictionary<string, SkiaSharp.SKColor>
-            {
-                { "январь", SkiaSharp.SKColor.Parse("#3914AF") },
-                { "февраль", SkiaSharp.SKColor.Parse("#7109AA") },
-                { "март", SkiaSharp.SKColor.Parse("#CD0074") },
-                { "апрель", SkiaSharp.SKColor.Parse("#FF0000") },
-                { "май", SkiaSharp.SKColor.Parse("#00CC00") },
-                { "июнь", SkiaSharp.SKColor.Parse("#9FEE00") },
-                { "июль", SkiaSharp.SKColor.Parse("#FFFF00") },
-                { "август", SkiaSharp.SKColor.Parse("#FFD300") },
-                { "сентябрь", SkiaSharp.SKColor.Parse("#FFAA00") },
-                { "октябрь", SkiaSharp.SKColor.Parse("#FF7400") },
-                { "ноябрь", SkiaSharp.SKColor.Parse("#009A9A") },
-                { "декабрь", SkiaSharp.SKColor.Parse("#1240AB") }
-            };
+
         //private static List<Microcharts.Entry> PlotBar(Dictionary<string, Dictionary<string, double>> entryvalue, bool ONEyear = false)
         //{
         //    List<Microcharts.Entry> CHARTlist = new List<Microcharts.Entry>();
@@ -217,7 +203,7 @@ namespace Google_sheetAndro
                             }
                             else if (Options.opt.ActiveType == 6)
                             {
-                                db = cell[Options.opt.ActiveType].ToString();
+                                db = cell[Options.opt.ActiveType].ToString().Replace('.',',');
                             }
                             valueDates.Add(new ValueDate(dtt, db));
                         }

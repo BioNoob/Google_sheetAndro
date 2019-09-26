@@ -28,7 +28,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                    <Image x:Name="Out" BackgroundColor="Aqua" Grid.Row="3"
+                    <Image x:Name="Out" Grid.Row="3"
                            Grid.ColumnSpan="2" Margin="10,5,10,10" HeightRequest="550">
 
                     </Image>

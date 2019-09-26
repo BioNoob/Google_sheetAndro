@@ -1,12 +1,10 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
-using System;
 using System.ComponentModel;
 using System.Reflection;
 using TableAndro;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Google_sheetAndro.Views
 {
@@ -20,7 +18,7 @@ namespace Google_sheetAndro.Views
             InitializeComponent();
             var assembly = Assembly.GetExecutingAssembly();
             GoogleCredential credential;
-            using (var stream = assembly.GetManifestResourceStream("Google_sheetAndro.client_secret.json"))
+            using (var stream = assembly.GetManifestResourceStream("Google_sheetAndro.sicret_new.json"))
             {
                 credential = GoogleCredential.FromStream(stream)
                     .CreateScoped(Googles.Scopes);

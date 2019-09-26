@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            mc:Ignorable="d"
-            BackgroundColor="Transparent"
+
             xmlns:views="clr-namespace:Google_sheetAndro.Views"
             x:Class="Google_sheetAndro.Views.MainPage"
             BarBackgroundColor="#1976D2"
@@ -12,17 +9,22 @@
             >
 
     <TabbedPage.Children>
-        <NavigationPage Title="Запись" IconImageSource="new_one.png" d:NavigationPage.HasNavigationBar="False" d:NavigationPage.HasBackButton="False">
+        <NavigationPage Title="Запись" IconImageSource="new_one.png">
             <x:Arguments>
                 <views:ItemsPage />
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="График" IconImageSource="out_chart.png" d:NavigationPage.HasNavigationBar="False" d:NavigationPage.HasBackButton="False">
+        <NavigationPage Title="График" IconImageSource="out_chart.png">
             <x:Arguments>
                 <views:Page_out />
             </x:Arguments>
         </NavigationPage>
+        <NavigationPage Title="Информация" IconImageSource="info1.png">
+            <x:Arguments>
+                <views:InfoPage />
+            </x:Arguments>
+        </NavigationPage>
     </TabbedPage.Children>
-   
+
 </TabbedPage>

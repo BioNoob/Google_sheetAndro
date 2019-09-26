@@ -30,6 +30,7 @@ namespace Google_sheetAndro.Views
         {
             InitializeComponent();
             Init();
+            this.IsBusy = false;
             Date_pick.Format = "dd/MM/yyyy";
             Date_pick.Date = DateTime.Now;
             //Time_pick.Time = DateTime.Now.TimeOfDay;
@@ -256,7 +257,9 @@ namespace Google_sheetAndro.Views
 
         private void Confirm_btn_Clicked(object sender, EventArgs e)
         {
+
             Lol();
+
         }
         private Dictionary<string, object> GetEditedValue()
         {
@@ -274,10 +277,14 @@ namespace Google_sheetAndro.Views
             return list;
 
         }
-        private async System.Threading.Tasks.Task Lol()
+        private void Lol()
         {
+            IsBusy = true;
+            if (Googles.ReadEntriesAsync(GetEditedValue()) == true)
+            {
 
-            await Googles.ReadEntriesAsync(GetEditedValue());
+            }
+           IsBusy = false;
         }
 
         private void Time_pick_TextChanged(object sender, TextChangedEventArgs e)

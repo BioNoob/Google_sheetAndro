@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace Google_sheetAndro.Droid
 {
-    [Activity(Theme = "@style/Theme.Splash",
+    [Activity(Theme = "@style/Theme.Splash", Icon = "@mipmap/icon",
         MainLauncher = true, NoHistory = true)]
     public class SplashScreen : Activity
     {

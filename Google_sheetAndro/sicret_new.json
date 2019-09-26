@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "android-sheets-flybase",
+  "private_key_id": "38f14411a85fbf9699649c67a5a959203220862e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCzMXaBQnn0/HAi\nms9YLXugopcc5oV3P7b0H8AJ4upJ/9cs4WjMpxJ8QNKumPGzFk+mNATwYPFj7/Bp\nnJ88CXeAV3VBRvHXjK1CMlNdttFf8DP/quLmebdk83V5CQVSp8QODz0xDyViLOTo\nBbNNirMDwvxOV4ZUcQQJXVbGkpZjQB/tkaO9Om/f/UgUNdk8b2YCAJxmjtUjreCM\nc2jAwhlmDf54qGgDxF0Oc5sq5GareUaySXRM+3B8XQNUkCWRHyYRCLRZ1OtsrFq1\nGSaWJb3oraKgjlbToAWiSMa6N4LOF/JvEFef6i7lSjwwOrYwv4Ncm0n5cw1nr56P\nVPlSH3JxAgMBAAECggEAPSOEu+CLDN/ugJgSY5MNKccfyPAMHJ5EFXIZyyW9a2cb\nqwfzglQEthlF6OVtHf3gSiRYhQ2GfuMYQ2h5Wfoe6E6uxolmrXUljj7ue7yLHnEt\nxK8xAJMJ1CtO6u99ffCYr3VamvkAd8k6hsGfJjdLEd7+x9oMDpaK2okauOC95/mg\nY5NAeDX3YzsEGh8WYNn+3y01c5Bnkxpn4qs9Sgrc3jN6kk4V916FsM9qw/zgWfBG\nEsBKigZ5w7IshL4uR5KB9MMEjeykUjGiSMPnN8I1GNAJjly4cWaVRkR7czTBUlwm\nRPSBu0rwHSboogFs5oJZg2lvfe4TzrayMWVlaJ7BWwKBgQDWUShXMiZ0D6fD1/d5\nTUQHDf2V1Qe1hynARs6z4ikGPUAGvinYs087/j3xxwuRiqnHVTXuMhigR5ZljnaK\nQ9F0FayJ4BPp4XnIEajwqxisN8k1fLztaz3oQzvXcEr/hv2MvhDohzSMJ2H1WEGW\n39xJwbwqApzjovc8JntsdIWP+wKBgQDWC33GS6iMH4gt4aitLgNa3S6cEDFdbctA\naeCVghWh9YQQFR1/9kaZx+04AiFVaeRrhFGFcuXuBcGpidNkIhqiKY5aicS8SsUp\nuSA35CdueLS6AJe9qGSaUyQQf9zDxG1jR72OQDqLoahB+pln8pk1YhMqkrGHtrCT\n0kTbIog/gwKBgQCCKnCR5Qet3gRK0lSf++mhT0IBSo2QFzOocFkCsA2ymGjWr5DC\n6MTq7xO4UOgZ0VokkwBaV1rVniUeMVSVzXLdSnyskMgHeMZ6WR9+bKxjjM5MCiLF\nIClNc+hYhP9ICzjbzmR+lf+4UAMS/DN56yTkNyKNcWDQcR4wDj9QM8UbGQKBgBGT\nDferHKKssBy8S4I0pffe80XDGpqGOksGpncAIFCU/Qvo/+wSx4c24CZaHmyJ7kRZ\nr+vaHEDn3hfShjXRiwhHizWp3CptpTSgy6FrLUWnyYcAJ3VeDyyQqQRlyzWTujuN\nl2XHpkbytgL81X2wcJ3ueI5lTwhKmsL4X8jyU+eLAoGAJ8i59ZUhy6lti7D4rPyZ\nSDBGkUX+HV2EqQ66oR8uUisU6zMq/wazIxoZI5WT0Gu7TzfenZbu4v4+5wP4Raa/\nxguy6VGtJx8+Vh4oQtCq+VDX+bZh8R1QvfuQljjmHVhbRtrtqH/Na3hA5tOcTvDb\nhDu9nUvVQulY9+BFcvBn2PU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "admin-user@android-sheets-flybase.iam.gserviceaccount.com",
+  "client_id": "106686696104892877491",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/admin-user%40android-sheets-flybase.iam.gserviceaccount.com"
+}

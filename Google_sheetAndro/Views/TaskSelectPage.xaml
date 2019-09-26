@@ -10,7 +10,17 @@
                  NavigationPage.HasBackButton="False"
              NavigationPage.BackButtonTitle="LOL"
              BackgroundColor="#1976D2">
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:Key="FontFamilyName" x:TypeArguments="x:String" Android="Jura-Bold.ttf#Jura-Bold"/>
+            <Style x:Key="lblstyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontFamily" Value="{DynamicResource FontFamilyName}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout  Orientation="Vertical" Margin="10,20,10,20">
             <Entry Placeholder="Введите номер для пойска"
@@ -29,11 +39,11 @@
                                        FontSize="18"
                    
                    FontAttributes="Bold"
-                   BackgroundColor="#b6f3fe"
+                   BackgroundColor="#BF4F9DE9"
                    Margin="0,10,0,0" MinimumHeightRequest="30" HeightRequest="45"/>
             <ListView x:Name = "lvTask" 
              HasUnevenRows = "true"
-                      BackgroundColor="#b6f3fe"
+                      BackgroundColor="#BF4F9DE9"
              SeparatorVisibility = "Default"
                       SeparatorColor="#1976D2"
              lv:MultiSelect.Enable = "true"
@@ -51,7 +61,7 @@
                             <lv:SelectableCell.DataView>
                                 <ScrollView>
                                     <StackLayout Orientation="Vertical" Padding="20,0,20,0">
-                                        <Label x:Name="TEST" Text="{Binding Outter}" FontSize="17" BackgroundColor="BlanchedAlmond">
+                                        <Label x:Name="TEST" Text="{Binding Outter}" FontSize="17">
                                             <Label.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                                             </Label.GestureRecognizers>
