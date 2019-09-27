@@ -25,6 +25,11 @@
                 <views:InfoPage />
             </x:Arguments>
         </NavigationPage>
+        <NavigationPage Title="Тест" IconImageSource="info1.png">
+            <x:Arguments>
+                <views:GettingPage />
+            </x:Arguments>
+        </NavigationPage>
     </TabbedPage.Children>
 
 </TabbedPage>

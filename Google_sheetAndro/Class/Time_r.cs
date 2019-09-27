@@ -45,6 +45,10 @@ namespace Google_sheetAndro
         {
             _sec = h * 3600 + m * 60 + sec;
         }
+        public Time_r(DateTime dt)
+        {
+            _sec = dt.Hour * 3600 + dt.Minute * 60 + dt.Second;
+        }
         public Time_r(double sec)
         {
             _sec = sec;
@@ -81,6 +85,10 @@ namespace Google_sheetAndro
             {
                 Sec = value * 3600;
             }
+        }
+        public static Time_r operator -(Time_r r1, Time_r r2)
+        {
+            return new Time_r(r1.Sec - r2.Sec);
         }
         public override string ToString()
         {

@@ -20,6 +20,8 @@ namespace Google_sheetAndro.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
             //TopTabbed.Init();
             PullToRefreshLayoutRenderer.Init();
             LoadApplication(new App());
