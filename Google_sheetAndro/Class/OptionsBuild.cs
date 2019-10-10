@@ -70,6 +70,7 @@ namespace Google_sheetAndro
         //private EnumTyp _activeType_enum;
         public OptionsBuild(EnumTyp typ, SortingEnum sorting, int drawingSize_W, int drawingSize_H, int mounth)
         {
+            dateTime = new DateTime();
             _activeType = (int)typ;
             _activeSort = (int)sorting;
             _drawingSize_H = drawingSize_H;
@@ -83,6 +84,7 @@ namespace Google_sheetAndro
                 return new OptionsBuild(EnumTyp.Time, SortingEnum.AllYearMidEvery, 300, 500, 0);
             }
         }
+        public DateTime dateTime;
         public int ActiveSort { get => _activeSort; set => _activeSort = value; }
         public SortingEnum SortNum { get => (SortingEnum)_activeSort; set => _activeSort = (int)value; }
         public int Width { get => _drawingSize_W; set => _drawingSize_W = value; }

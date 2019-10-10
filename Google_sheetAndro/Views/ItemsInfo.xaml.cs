@@ -1,4 +1,5 @@
-﻿using Google_sheetAndro.Class;
+﻿using Android.Widget;
+using Google_sheetAndro.Class;
 using Google_sheetAndro.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Google_sheetAndro.Views
         public ItemsInfo()
         {
             InitializeComponent();
-            main = new NavigationPage(new MainPage());
+            //main = new NavigationPage();
             item = new NavigationPage(new ItemsPage());
 
             vM = new ItemsInfoVM();
@@ -49,18 +50,58 @@ namespace Google_sheetAndro.Views
 
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(main);
+            int yy = 0;
+            if (int.TryParse(Year_pick.SelectedItem.ToString(), out yy) && Mounth_pick.SelectedIndex != 0)
+                Options.opt.dateTime = new DateTime(yy, Mounth_pick.SelectedIndex, 1);
+                main = new NavigationPage(new MainPage());
+                await Navigation.PushModalAsync(main);
         }
 
         private void update()
         {
             ItemsPage tp = (ItemsPage)item.CurrentPage;
-            Googles.UpdateEntry(tp.getter());
+            try
+            {
+                Googles.UpdateEntry(tp.getter());
+                tp.Navigation.PopModalAsync();
+                Toast.MakeText(Android.App.Application.Context, "Обновление прошло успешно", ToastLength.Long).Show();
+            }
+            catch(Exception)
+            {
+                Toast.MakeText(Android.App.Application.Context, "Обновление неудачно", ToastLength.Long).Show();
+            }
+            finally
+            {
+                if (Mounth_pick.SelectedIndex != 0)
+                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex);
+                else
+                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0);
+                vM.years = LocalTable.GetYearsList();
+            }
+
         }
         private void delete()
         {
             ItemsPage tp = (ItemsPage)item.CurrentPage;
-            Googles.DeleteEntry(tp.getter());
+            try
+            {
+                Googles.DeleteEntry(tp.getter());
+                tp.Navigation.PopModalAsync();
+                Toast.MakeText(Android.App.Application.Context, "Удаление прошло успешно", ToastLength.Long).Show();
+            }
+            catch (Exception)
+            {
+                Toast.MakeText(Android.App.Application.Context, "Удаление неудачно", ToastLength.Long).Show();
+            }
+            finally
+            {
+                if (Mounth_pick.SelectedIndex != 0)
+                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex);
+                else
+                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0);
+                vM.years = LocalTable.GetYearsList();
+            }
+
         }
         private async void TableItems_ItemTapped(object sender, ItemTappedEventArgs e)
         {
@@ -69,6 +110,7 @@ namespace Google_sheetAndro.Views
             item.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));
             ItemsPage tp = (ItemsPage)item.RootPage;
             NavigationPage.SetHasNavigationBar(tp, true);
+            NavigationPage.SetBackButtonTitle(tp, "Назад");
             NavigationPage.SetHasBackButton(tp, true);
             tp.setter((TableItem)e.Item);
             await Navigation.PushModalAsync(item);

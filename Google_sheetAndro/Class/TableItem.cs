@@ -94,7 +94,7 @@ namespace Google_sheetAndro.Class
         public List<object> GetListForEntry()
         {
             List<object> lst = new List<object>();
-            lst.AddRange(new List<object>() { this.date, this.time, this.wind, this.cloud, this.temp, this.task, this.height, this.range, this.plase, this.comment });
+            lst.AddRange(new List<object>() { this.date.ToString("dd/MM/yyyy"), this.time, this.wind, this.cloud, this.temp, this.task, this.height, this.range, this.plase, this.comment });
             return lst;
         }
         //public Dictionary<string, object> getDic()

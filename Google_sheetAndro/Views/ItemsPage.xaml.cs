@@ -61,14 +61,14 @@ namespace Google_sheetAndro.Views
             ti_local.comment = Comment_txt.Text;
             return ti_local;
         }
-
         public ItemsPage()
         {
             InitializeComponent();
             Init();
             this.IsBusy = false;
-            Date_pick.Format = "dd/MM/yyyy";
+            Date_pick.Format = "dd.MM.yyyy";
             Date_pick.Date = DateTime.Now;
+            if (Options.opt.dateTime != new DateTime()) Date_pick.Date = Options.opt.dateTime;
             CloudPicker.ItemsSource = cloud_list;
             Place_txt.ItemsSource = place_list;
             CloudPicker.SelectedIndex = 0;

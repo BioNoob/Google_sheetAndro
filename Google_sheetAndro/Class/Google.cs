@@ -128,6 +128,7 @@ namespace TableAndro
             {
                 sheets = sheets.Where(t => t.Properties.Title == year_to).ToList();
                 LocalTable.ListItems.RemoveAll(t => t.year.ToString() == year_to);
+                LocalTable.SheetsVal.Remove(year_to.ToString());
             }
             foreach (var item in sheets)
             {
@@ -277,7 +278,7 @@ namespace TableAndro
                 int year = ti.year;
                 int sh_ID = 0;
                 SheetExist(year);
-                sh_ID = ti.sh_id;//Googles.sheet_id;
+                sh_ID = sheet_id;//ti.sh_id;//Googles.sheet_id;
                 sheet = SheetName;
                 var range = $"{sheet}!A:K";
                 //находить пустые строки при месяце
