@@ -1,5 +1,6 @@
 ﻿using Android.Widget;
 using Google.Apis.Sheets.v4.Data;
+using Google_sheetAndro.Class;
 using RefreshSample.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace Google_sheetAndro.Views
             };
             Mounth_pick.SelectedIndex = 0;
         }
-        Dictionary<string, ValueRange> tabelValue;
+        Dictionary<string, IList<IList<object>>> tabelValue;
         Dictionary<string, List<Selectore>> Variant = new Dictionary<string, List<Selectore>>
         {
             { "AllYear",
@@ -190,7 +191,7 @@ namespace Google_sheetAndro.Views
         public void SetDateFields()
         {
             //Graph_pick_date.Items.Clear();
-            tabelValue = Googles.GetValueTabel();
+            tabelValue = LocalTable.SheetsVal; //Googles.GetValueTabel();
             foreach (string item in tabelValue.Keys)
             {
                 if (!Graph_pick_date.Items.Contains(item))
@@ -206,7 +207,7 @@ namespace Google_sheetAndro.Views
         {
             if (fl_fst_init)
             {
-                tabelValue = Googles.GetValueTabel();
+                tabelValue = LocalTable.SheetsVal;//Googles.GetValueTabel();
                 foreach (string item in tabelValue.Keys)
                 {
                     if (item != "Общий налет")

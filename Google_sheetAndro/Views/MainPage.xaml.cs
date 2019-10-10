@@ -13,24 +13,30 @@ namespace Google_sheetAndro.Views
     [DesignTimeVisible(true)]
     public partial class MainPage : TabbedPage
     {
+        MapPage map;
+        ItemsPage item;
         public MainPage()
         {
             InitializeComponent();
-            var assembly = Assembly.GetExecutingAssembly();
-            GoogleCredential credential;
-            using (var stream = assembly.GetManifestResourceStream("Google_sheetAndro.sicret_new.json"))
-            {
-                credential = GoogleCredential.FromStream(stream)
-                    .CreateScoped(Googles.Scopes);
-            }
+            map = new MapPage();
+            map.Title = "Навигация";
+            map.IconImageSource = "info1.png";
+            item = new ItemsPage();
+            item.Title = "Запись";
+            item.IconImageSource = "new_one.png";
+            this.Children.Add(new NavigationPage(item));
 
-            // Create Google Sheets API service.
-            Googles.service = new SheetsService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = Googles.ApplicationName,
-            });
-            Googles.sheetInfo = Googles.service.Spreadsheets.Get(Googles.SpreadsheetId).Execute();
+        }
+
+        private async void ToolbarItem_Clicked(object sender, System.EventArgs e)
+        {
+            item.CreateRow();
+            await Navigation.PopModalAsync();
+        }
+
+        private async void ToolbarItem_Clicked_1(object sender, System.EventArgs e)
+        {
+            await Navigation.PopModalAsync();
         }
     }
 }

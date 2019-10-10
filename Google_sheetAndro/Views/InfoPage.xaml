@@ -5,8 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:lc="clr-namespace:Google_sheetAndro"
              mc:Ignorable="d"
-             x:Class="Google_sheetAndro.Views.InfoPage" BackgroundColor="#39b1fd"
-             NavigationPage.HasNavigationBar="False">
+             x:Class="Google_sheetAndro.Views.InfoPage" BackgroundColor="#39b1fd">
     <ContentPage.Resources>
         <ResourceDictionary>
             <OnPlatform x:Key="FontFamilyName" x:TypeArguments="x:String" Android="Jura-Bold.ttf#Jura-Bold"/>

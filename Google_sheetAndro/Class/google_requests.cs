@@ -1,4 +1,5 @@
 ﻿using Google.Apis.Sheets.v4.Data;
+using Google_sheetAndro.Class;
 using System.Collections.Generic;
 
 namespace TableAndro
@@ -31,6 +32,35 @@ namespace TableAndro
             gr.EndColumnIndex = RB.sec_clm;
             RQ.MergeCells.MergeType = "MERGE_ALL";
             RQ.MergeCells.Range = gr;
+            return RQ;
+        }
+        /// <summary>
+        /// Вставить пустую строку
+        /// </summary>
+        /// <param name="shid"></param>
+        /// <param name="row_after">после строки (натуральная цифра, не индекс)</param>
+        /// <returns></returns>
+        public static Request InsRow(int shid, int row_after)
+        {
+            Request RQ = new Request();
+            RQ.InsertDimension = new InsertDimensionRequest();
+            RQ.InsertDimension.Range = new DimensionRange();
+            RQ.InsertDimension.Range.SheetId = shid;
+            RQ.InsertDimension.Range.StartIndex = row_after;
+            RQ.InsertDimension.Range.EndIndex = row_after + 1;
+            RQ.InsertDimension.Range.Dimension = "ROWS";
+            RQ.InsertDimension.InheritFromBefore = true;
+            return RQ;
+        }
+        public static Request DeleteRow(TableItem ti)
+        {
+            Request RQ = new Request();
+            RQ.DeleteDimension = new DeleteDimensionRequest();
+            RQ.DeleteDimension.Range = new DimensionRange();
+            RQ.DeleteDimension.Range.SheetId = ti.sh_id;
+            RQ.DeleteDimension.Range.StartIndex = ti.row_nb - 1;
+            RQ.DeleteDimension.Range.EndIndex = ti.row_nb;
+            RQ.DeleteDimension.Range.Dimension = "ROWS";
             return RQ;
         }
         public static Request RenamerSh(int? shid, string new_name)

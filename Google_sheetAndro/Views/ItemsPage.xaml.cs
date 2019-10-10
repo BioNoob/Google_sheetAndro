@@ -10,6 +10,7 @@ using Google.Apis.Sheets.v4;
 using Google.Apis.Services;
 using Google.Apis.Auth.OAuth2;
 using System.Globalization;
+using Google_sheetAndro.Class;
 
 namespace Google_sheetAndro.Views
 {
@@ -22,9 +23,44 @@ namespace Google_sheetAndro.Views
     {
         private double _width;
         private double _height;
-
+        private TableItem ti_local;
         public event EventHandler<PageOrientationEventArgs> OnOrientationChanged = (e, a) => { };
-
+        public void setter(TableItem ti)
+        {
+            ti_local = ti;
+            Date_pick.Date = ti.date;
+            Time_pick.Text = ti.time;
+            Wind_Num.Text = ti.wind.ToString();
+            if (!cloud_list.Contains(ti.cloud))
+                cloud_list.Add(ti.cloud);
+            CloudPicker.SelectedItem = ti.cloud;
+            if (ti.temp > 0)
+                Temp_Num.Text = "+" + ti.temp.ToString();
+            else
+                Temp_Num.Text = ti.temp.ToString();
+            Task_txt.Text = ti.task;
+            Hight_txt_num.Text = ti.height.ToString();
+            Range_txt.Text = ti.range.ToString();
+            if (!place_list.Contains(ti.plase))
+                place_list.Add(ti.plase);
+            Place_txt.SelectedItem = ti.plase;
+            Comment_txt.Text = ti.comment;
+        }
+        public TableItem getter()
+        {
+            //TableItem tb = new TableItem();
+            ti_local.date = Date_pick.Date.ToUniversalTime();
+            ti_local.time = Time_pick.Text;
+            ti_local.wind = Convert.ToDouble(Wind_Num.Text);
+            ti_local.cloud = CloudPicker.SelectedItem.ToString();
+            ti_local.temp = Convert.ToDouble(Temp_Num.Text);
+            ti_local.task = Task_txt.Text;
+            ti_local.height = Convert.ToDouble(Hight_txt_num.Text);
+            ti_local.range = Convert.ToDouble(Range_txt.Text);
+            ti_local.plase = Place_txt.SelectedItem.ToString();
+            ti_local.comment = Comment_txt.Text;
+            return ti_local;
+        }
 
         public ItemsPage()
         {
@@ -33,6 +69,10 @@ namespace Google_sheetAndro.Views
             this.IsBusy = false;
             Date_pick.Format = "dd/MM/yyyy";
             Date_pick.Date = DateTime.Now;
+            CloudPicker.ItemsSource = cloud_list;
+            Place_txt.ItemsSource = place_list;
+            CloudPicker.SelectedIndex = 0;
+            Place_txt.SelectedIndex = 0;
             //Time_pick.Time = DateTime.Now.TimeOfDay;
             OnOrientationChanged += DeviceRotated;
             BindingContext = this;
@@ -257,34 +297,45 @@ namespace Google_sheetAndro.Views
 
         private void Confirm_btn_Clicked(object sender, EventArgs e)
         {
-
-            Lol();
-
+            CreateRow();
         }
-        private Dictionary<string, object> GetEditedValue()
+        private List<string> cloud_list = new List<string>
         {
-            Dictionary<string, object> list = new Dictionary<string, object>();
-            list.Add("date", Date_pick.Date.ToUniversalTime());
-            list.Add("time", Time_pick.Text);
-            list.Add("wind", Convert.ToDouble(Wind_Num.Text));
-            list.Add("cloud", CloudPicker.Text);
-            list.Add("temp", Convert.ToDouble(Temp_Num.Text));
-            list.Add("task", Task_txt.Text);
-            list.Add("height", Convert.ToDouble(Hight_txt_num.Text));
-            list.Add("range", Convert.ToDouble(Range_txt.Text));
-            list.Add("plase", Place_txt.Text);
-            list.Add("comment", Comment_txt.Text);
-            return list;
+            "низкая",
+            "высокая",
+            "нет"
+        };
+        private List<string> place_list = new List<string>
+        {
+            "Моя деревня",
+            "Река-Река",
+            "Кузяево",
+            "Спас-Загорье"
+        };
+        //private Dictionary<string, object> GetEditedValue()
+        //{
+        //    Dictionary<string, object> list = new Dictionary<string, object>();
+        //    list.Add("date", Date_pick.Date.ToUniversalTime() /*+ TimeZoneInfo.GetUtcOffset(Date_pick.Date.ToUniversalTime())*/); //фикс для времени по локальному
+        //    list.Add("time", Time_pick.Text);
+        //    list.Add("wind", Convert.ToDouble(Wind_Num.Text));
+        //    list.Add("cloud", CloudPicker.SelectedItem.ToString());
+        //    list.Add("temp", Convert.ToDouble(Temp_Num.Text));
+        //    list.Add("task", Task_txt.Text);
+        //    list.Add("height", Convert.ToDouble(Hight_txt_num.Text));
+        //    list.Add("range", Convert.ToDouble(Range_txt.Text));
+        //    list.Add("plase", Place_txt.SelectedItem.ToString());
+        //    list.Add("comment", Comment_txt.Text);
+        //    return list;
 
-        }
-        private void Lol()
+        //}
+        public void CreateRow()
         {
             IsBusy = true;
-            if (Googles.ReadEntriesAsync(GetEditedValue()) == true)
+            if (Googles.ReadEntriesAsync(getter()))
             {
 
             }
-           IsBusy = false;
+            IsBusy = false;
         }
 
         private void Time_pick_TextChanged(object sender, TextChangedEventArgs e)
@@ -407,21 +458,21 @@ namespace Google_sheetAndro.Views
             double val = 0;
             string dob = "";
 
-                switch (tb.Tag)
-                {
-                    case "++":
-                        Temp_Num.Text =  string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) + 10);
-                        break;
-                    case "--":
-                        Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) - 10);
-                        break;
-                    case "+":
-                        Temp_Num.Text =  string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) + 5);
-                        break;
-                    case "-":
-                        Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) - 5);
-                        break;
-                }
+            switch (tb.Tag)
+            {
+                case "++":
+                    Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) + 10);
+                    break;
+                case "--":
+                    Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) - 10);
+                    break;
+                case "+":
+                    Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) + 5);
+                    break;
+                case "-":
+                    Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) - 5);
+                    break;
+            }
             if (double.TryParse(Temp_Num.Text, out val))
             {
                 if (val > 0)

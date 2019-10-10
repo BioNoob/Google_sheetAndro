@@ -27,9 +27,9 @@ using Xamarin.Forms.Xaml;
 namespace Google_sheetAndro.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class GettingPage : ContentPage
+    public partial class MapPage : ContentPage
     {
-        public GettingPage()
+        public MapPage()
         {
             InitializeComponent();
             InitializeUiSettingsOnMap();

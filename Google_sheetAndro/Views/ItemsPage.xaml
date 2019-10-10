@@ -168,15 +168,16 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <Label Text="Обалчность" FontSize="18" Grid.Row="0" Grid.Column ="0" 
+                                <Label Text="Облачность" FontSize="18" Grid.Row="0" Grid.Column ="0" 
                                        Margin="10,0,0,0" TextColor="#000000"/>
-                                <Entry x:Name="CloudPicker" 
+                                <Picker x:Name="CloudPicker" 
                                         TextColor="#000000"
                                         HorizontalOptions="Fill" 
                                         Margin="10,10,10,0"
                                         Grid.Row="1"
-                                        FontSize="18">
-                                </Entry>
+                                        FontSize="18"
+                                        >
+                                </Picker>
                             </Grid>
                         </Grid>
                         <Grid x:Name="gr_3" Grid.Row="2">
@@ -460,7 +461,7 @@
                                 </Grid.RowDefinitions>
                                 <Label Text="Место" Grid.Row="0" Grid.Column ="0" 
                                        Margin="10,0,10,0" TextColor="#000000" FontSize="18"/>
-                                <Entry Placeholder=""
+                                <Picker
                                        x:Name="Place_txt"
                                        Margin="10,10,10,0" TextColor="#000000" 
                                        Grid.Row="1"

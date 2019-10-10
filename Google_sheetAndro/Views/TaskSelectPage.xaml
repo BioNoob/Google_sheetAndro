@@ -31,7 +31,7 @@
                                        FontSize="18"
                    TextChanged="Task_txt_TextChanged"
                                        />
-            <Label x:Name="OutNum" 
+            <Label x:Name="OutNum"  Style="{StaticResource lblstyle}"
                 Text=""
                    TextColor="#000000" 
                                        HorizontalOptions="Fill" VerticalOptions="Center"
@@ -61,7 +61,7 @@
                             <lv:SelectableCell.DataView>
                                 <ScrollView>
                                     <StackLayout Orientation="Vertical" Padding="20,0,20,0">
-                                        <Label x:Name="TEST" Text="{Binding Outter}" FontSize="17">
+                                        <Label x:Name="TEST" Text="{Binding Outter}" FontSize="17"  Style="{StaticResource lblstyle}">
                                             <Label.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                                             </Label.GestureRecognizers>

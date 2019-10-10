@@ -7,8 +7,7 @@
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:Refractored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh"
              BackgroundColor="#39b1fd"
-             x:Class="Google_sheetAndro.Views.Page_out"
-             NavigationPage.HasNavigationBar="False">
+             x:Class="Google_sheetAndro.Views.Page_out">
 
     <controls:PullToRefreshLayout
           IsPullToRefreshEnabled="True"

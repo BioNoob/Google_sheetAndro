@@ -143,7 +143,7 @@ namespace Google_sheetAndro
         /// Для одного года
         /// </summary>
         /// <param name="vlr"></param>
-        public static string GetBar(Dictionary<string, ValueRange> vlr, string year = null)
+        public static string GetBar(Dictionary<string, IList<IList<object>>> vlr, string year = null)
         {
             //counter.Clear();
             //Microcharts.Chart chtr = new Microcharts.BarChart();
@@ -158,7 +158,7 @@ namespace Google_sheetAndro
 
             foreach (string item in YL)
             {
-                foreach (var cell in vlr[item].Values)
+                foreach (var cell in vlr[item])
                 {
                     string mount_nm = cell[0].ToString();
                     if (mount_nm == "")

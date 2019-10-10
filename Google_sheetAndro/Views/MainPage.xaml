@@ -1,35 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-
             xmlns:views="clr-namespace:Google_sheetAndro.Views"
             x:Class="Google_sheetAndro.Views.MainPage"
-            BarBackgroundColor="#1976D2"
+            Title="Ввод данных"
+            BarBackgroundColor="#2196F3"
             
             >
-
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="Отменить" Clicked="ToolbarItem_Clicked_1" />
+        <ToolbarItem Text="Сохранить" Clicked="ToolbarItem_Clicked" />
+    </TabbedPage.ToolbarItems>
     <TabbedPage.Children>
-        <NavigationPage Title="Запись" IconImageSource="new_one.png">
-            <x:Arguments>
+        <!--<NavigationPage x:Name="InavPage" Title="Запись" IconImageSource="new_one.png">
+            --><!--<x:Arguments>
                 <views:ItemsPage />
-            </x:Arguments>
+            </x:Arguments>--><!--
         </NavigationPage>
-
-        <NavigationPage Title="График" IconImageSource="out_chart.png">
-            <x:Arguments>
-                <views:Page_out />
-            </x:Arguments>
-        </NavigationPage>
-        <NavigationPage Title="Информация" IconImageSource="info1.png">
-            <x:Arguments>
-                <views:InfoPage />
-            </x:Arguments>
-        </NavigationPage>
-        <NavigationPage Title="Тест" IconImageSource="info1.png">
-            <x:Arguments>
-                <views:GettingPage />
-            </x:Arguments>
-        </NavigationPage>
+        <NavigationPage x:Name="MnavPage" Title="Rfhnf" IconImageSource="info1.png">
+            --><!--<x:Arguments>
+                <views:MapPage />
+            </x:Arguments>--><!--
+        </NavigationPage>-->
     </TabbedPage.Children>
 
 </TabbedPage>

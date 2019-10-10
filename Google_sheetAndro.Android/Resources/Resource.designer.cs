@@ -4399,58 +4399,61 @@ namespace Google_sheetAndro.Droid
 			public const int uiScrollGestures = 2130903541;
 			
 			// aapt resource value: 0x7F0301F6
-			public const int uiTiltGestures = 2130903542;
+			public const int uiScrollGesturesDuringRotateOrZoom = 2130903542;
 			
 			// aapt resource value: 0x7F0301F7
-			public const int uiZoomControls = 2130903543;
+			public const int uiTiltGestures = 2130903543;
 			
 			// aapt resource value: 0x7F0301F8
-			public const int uiZoomGestures = 2130903544;
+			public const int uiZoomControls = 2130903544;
 			
 			// aapt resource value: 0x7F0301F9
-			public const int useCompatPadding = 2130903545;
+			public const int uiZoomGestures = 2130903545;
 			
 			// aapt resource value: 0x7F0301FA
-			public const int useViewLifecycle = 2130903546;
+			public const int useCompatPadding = 2130903546;
 			
 			// aapt resource value: 0x7F0301FB
-			public const int viewInflaterClass = 2130903547;
+			public const int useViewLifecycle = 2130903547;
 			
 			// aapt resource value: 0x7F0301FC
-			public const int voiceIcon = 2130903548;
+			public const int viewInflaterClass = 2130903548;
 			
 			// aapt resource value: 0x7F0301FD
-			public const int windowActionBar = 2130903549;
+			public const int voiceIcon = 2130903549;
 			
 			// aapt resource value: 0x7F0301FE
-			public const int windowActionBarOverlay = 2130903550;
+			public const int windowActionBar = 2130903550;
 			
 			// aapt resource value: 0x7F0301FF
-			public const int windowActionModeOverlay = 2130903551;
+			public const int windowActionBarOverlay = 2130903551;
 			
 			// aapt resource value: 0x7F030200
-			public const int windowFixedHeightMajor = 2130903552;
+			public const int windowActionModeOverlay = 2130903552;
 			
 			// aapt resource value: 0x7F030201
-			public const int windowFixedHeightMinor = 2130903553;
+			public const int windowFixedHeightMajor = 2130903553;
 			
 			// aapt resource value: 0x7F030202
-			public const int windowFixedWidthMajor = 2130903554;
+			public const int windowFixedHeightMinor = 2130903554;
 			
 			// aapt resource value: 0x7F030203
-			public const int windowFixedWidthMinor = 2130903555;
+			public const int windowFixedWidthMajor = 2130903555;
 			
 			// aapt resource value: 0x7F030204
-			public const int windowMinWidthMajor = 2130903556;
+			public const int windowFixedWidthMinor = 2130903556;
 			
 			// aapt resource value: 0x7F030205
-			public const int windowMinWidthMinor = 2130903557;
+			public const int windowMinWidthMajor = 2130903557;
 			
 			// aapt resource value: 0x7F030206
-			public const int windowNoTitle = 2130903558;
+			public const int windowMinWidthMinor = 2130903558;
 			
 			// aapt resource value: 0x7F030207
-			public const int zOrderOnTop = 2130903559;
+			public const int windowNoTitle = 2130903559;
+			
+			// aapt resource value: 0x7F030208
+			public const int zOrderOnTop = 2130903560;
 			
 			static Attribute()
 			{
@@ -8033,145 +8036,148 @@ namespace Google_sheetAndro.Droid
 			public const int common_google_play_services_install_title = 2131558448;
 			
 			// aapt resource value: 0x7F0D0031
-			public const int common_google_play_services_notification_ticker = 2131558449;
+			public const int common_google_play_services_notification_channel_name = 2131558449;
 			
 			// aapt resource value: 0x7F0D0032
-			public const int common_google_play_services_unknown_issue = 2131558450;
+			public const int common_google_play_services_notification_ticker = 2131558450;
 			
 			// aapt resource value: 0x7F0D0033
-			public const int common_google_play_services_unsupported_text = 2131558451;
+			public const int common_google_play_services_unknown_issue = 2131558451;
 			
 			// aapt resource value: 0x7F0D0034
-			public const int common_google_play_services_update_button = 2131558452;
+			public const int common_google_play_services_unsupported_text = 2131558452;
 			
 			// aapt resource value: 0x7F0D0035
-			public const int common_google_play_services_update_text = 2131558453;
+			public const int common_google_play_services_update_button = 2131558453;
 			
 			// aapt resource value: 0x7F0D0036
-			public const int common_google_play_services_update_title = 2131558454;
+			public const int common_google_play_services_update_text = 2131558454;
 			
 			// aapt resource value: 0x7F0D0037
-			public const int common_google_play_services_updating_text = 2131558455;
+			public const int common_google_play_services_update_title = 2131558455;
 			
 			// aapt resource value: 0x7F0D0038
-			public const int common_google_play_services_wear_update_text = 2131558456;
+			public const int common_google_play_services_updating_text = 2131558456;
 			
 			// aapt resource value: 0x7F0D0039
-			public const int common_open_on_phone = 2131558457;
+			public const int common_google_play_services_wear_update_text = 2131558457;
 			
 			// aapt resource value: 0x7F0D003A
-			public const int common_signin_button_text = 2131558458;
+			public const int common_open_on_phone = 2131558458;
 			
 			// aapt resource value: 0x7F0D003B
-			public const int common_signin_button_text_long = 2131558459;
+			public const int common_signin_button_text = 2131558459;
 			
 			// aapt resource value: 0x7F0D003C
-			public const int fab_transformation_scrim_behavior = 2131558460;
+			public const int common_signin_button_text_long = 2131558460;
 			
 			// aapt resource value: 0x7F0D003D
-			public const int fab_transformation_sheet_behavior = 2131558461;
+			public const int fab_transformation_scrim_behavior = 2131558461;
 			
 			// aapt resource value: 0x7F0D003E
-			public const int hide_bottom_view_on_scroll_behavior = 2131558462;
+			public const int fab_transformation_sheet_behavior = 2131558462;
 			
 			// aapt resource value: 0x7F0D003F
-			public const int library_name = 2131558463;
+			public const int hide_bottom_view_on_scroll_behavior = 2131558463;
 			
 			// aapt resource value: 0x7F0D0040
-			public const int mr_button_content_description = 2131558464;
+			public const int library_name = 2131558464;
 			
 			// aapt resource value: 0x7F0D0041
-			public const int mr_cast_button_connected = 2131558465;
+			public const int mr_button_content_description = 2131558465;
 			
 			// aapt resource value: 0x7F0D0042
-			public const int mr_cast_button_connecting = 2131558466;
+			public const int mr_cast_button_connected = 2131558466;
 			
 			// aapt resource value: 0x7F0D0043
-			public const int mr_cast_button_disconnected = 2131558467;
+			public const int mr_cast_button_connecting = 2131558467;
 			
 			// aapt resource value: 0x7F0D0044
-			public const int mr_cast_dialog_title_view_placeholder = 2131558468;
+			public const int mr_cast_button_disconnected = 2131558468;
 			
 			// aapt resource value: 0x7F0D0045
-			public const int mr_chooser_searching = 2131558469;
+			public const int mr_cast_dialog_title_view_placeholder = 2131558469;
 			
 			// aapt resource value: 0x7F0D0046
-			public const int mr_chooser_title = 2131558470;
+			public const int mr_chooser_searching = 2131558470;
 			
 			// aapt resource value: 0x7F0D0047
-			public const int mr_controller_album_art = 2131558471;
+			public const int mr_chooser_title = 2131558471;
 			
 			// aapt resource value: 0x7F0D0048
-			public const int mr_controller_casting_screen = 2131558472;
+			public const int mr_controller_album_art = 2131558472;
 			
 			// aapt resource value: 0x7F0D0049
-			public const int mr_controller_close_description = 2131558473;
+			public const int mr_controller_casting_screen = 2131558473;
 			
 			// aapt resource value: 0x7F0D004A
-			public const int mr_controller_collapse_group = 2131558474;
+			public const int mr_controller_close_description = 2131558474;
 			
 			// aapt resource value: 0x7F0D004B
-			public const int mr_controller_disconnect = 2131558475;
+			public const int mr_controller_collapse_group = 2131558475;
 			
 			// aapt resource value: 0x7F0D004C
-			public const int mr_controller_expand_group = 2131558476;
+			public const int mr_controller_disconnect = 2131558476;
 			
 			// aapt resource value: 0x7F0D004D
-			public const int mr_controller_no_info_available = 2131558477;
+			public const int mr_controller_expand_group = 2131558477;
 			
 			// aapt resource value: 0x7F0D004E
-			public const int mr_controller_no_media_selected = 2131558478;
+			public const int mr_controller_no_info_available = 2131558478;
 			
 			// aapt resource value: 0x7F0D004F
-			public const int mr_controller_pause = 2131558479;
+			public const int mr_controller_no_media_selected = 2131558479;
 			
 			// aapt resource value: 0x7F0D0050
-			public const int mr_controller_play = 2131558480;
+			public const int mr_controller_pause = 2131558480;
 			
 			// aapt resource value: 0x7F0D0051
-			public const int mr_controller_stop = 2131558481;
+			public const int mr_controller_play = 2131558481;
 			
 			// aapt resource value: 0x7F0D0052
-			public const int mr_controller_stop_casting = 2131558482;
+			public const int mr_controller_stop = 2131558482;
 			
 			// aapt resource value: 0x7F0D0053
-			public const int mr_controller_volume_slider = 2131558483;
+			public const int mr_controller_stop_casting = 2131558483;
 			
 			// aapt resource value: 0x7F0D0054
-			public const int mr_dialog_device_header = 2131558484;
+			public const int mr_controller_volume_slider = 2131558484;
 			
 			// aapt resource value: 0x7F0D0055
-			public const int mr_dialog_route_header = 2131558485;
+			public const int mr_dialog_device_header = 2131558485;
 			
 			// aapt resource value: 0x7F0D0056
-			public const int mr_system_route_name = 2131558486;
+			public const int mr_dialog_route_header = 2131558486;
 			
 			// aapt resource value: 0x7F0D0057
-			public const int mr_user_route_category_name = 2131558487;
+			public const int mr_system_route_name = 2131558487;
 			
 			// aapt resource value: 0x7F0D0058
-			public const int mtrl_chip_close_icon_content_description = 2131558488;
+			public const int mr_user_route_category_name = 2131558488;
 			
 			// aapt resource value: 0x7F0D0059
-			public const int password_toggle_content_description = 2131558489;
+			public const int mtrl_chip_close_icon_content_description = 2131558489;
 			
 			// aapt resource value: 0x7F0D005A
-			public const int path_password_eye = 2131558490;
+			public const int password_toggle_content_description = 2131558490;
 			
 			// aapt resource value: 0x7F0D005B
-			public const int path_password_eye_mask_strike_through = 2131558491;
+			public const int path_password_eye = 2131558491;
 			
 			// aapt resource value: 0x7F0D005C
-			public const int path_password_eye_mask_visible = 2131558492;
+			public const int path_password_eye_mask_strike_through = 2131558492;
 			
 			// aapt resource value: 0x7F0D005D
-			public const int path_password_strike_through = 2131558493;
+			public const int path_password_eye_mask_visible = 2131558493;
 			
 			// aapt resource value: 0x7F0D005E
-			public const int search_menu_title = 2131558494;
+			public const int path_password_strike_through = 2131558494;
 			
 			// aapt resource value: 0x7F0D005F
-			public const int status_bar_notification_info_overflow = 2131558495;
+			public const int search_menu_title = 2131558495;
+			
+			// aapt resource value: 0x7F0D0060
+			public const int status_bar_notification_info_overflow = 2131558496;
 			
 			static String()
 			{
@@ -10193,7 +10199,7 @@ namespace Google_sheetAndro.Droid
 			// aapt resource value: 10
 			public const int AppCompatTextView_textAllCaps = 10;
 			
-			// aapt resource value: { 0x1010057,0x10100AE,0x7F030000,0x7F030001,0x7F030002,0x7F030003,0x7F030004,0x7F030005,0x7F030006,0x7F030007,0x7F030008,0x7F030009,0x7F03000A,0x7F03000B,0x7F03000C,0x7F03000E,0x7F03000F,0x7F030010,0x7F030011,0x7F030012,0x7F030013,0x7F030014,0x7F030015,0x7F030016,0x7F030017,0x7F030018,0x7F030019,0x7F03001A,0x7F03001B,0x7F03001C,0x7F03001D,0x7F03001E,0x7F030021,0x7F030022,0x7F030023,0x7F030024,0x7F030025,0x7F03002C,0x7F03003F,0x7F03004D,0x7F03004E,0x7F03004F,0x7F030050,0x7F030051,0x7F030056,0x7F030057,0x7F030068,0x7F03006D,0x7F03008E,0x7F03008F,0x7F030090,0x7F030091,0x7F030092,0x7F030093,0x7F030094,0x7F030095,0x7F030096,0x7F030099,0x7F0300A8,0x7F0300B1,0x7F0300B2,0x7F0300B3,0x7F0300B6,0x7F0300B8,0x7F0300BB,0x7F0300BC,0x7F0300BD,0x7F0300BE,0x7F0300BF,0x7F0300F5,0x7F030103,0x7F03012A,0x7F03012B,0x7F03012E,0x7F03012F,0x7F030130,0x7F030131,0x7F030132,0x7F030133,0x7F030134,0x7F030158,0x7F030159,0x7F03015A,0x7F030160,0x7F030162,0x7F030169,0x7F03016A,0x7F03016B,0x7F03016C,0x7F030175,0x7F030176,0x7F030177,0x7F030178,0x7F030185,0x7F030186,0x7F03019C,0x7F0301C3,0x7F0301C4,0x7F0301C5,0x7F0301C6,0x7F0301C8,0x7F0301C9,0x7F0301CA,0x7F0301CB,0x7F0301CE,0x7F0301CF,0x7F0301E9,0x7F0301EA,0x7F0301EB,0x7F0301EC,0x7F0301FB,0x7F0301FD,0x7F0301FE,0x7F0301FF,0x7F030200,0x7F030201,0x7F030202,0x7F030203,0x7F030204,0x7F030205,0x7F030206 }
+			// aapt resource value: { 0x1010057,0x10100AE,0x7F030000,0x7F030001,0x7F030002,0x7F030003,0x7F030004,0x7F030005,0x7F030006,0x7F030007,0x7F030008,0x7F030009,0x7F03000A,0x7F03000B,0x7F03000C,0x7F03000E,0x7F03000F,0x7F030010,0x7F030011,0x7F030012,0x7F030013,0x7F030014,0x7F030015,0x7F030016,0x7F030017,0x7F030018,0x7F030019,0x7F03001A,0x7F03001B,0x7F03001C,0x7F03001D,0x7F03001E,0x7F030021,0x7F030022,0x7F030023,0x7F030024,0x7F030025,0x7F03002C,0x7F03003F,0x7F03004D,0x7F03004E,0x7F03004F,0x7F030050,0x7F030051,0x7F030056,0x7F030057,0x7F030068,0x7F03006D,0x7F03008E,0x7F03008F,0x7F030090,0x7F030091,0x7F030092,0x7F030093,0x7F030094,0x7F030095,0x7F030096,0x7F030099,0x7F0300A8,0x7F0300B1,0x7F0300B2,0x7F0300B3,0x7F0300B6,0x7F0300B8,0x7F0300BB,0x7F0300BC,0x7F0300BD,0x7F0300BE,0x7F0300BF,0x7F0300F5,0x7F030103,0x7F03012A,0x7F03012B,0x7F03012E,0x7F03012F,0x7F030130,0x7F030131,0x7F030132,0x7F030133,0x7F030134,0x7F030158,0x7F030159,0x7F03015A,0x7F030160,0x7F030162,0x7F030169,0x7F03016A,0x7F03016B,0x7F03016C,0x7F030175,0x7F030176,0x7F030177,0x7F030178,0x7F030185,0x7F030186,0x7F03019C,0x7F0301C3,0x7F0301C4,0x7F0301C5,0x7F0301C6,0x7F0301C8,0x7F0301C9,0x7F0301CA,0x7F0301CB,0x7F0301CE,0x7F0301CF,0x7F0301E9,0x7F0301EA,0x7F0301EB,0x7F0301EC,0x7F0301FC,0x7F0301FE,0x7F0301FF,0x7F030200,0x7F030201,0x7F030202,0x7F030203,0x7F030204,0x7F030205,0x7F030206,0x7F030207 }
 			public static int[] AppCompatTheme = new int[] {
 					16842839,
 					16842926,
@@ -10305,8 +10311,7 @@ namespace Google_sheetAndro.Droid
 					2130903530,
 					2130903531,
 					2130903532,
-					2130903547,
-					2130903549,
+					2130903548,
 					2130903550,
 					2130903551,
 					2130903552,
@@ -10315,7 +10320,8 @@ namespace Google_sheetAndro.Droid
 					2130903555,
 					2130903556,
 					2130903557,
-					2130903558};
+					2130903558,
+					2130903559};
 			
 			// aapt resource value: 2
 			public const int AppCompatTheme_actionBarDivider = 2;
@@ -11193,7 +11199,7 @@ namespace Google_sheetAndro.Droid
 			// aapt resource value: 7
 			public const int DrawerArrowToggle_thickness = 7;
 			
-			// aapt resource value: { 0x7F030035,0x7F030036,0x7F03003E,0x7F0300C0,0x7F0300D3,0x7F0300D4,0x7F0300EF,0x7F0300F7,0x7F03013D,0x7F030164,0x7F03016E,0x7F03017B,0x7F0301F9 }
+			// aapt resource value: { 0x7F030035,0x7F030036,0x7F03003E,0x7F0300C0,0x7F0300D3,0x7F0300D4,0x7F0300EF,0x7F0300F7,0x7F03013D,0x7F030164,0x7F03016E,0x7F03017B,0x7F0301FA }
 			public static int[] FloatingActionButton = new int[] {
 					2130903093,
 					2130903094,
@@ -11207,7 +11213,7 @@ namespace Google_sheetAndro.Droid
 					2130903396,
 					2130903406,
 					2130903419,
-					2130903545};
+					2130903546};
 			
 			// aapt resource value: 0
 			public const int FloatingActionButton_backgroundTint = 0;
@@ -11497,7 +11503,7 @@ namespace Google_sheetAndro.Droid
 			// aapt resource value: 2
 			public const int LoadingImageView_imageAspectRatioAdjust = 2;
 			
-			// aapt resource value: { 0x7F030029,0x7F03005A,0x7F03005B,0x7F03005C,0x7F03005D,0x7F03005E,0x7F03005F,0x7F030060,0x7F030117,0x7F030118,0x7F030119,0x7F03011A,0x7F030135,0x7F030138,0x7F0301F2,0x7F0301F3,0x7F0301F4,0x7F0301F5,0x7F0301F6,0x7F0301F7,0x7F0301F8,0x7F0301FA,0x7F030207 }
+			// aapt resource value: { 0x7F030029,0x7F03005A,0x7F03005B,0x7F03005C,0x7F03005D,0x7F03005E,0x7F03005F,0x7F030060,0x7F030117,0x7F030118,0x7F030119,0x7F03011A,0x7F030135,0x7F030138,0x7F0301F2,0x7F0301F3,0x7F0301F4,0x7F0301F5,0x7F0301F6,0x7F0301F7,0x7F0301F8,0x7F0301F9,0x7F0301FB,0x7F030208 }
 			public static int[] MapAttrs = new int[] {
 					2130903081,
 					2130903130,
@@ -11520,8 +11526,9 @@ namespace Google_sheetAndro.Droid
 					2130903542,
 					2130903543,
 					2130903544,
-					2130903546,
-					2130903559};
+					2130903545,
+					2130903547,
+					2130903560};
 			
 			// aapt resource value: 0
 			public const int MapAttrs_ambientEnabled = 0;
@@ -11578,19 +11585,22 @@ namespace Google_sheetAndro.Droid
 			public const int MapAttrs_uiScrollGestures = 17;
 			
 			// aapt resource value: 18
-			public const int MapAttrs_uiTiltGestures = 18;
+			public const int MapAttrs_uiScrollGesturesDuringRotateOrZoom = 18;
 			
 			// aapt resource value: 19
-			public const int MapAttrs_uiZoomControls = 19;
+			public const int MapAttrs_uiTiltGestures = 19;
 			
 			// aapt resource value: 20
-			public const int MapAttrs_uiZoomGestures = 20;
+			public const int MapAttrs_uiZoomControls = 20;
 			
 			// aapt resource value: 21
-			public const int MapAttrs_useViewLifecycle = 21;
+			public const int MapAttrs_uiZoomGestures = 21;
 			
 			// aapt resource value: 22
-			public const int MapAttrs_zOrderOnTop = 22;
+			public const int MapAttrs_useViewLifecycle = 22;
+			
+			// aapt resource value: 23
+			public const int MapAttrs_zOrderOnTop = 23;
 			
 			// aapt resource value: { 0x10101B7,0x10101B8,0x10101B9,0x10101BA,0x7F030035,0x7F030036,0x7F0300AA,0x7F0300F8,0x7F0300FA,0x7F0300FB,0x7F0300FC,0x7F0300FE,0x7F0300FF,0x7F03016E,0x7F030191,0x7F030192 }
 			public static int[] MaterialButton = new int[] {
@@ -12126,7 +12136,7 @@ namespace Google_sheetAndro.Droid
 			// aapt resource value: 0
 			public const int ScrollingViewBehavior_Layout_behavior_overlapTop = 0;
 			
-			// aapt resource value: { 0x10100DA,0x101011F,0x1010220,0x1010264,0x7F030081,0x7F03009A,0x7F0300B0,0x7F0300E9,0x7F030100,0x7F03011B,0x7F030167,0x7F030168,0x7F030173,0x7F030174,0x7F030194,0x7F030199,0x7F0301FC }
+			// aapt resource value: { 0x10100DA,0x101011F,0x1010220,0x1010264,0x7F030081,0x7F03009A,0x7F0300B0,0x7F0300E9,0x7F030100,0x7F03011B,0x7F030167,0x7F030168,0x7F030173,0x7F030174,0x7F030194,0x7F030199,0x7F0301FD }
 			public static int[] SearchView = new int[] {
 					16842970,
 					16843039,
@@ -12144,7 +12154,7 @@ namespace Google_sheetAndro.Droid
 					2130903412,
 					2130903444,
 					2130903449,
-					2130903548};
+					2130903549};
 			
 			// aapt resource value: 0
 			public const int SearchView_android_focusable = 0;

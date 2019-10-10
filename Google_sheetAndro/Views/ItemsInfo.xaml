@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:Google_sheetAndro.ViewModels"
+             mc:Ignorable="d"
+             x:Class="Google_sheetAndro.Views.ItemsInfo"
+             Appearing="ContentPage_Appearing">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Добавить" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout x:Name="Sl">
+            <!--x:DataType="views:ItemsInfoVM"-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Picker x:Name="Year_pick" Grid.Row="0" Grid.Column="0"
+                        Margin="10,5,5,5" FontSize="18"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                        
+                         ItemsSource="{Binding years}"
+                    SelectedIndexChanged="Graph_pick_date_SelectedIndexChanged"
+                    Title="За период...">
+                </Picker>
+                <Picker x:Name="Mounth_pick" Grid.Row="0" Grid.Column="1"
+                        Margin="10,5,5,5" FontSize="18"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                         ItemsSource="{Binding months}"
+                    SelectedIndexChanged="Mounth_pick_SelectedIndexChanged"
+                    Title="Месяц">
+                </Picker>
+            </Grid>
+            <ScrollView>
+                <ListView x:Name="TableItems"
+                          HasUnevenRows="True"
+                          ItemsSource="{Binding ItemGroups}"
+                          ItemTapped="TableItems_ItemTapped"
+                          IsGroupingEnabled="true" Margin="5">
+                    <ListView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="30">
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" FontSize="Large" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.GroupHeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="10">
+                                    <Label Text="{Binding date, StringFormat='{0:dd.MM.yyyy}'}" />
+                                    <Label Text="{Binding task}" />
+                                    <Label Text="{Binding plase}" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -14,7 +14,8 @@ namespace Google_sheetAndro
             InitializeComponent();
             DependencyService.Register<MockDataStore>();
             //MainPage = new NavigationPage(new MainPage());
-            MainPage = new MainPage();
+            MainPage = new MenuPage();/*MainPage();*/
+           
         }
 
         protected override void OnStart()
