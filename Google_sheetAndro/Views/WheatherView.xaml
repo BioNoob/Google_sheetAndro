@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:loc="clr-namespace:Google_sheetAndro"
+             x:Class="Google_sheetAndro.Views.WheatherView"
+             xmlns:controls="clr-namespace:Refractored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh"
+             NavigationPage.HasNavigationBar="False"
+             >
+    <controls:PullToRefreshLayout
+        
+          IsPullToRefreshEnabled="True"
+          x:Name="Refresher"
+          RefreshCommand="{Binding RefreshCommand}"
+          IsRefreshing="{Binding IsBusy}"
+          RefreshColor="Blue">
+        <Grid>
+            <Grid Margin="5" ColumnSpacing="5">
+                <Label x:Name="Place" Text="{Binding Place}"
+                       Grid.Column="0"/>
+                <Label x:Name="Time" Text="{Binding Time}"
+                       Grid.Column="1"/>
+            </Grid>
+            <ScrollView>
+                <StackLayout>
+                    <Grid>
+                        <Label x:Name="temp" Text="{Binding gpp.temperature}" Grid.Column="1" Grid.Row="0"/>
+                        <Image x:Name="IcoWheather" Source="{Binding gpp.icon}" Grid.Column="0" Grid.Row="0"/>
+                        <Label x:Name="prtyp" Text="{Binding gpp.precipType}" Grid.Column="0" Grid.Row="1"/>
+                        <Label x:Name="prprob" Text="{Binding gpp.precipProbability}" Grid.Column="1" Grid.Row="1"/>
+                        <Label x:Name="printens" Text="{Binding gpp.precipIntensity}" Grid.Column="0" Grid.Row="2"/>
+                        <Label x:Name="visib" Text="{Binding gpp.visibility}" Grid.Column="1" Grid.Row="2"/>
+                    </Grid>
+                    <Grid ColumnSpacing="5">
+                        <Label x:Name="WindSp" Text="{Binding gpp.windSpeed}" Grid.Column="0" Grid.Row="0"/>
+                        <Label x:Name="WindDir" Text="{Binding gpp.windBearing}" Grid.Column="0" Grid.Row="1"/>
+                        <Label x:Name="WindGu" Text="{Binding gpp.windGust}" Grid.Column="1" Grid.Row="0"/>
+                        <Label x:Name="cloudCo" Text="{Binding gpp.cloudCover}" Grid.Column="1" Grid.Row="1"/>
+                    </Grid>
+                    <Grid ColumnSpacing="5">
+                        <Label x:Name="Pressure" Text="{Binding gpp.pressure}" Grid.Column="0"/>
+                        <Label x:Name="Humidity" Text="{Binding gpp.humidity}" Grid.Column="1"/>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </controls:PullToRefreshLayout>
+</ContentPage>

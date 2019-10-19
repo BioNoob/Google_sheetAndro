@@ -29,6 +29,7 @@ namespace Google_sheetAndro.Views
             item = new NavigationPage(new ItemsPage());
 
             vM = new ItemsInfoVM();
+            Year_pick.SelectedIndex = Year_pick.Items.Count - 1;
             Mounth_pick.SelectedIndex = 0;
             BindingContext = vM;
         }
@@ -60,6 +61,7 @@ namespace Google_sheetAndro.Views
         private void update()
         {
             ItemsPage tp = (ItemsPage)item.CurrentPage;
+            int last = Year_pick.SelectedIndex;
             try
             {
                 Googles.UpdateEntry(tp.getter());
@@ -76,13 +78,18 @@ namespace Google_sheetAndro.Views
                     vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex);
                 else
                     vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0);
+                Year_pick.SelectedIndexChanged -= Graph_pick_date_SelectedIndexChanged;
+                vM.years.Clear();
                 vM.years = LocalTable.GetYearsList();
+                Year_pick.SelectedIndexChanged += Graph_pick_date_SelectedIndexChanged;
+                Year_pick.SelectedIndex = last;
             }
 
         }
         private void delete()
         {
             ItemsPage tp = (ItemsPage)item.CurrentPage;
+            int last = Year_pick.SelectedIndex;
             try
             {
                 Googles.DeleteEntry(tp.getter());
@@ -99,7 +106,11 @@ namespace Google_sheetAndro.Views
                     vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex);
                 else
                     vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0);
+                Year_pick.SelectedIndexChanged -= Graph_pick_date_SelectedIndexChanged;
+                vM.years.Clear();
                 vM.years = LocalTable.GetYearsList();
+                Year_pick.SelectedIndexChanged += Graph_pick_date_SelectedIndexChanged;
+                Year_pick.SelectedIndex = last;
             }
 
         }

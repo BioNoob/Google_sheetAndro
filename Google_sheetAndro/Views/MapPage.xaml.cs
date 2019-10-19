@@ -1,12 +1,17 @@
 ﻿using Android.Hardware;
 using Google_sheetAndro.Class;
 using Newtonsoft.Json;
+using Plugin.DeviceSensors;
+using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
 /*
 * ПОРЯДОК СБОРКИ
@@ -32,10 +37,103 @@ namespace Google_sheetAndro.Views
         public MapPage()
         {
             InitializeComponent();
-            InitializeUiSettingsOnMap();
+            b2.IsEnabled = false;
+        }
+        bool isLoaded;
+        protected async override void OnAppearing()
+        {
+            if (!isLoaded)
+            {
+                InitializeUiSettingsOnMap();
+                isLoaded = true;
+            }
+        }
+        async Task StartListening()
+        {
+            if (CrossDeviceSensors.Current.Barometer.IsSupported)
+            {
+                CrossDeviceSensors.Current.Barometer.OnReadingChanged += Barometer_OnReadingChanged;
+                //CrossDeviceSensors.Current.Barometer.OnReadingChanged += (s, a) => {
 
+                //};
+                CrossDeviceSensors.Current.Barometer.StartReading();
+            }
+            else
+            {
+                StatusH.Text = "Нет барометра";
+            }
+            if (CrossGeolocator.Current.IsListening)
+                return;
+            CrossGeolocator.Current.DesiredAccuracy = 25;
+           await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(1), 10, true, new ListenerSettings
+            {
+                ActivityType = ActivityType.OtherNavigation,
+                AllowBackgroundUpdates = true,
+                DeferLocationUpdates = true,
+                DeferralDistanceMeters = 10,
+                DeferralTime = TimeSpan.FromSeconds(1),
+                ListenForSignificantChanges = true,
+                PauseLocationUpdatesAutomatically = false
+            });
+
+            CrossGeolocator.Current.PositionChanged += PositionChanged;
+            CrossGeolocator.Current.PositionError += PositionError;
+        }
+        private void Barometer_OnReadingChanged(object sender, Plugin.DeviceSensors.Shared.DeviceSensorReadingEventArgs<double> e)
+        {
+            //hig = SensorManager.GetAltitude(,);
+            //Plugin.Geolocator.Abstractions.Position s= new Plugin.Geolocator.Abstractions.Position();
+
+            //Status.Text = Status.Text.Replace("Выс:", $"Выс: {} м");
+            if (bar != e.Reading)
+            {
+                height = e.Reading;
+                bar = e.Reading;
+            }
+            else
+                bar = e.Reading;
+
+            //System.Diagnostics.Debug.WriteLine(e.Reading);
+        }
+        public string address = string.Empty;
+        private void PositionChanged(object sender, PositionEventArgs e)
+        {
+            Plugin.Geolocator.Abstractions.Position poss = new Plugin.Geolocator.Abstractions.Position(map.CameraPosition.Target.Latitude, map.CameraPosition.Target.Longitude);
+            if (GeolocatorUtils.CalculateDistance(poss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) < 5)
+            {
+                var zoom = map.CameraPosition.Zoom;
+                Xamarin.Forms.GoogleMaps.Position pos = new Xamarin.Forms.GoogleMaps.Position(e.Position.Latitude, e.Position.Longitude);
+                if (pl.Positions.Count >= 1)
+                {
+                    Plugin.Geolocator.Abstractions.Position pss = new Plugin.Geolocator.Abstractions.Position(pl.Positions[pl.Positions.Count - 1].Latitude, pl.Positions[pl.Positions.Count - 1].Longitude);
+                    if (GeolocatorUtils.CalculateDistance(pss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) * 1000 > 10)
+                        SetLine(pos);
+
+                }
+                else if (pl.Positions.Count == 0)
+                {
+                    SetLine(pos);
+                }
+                map.MoveCamera(CameraUpdateFactory.NewPositionZoom(new Xamarin.Forms.GoogleMaps.Position(e.Position.Latitude, e.Position.Longitude), zoom));
+            }
+
+            //map.InitialCameraUpdate = CameraUpdateFactory.NewPosition(new Xamarin.Forms.GoogleMaps.Position(position.Latitude, position.Longitude));
         }
 
+        private void PositionError(object sender, PositionErrorEventArgs e)
+        {
+            //Handle event here for errors
+        }
+
+        async Task StopListening()
+        {
+            if (!CrossGeolocator.Current.IsListening)
+                return;
+            CrossDeviceSensors.Current.Barometer.StopReading();
+            await CrossGeolocator.Current.StopListeningAsync();
+            CrossGeolocator.Current.PositionChanged -= PositionChanged;
+            CrossGeolocator.Current.PositionError -= PositionError;
+        }
 
         void InitializeUiSettingsOnMap()
         {
@@ -45,117 +143,174 @@ namespace Google_sheetAndro.Views
             map.MyLocationEnabled = true;
             map.UiSettings.ZoomGesturesEnabled = true;
             map.UiSettings.MapToolbarEnabled = true;
+            map.InitialCameraUpdate = CameraUpdateFactory.NewPositionZoom(new Xamarin.Forms.GoogleMaps.Position(55.751316, 37.620915), 11);
+
+            map.MapLongClicked += map_MapLongClicked;
+            pl.Tag = "Line";
+            pl.StrokeWidth = 10;
+            pl.StrokeColor = Color.Blue;
+            //GetGEOAsync();
+            //map.MoveToRegion(new Xamarin.Forms.GoogleMaps.MapSpan(new Xamarin.Forms.GoogleMaps.Position(),loc.Latitude,loc.Longitude));
+        }
+        private double _dist;
+        public double dist 
+        { 
+            get
+            {
+                return _dist;
+            }
+            set
+            {
+                _dist = value;
+                StaticInfo.Dist = dist;
+            }
+        }
+        private double _height;
+        private double bar;
+        public double height
+        {
+            get
+            {
+                return _height;
+            }
+            set
+            {
+                _height = StaticInfo.GetHeight(value);
+                StatusH.Text = string.Format("{0:#0.0 м}", _height);
+            }
+        }
+        private void map_MapLongClicked(object sender, MapLongClickedEventArgs e)
+        {
+            if (SwManual.IsToggled)
+            {
+                SetLine(e.Point);
+            }
+        }
+        Polyline pl = new Polyline();
+        private void SetLine(Xamarin.Forms.GoogleMaps.Position e)
+        {
+            if (pl.Positions.Count >= 1)
+            {
+                dist += GeolocatorUtils.CalculateDistance(new Plugin.Geolocator.Abstractions.Position(pl.Positions[pl.Positions.Count - 1].Latitude, pl.Positions[pl.Positions.Count - 1].Longitude),
+                new Plugin.Geolocator.Abstractions.Position(e.Latitude, e.Longitude), GeolocatorUtils.DistanceUnits.Kilometers);
+                StatusD.Text = $"{dist} км";
+                pl.Positions.Add(e);
+                map.Polylines.Clear();
+                map.Polylines.Add(pl);
+            }
+            else
+            {
+                pl.Positions.Add(e);
+                map.Pins.Add(new Pin() { Label = "Старт", Position = e });
+            }
+            //Polyline plm = ((List<Polyline>)map.Polylines).Find(t => t.Tag.ToString() == "Line");
+            //Xamarin.Forms.GoogleMaps.Position pt = new Xamarin.Forms.GoogleMaps.Position(pl.Positions[pl.Positions.Count - 1].Latitude, pl.Positions[pl.Positions.Count - 1].Longitude);
+            //((List<Polyline>)map.Polylines).Find(t => t.Tag.ToString() == "Line").Positions.Add(e);
+
         }
 
 
-
-
-
-        public async Task<Location> getGEOAsync()
+        public async void SetInitVew()
+        {
+            if (StaticInfo.Pos != null)
+            {
+                var animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
+                new CameraPosition(
+                    new Xamarin.Forms.GoogleMaps.Position(StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude), // Tokyo
+                    15d, // zoom
+                    0)),
+                TimeSpan.FromSeconds(2));
+            }
+        }
+        public async Task<bool> GetGEOAsync()
         {
             try
             {
                 var request = new GeolocationRequest(GeolocationAccuracy.Best);
-                var location = await Geolocation.GetLocationAsync(request);
-
-                if (location != null)
-                {
-                    return location;//$"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}";
-                }
-                else
-                    return null;
+                var s = await Geolocation.GetLocationAsync(request);
+                StaticInfo.Pos = s;
             }
             catch (FeatureNotSupportedException fnsEx)
             {
                 // Handle not supported on device exception
-                return null;
+
                 //return fnsEx.Message;
             }
             catch (FeatureNotEnabledException fneEx)
             {
                 // Handle not enabled on device exception
-                return null;
+
                 //return fneEx.Message;
             }
             catch (PermissionException pEx)
             {
                 // Handle permission exception
-                return null;
+
                 //return pEx.Message;
             }
             catch (Exception ex)
             {
-                return null;
+
                 // Unable to get location
                 //return ex.Message;
             }
+            return true;
         }
-
-        public async Task<string> GetWeatherReqAsync(Location coord)
+        private async void SwManual_Toggled(object sender, ToggledEventArgs e)
         {
-            string api_key = "42b983a01370d4d851e3fccc2b3cfd4b";
-            HttpClient client = new HttpClient();
-            string req = $"?apikey={api_key}&q={coord.Latitude},{coord.Longitude}&language=ru-ru&details=true HTTP/1.1";
-            HttpResponseMessage response = await client.GetAsync($"https://api.darksky.net/forecast/{api_key}/{coord.Latitude},{coord.Longitude}?&lang=ru&units=si&exclude=hourly,daily,minutely,flags");
-            if (response.StatusCode == HttpStatusCode.OK)
+            if (await DisplayAlert("Предупреждение", "Текущий маршрут будет стёрт", "ОК", "Отммена"))
             {
-                HttpContent responseContent = response.Content;
-                var json = await responseContent.ReadAsStringAsync();
-                dynamic stuff = JsonConvert.DeserializeObject(json);
-                ResponsedData rpd = JsonConvert.DeserializeObject<ResponsedData>(json);
-                //string pressure = stuff.currently.pressure; // давление, для рассчета высоты
-                //string temperature = stuff.currently.temperature;//температура
-                //string windspeed = stuff.currently.windSpeed;//скорость ветра
-                //string cloud = stuff.currently.summary;//облачность
-                //string time = stuff.currently.time; //время формата UNIX
-                return "";
+                pl.Positions.Clear();
+                map.Pins.Clear();
+                map.Polylines.Clear();
             }
             else
-                return "";
+            {
+                SwManual.Toggled -= SwManual_Toggled;
+                SwManual.IsToggled = !e.Value;
+                SwManual.Toggled += SwManual_Toggled;
+            }
         }
-        void Barometer_ReadingChanged(object sender, BarometerChangedEventArgs e)
+        private void b1_Clicked(object sender, EventArgs e)
         {
-            data = e.Reading;
-            // Process Pressure
-            Console.WriteLine($"Reading: Pressure: {data.PressureInHectopascals} hectopascals");
+            start();
+            b2.IsEnabled = true;
+            b1.IsEnabled = false;
+            Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
+        }
+        bool alive = true;
+        Time_r t = new Time_r();
+        private bool OnTimerTick()
+        {
+                t.Sec++;
+                StatusTime.Text = t.ToString();
+                return alive;
         }
 
-        public void ToggleBarometer()
+        private void TimeSt()
         {
-            try
+            if (alive == true)
             {
-                if (Barometer.IsMonitoring)
-                    Barometer.Stop();
-                else
-                    Barometer.Start(speed);
+                alive = false;
             }
-            catch (FeatureNotSupportedException fnsEx)
+            else
             {
-                // Feature not supported on device
-            }
-            catch (Exception ex)
-            {
-                // Other error has occurred.
+                alive = true;
+                Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
             }
         }
-        SensorSpeed speed = SensorSpeed.UI;
-        BarometerData data;
-        private async void GetBtn_Clicked(object sender, EventArgs e)
+        private async void start()
         {
-            float myPres = 1016;
-            Barometer.ReadingChanged += Barometer_ReadingChanged;
-            //Barometer.Start(speed);
-            //по нажатию кнопки старт просто запоминается время
-            DateTime dt = DateTime.Now;
-            //dt.ToUniversalTime делаем еще раз по нажатию, и получаем разницу по времени в секундах. Делим на 60, получаем минуты
-            var answ = SensorManager.GetAltitude(950/*(float)data.PressureInHectopascals*/, myPres);
-            //Barometer.Stop();
-            //Location scoord = await getGEOAsync();
-            //if(scoord != null)
-            //{
-            //    string kk = await GetWeatherReqAsync(scoord);
-            //}
-
+            await StartListening();
+            TimeSt();
+        }
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+           await StopListening();
+            b2.IsEnabled = false;
+            b1.IsEnabled = true;
+            TimeSt();
+            StaticInfo.Nalet = t.ToString();
         }
     }
 }

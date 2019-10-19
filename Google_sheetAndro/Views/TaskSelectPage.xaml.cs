@@ -89,6 +89,7 @@ namespace Google_sheetAndro.Views
 "49\tТренировочное, зачетное, соревновательное комплексное упражнение по программе многодневного перелета согласно квалификационным нормам ФАИ.",
 "50\tТренировочное, зачетное упражнение по программе установления рекорда"
             };
+        
         public TaskSelectPage()
         {
             InitializeComponent();
@@ -99,7 +100,22 @@ namespace Google_sheetAndro.Views
             lvTask.ItemsSource = Taskk;
         }
 
-
+        public void SetSelected(string inner)
+        {
+            Task_txt.TextChanged -= Task_txt_TextChanged;
+            foreach (var item in inner.Split(','))
+            {
+                foreach (var it in Taskk)
+                {
+                    if (it.Data.Num == item)
+                    {
+                        it.IsSelected = true;
+                        LvTask_ItemSelected(this, new SelectedItemChangedEventArgs(it));
+                    }       
+                }
+            }
+            Task_txt.TextChanged += Task_txt_TextChanged;
+        }
         public string OutTask = string.Empty;
         public event EventHandler tasksetsucs;
         private async void Confirm_btn_Clicked(object sender, EventArgs e)

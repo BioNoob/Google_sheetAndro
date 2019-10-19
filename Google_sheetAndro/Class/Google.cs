@@ -421,6 +421,7 @@ namespace TableAndro
         /// <param name="dic"></param>
         public static void UpdateEntry(TableItem tbi/*int num_inp, Dictionary<string, object> dic*/)
         {
+            var sheet = tbi.year.ToString();
             var range = $"{sheet}!B{tbi.row_nb}:K{tbi.row_nb}";
             var valueRange = new ValueRange();
             //var oblist = new List<object>();

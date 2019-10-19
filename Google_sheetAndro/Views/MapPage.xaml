@@ -8,11 +8,41 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="Google_sheetAndro.Views.MapPage"
              >
-    <ContentPage.Content>
-        <Grid>
-            <mp:Map x:Name="map" HeightRequest="500" BackgroundColor="Beige" MapType="Hybrid" 
+    <Grid>
+        <mp:Map x:Name="map" HeightRequest="500" BackgroundColor="Beige" MapType="Hybrid" 
                             MyLocationEnabled="True"
-                            VerticalOptions="FillAndExpand"/>
+                            VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+        <RelativeLayout Margin="10" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="#77000000">
+            <Label Text="Ручной режим" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" Margin="5,0"
+                   RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToView,ElementName = SwManual,Property=Height, Factor=1, Constant=1}" 
+                   HorizontalTextAlignment="Center" LineBreakMode="WordWrap" VerticalTextAlignment="Center"
+                   TextColor="White"
+                   WidthRequest="100"/>
+            <Switch x:Name="SwManual" VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand" Margin="5,5,5,0" OnColor="Orange" ThumbColor="#2196F3"
+                    Scale="0.85"
+                    Toggled="SwManual_Toggled"
+                    />
+        </RelativeLayout>
+        <Grid Margin="10" VerticalOptions="End" HorizontalOptions="Start">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Button x:Name ="b1" Text="Start" BackgroundColor="#77000000" BorderRadius="4" BorderColor="White" BorderWidth="2" 
+                    TextColor="White" Grid.Row="0" Grid.Column="0" Clicked="b1_Clicked"
+               />
+            <Button Text="Stop" x:Name="b2" BackgroundColor="#77000000" BorderRadius="4" BorderColor="White" BorderWidth="2"
+                    TextColor="White" Grid.Row="1" Grid.Column="0" Clicked="Button_Clicked"/>
+
+            <Label x:Name="Status_D" Text="Дист:" Grid.Row="2" Grid.Column="0" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+            <Label x:Name="StatusD" Text="" Grid.Row="2" Grid.Column="1" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+            <Label x:Name="Status_H" Text="Выс:" Grid.Row="3" Grid.Column="0" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+            <Label x:Name="StatusH" Text="" Grid.Row="3" Grid.Column="1" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+            <Label x:Name="StatusTime" Text="" Grid.Row="4" Grid.ColumnSpan="3" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
         </Grid>
-    </ContentPage.Content>
+    </Grid>
 </ContentPage>

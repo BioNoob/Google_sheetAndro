@@ -46,10 +46,50 @@ namespace Google_sheetAndro.Views
             Place_txt.SelectedItem = ti.plase;
             Comment_txt.Text = ti.comment;
         }
+        private void InitEvent()
+        {
+            StaticInfo.DoSetNalet += SetNal;
+            StaticInfo.DoSetHeight += SetHeight;
+            StaticInfo.DoSetDist += SetDist;
+            StaticInfo.DoSetTemp += SetTemp;
+            StaticInfo.DoSetWind += SetWind;
+            StaticInfo.DoSetCloud += SetCloud;
+        }
+        private void SetTemp(string temp)
+        {
+            Temp_Num.Text = temp;
+        }
+        private void SetCloud(string cloud)
+        {
+            CloudPicker.SelectedItem = cloud;
+        }
+        private void SetWind(int wind)
+        {
+            if (WindSlider.Maximum < wind)
+                WindSlider.Maximum = wind + 1;
+            WindSlider.Value = wind;
+        }
+        private void SetNal(string nal)
+        {
+            Time_pick.Text = nal;
+        }
+        private void SetDist(double dist)
+        {
+            Range_txt.Text = dist.ToString();
+        }
+        private void SetHeight(int height)
+        {
+            Hight_txt_num.Text = height.ToString();
+        }
         public TableItem getter()
         {
             //TableItem tb = new TableItem();
-            ti_local.date = Date_pick.Date.ToUniversalTime();
+            if (ti_local == null)
+            {
+                ti_local = new TableItem();
+            }
+            var offset = TimeZoneInfo.Local.GetUtcOffset(Date_pick.Date.ToUniversalTime());
+            ti_local.date = Date_pick.Date.ToUniversalTime() + offset;
             ti_local.time = Time_pick.Text;
             ti_local.wind = Convert.ToDouble(Wind_Num.Text);
             ti_local.cloud = CloudPicker.SelectedItem.ToString();
@@ -61,10 +101,12 @@ namespace Google_sheetAndro.Views
             ti_local.comment = Comment_txt.Text;
             return ti_local;
         }
-        public ItemsPage()
+        public ItemsPage(bool fl_single = false)
         {
             InitializeComponent();
             Init();
+            if (fl_single)
+                InitEvent();
             this.IsBusy = false;
             Date_pick.Format = "dd.MM.yyyy";
             Date_pick.Date = DateTime.Now;
@@ -203,15 +245,15 @@ namespace Google_sheetAndro.Views
             innerGrid.Children.Remove(gr_4);
             innerGrid.Children.Remove(gr_5);
             innerGrid.Children.Remove(gr_6);
-            innerGrid.Children.Remove(gr_7);
+            //innerGrid.Children.Remove(gr_7);
             innerGrid.Children.Add(gr_1, 0, 0);
             innerGrid.Children.Add(gr_3, 1, 0);
             innerGrid.Children.Add(gr_2, 0, 1);
             innerGrid.Children.Add(gr_4, 1, 1);
             innerGrid.Children.Add(gr_5, 0, 2);
             innerGrid.Children.Add(gr_6, 1, 2);
-            innerGrid.Children.Add(gr_7, 0, 3);
-            Grid.SetColumnSpan(gr_7, 2);
+            //innerGrid.Children.Add(gr_7, 0, 3);
+            //Grid.SetColumnSpan(gr_7, 2);
         }
         private void OrientBook()
         {
@@ -231,15 +273,15 @@ namespace Google_sheetAndro.Views
             innerGrid.Children.Remove(gr_4);
             innerGrid.Children.Remove(gr_5);
             innerGrid.Children.Remove(gr_6);
-            innerGrid.Children.Remove(gr_7);
+            //innerGrid.Children.Remove(gr_7);
             innerGrid.Children.Add(gr_1, 0, 0);
             innerGrid.Children.Add(gr_2, 0, 1);
             innerGrid.Children.Add(gr_3, 0, 2);
             innerGrid.Children.Add(gr_4, 0, 3);
             innerGrid.Children.Add(gr_5, 0, 4);
             innerGrid.Children.Add(gr_6, 0, 5);
-            innerGrid.Children.Add(gr_7, 0, 6);
-            Grid.SetColumnSpan(gr_7, 1);
+            //innerGrid.Children.Add(gr_7, 0, 6);
+            //Grid.SetColumnSpan(gr_7, 1);
         }
 
 
@@ -487,7 +529,8 @@ namespace Google_sheetAndro.Views
         TaskSelectPage Tsp = new TaskSelectPage();
         private async void Task_txt_Clicked(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(Task_txt.Text))
+                Tsp.SetSelected(Task_txt.Text);
             Tsp.tasksetsucs += Tsp_tasksetsucs;
             await Navigation.PushModalAsync(Tsp);
             //Task_txt.Text = Tsp.OutTask;

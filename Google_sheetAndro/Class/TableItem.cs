@@ -39,6 +39,7 @@ namespace Google_sheetAndro.Class
         public static List<string> GetYearsList()
         {
             var tt = new HashSet<string>(ListItems.Select(t => t.year.ToString()).ToList()).ToList();
+            tt.Sort();
             return tt;
         }
         public static ObservableCollection<Grouping<string, TableItem>> SortItems(string Year, int mouth)

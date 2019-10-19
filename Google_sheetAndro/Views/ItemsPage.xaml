@@ -490,7 +490,7 @@
                                        />
                             </Grid>
                         </Grid>
-                        <Grid x:Name="gr_7" Grid.Row="6" Grid.ColumnSpan="1">
+                        <!--<Grid x:Name="gr_7" Grid.Row="6" Grid.ColumnSpan="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="52.5"/>
                             </Grid.RowDefinitions>
@@ -507,12 +507,12 @@
                                     BorderColor="#000000" BorderWidth="2" Padding="0,10"
                                     FontSize="18"
                                     Clicked="Confirm_btn_Clicked" CornerRadius="5"/>
-                        </Grid>
+                        </Grid>-->
                     </Grid>
                 </StackLayout>
 
             </ScrollView>
-            <ActivityIndicator IsVisible="{Binding IsBusy}"
+            <!--<ActivityIndicator IsVisible="{Binding IsBusy}"
                                IsRunning="{Binding IsBusy}"
                                Color="Black"
                                VerticalOptions="CenterAndExpand"
@@ -522,7 +522,7 @@
                                         Factor=0.33}"
                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                                         Property=Height,
-                                        Factor=0.33}" />
+                                        Factor=0.33}" />-->
         </Grid>
         
 

@@ -6,6 +6,7 @@
             Title="Ввод данных"
             BarBackgroundColor="#2196F3"
             Appearing="TabbedPage_Appearing"
+            CurrentPageChanged="TabbedPage_CurrentPageChanged"
             >
     <TabbedPage.ToolbarItems>
         <ToolbarItem Text="Отменить" Clicked="ToolbarItem_Clicked_1" />

@@ -20,19 +20,23 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Google_sheetAndro.Views;
+using Google_sheetAndro.Class;
 
 namespace RefreshSample.ViewModels
 {
-    public class TestViewModel : INotifyPropertyChanged
+    public class WheatherViewModel : INotifyPropertyChanged
     {
         //public ObservableCollection<string> Items { get; set; }
-        Page page;
-        public TestViewModel(Page page)
+        public WheatherViewModel()
         {
-            this.page = page;
-            //Items = new ObservableCollection<string>();
+            Time = DateTime.Now.ToString("dd MMMM yyyy HH:mm");
+            gpp = StaticInfo.Wheather;
+            Place = StaticInfo.Place;
         }
 
+        public ResponsedData gpp { get; set; }
+        public string Place { get; set; }
+        public string Time { get; set; }
         bool canRefresh = true;
 
         public bool CanRefresh
@@ -82,19 +86,21 @@ namespace RefreshSample.ViewModels
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
               {
 
-                 //for (int i = 0; i < 100; i++)
-                     //Items.Add(DateTime.Now.AddMinutes(i).ToString("F"));
+                  //for (int i = 0; i < 100; i++)
+                  //Items.Add(DateTime.Now.AddMinutes(i).ToString("F"));
 
                   IsBusy = false;
-                  if(page is Page_out)
-                  ((Page_out)page).SetDateFields();
-                  //page.DisplayAlert("Refreshed", "You just refreshed the page! Nice job! Pull to refresh is now disabled", "OK");
+                  caller();
                   this.CanRefresh = false;
 
-                          return false;
-                  });
+                  return false;
+              });
         }
-
+        private async void caller()
+        {
+            await StaticInfo.GetWeatherReqAsync(StaticInfo.Pos);
+            gpp = StaticInfo.Wheather;
+        }
         #region INotifyPropertyChanged implementation
 
         public event PropertyChangedEventHandler PropertyChanged;
