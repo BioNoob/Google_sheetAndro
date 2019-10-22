@@ -16,16 +16,21 @@
           RefreshCommand="{Binding RefreshCommand}"
           IsRefreshing="{Binding IsBusy}"
           RefreshColor="Blue">
-        <Grid>
+        <Grid Margin="5">
             <Grid Margin="5" ColumnSpacing="5">
                 <Label x:Name="Place" Text="{Binding Place}"
                        Grid.Column="0"/>
                 <Label x:Name="Time" Text="{Binding Time}"
                        Grid.Column="1"/>
             </Grid>
-            <ScrollView>
-                <StackLayout>
-                    <Grid>
+            <ScrollView Margin="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
                         <Label x:Name="temp" Text="{Binding gpp.temperature}" Grid.Column="1" Grid.Row="0"/>
                         <Image x:Name="IcoWheather" Source="{Binding gpp.icon}" Grid.Column="0" Grid.Row="0"/>
                         <Label x:Name="prtyp" Text="{Binding gpp.precipType}" Grid.Column="0" Grid.Row="1"/>
@@ -33,17 +38,17 @@
                         <Label x:Name="printens" Text="{Binding gpp.precipIntensity}" Grid.Column="0" Grid.Row="2"/>
                         <Label x:Name="visib" Text="{Binding gpp.visibility}" Grid.Column="1" Grid.Row="2"/>
                     </Grid>
-                    <Grid ColumnSpacing="5">
+                    <Grid ColumnSpacing="5" Grid.Row ="1">
                         <Label x:Name="WindSp" Text="{Binding gpp.windSpeed}" Grid.Column="0" Grid.Row="0"/>
                         <Label x:Name="WindDir" Text="{Binding gpp.windBearing}" Grid.Column="0" Grid.Row="1"/>
                         <Label x:Name="WindGu" Text="{Binding gpp.windGust}" Grid.Column="1" Grid.Row="0"/>
                         <Label x:Name="cloudCo" Text="{Binding gpp.cloudCover}" Grid.Column="1" Grid.Row="1"/>
                     </Grid>
-                    <Grid ColumnSpacing="5">
+                    <Grid ColumnSpacing="5" Grid.Row="2">
                         <Label x:Name="Pressure" Text="{Binding gpp.pressure}" Grid.Column="0"/>
                         <Label x:Name="Humidity" Text="{Binding gpp.humidity}" Grid.Column="1"/>
                     </Grid>
-                </StackLayout>
+                </Grid>
             </ScrollView>
         </Grid>
     </controls:PullToRefreshLayout>
