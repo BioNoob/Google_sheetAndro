@@ -6,7 +6,6 @@
                  xmlns:control="clr-namespace:Xamarin.Forms.MaskedEntry;assembly=Xamarin.Forms.MaskedEntry"
                  xmlns:local="clr-namespace:Google_sheetAndro"
                  mc:Ignorable="d"
-                 BackgroundColor="#39b1fd"
                  x:Class="Google_sheetAndro.Views.ItemsPage"
                  NavigationPage.HasNavigationBar="False"
                  x:Name="BrowseItemsPage">
@@ -155,7 +154,7 @@
                                 <Slider Minimum="0" Maximum="10"
                                         Margin="10,0,0,0"
                                         ThumbColor="#000000" 
-                                        MaximumTrackColor="#FFFA05" MinimumTrackColor="#FFFFFF" 
+                                        MaximumTrackColor="#FF9A13" MinimumTrackColor="#0078FF" 
                                         HorizontalOptions="Fill"
                                         Value="0"
                                         Grid.Row="2"
@@ -219,7 +218,7 @@
                                 <Slider Minimum="0" Maximum="100"
                                         Margin="10,10,10,0"
                                         ThumbColor="#000000" 
-                                        MaximumTrackColor="#FFFA00" MinimumTrackColor="#FFFFFF" 
+                                        MaximumTrackColor="#FF9A13" MinimumTrackColor="#0078FF" 
                                         HorizontalOptions="Fill"
                                         Value="50"
                                         Grid.Row="2"
@@ -512,8 +511,10 @@
                 </StackLayout>
 
             </ScrollView>
-            <!--<ActivityIndicator IsVisible="{Binding IsBusy}"
-                               IsRunning="{Binding IsBusy}"
+            <ActivityIndicator x:Name="AcInd" 
+                IsVisible="False"
+                               IsRunning="False"
+                               IsEnabled="False"
                                Color="Black"
                                VerticalOptions="CenterAndExpand"
                                HorizontalOptions="CenterAndExpand"
@@ -522,7 +523,7 @@
                                         Factor=0.33}"
                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                                         Property=Height,
-                                        Factor=0.33}" />-->
+                                        Factor=0.33}" />
         </Grid>
         
 

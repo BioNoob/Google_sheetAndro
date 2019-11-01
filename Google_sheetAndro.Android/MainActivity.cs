@@ -1,12 +1,9 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using Refractored.XamForms.PullToRefresh.Droid;
+using Android.Runtime;
 using Plugin.CurrentActivity;
+using Refractored.XamForms.PullToRefresh.Droid;
 
 namespace Google_sheetAndro.Droid
 {
@@ -26,6 +23,7 @@ namespace Google_sheetAndro.Droid
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
             //TopTabbed.Init();
             PullToRefreshLayoutRenderer.Init();
+            XFGloss.Droid.Library.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

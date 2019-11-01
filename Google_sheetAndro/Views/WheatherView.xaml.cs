@@ -23,5 +23,9 @@ namespace Google_sheetAndro.Views
             BindingContext = new WheatherViewModel();
         }
 
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
+        }
     }
 }

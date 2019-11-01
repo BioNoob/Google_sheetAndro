@@ -11,6 +11,7 @@ using Google.Apis.Services;
 using Google.Apis.Auth.OAuth2;
 using System.Globalization;
 using Google_sheetAndro.Class;
+using Google_sheetAndro.Models;
 
 namespace Google_sheetAndro.Views
 {
@@ -54,7 +55,19 @@ namespace Google_sheetAndro.Views
             StaticInfo.DoSetTemp += SetTemp;
             StaticInfo.DoSetWind += SetWind;
             StaticInfo.DoSetCloud += SetCloud;
+            LoaderFunction.DoCreateRow += CreateRow;
+            StaticInfo.DoActiveAI += StaticInfo_DoActiveAI;
         }
+
+        private void StaticInfo_DoActiveAI(bool status)
+        {
+            AcInd.IsEnabled = status;
+            AcInd.IsRunning = status;
+            AcInd.IsVisible = status;
+            if(status)
+                AcInd.Focus();
+        }
+
         private void SetTemp(string temp)
         {
             Temp_Num.Text = temp;
@@ -75,7 +88,7 @@ namespace Google_sheetAndro.Views
         }
         private void SetDist(double dist)
         {
-            Range_txt.Text = dist.ToString();
+            Range_txt.Text = string.Format(CultureInfo.InvariantCulture, "{0:#0.#}", dist);
         }
         private void SetHeight(int height)
         {
@@ -526,7 +539,7 @@ namespace Google_sheetAndro.Views
             await tb.FadeTo(1, 100);
             Temp_Num.TextChanged += Temp_Num_TextChanged;
         }
-        TaskSelectPage Tsp = new TaskSelectPage();
+        TaskSelectPage Tsp = LoaderFunction.TaskSelectPage;
         private async void Task_txt_Clicked(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(Task_txt.Text))

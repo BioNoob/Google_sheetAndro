@@ -11,11 +11,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="aopa-points-export.csv" />
     <None Remove="client_secret.json" />
     <None Remove="sicret_new.json" />
+    <None Remove="Views\Page_out.xaml._cs" />
+    <None Remove="Views\time.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="aopa-points-export.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="client_secret.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -25,18 +31,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ansuria.XFGloss" Version="1.1.3" />
     <PackageReference Include="Google.Apis" Version="1.41.1" />
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.41.1.1715" />
     <PackageReference Include="Google.Apis.Sheets.v4" Version="1.41.1.1721" />
-    <PackageReference Include="Microcharts" Version="0.7.1" />
-    <PackageReference Include="Microcharts.Forms" Version="0.7.1" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.16" />
     <PackageReference Include="Plugin.DeviceSensors" Version="1.0.0" />
     <PackageReference Include="Refractored.XamForms.PullToRefresh" Version="2.4.1" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.6.0" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
     <PackageReference Include="Xamarin.Build.Download" Version="0.4.11" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />  
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.848062" />  
-    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.2.1" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />  
+    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />  
     <PackageReference Include="Xamarin.Forms.MaskedEntry" Version="1.0.0" />  
     <PackageReference Include="Xamarin.Forms.MultiSelectListView" Version="2.1.0" />
   </ItemGroup>

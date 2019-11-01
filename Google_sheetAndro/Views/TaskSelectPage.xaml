@@ -17,7 +17,7 @@
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
-                <Setter Property="FontFamily" Value="{DynamicResource FontFamilyName}" />
+                <!--<Setter Property="FontFamily" Value="{DynamicResource FontFamilyName}" />-->
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>

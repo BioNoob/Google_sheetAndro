@@ -26,7 +26,6 @@ namespace Google_sheetAndro.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Microcharts.Droid.Resource.String.library_name = global::Google_sheetAndro.Droid.Resource.String.library_name;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::Google_sheetAndro.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::Google_sheetAndro.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::Google_sheetAndro.Droid.Resource.Attribute.font;
@@ -2771,6 +2770,2077 @@ namespace Google_sheetAndro.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ViewStubCompat_android_id = global::Google_sheetAndro.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ViewStubCompat_android_inflatedId = global::Google_sheetAndro.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ViewStubCompat_android_layout = global::Google_sheetAndro.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::XFGloss.Droid.Resource.Animation.abc_fade_in = global::Google_sheetAndro.Droid.Resource.Animation.abc_fade_in;
+			global::XFGloss.Droid.Resource.Animation.abc_fade_out = global::Google_sheetAndro.Droid.Resource.Animation.abc_fade_out;
+			global::XFGloss.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::Google_sheetAndro.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
+			global::XFGloss.Droid.Resource.Animation.abc_popup_enter = global::Google_sheetAndro.Droid.Resource.Animation.abc_popup_enter;
+			global::XFGloss.Droid.Resource.Animation.abc_popup_exit = global::Google_sheetAndro.Droid.Resource.Animation.abc_popup_exit;
+			global::XFGloss.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom = global::Google_sheetAndro.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom;
+			global::XFGloss.Droid.Resource.Animation.abc_slide_in_bottom = global::Google_sheetAndro.Droid.Resource.Animation.abc_slide_in_bottom;
+			global::XFGloss.Droid.Resource.Animation.abc_slide_in_top = global::Google_sheetAndro.Droid.Resource.Animation.abc_slide_in_top;
+			global::XFGloss.Droid.Resource.Animation.abc_slide_out_bottom = global::Google_sheetAndro.Droid.Resource.Animation.abc_slide_out_bottom;
+			global::XFGloss.Droid.Resource.Animation.abc_slide_out_top = global::Google_sheetAndro.Droid.Resource.Animation.abc_slide_out_top;
+			global::XFGloss.Droid.Resource.Animation.design_bottom_sheet_slide_in = global::Google_sheetAndro.Droid.Resource.Animation.design_bottom_sheet_slide_in;
+			global::XFGloss.Droid.Resource.Animation.design_bottom_sheet_slide_out = global::Google_sheetAndro.Droid.Resource.Animation.design_bottom_sheet_slide_out;
+			global::XFGloss.Droid.Resource.Animation.design_snackbar_in = global::Google_sheetAndro.Droid.Resource.Animation.design_snackbar_in;
+			global::XFGloss.Droid.Resource.Animation.design_snackbar_out = global::Google_sheetAndro.Droid.Resource.Animation.design_snackbar_out;
+			global::XFGloss.Droid.Resource.Animator.design_appbar_state_list_animator = global::Google_sheetAndro.Droid.Resource.Animator.design_appbar_state_list_animator;
+			global::XFGloss.Droid.Resource.Attribute.actionBarDivider = global::Google_sheetAndro.Droid.Resource.Attribute.actionBarDivider;
+			global::XFGloss.Droid.Resource.Attribute.actionBarItemBackground = global::Google_sheetAndro.Droid.Resource.Attribute.actionBarItemBackground;
+			global::XFGloss.Droid.Resource.Attribute.actionBarPopupTheme = global::Google_sheetAndro.Droid.Resource.Attribute.actionBarPopupTheme;
+			global::XFGloss.Droid.Resource.Attribute.actionBarSize = global::Google_sheetAndro.Droid.Resource.Attribute.actionBarSize;
+			global::XFGloss.Droid.Resource.Attribute.actionBarSplitStyle = global::Google_sheetAndro.Droid.Resource.Attribute.actionBarSplitStyle;
+			global::XFGloss.Droid.Resource.Attribute.actionBarStyle = global::Google_sheetAndro.Droid.Resource.Attribute.actionBarStyle;
+			global::XFGloss.Droid.Resource.Attribute.actionBarTabBarStyle = global::Google_sheetAndro.Droid.Resource.Attribute.actionBarTabBarStyle;
+			global::XFGloss.Droid.Resource.Attribute.actionBarTabStyle = global::Google_sheetAndro.Droid.Resource.Attribute.actionBarTabStyle;
+			global::XFGloss.Droid.Resource.Attribute.actionBarTabTextStyle = global::Google_sheetAndro.Droid.Resource.Attribute.actionBarTabTextStyle;
+			global::XFGloss.Droid.Resource.Attribute.actionBarTheme = global::Google_sheetAndro.Droid.Resource.Attribute.actionBarTheme;
+			global::XFGloss.Droid.Resource.Attribute.actionBarWidgetTheme = global::Google_sheetAndro.Droid.Resource.Attribute.actionBarWidgetTheme;
+			global::XFGloss.Droid.Resource.Attribute.actionButtonStyle = global::Google_sheetAndro.Droid.Resource.Attribute.actionButtonStyle;
+			global::XFGloss.Droid.Resource.Attribute.actionDropDownStyle = global::Google_sheetAndro.Droid.Resource.Attribute.actionDropDownStyle;
+			global::XFGloss.Droid.Resource.Attribute.actionLayout = global::Google_sheetAndro.Droid.Resource.Attribute.actionLayout;
+			global::XFGloss.Droid.Resource.Attribute.actionMenuTextAppearance = global::Google_sheetAndro.Droid.Resource.Attribute.actionMenuTextAppearance;
+			global::XFGloss.Droid.Resource.Attribute.actionMenuTextColor = global::Google_sheetAndro.Droid.Resource.Attribute.actionMenuTextColor;
+			global::XFGloss.Droid.Resource.Attribute.actionModeBackground = global::Google_sheetAndro.Droid.Resource.Attribute.actionModeBackground;
+			global::XFGloss.Droid.Resource.Attribute.actionModeCloseButtonStyle = global::Google_sheetAndro.Droid.Resource.Attribute.actionModeCloseButtonStyle;
+			global::XFGloss.Droid.Resource.Attribute.actionModeCloseDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.actionModeCloseDrawable;
+			global::XFGloss.Droid.Resource.Attribute.actionModeCopyDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.actionModeCopyDrawable;
+			global::XFGloss.Droid.Resource.Attribute.actionModeCutDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.actionModeCutDrawable;
+			global::XFGloss.Droid.Resource.Attribute.actionModeFindDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.actionModeFindDrawable;
+			global::XFGloss.Droid.Resource.Attribute.actionModePasteDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.actionModePasteDrawable;
+			global::XFGloss.Droid.Resource.Attribute.actionModePopupWindowStyle = global::Google_sheetAndro.Droid.Resource.Attribute.actionModePopupWindowStyle;
+			global::XFGloss.Droid.Resource.Attribute.actionModeSelectAllDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.actionModeSelectAllDrawable;
+			global::XFGloss.Droid.Resource.Attribute.actionModeShareDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.actionModeShareDrawable;
+			global::XFGloss.Droid.Resource.Attribute.actionModeSplitBackground = global::Google_sheetAndro.Droid.Resource.Attribute.actionModeSplitBackground;
+			global::XFGloss.Droid.Resource.Attribute.actionModeStyle = global::Google_sheetAndro.Droid.Resource.Attribute.actionModeStyle;
+			global::XFGloss.Droid.Resource.Attribute.actionModeWebSearchDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.actionModeWebSearchDrawable;
+			global::XFGloss.Droid.Resource.Attribute.actionOverflowButtonStyle = global::Google_sheetAndro.Droid.Resource.Attribute.actionOverflowButtonStyle;
+			global::XFGloss.Droid.Resource.Attribute.actionOverflowMenuStyle = global::Google_sheetAndro.Droid.Resource.Attribute.actionOverflowMenuStyle;
+			global::XFGloss.Droid.Resource.Attribute.actionProviderClass = global::Google_sheetAndro.Droid.Resource.Attribute.actionProviderClass;
+			global::XFGloss.Droid.Resource.Attribute.actionViewClass = global::Google_sheetAndro.Droid.Resource.Attribute.actionViewClass;
+			global::XFGloss.Droid.Resource.Attribute.activityChooserViewStyle = global::Google_sheetAndro.Droid.Resource.Attribute.activityChooserViewStyle;
+			global::XFGloss.Droid.Resource.Attribute.alertDialogButtonGroupStyle = global::Google_sheetAndro.Droid.Resource.Attribute.alertDialogButtonGroupStyle;
+			global::XFGloss.Droid.Resource.Attribute.alertDialogCenterButtons = global::Google_sheetAndro.Droid.Resource.Attribute.alertDialogCenterButtons;
+			global::XFGloss.Droid.Resource.Attribute.alertDialogStyle = global::Google_sheetAndro.Droid.Resource.Attribute.alertDialogStyle;
+			global::XFGloss.Droid.Resource.Attribute.alertDialogTheme = global::Google_sheetAndro.Droid.Resource.Attribute.alertDialogTheme;
+			global::XFGloss.Droid.Resource.Attribute.allowStacking = global::Google_sheetAndro.Droid.Resource.Attribute.allowStacking;
+			global::XFGloss.Droid.Resource.Attribute.alpha = global::Google_sheetAndro.Droid.Resource.Attribute.alpha;
+			global::XFGloss.Droid.Resource.Attribute.arrowHeadLength = global::Google_sheetAndro.Droid.Resource.Attribute.arrowHeadLength;
+			global::XFGloss.Droid.Resource.Attribute.arrowShaftLength = global::Google_sheetAndro.Droid.Resource.Attribute.arrowShaftLength;
+			global::XFGloss.Droid.Resource.Attribute.autoCompleteTextViewStyle = global::Google_sheetAndro.Droid.Resource.Attribute.autoCompleteTextViewStyle;
+			global::XFGloss.Droid.Resource.Attribute.background = global::Google_sheetAndro.Droid.Resource.Attribute.background;
+			global::XFGloss.Droid.Resource.Attribute.backgroundSplit = global::Google_sheetAndro.Droid.Resource.Attribute.backgroundSplit;
+			global::XFGloss.Droid.Resource.Attribute.backgroundStacked = global::Google_sheetAndro.Droid.Resource.Attribute.backgroundStacked;
+			global::XFGloss.Droid.Resource.Attribute.backgroundTint = global::Google_sheetAndro.Droid.Resource.Attribute.backgroundTint;
+			global::XFGloss.Droid.Resource.Attribute.backgroundTintMode = global::Google_sheetAndro.Droid.Resource.Attribute.backgroundTintMode;
+			global::XFGloss.Droid.Resource.Attribute.barLength = global::Google_sheetAndro.Droid.Resource.Attribute.barLength;
+			global::XFGloss.Droid.Resource.Attribute.behavior_autoHide = global::Google_sheetAndro.Droid.Resource.Attribute.behavior_autoHide;
+			global::XFGloss.Droid.Resource.Attribute.behavior_hideable = global::Google_sheetAndro.Droid.Resource.Attribute.behavior_hideable;
+			global::XFGloss.Droid.Resource.Attribute.behavior_overlapTop = global::Google_sheetAndro.Droid.Resource.Attribute.behavior_overlapTop;
+			global::XFGloss.Droid.Resource.Attribute.behavior_peekHeight = global::Google_sheetAndro.Droid.Resource.Attribute.behavior_peekHeight;
+			global::XFGloss.Droid.Resource.Attribute.behavior_skipCollapsed = global::Google_sheetAndro.Droid.Resource.Attribute.behavior_skipCollapsed;
+			global::XFGloss.Droid.Resource.Attribute.borderWidth = global::Google_sheetAndro.Droid.Resource.Attribute.borderWidth;
+			global::XFGloss.Droid.Resource.Attribute.borderlessButtonStyle = global::Google_sheetAndro.Droid.Resource.Attribute.borderlessButtonStyle;
+			global::XFGloss.Droid.Resource.Attribute.bottomSheetDialogTheme = global::Google_sheetAndro.Droid.Resource.Attribute.bottomSheetDialogTheme;
+			global::XFGloss.Droid.Resource.Attribute.bottomSheetStyle = global::Google_sheetAndro.Droid.Resource.Attribute.bottomSheetStyle;
+			global::XFGloss.Droid.Resource.Attribute.buttonBarButtonStyle = global::Google_sheetAndro.Droid.Resource.Attribute.buttonBarButtonStyle;
+			global::XFGloss.Droid.Resource.Attribute.buttonBarNegativeButtonStyle = global::Google_sheetAndro.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
+			global::XFGloss.Droid.Resource.Attribute.buttonBarNeutralButtonStyle = global::Google_sheetAndro.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
+			global::XFGloss.Droid.Resource.Attribute.buttonBarPositiveButtonStyle = global::Google_sheetAndro.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
+			global::XFGloss.Droid.Resource.Attribute.buttonBarStyle = global::Google_sheetAndro.Droid.Resource.Attribute.buttonBarStyle;
+			global::XFGloss.Droid.Resource.Attribute.buttonGravity = global::Google_sheetAndro.Droid.Resource.Attribute.buttonGravity;
+			global::XFGloss.Droid.Resource.Attribute.buttonPanelSideLayout = global::Google_sheetAndro.Droid.Resource.Attribute.buttonPanelSideLayout;
+			global::XFGloss.Droid.Resource.Attribute.buttonStyle = global::Google_sheetAndro.Droid.Resource.Attribute.buttonStyle;
+			global::XFGloss.Droid.Resource.Attribute.buttonStyleSmall = global::Google_sheetAndro.Droid.Resource.Attribute.buttonStyleSmall;
+			global::XFGloss.Droid.Resource.Attribute.buttonTint = global::Google_sheetAndro.Droid.Resource.Attribute.buttonTint;
+			global::XFGloss.Droid.Resource.Attribute.buttonTintMode = global::Google_sheetAndro.Droid.Resource.Attribute.buttonTintMode;
+			global::XFGloss.Droid.Resource.Attribute.cardBackgroundColor = global::Google_sheetAndro.Droid.Resource.Attribute.cardBackgroundColor;
+			global::XFGloss.Droid.Resource.Attribute.cardCornerRadius = global::Google_sheetAndro.Droid.Resource.Attribute.cardCornerRadius;
+			global::XFGloss.Droid.Resource.Attribute.cardElevation = global::Google_sheetAndro.Droid.Resource.Attribute.cardElevation;
+			global::XFGloss.Droid.Resource.Attribute.cardMaxElevation = global::Google_sheetAndro.Droid.Resource.Attribute.cardMaxElevation;
+			global::XFGloss.Droid.Resource.Attribute.cardPreventCornerOverlap = global::Google_sheetAndro.Droid.Resource.Attribute.cardPreventCornerOverlap;
+			global::XFGloss.Droid.Resource.Attribute.cardUseCompatPadding = global::Google_sheetAndro.Droid.Resource.Attribute.cardUseCompatPadding;
+			global::XFGloss.Droid.Resource.Attribute.checkboxStyle = global::Google_sheetAndro.Droid.Resource.Attribute.checkboxStyle;
+			global::XFGloss.Droid.Resource.Attribute.checkedTextViewStyle = global::Google_sheetAndro.Droid.Resource.Attribute.checkedTextViewStyle;
+			global::XFGloss.Droid.Resource.Attribute.closeIcon = global::Google_sheetAndro.Droid.Resource.Attribute.closeIcon;
+			global::XFGloss.Droid.Resource.Attribute.closeItemLayout = global::Google_sheetAndro.Droid.Resource.Attribute.closeItemLayout;
+			global::XFGloss.Droid.Resource.Attribute.collapseContentDescription = global::Google_sheetAndro.Droid.Resource.Attribute.collapseContentDescription;
+			global::XFGloss.Droid.Resource.Attribute.collapseIcon = global::Google_sheetAndro.Droid.Resource.Attribute.collapseIcon;
+			global::XFGloss.Droid.Resource.Attribute.collapsedTitleGravity = global::Google_sheetAndro.Droid.Resource.Attribute.collapsedTitleGravity;
+			global::XFGloss.Droid.Resource.Attribute.collapsedTitleTextAppearance = global::Google_sheetAndro.Droid.Resource.Attribute.collapsedTitleTextAppearance;
+			global::XFGloss.Droid.Resource.Attribute.color = global::Google_sheetAndro.Droid.Resource.Attribute.color;
+			global::XFGloss.Droid.Resource.Attribute.colorAccent = global::Google_sheetAndro.Droid.Resource.Attribute.colorAccent;
+			global::XFGloss.Droid.Resource.Attribute.colorBackgroundFloating = global::Google_sheetAndro.Droid.Resource.Attribute.colorBackgroundFloating;
+			global::XFGloss.Droid.Resource.Attribute.colorButtonNormal = global::Google_sheetAndro.Droid.Resource.Attribute.colorButtonNormal;
+			global::XFGloss.Droid.Resource.Attribute.colorControlActivated = global::Google_sheetAndro.Droid.Resource.Attribute.colorControlActivated;
+			global::XFGloss.Droid.Resource.Attribute.colorControlHighlight = global::Google_sheetAndro.Droid.Resource.Attribute.colorControlHighlight;
+			global::XFGloss.Droid.Resource.Attribute.colorControlNormal = global::Google_sheetAndro.Droid.Resource.Attribute.colorControlNormal;
+			global::XFGloss.Droid.Resource.Attribute.colorPrimary = global::Google_sheetAndro.Droid.Resource.Attribute.colorPrimary;
+			global::XFGloss.Droid.Resource.Attribute.colorPrimaryDark = global::Google_sheetAndro.Droid.Resource.Attribute.colorPrimaryDark;
+			global::XFGloss.Droid.Resource.Attribute.colorSwitchThumbNormal = global::Google_sheetAndro.Droid.Resource.Attribute.colorSwitchThumbNormal;
+			global::XFGloss.Droid.Resource.Attribute.commitIcon = global::Google_sheetAndro.Droid.Resource.Attribute.commitIcon;
+			global::XFGloss.Droid.Resource.Attribute.contentInsetEnd = global::Google_sheetAndro.Droid.Resource.Attribute.contentInsetEnd;
+			global::XFGloss.Droid.Resource.Attribute.contentInsetEndWithActions = global::Google_sheetAndro.Droid.Resource.Attribute.contentInsetEndWithActions;
+			global::XFGloss.Droid.Resource.Attribute.contentInsetLeft = global::Google_sheetAndro.Droid.Resource.Attribute.contentInsetLeft;
+			global::XFGloss.Droid.Resource.Attribute.contentInsetRight = global::Google_sheetAndro.Droid.Resource.Attribute.contentInsetRight;
+			global::XFGloss.Droid.Resource.Attribute.contentInsetStart = global::Google_sheetAndro.Droid.Resource.Attribute.contentInsetStart;
+			global::XFGloss.Droid.Resource.Attribute.contentInsetStartWithNavigation = global::Google_sheetAndro.Droid.Resource.Attribute.contentInsetStartWithNavigation;
+			global::XFGloss.Droid.Resource.Attribute.contentPadding = global::Google_sheetAndro.Droid.Resource.Attribute.contentPadding;
+			global::XFGloss.Droid.Resource.Attribute.contentPaddingBottom = global::Google_sheetAndro.Droid.Resource.Attribute.contentPaddingBottom;
+			global::XFGloss.Droid.Resource.Attribute.contentPaddingLeft = global::Google_sheetAndro.Droid.Resource.Attribute.contentPaddingLeft;
+			global::XFGloss.Droid.Resource.Attribute.contentPaddingRight = global::Google_sheetAndro.Droid.Resource.Attribute.contentPaddingRight;
+			global::XFGloss.Droid.Resource.Attribute.contentPaddingTop = global::Google_sheetAndro.Droid.Resource.Attribute.contentPaddingTop;
+			global::XFGloss.Droid.Resource.Attribute.contentScrim = global::Google_sheetAndro.Droid.Resource.Attribute.contentScrim;
+			global::XFGloss.Droid.Resource.Attribute.controlBackground = global::Google_sheetAndro.Droid.Resource.Attribute.controlBackground;
+			global::XFGloss.Droid.Resource.Attribute.counterEnabled = global::Google_sheetAndro.Droid.Resource.Attribute.counterEnabled;
+			global::XFGloss.Droid.Resource.Attribute.counterMaxLength = global::Google_sheetAndro.Droid.Resource.Attribute.counterMaxLength;
+			global::XFGloss.Droid.Resource.Attribute.counterOverflowTextAppearance = global::Google_sheetAndro.Droid.Resource.Attribute.counterOverflowTextAppearance;
+			global::XFGloss.Droid.Resource.Attribute.counterTextAppearance = global::Google_sheetAndro.Droid.Resource.Attribute.counterTextAppearance;
+			global::XFGloss.Droid.Resource.Attribute.customNavigationLayout = global::Google_sheetAndro.Droid.Resource.Attribute.customNavigationLayout;
+			global::XFGloss.Droid.Resource.Attribute.defaultQueryHint = global::Google_sheetAndro.Droid.Resource.Attribute.defaultQueryHint;
+			global::XFGloss.Droid.Resource.Attribute.dialogPreferredPadding = global::Google_sheetAndro.Droid.Resource.Attribute.dialogPreferredPadding;
+			global::XFGloss.Droid.Resource.Attribute.dialogTheme = global::Google_sheetAndro.Droid.Resource.Attribute.dialogTheme;
+			global::XFGloss.Droid.Resource.Attribute.displayOptions = global::Google_sheetAndro.Droid.Resource.Attribute.displayOptions;
+			global::XFGloss.Droid.Resource.Attribute.divider = global::Google_sheetAndro.Droid.Resource.Attribute.divider;
+			global::XFGloss.Droid.Resource.Attribute.dividerHorizontal = global::Google_sheetAndro.Droid.Resource.Attribute.dividerHorizontal;
+			global::XFGloss.Droid.Resource.Attribute.dividerPadding = global::Google_sheetAndro.Droid.Resource.Attribute.dividerPadding;
+			global::XFGloss.Droid.Resource.Attribute.dividerVertical = global::Google_sheetAndro.Droid.Resource.Attribute.dividerVertical;
+			global::XFGloss.Droid.Resource.Attribute.drawableSize = global::Google_sheetAndro.Droid.Resource.Attribute.drawableSize;
+			global::XFGloss.Droid.Resource.Attribute.drawerArrowStyle = global::Google_sheetAndro.Droid.Resource.Attribute.drawerArrowStyle;
+			global::XFGloss.Droid.Resource.Attribute.dropDownListViewStyle = global::Google_sheetAndro.Droid.Resource.Attribute.dropDownListViewStyle;
+			global::XFGloss.Droid.Resource.Attribute.dropdownListPreferredItemHeight = global::Google_sheetAndro.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
+			global::XFGloss.Droid.Resource.Attribute.editTextBackground = global::Google_sheetAndro.Droid.Resource.Attribute.editTextBackground;
+			global::XFGloss.Droid.Resource.Attribute.editTextColor = global::Google_sheetAndro.Droid.Resource.Attribute.editTextColor;
+			global::XFGloss.Droid.Resource.Attribute.editTextStyle = global::Google_sheetAndro.Droid.Resource.Attribute.editTextStyle;
+			global::XFGloss.Droid.Resource.Attribute.elevation = global::Google_sheetAndro.Droid.Resource.Attribute.elevation;
+			global::XFGloss.Droid.Resource.Attribute.errorEnabled = global::Google_sheetAndro.Droid.Resource.Attribute.errorEnabled;
+			global::XFGloss.Droid.Resource.Attribute.errorTextAppearance = global::Google_sheetAndro.Droid.Resource.Attribute.errorTextAppearance;
+			global::XFGloss.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
+			global::XFGloss.Droid.Resource.Attribute.expanded = global::Google_sheetAndro.Droid.Resource.Attribute.expanded;
+			global::XFGloss.Droid.Resource.Attribute.expandedTitleGravity = global::Google_sheetAndro.Droid.Resource.Attribute.expandedTitleGravity;
+			global::XFGloss.Droid.Resource.Attribute.expandedTitleMargin = global::Google_sheetAndro.Droid.Resource.Attribute.expandedTitleMargin;
+			global::XFGloss.Droid.Resource.Attribute.expandedTitleMarginBottom = global::Google_sheetAndro.Droid.Resource.Attribute.expandedTitleMarginBottom;
+			global::XFGloss.Droid.Resource.Attribute.expandedTitleMarginEnd = global::Google_sheetAndro.Droid.Resource.Attribute.expandedTitleMarginEnd;
+			global::XFGloss.Droid.Resource.Attribute.expandedTitleMarginStart = global::Google_sheetAndro.Droid.Resource.Attribute.expandedTitleMarginStart;
+			global::XFGloss.Droid.Resource.Attribute.expandedTitleMarginTop = global::Google_sheetAndro.Droid.Resource.Attribute.expandedTitleMarginTop;
+			global::XFGloss.Droid.Resource.Attribute.expandedTitleTextAppearance = global::Google_sheetAndro.Droid.Resource.Attribute.expandedTitleTextAppearance;
+			global::XFGloss.Droid.Resource.Attribute.externalRouteEnabledDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.externalRouteEnabledDrawable;
+			global::XFGloss.Droid.Resource.Attribute.fabSize = global::Google_sheetAndro.Droid.Resource.Attribute.fabSize;
+			global::XFGloss.Droid.Resource.Attribute.foregroundInsidePadding = global::Google_sheetAndro.Droid.Resource.Attribute.foregroundInsidePadding;
+			global::XFGloss.Droid.Resource.Attribute.gapBetweenBars = global::Google_sheetAndro.Droid.Resource.Attribute.gapBetweenBars;
+			global::XFGloss.Droid.Resource.Attribute.goIcon = global::Google_sheetAndro.Droid.Resource.Attribute.goIcon;
+			global::XFGloss.Droid.Resource.Attribute.headerLayout = global::Google_sheetAndro.Droid.Resource.Attribute.headerLayout;
+			global::XFGloss.Droid.Resource.Attribute.height = global::Google_sheetAndro.Droid.Resource.Attribute.height;
+			global::XFGloss.Droid.Resource.Attribute.hideOnContentScroll = global::Google_sheetAndro.Droid.Resource.Attribute.hideOnContentScroll;
+			global::XFGloss.Droid.Resource.Attribute.hintAnimationEnabled = global::Google_sheetAndro.Droid.Resource.Attribute.hintAnimationEnabled;
+			global::XFGloss.Droid.Resource.Attribute.hintEnabled = global::Google_sheetAndro.Droid.Resource.Attribute.hintEnabled;
+			global::XFGloss.Droid.Resource.Attribute.hintTextAppearance = global::Google_sheetAndro.Droid.Resource.Attribute.hintTextAppearance;
+			global::XFGloss.Droid.Resource.Attribute.homeAsUpIndicator = global::Google_sheetAndro.Droid.Resource.Attribute.homeAsUpIndicator;
+			global::XFGloss.Droid.Resource.Attribute.homeLayout = global::Google_sheetAndro.Droid.Resource.Attribute.homeLayout;
+			global::XFGloss.Droid.Resource.Attribute.icon = global::Google_sheetAndro.Droid.Resource.Attribute.icon;
+			global::XFGloss.Droid.Resource.Attribute.iconifiedByDefault = global::Google_sheetAndro.Droid.Resource.Attribute.iconifiedByDefault;
+			global::XFGloss.Droid.Resource.Attribute.imageButtonStyle = global::Google_sheetAndro.Droid.Resource.Attribute.imageButtonStyle;
+			global::XFGloss.Droid.Resource.Attribute.indeterminateProgressStyle = global::Google_sheetAndro.Droid.Resource.Attribute.indeterminateProgressStyle;
+			global::XFGloss.Droid.Resource.Attribute.initialActivityCount = global::Google_sheetAndro.Droid.Resource.Attribute.initialActivityCount;
+			global::XFGloss.Droid.Resource.Attribute.insetForeground = global::Google_sheetAndro.Droid.Resource.Attribute.insetForeground;
+			global::XFGloss.Droid.Resource.Attribute.isLightTheme = global::Google_sheetAndro.Droid.Resource.Attribute.isLightTheme;
+			global::XFGloss.Droid.Resource.Attribute.itemBackground = global::Google_sheetAndro.Droid.Resource.Attribute.itemBackground;
+			global::XFGloss.Droid.Resource.Attribute.itemIconTint = global::Google_sheetAndro.Droid.Resource.Attribute.itemIconTint;
+			global::XFGloss.Droid.Resource.Attribute.itemPadding = global::Google_sheetAndro.Droid.Resource.Attribute.itemPadding;
+			global::XFGloss.Droid.Resource.Attribute.itemTextAppearance = global::Google_sheetAndro.Droid.Resource.Attribute.itemTextAppearance;
+			global::XFGloss.Droid.Resource.Attribute.itemTextColor = global::Google_sheetAndro.Droid.Resource.Attribute.itemTextColor;
+			global::XFGloss.Droid.Resource.Attribute.keylines = global::Google_sheetAndro.Droid.Resource.Attribute.keylines;
+			global::XFGloss.Droid.Resource.Attribute.layout = global::Google_sheetAndro.Droid.Resource.Attribute.layout;
+			global::XFGloss.Droid.Resource.Attribute.layoutManager = global::Google_sheetAndro.Droid.Resource.Attribute.layoutManager;
+			global::XFGloss.Droid.Resource.Attribute.layout_anchor = global::Google_sheetAndro.Droid.Resource.Attribute.layout_anchor;
+			global::XFGloss.Droid.Resource.Attribute.layout_anchorGravity = global::Google_sheetAndro.Droid.Resource.Attribute.layout_anchorGravity;
+			global::XFGloss.Droid.Resource.Attribute.layout_behavior = global::Google_sheetAndro.Droid.Resource.Attribute.layout_behavior;
+			global::XFGloss.Droid.Resource.Attribute.layout_collapseMode = global::Google_sheetAndro.Droid.Resource.Attribute.layout_collapseMode;
+			global::XFGloss.Droid.Resource.Attribute.layout_collapseParallaxMultiplier = global::Google_sheetAndro.Droid.Resource.Attribute.layout_collapseParallaxMultiplier;
+			global::XFGloss.Droid.Resource.Attribute.layout_dodgeInsetEdges = global::Google_sheetAndro.Droid.Resource.Attribute.layout_dodgeInsetEdges;
+			global::XFGloss.Droid.Resource.Attribute.layout_insetEdge = global::Google_sheetAndro.Droid.Resource.Attribute.layout_insetEdge;
+			global::XFGloss.Droid.Resource.Attribute.layout_keyline = global::Google_sheetAndro.Droid.Resource.Attribute.layout_keyline;
+			global::XFGloss.Droid.Resource.Attribute.layout_scrollFlags = global::Google_sheetAndro.Droid.Resource.Attribute.layout_scrollFlags;
+			global::XFGloss.Droid.Resource.Attribute.layout_scrollInterpolator = global::Google_sheetAndro.Droid.Resource.Attribute.layout_scrollInterpolator;
+			global::XFGloss.Droid.Resource.Attribute.listChoiceBackgroundIndicator = global::Google_sheetAndro.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
+			global::XFGloss.Droid.Resource.Attribute.listDividerAlertDialog = global::Google_sheetAndro.Droid.Resource.Attribute.listDividerAlertDialog;
+			global::XFGloss.Droid.Resource.Attribute.listItemLayout = global::Google_sheetAndro.Droid.Resource.Attribute.listItemLayout;
+			global::XFGloss.Droid.Resource.Attribute.listLayout = global::Google_sheetAndro.Droid.Resource.Attribute.listLayout;
+			global::XFGloss.Droid.Resource.Attribute.listMenuViewStyle = global::Google_sheetAndro.Droid.Resource.Attribute.listMenuViewStyle;
+			global::XFGloss.Droid.Resource.Attribute.listPopupWindowStyle = global::Google_sheetAndro.Droid.Resource.Attribute.listPopupWindowStyle;
+			global::XFGloss.Droid.Resource.Attribute.listPreferredItemHeight = global::Google_sheetAndro.Droid.Resource.Attribute.listPreferredItemHeight;
+			global::XFGloss.Droid.Resource.Attribute.listPreferredItemHeightLarge = global::Google_sheetAndro.Droid.Resource.Attribute.listPreferredItemHeightLarge;
+			global::XFGloss.Droid.Resource.Attribute.listPreferredItemHeightSmall = global::Google_sheetAndro.Droid.Resource.Attribute.listPreferredItemHeightSmall;
+			global::XFGloss.Droid.Resource.Attribute.listPreferredItemPaddingLeft = global::Google_sheetAndro.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
+			global::XFGloss.Droid.Resource.Attribute.listPreferredItemPaddingRight = global::Google_sheetAndro.Droid.Resource.Attribute.listPreferredItemPaddingRight;
+			global::XFGloss.Droid.Resource.Attribute.logo = global::Google_sheetAndro.Droid.Resource.Attribute.logo;
+			global::XFGloss.Droid.Resource.Attribute.logoDescription = global::Google_sheetAndro.Droid.Resource.Attribute.logoDescription;
+			global::XFGloss.Droid.Resource.Attribute.maxActionInlineWidth = global::Google_sheetAndro.Droid.Resource.Attribute.maxActionInlineWidth;
+			global::XFGloss.Droid.Resource.Attribute.maxButtonHeight = global::Google_sheetAndro.Droid.Resource.Attribute.maxButtonHeight;
+			global::XFGloss.Droid.Resource.Attribute.measureWithLargestChild = global::Google_sheetAndro.Droid.Resource.Attribute.measureWithLargestChild;
+			global::XFGloss.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable;
+			global::XFGloss.Droid.Resource.Attribute.mediaRouteButtonStyle = global::Google_sheetAndro.Droid.Resource.Attribute.mediaRouteButtonStyle;
+			global::XFGloss.Droid.Resource.Attribute.mediaRouteCloseDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.mediaRouteCloseDrawable;
+			global::XFGloss.Droid.Resource.Attribute.mediaRouteControlPanelThemeOverlay = global::Google_sheetAndro.Droid.Resource.Attribute.mediaRouteControlPanelThemeOverlay;
+			global::XFGloss.Droid.Resource.Attribute.mediaRouteDefaultIconDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.mediaRouteDefaultIconDrawable;
+			global::XFGloss.Droid.Resource.Attribute.mediaRoutePauseDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.mediaRoutePauseDrawable;
+			global::XFGloss.Droid.Resource.Attribute.mediaRoutePlayDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.mediaRoutePlayDrawable;
+			global::XFGloss.Droid.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable;
+			global::XFGloss.Droid.Resource.Attribute.mediaRouteSpeakerIconDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.mediaRouteSpeakerIconDrawable;
+			global::XFGloss.Droid.Resource.Attribute.mediaRouteStopDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.mediaRouteStopDrawable;
+			global::XFGloss.Droid.Resource.Attribute.mediaRouteTheme = global::Google_sheetAndro.Droid.Resource.Attribute.mediaRouteTheme;
+			global::XFGloss.Droid.Resource.Attribute.mediaRouteTvIconDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.mediaRouteTvIconDrawable;
+			global::XFGloss.Droid.Resource.Attribute.menu = global::Google_sheetAndro.Droid.Resource.Attribute.menu;
+			global::XFGloss.Droid.Resource.Attribute.multiChoiceItemLayout = global::Google_sheetAndro.Droid.Resource.Attribute.multiChoiceItemLayout;
+			global::XFGloss.Droid.Resource.Attribute.navigationContentDescription = global::Google_sheetAndro.Droid.Resource.Attribute.navigationContentDescription;
+			global::XFGloss.Droid.Resource.Attribute.navigationIcon = global::Google_sheetAndro.Droid.Resource.Attribute.navigationIcon;
+			global::XFGloss.Droid.Resource.Attribute.navigationMode = global::Google_sheetAndro.Droid.Resource.Attribute.navigationMode;
+			global::XFGloss.Droid.Resource.Attribute.overlapAnchor = global::Google_sheetAndro.Droid.Resource.Attribute.overlapAnchor;
+			global::XFGloss.Droid.Resource.Attribute.paddingBottomNoButtons = global::Google_sheetAndro.Droid.Resource.Attribute.paddingBottomNoButtons;
+			global::XFGloss.Droid.Resource.Attribute.paddingEnd = global::Google_sheetAndro.Droid.Resource.Attribute.paddingEnd;
+			global::XFGloss.Droid.Resource.Attribute.paddingStart = global::Google_sheetAndro.Droid.Resource.Attribute.paddingStart;
+			global::XFGloss.Droid.Resource.Attribute.paddingTopNoTitle = global::Google_sheetAndro.Droid.Resource.Attribute.paddingTopNoTitle;
+			global::XFGloss.Droid.Resource.Attribute.panelBackground = global::Google_sheetAndro.Droid.Resource.Attribute.panelBackground;
+			global::XFGloss.Droid.Resource.Attribute.panelMenuListTheme = global::Google_sheetAndro.Droid.Resource.Attribute.panelMenuListTheme;
+			global::XFGloss.Droid.Resource.Attribute.panelMenuListWidth = global::Google_sheetAndro.Droid.Resource.Attribute.panelMenuListWidth;
+			global::XFGloss.Droid.Resource.Attribute.passwordToggleContentDescription = global::Google_sheetAndro.Droid.Resource.Attribute.passwordToggleContentDescription;
+			global::XFGloss.Droid.Resource.Attribute.passwordToggleDrawable = global::Google_sheetAndro.Droid.Resource.Attribute.passwordToggleDrawable;
+			global::XFGloss.Droid.Resource.Attribute.passwordToggleEnabled = global::Google_sheetAndro.Droid.Resource.Attribute.passwordToggleEnabled;
+			global::XFGloss.Droid.Resource.Attribute.passwordToggleTint = global::Google_sheetAndro.Droid.Resource.Attribute.passwordToggleTint;
+			global::XFGloss.Droid.Resource.Attribute.passwordToggleTintMode = global::Google_sheetAndro.Droid.Resource.Attribute.passwordToggleTintMode;
+			global::XFGloss.Droid.Resource.Attribute.popupMenuStyle = global::Google_sheetAndro.Droid.Resource.Attribute.popupMenuStyle;
+			global::XFGloss.Droid.Resource.Attribute.popupTheme = global::Google_sheetAndro.Droid.Resource.Attribute.popupTheme;
+			global::XFGloss.Droid.Resource.Attribute.popupWindowStyle = global::Google_sheetAndro.Droid.Resource.Attribute.popupWindowStyle;
+			global::XFGloss.Droid.Resource.Attribute.preserveIconSpacing = global::Google_sheetAndro.Droid.Resource.Attribute.preserveIconSpacing;
+			global::XFGloss.Droid.Resource.Attribute.pressedTranslationZ = global::Google_sheetAndro.Droid.Resource.Attribute.pressedTranslationZ;
+			global::XFGloss.Droid.Resource.Attribute.progressBarPadding = global::Google_sheetAndro.Droid.Resource.Attribute.progressBarPadding;
+			global::XFGloss.Droid.Resource.Attribute.progressBarStyle = global::Google_sheetAndro.Droid.Resource.Attribute.progressBarStyle;
+			global::XFGloss.Droid.Resource.Attribute.queryBackground = global::Google_sheetAndro.Droid.Resource.Attribute.queryBackground;
+			global::XFGloss.Droid.Resource.Attribute.queryHint = global::Google_sheetAndro.Droid.Resource.Attribute.queryHint;
+			global::XFGloss.Droid.Resource.Attribute.radioButtonStyle = global::Google_sheetAndro.Droid.Resource.Attribute.radioButtonStyle;
+			global::XFGloss.Droid.Resource.Attribute.ratingBarStyle = global::Google_sheetAndro.Droid.Resource.Attribute.ratingBarStyle;
+			global::XFGloss.Droid.Resource.Attribute.ratingBarStyleIndicator = global::Google_sheetAndro.Droid.Resource.Attribute.ratingBarStyleIndicator;
+			global::XFGloss.Droid.Resource.Attribute.ratingBarStyleSmall = global::Google_sheetAndro.Droid.Resource.Attribute.ratingBarStyleSmall;
+			global::XFGloss.Droid.Resource.Attribute.reverseLayout = global::Google_sheetAndro.Droid.Resource.Attribute.reverseLayout;
+			global::XFGloss.Droid.Resource.Attribute.rippleColor = global::Google_sheetAndro.Droid.Resource.Attribute.rippleColor;
+			global::XFGloss.Droid.Resource.Attribute.scrimAnimationDuration = global::Google_sheetAndro.Droid.Resource.Attribute.scrimAnimationDuration;
+			global::XFGloss.Droid.Resource.Attribute.scrimVisibleHeightTrigger = global::Google_sheetAndro.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
+			global::XFGloss.Droid.Resource.Attribute.searchHintIcon = global::Google_sheetAndro.Droid.Resource.Attribute.searchHintIcon;
+			global::XFGloss.Droid.Resource.Attribute.searchIcon = global::Google_sheetAndro.Droid.Resource.Attribute.searchIcon;
+			global::XFGloss.Droid.Resource.Attribute.searchViewStyle = global::Google_sheetAndro.Droid.Resource.Attribute.searchViewStyle;
+			global::XFGloss.Droid.Resource.Attribute.seekBarStyle = global::Google_sheetAndro.Droid.Resource.Attribute.seekBarStyle;
+			global::XFGloss.Droid.Resource.Attribute.selectableItemBackground = global::Google_sheetAndro.Droid.Resource.Attribute.selectableItemBackground;
+			global::XFGloss.Droid.Resource.Attribute.selectableItemBackgroundBorderless = global::Google_sheetAndro.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
+			global::XFGloss.Droid.Resource.Attribute.showAsAction = global::Google_sheetAndro.Droid.Resource.Attribute.showAsAction;
+			global::XFGloss.Droid.Resource.Attribute.showDividers = global::Google_sheetAndro.Droid.Resource.Attribute.showDividers;
+			global::XFGloss.Droid.Resource.Attribute.showText = global::Google_sheetAndro.Droid.Resource.Attribute.showText;
+			global::XFGloss.Droid.Resource.Attribute.showTitle = global::Google_sheetAndro.Droid.Resource.Attribute.showTitle;
+			global::XFGloss.Droid.Resource.Attribute.singleChoiceItemLayout = global::Google_sheetAndro.Droid.Resource.Attribute.singleChoiceItemLayout;
+			global::XFGloss.Droid.Resource.Attribute.spanCount = global::Google_sheetAndro.Droid.Resource.Attribute.spanCount;
+			global::XFGloss.Droid.Resource.Attribute.spinBars = global::Google_sheetAndro.Droid.Resource.Attribute.spinBars;
+			global::XFGloss.Droid.Resource.Attribute.spinnerDropDownItemStyle = global::Google_sheetAndro.Droid.Resource.Attribute.spinnerDropDownItemStyle;
+			global::XFGloss.Droid.Resource.Attribute.spinnerStyle = global::Google_sheetAndro.Droid.Resource.Attribute.spinnerStyle;
+			global::XFGloss.Droid.Resource.Attribute.splitTrack = global::Google_sheetAndro.Droid.Resource.Attribute.splitTrack;
+			global::XFGloss.Droid.Resource.Attribute.srcCompat = global::Google_sheetAndro.Droid.Resource.Attribute.srcCompat;
+			global::XFGloss.Droid.Resource.Attribute.stackFromEnd = global::Google_sheetAndro.Droid.Resource.Attribute.stackFromEnd;
+			global::XFGloss.Droid.Resource.Attribute.state_above_anchor = global::Google_sheetAndro.Droid.Resource.Attribute.state_above_anchor;
+			global::XFGloss.Droid.Resource.Attribute.state_collapsed = global::Google_sheetAndro.Droid.Resource.Attribute.state_collapsed;
+			global::XFGloss.Droid.Resource.Attribute.state_collapsible = global::Google_sheetAndro.Droid.Resource.Attribute.state_collapsible;
+			global::XFGloss.Droid.Resource.Attribute.statusBarBackground = global::Google_sheetAndro.Droid.Resource.Attribute.statusBarBackground;
+			global::XFGloss.Droid.Resource.Attribute.statusBarScrim = global::Google_sheetAndro.Droid.Resource.Attribute.statusBarScrim;
+			global::XFGloss.Droid.Resource.Attribute.subMenuArrow = global::Google_sheetAndro.Droid.Resource.Attribute.subMenuArrow;
+			global::XFGloss.Droid.Resource.Attribute.submitBackground = global::Google_sheetAndro.Droid.Resource.Attribute.submitBackground;
+			global::XFGloss.Droid.Resource.Attribute.subtitle = global::Google_sheetAndro.Droid.Resource.Attribute.subtitle;
+			global::XFGloss.Droid.Resource.Attribute.subtitleTextAppearance = global::Google_sheetAndro.Droid.Resource.Attribute.subtitleTextAppearance;
+			global::XFGloss.Droid.Resource.Attribute.subtitleTextColor = global::Google_sheetAndro.Droid.Resource.Attribute.subtitleTextColor;
+			global::XFGloss.Droid.Resource.Attribute.subtitleTextStyle = global::Google_sheetAndro.Droid.Resource.Attribute.subtitleTextStyle;
+			global::XFGloss.Droid.Resource.Attribute.suggestionRowLayout = global::Google_sheetAndro.Droid.Resource.Attribute.suggestionRowLayout;
+			global::XFGloss.Droid.Resource.Attribute.switchMinWidth = global::Google_sheetAndro.Droid.Resource.Attribute.switchMinWidth;
+			global::XFGloss.Droid.Resource.Attribute.switchPadding = global::Google_sheetAndro.Droid.Resource.Attribute.switchPadding;
+			global::XFGloss.Droid.Resource.Attribute.switchStyle = global::Google_sheetAndro.Droid.Resource.Attribute.switchStyle;
+			global::XFGloss.Droid.Resource.Attribute.switchTextAppearance = global::Google_sheetAndro.Droid.Resource.Attribute.switchTextAppearance;
+			global::XFGloss.Droid.Resource.Attribute.tabBackground = global::Google_sheetAndro.Droid.Resource.Attribute.tabBackground;
+			global::XFGloss.Droid.Resource.Attribute.tabContentStart = global::Google_sheetAndro.Droid.Resource.Attribute.tabContentStart;
+			global::XFGloss.Droid.Resource.Attribute.tabGravity = global::Google_sheetAndro.Droid.Resource.Attribute.tabGravity;
+			global::XFGloss.Droid.Resource.Attribute.tabIndicatorColor = global::Google_sheetAndro.Droid.Resource.Attribute.tabIndicatorColor;
+			global::XFGloss.Droid.Resource.Attribute.tabIndicatorHeight = global::Google_sheetAndro.Droid.Resource.Attribute.tabIndicatorHeight;
+			global::XFGloss.Droid.Resource.Attribute.tabMaxWidth = global::Google_sheetAndro.Droid.Resource.Attribute.tabMaxWidth;
+			global::XFGloss.Droid.Resource.Attribute.tabMinWidth = global::Google_sheetAndro.Droid.Resource.Attribute.tabMinWidth;
+			global::XFGloss.Droid.Resource.Attribute.tabMode = global::Google_sheetAndro.Droid.Resource.Attribute.tabMode;
+			global::XFGloss.Droid.Resource.Attribute.tabPadding = global::Google_sheetAndro.Droid.Resource.Attribute.tabPadding;
+			global::XFGloss.Droid.Resource.Attribute.tabPaddingBottom = global::Google_sheetAndro.Droid.Resource.Attribute.tabPaddingBottom;
+			global::XFGloss.Droid.Resource.Attribute.tabPaddingEnd = global::Google_sheetAndro.Droid.Resource.Attribute.tabPaddingEnd;
+			global::XFGloss.Droid.Resource.Attribute.tabPaddingStart = global::Google_sheetAndro.Droid.Resource.Attribute.tabPaddingStart;
+			global::XFGloss.Droid.Resource.Attribute.tabPaddingTop = global::Google_sheetAndro.Droid.Resource.Attribute.tabPaddingTop;
+			global::XFGloss.Droid.Resource.Attribute.tabSelectedTextColor = global::Google_sheetAndro.Droid.Resource.Attribute.tabSelectedTextColor;
+			global::XFGloss.Droid.Resource.Attribute.tabTextAppearance = global::Google_sheetAndro.Droid.Resource.Attribute.tabTextAppearance;
+			global::XFGloss.Droid.Resource.Attribute.tabTextColor = global::Google_sheetAndro.Droid.Resource.Attribute.tabTextColor;
+			global::XFGloss.Droid.Resource.Attribute.textAllCaps = global::Google_sheetAndro.Droid.Resource.Attribute.textAllCaps;
+			global::XFGloss.Droid.Resource.Attribute.textAppearanceLargePopupMenu = global::Google_sheetAndro.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
+			global::XFGloss.Droid.Resource.Attribute.textAppearanceListItem = global::Google_sheetAndro.Droid.Resource.Attribute.textAppearanceListItem;
+			global::XFGloss.Droid.Resource.Attribute.textAppearanceListItemSecondary = global::Google_sheetAndro.Droid.Resource.Attribute.textAppearanceListItemSecondary;
+			global::XFGloss.Droid.Resource.Attribute.textAppearanceListItemSmall = global::Google_sheetAndro.Droid.Resource.Attribute.textAppearanceListItemSmall;
+			global::XFGloss.Droid.Resource.Attribute.textAppearancePopupMenuHeader = global::Google_sheetAndro.Droid.Resource.Attribute.textAppearancePopupMenuHeader;
+			global::XFGloss.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle = global::Google_sheetAndro.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
+			global::XFGloss.Droid.Resource.Attribute.textAppearanceSearchResultTitle = global::Google_sheetAndro.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
+			global::XFGloss.Droid.Resource.Attribute.textAppearanceSmallPopupMenu = global::Google_sheetAndro.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
+			global::XFGloss.Droid.Resource.Attribute.textColorAlertDialogListItem = global::Google_sheetAndro.Droid.Resource.Attribute.textColorAlertDialogListItem;
+			global::XFGloss.Droid.Resource.Attribute.textColorSearchUrl = global::Google_sheetAndro.Droid.Resource.Attribute.textColorSearchUrl;
+			global::XFGloss.Droid.Resource.Attribute.theme = global::Google_sheetAndro.Droid.Resource.Attribute.theme;
+			global::XFGloss.Droid.Resource.Attribute.thickness = global::Google_sheetAndro.Droid.Resource.Attribute.thickness;
+			global::XFGloss.Droid.Resource.Attribute.thumbTextPadding = global::Google_sheetAndro.Droid.Resource.Attribute.thumbTextPadding;
+			global::XFGloss.Droid.Resource.Attribute.thumbTint = global::Google_sheetAndro.Droid.Resource.Attribute.thumbTint;
+			global::XFGloss.Droid.Resource.Attribute.thumbTintMode = global::Google_sheetAndro.Droid.Resource.Attribute.thumbTintMode;
+			global::XFGloss.Droid.Resource.Attribute.tickMark = global::Google_sheetAndro.Droid.Resource.Attribute.tickMark;
+			global::XFGloss.Droid.Resource.Attribute.tickMarkTint = global::Google_sheetAndro.Droid.Resource.Attribute.tickMarkTint;
+			global::XFGloss.Droid.Resource.Attribute.tickMarkTintMode = global::Google_sheetAndro.Droid.Resource.Attribute.tickMarkTintMode;
+			global::XFGloss.Droid.Resource.Attribute.tint = global::Google_sheetAndro.Droid.Resource.Attribute.tint;
+			global::XFGloss.Droid.Resource.Attribute.tintMode = global::Google_sheetAndro.Droid.Resource.Attribute.tintMode;
+			global::XFGloss.Droid.Resource.Attribute.title = global::Google_sheetAndro.Droid.Resource.Attribute.title;
+			global::XFGloss.Droid.Resource.Attribute.titleEnabled = global::Google_sheetAndro.Droid.Resource.Attribute.titleEnabled;
+			global::XFGloss.Droid.Resource.Attribute.titleMargin = global::Google_sheetAndro.Droid.Resource.Attribute.titleMargin;
+			global::XFGloss.Droid.Resource.Attribute.titleMarginBottom = global::Google_sheetAndro.Droid.Resource.Attribute.titleMarginBottom;
+			global::XFGloss.Droid.Resource.Attribute.titleMarginEnd = global::Google_sheetAndro.Droid.Resource.Attribute.titleMarginEnd;
+			global::XFGloss.Droid.Resource.Attribute.titleMarginStart = global::Google_sheetAndro.Droid.Resource.Attribute.titleMarginStart;
+			global::XFGloss.Droid.Resource.Attribute.titleMarginTop = global::Google_sheetAndro.Droid.Resource.Attribute.titleMarginTop;
+			global::XFGloss.Droid.Resource.Attribute.titleMargins = global::Google_sheetAndro.Droid.Resource.Attribute.titleMargins;
+			global::XFGloss.Droid.Resource.Attribute.titleTextAppearance = global::Google_sheetAndro.Droid.Resource.Attribute.titleTextAppearance;
+			global::XFGloss.Droid.Resource.Attribute.titleTextColor = global::Google_sheetAndro.Droid.Resource.Attribute.titleTextColor;
+			global::XFGloss.Droid.Resource.Attribute.titleTextStyle = global::Google_sheetAndro.Droid.Resource.Attribute.titleTextStyle;
+			global::XFGloss.Droid.Resource.Attribute.toolbarId = global::Google_sheetAndro.Droid.Resource.Attribute.toolbarId;
+			global::XFGloss.Droid.Resource.Attribute.toolbarNavigationButtonStyle = global::Google_sheetAndro.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
+			global::XFGloss.Droid.Resource.Attribute.toolbarStyle = global::Google_sheetAndro.Droid.Resource.Attribute.toolbarStyle;
+			global::XFGloss.Droid.Resource.Attribute.track = global::Google_sheetAndro.Droid.Resource.Attribute.track;
+			global::XFGloss.Droid.Resource.Attribute.trackTint = global::Google_sheetAndro.Droid.Resource.Attribute.trackTint;
+			global::XFGloss.Droid.Resource.Attribute.trackTintMode = global::Google_sheetAndro.Droid.Resource.Attribute.trackTintMode;
+			global::XFGloss.Droid.Resource.Attribute.useCompatPadding = global::Google_sheetAndro.Droid.Resource.Attribute.useCompatPadding;
+			global::XFGloss.Droid.Resource.Attribute.voiceIcon = global::Google_sheetAndro.Droid.Resource.Attribute.voiceIcon;
+			global::XFGloss.Droid.Resource.Attribute.windowActionBar = global::Google_sheetAndro.Droid.Resource.Attribute.windowActionBar;
+			global::XFGloss.Droid.Resource.Attribute.windowActionBarOverlay = global::Google_sheetAndro.Droid.Resource.Attribute.windowActionBarOverlay;
+			global::XFGloss.Droid.Resource.Attribute.windowActionModeOverlay = global::Google_sheetAndro.Droid.Resource.Attribute.windowActionModeOverlay;
+			global::XFGloss.Droid.Resource.Attribute.windowFixedHeightMajor = global::Google_sheetAndro.Droid.Resource.Attribute.windowFixedHeightMajor;
+			global::XFGloss.Droid.Resource.Attribute.windowFixedHeightMinor = global::Google_sheetAndro.Droid.Resource.Attribute.windowFixedHeightMinor;
+			global::XFGloss.Droid.Resource.Attribute.windowFixedWidthMajor = global::Google_sheetAndro.Droid.Resource.Attribute.windowFixedWidthMajor;
+			global::XFGloss.Droid.Resource.Attribute.windowFixedWidthMinor = global::Google_sheetAndro.Droid.Resource.Attribute.windowFixedWidthMinor;
+			global::XFGloss.Droid.Resource.Attribute.windowMinWidthMajor = global::Google_sheetAndro.Droid.Resource.Attribute.windowMinWidthMajor;
+			global::XFGloss.Droid.Resource.Attribute.windowMinWidthMinor = global::Google_sheetAndro.Droid.Resource.Attribute.windowMinWidthMinor;
+			global::XFGloss.Droid.Resource.Attribute.windowNoTitle = global::Google_sheetAndro.Droid.Resource.Attribute.windowNoTitle;
+			global::XFGloss.Droid.Resource.Boolean.abc_action_bar_embed_tabs = global::Google_sheetAndro.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
+			global::XFGloss.Droid.Resource.Boolean.abc_allow_stacked_button_bar = global::Google_sheetAndro.Droid.Resource.Boolean.abc_allow_stacked_button_bar;
+			global::XFGloss.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::Google_sheetAndro.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
+			global::XFGloss.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark = global::Google_sheetAndro.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
+			global::XFGloss.Droid.Resource.Color.abc_background_cache_hint_selector_material_light = global::Google_sheetAndro.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
+			global::XFGloss.Droid.Resource.Color.abc_btn_colored_borderless_text_material = global::Google_sheetAndro.Droid.Resource.Color.abc_btn_colored_borderless_text_material;
+			global::XFGloss.Droid.Resource.Color.abc_btn_colored_text_material = global::Google_sheetAndro.Droid.Resource.Color.abc_btn_colored_text_material;
+			global::XFGloss.Droid.Resource.Color.abc_color_highlight_material = global::Google_sheetAndro.Droid.Resource.Color.abc_color_highlight_material;
+			global::XFGloss.Droid.Resource.Color.abc_hint_foreground_material_dark = global::Google_sheetAndro.Droid.Resource.Color.abc_hint_foreground_material_dark;
+			global::XFGloss.Droid.Resource.Color.abc_hint_foreground_material_light = global::Google_sheetAndro.Droid.Resource.Color.abc_hint_foreground_material_light;
+			global::XFGloss.Droid.Resource.Color.abc_input_method_navigation_guard = global::Google_sheetAndro.Droid.Resource.Color.abc_input_method_navigation_guard;
+			global::XFGloss.Droid.Resource.Color.abc_primary_text_disable_only_material_dark = global::Google_sheetAndro.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
+			global::XFGloss.Droid.Resource.Color.abc_primary_text_disable_only_material_light = global::Google_sheetAndro.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
+			global::XFGloss.Droid.Resource.Color.abc_primary_text_material_dark = global::Google_sheetAndro.Droid.Resource.Color.abc_primary_text_material_dark;
+			global::XFGloss.Droid.Resource.Color.abc_primary_text_material_light = global::Google_sheetAndro.Droid.Resource.Color.abc_primary_text_material_light;
+			global::XFGloss.Droid.Resource.Color.abc_search_url_text = global::Google_sheetAndro.Droid.Resource.Color.abc_search_url_text;
+			global::XFGloss.Droid.Resource.Color.abc_search_url_text_normal = global::Google_sheetAndro.Droid.Resource.Color.abc_search_url_text_normal;
+			global::XFGloss.Droid.Resource.Color.abc_search_url_text_pressed = global::Google_sheetAndro.Droid.Resource.Color.abc_search_url_text_pressed;
+			global::XFGloss.Droid.Resource.Color.abc_search_url_text_selected = global::Google_sheetAndro.Droid.Resource.Color.abc_search_url_text_selected;
+			global::XFGloss.Droid.Resource.Color.abc_secondary_text_material_dark = global::Google_sheetAndro.Droid.Resource.Color.abc_secondary_text_material_dark;
+			global::XFGloss.Droid.Resource.Color.abc_secondary_text_material_light = global::Google_sheetAndro.Droid.Resource.Color.abc_secondary_text_material_light;
+			global::XFGloss.Droid.Resource.Color.abc_tint_btn_checkable = global::Google_sheetAndro.Droid.Resource.Color.abc_tint_btn_checkable;
+			global::XFGloss.Droid.Resource.Color.abc_tint_default = global::Google_sheetAndro.Droid.Resource.Color.abc_tint_default;
+			global::XFGloss.Droid.Resource.Color.abc_tint_edittext = global::Google_sheetAndro.Droid.Resource.Color.abc_tint_edittext;
+			global::XFGloss.Droid.Resource.Color.abc_tint_seek_thumb = global::Google_sheetAndro.Droid.Resource.Color.abc_tint_seek_thumb;
+			global::XFGloss.Droid.Resource.Color.abc_tint_spinner = global::Google_sheetAndro.Droid.Resource.Color.abc_tint_spinner;
+			global::XFGloss.Droid.Resource.Color.abc_tint_switch_track = global::Google_sheetAndro.Droid.Resource.Color.abc_tint_switch_track;
+			global::XFGloss.Droid.Resource.Color.accent_material_dark = global::Google_sheetAndro.Droid.Resource.Color.accent_material_dark;
+			global::XFGloss.Droid.Resource.Color.accent_material_light = global::Google_sheetAndro.Droid.Resource.Color.accent_material_light;
+			global::XFGloss.Droid.Resource.Color.background_floating_material_dark = global::Google_sheetAndro.Droid.Resource.Color.background_floating_material_dark;
+			global::XFGloss.Droid.Resource.Color.background_floating_material_light = global::Google_sheetAndro.Droid.Resource.Color.background_floating_material_light;
+			global::XFGloss.Droid.Resource.Color.background_material_dark = global::Google_sheetAndro.Droid.Resource.Color.background_material_dark;
+			global::XFGloss.Droid.Resource.Color.background_material_light = global::Google_sheetAndro.Droid.Resource.Color.background_material_light;
+			global::XFGloss.Droid.Resource.Color.bright_foreground_disabled_material_dark = global::Google_sheetAndro.Droid.Resource.Color.bright_foreground_disabled_material_dark;
+			global::XFGloss.Droid.Resource.Color.bright_foreground_disabled_material_light = global::Google_sheetAndro.Droid.Resource.Color.bright_foreground_disabled_material_light;
+			global::XFGloss.Droid.Resource.Color.bright_foreground_inverse_material_dark = global::Google_sheetAndro.Droid.Resource.Color.bright_foreground_inverse_material_dark;
+			global::XFGloss.Droid.Resource.Color.bright_foreground_inverse_material_light = global::Google_sheetAndro.Droid.Resource.Color.bright_foreground_inverse_material_light;
+			global::XFGloss.Droid.Resource.Color.bright_foreground_material_dark = global::Google_sheetAndro.Droid.Resource.Color.bright_foreground_material_dark;
+			global::XFGloss.Droid.Resource.Color.bright_foreground_material_light = global::Google_sheetAndro.Droid.Resource.Color.bright_foreground_material_light;
+			global::XFGloss.Droid.Resource.Color.button_material_dark = global::Google_sheetAndro.Droid.Resource.Color.button_material_dark;
+			global::XFGloss.Droid.Resource.Color.button_material_light = global::Google_sheetAndro.Droid.Resource.Color.button_material_light;
+			global::XFGloss.Droid.Resource.Color.cardview_dark_background = global::Google_sheetAndro.Droid.Resource.Color.cardview_dark_background;
+			global::XFGloss.Droid.Resource.Color.cardview_light_background = global::Google_sheetAndro.Droid.Resource.Color.cardview_light_background;
+			global::XFGloss.Droid.Resource.Color.cardview_shadow_end_color = global::Google_sheetAndro.Droid.Resource.Color.cardview_shadow_end_color;
+			global::XFGloss.Droid.Resource.Color.cardview_shadow_start_color = global::Google_sheetAndro.Droid.Resource.Color.cardview_shadow_start_color;
+			global::XFGloss.Droid.Resource.Color.design_bottom_navigation_shadow_color = global::Google_sheetAndro.Droid.Resource.Color.design_bottom_navigation_shadow_color;
+			global::XFGloss.Droid.Resource.Color.design_error = global::Google_sheetAndro.Droid.Resource.Color.design_error;
+			global::XFGloss.Droid.Resource.Color.design_fab_shadow_end_color = global::Google_sheetAndro.Droid.Resource.Color.design_fab_shadow_end_color;
+			global::XFGloss.Droid.Resource.Color.design_fab_shadow_mid_color = global::Google_sheetAndro.Droid.Resource.Color.design_fab_shadow_mid_color;
+			global::XFGloss.Droid.Resource.Color.design_fab_shadow_start_color = global::Google_sheetAndro.Droid.Resource.Color.design_fab_shadow_start_color;
+			global::XFGloss.Droid.Resource.Color.design_fab_stroke_end_inner_color = global::Google_sheetAndro.Droid.Resource.Color.design_fab_stroke_end_inner_color;
+			global::XFGloss.Droid.Resource.Color.design_fab_stroke_end_outer_color = global::Google_sheetAndro.Droid.Resource.Color.design_fab_stroke_end_outer_color;
+			global::XFGloss.Droid.Resource.Color.design_fab_stroke_top_inner_color = global::Google_sheetAndro.Droid.Resource.Color.design_fab_stroke_top_inner_color;
+			global::XFGloss.Droid.Resource.Color.design_fab_stroke_top_outer_color = global::Google_sheetAndro.Droid.Resource.Color.design_fab_stroke_top_outer_color;
+			global::XFGloss.Droid.Resource.Color.design_snackbar_background_color = global::Google_sheetAndro.Droid.Resource.Color.design_snackbar_background_color;
+			global::XFGloss.Droid.Resource.Color.design_tint_password_toggle = global::Google_sheetAndro.Droid.Resource.Color.design_tint_password_toggle;
+			global::XFGloss.Droid.Resource.Color.dim_foreground_disabled_material_dark = global::Google_sheetAndro.Droid.Resource.Color.dim_foreground_disabled_material_dark;
+			global::XFGloss.Droid.Resource.Color.dim_foreground_disabled_material_light = global::Google_sheetAndro.Droid.Resource.Color.dim_foreground_disabled_material_light;
+			global::XFGloss.Droid.Resource.Color.dim_foreground_material_dark = global::Google_sheetAndro.Droid.Resource.Color.dim_foreground_material_dark;
+			global::XFGloss.Droid.Resource.Color.dim_foreground_material_light = global::Google_sheetAndro.Droid.Resource.Color.dim_foreground_material_light;
+			global::XFGloss.Droid.Resource.Color.foreground_material_dark = global::Google_sheetAndro.Droid.Resource.Color.foreground_material_dark;
+			global::XFGloss.Droid.Resource.Color.foreground_material_light = global::Google_sheetAndro.Droid.Resource.Color.foreground_material_light;
+			global::XFGloss.Droid.Resource.Color.highlighted_text_material_dark = global::Google_sheetAndro.Droid.Resource.Color.highlighted_text_material_dark;
+			global::XFGloss.Droid.Resource.Color.highlighted_text_material_light = global::Google_sheetAndro.Droid.Resource.Color.highlighted_text_material_light;
+			global::XFGloss.Droid.Resource.Color.material_blue_grey_800 = global::Google_sheetAndro.Droid.Resource.Color.material_blue_grey_800;
+			global::XFGloss.Droid.Resource.Color.material_blue_grey_900 = global::Google_sheetAndro.Droid.Resource.Color.material_blue_grey_900;
+			global::XFGloss.Droid.Resource.Color.material_blue_grey_950 = global::Google_sheetAndro.Droid.Resource.Color.material_blue_grey_950;
+			global::XFGloss.Droid.Resource.Color.material_deep_teal_200 = global::Google_sheetAndro.Droid.Resource.Color.material_deep_teal_200;
+			global::XFGloss.Droid.Resource.Color.material_deep_teal_500 = global::Google_sheetAndro.Droid.Resource.Color.material_deep_teal_500;
+			global::XFGloss.Droid.Resource.Color.material_grey_100 = global::Google_sheetAndro.Droid.Resource.Color.material_grey_100;
+			global::XFGloss.Droid.Resource.Color.material_grey_300 = global::Google_sheetAndro.Droid.Resource.Color.material_grey_300;
+			global::XFGloss.Droid.Resource.Color.material_grey_50 = global::Google_sheetAndro.Droid.Resource.Color.material_grey_50;
+			global::XFGloss.Droid.Resource.Color.material_grey_600 = global::Google_sheetAndro.Droid.Resource.Color.material_grey_600;
+			global::XFGloss.Droid.Resource.Color.material_grey_800 = global::Google_sheetAndro.Droid.Resource.Color.material_grey_800;
+			global::XFGloss.Droid.Resource.Color.material_grey_850 = global::Google_sheetAndro.Droid.Resource.Color.material_grey_850;
+			global::XFGloss.Droid.Resource.Color.material_grey_900 = global::Google_sheetAndro.Droid.Resource.Color.material_grey_900;
+			global::XFGloss.Droid.Resource.Color.notification_action_color_filter = global::Google_sheetAndro.Droid.Resource.Color.notification_action_color_filter;
+			global::XFGloss.Droid.Resource.Color.notification_icon_bg_color = global::Google_sheetAndro.Droid.Resource.Color.notification_icon_bg_color;
+			global::XFGloss.Droid.Resource.Color.notification_material_background_media_default_color = global::Google_sheetAndro.Droid.Resource.Color.notification_material_background_media_default_color;
+			global::XFGloss.Droid.Resource.Color.primary_dark_material_dark = global::Google_sheetAndro.Droid.Resource.Color.primary_dark_material_dark;
+			global::XFGloss.Droid.Resource.Color.primary_dark_material_light = global::Google_sheetAndro.Droid.Resource.Color.primary_dark_material_light;
+			global::XFGloss.Droid.Resource.Color.primary_material_dark = global::Google_sheetAndro.Droid.Resource.Color.primary_material_dark;
+			global::XFGloss.Droid.Resource.Color.primary_material_light = global::Google_sheetAndro.Droid.Resource.Color.primary_material_light;
+			global::XFGloss.Droid.Resource.Color.primary_text_default_material_dark = global::Google_sheetAndro.Droid.Resource.Color.primary_text_default_material_dark;
+			global::XFGloss.Droid.Resource.Color.primary_text_default_material_light = global::Google_sheetAndro.Droid.Resource.Color.primary_text_default_material_light;
+			global::XFGloss.Droid.Resource.Color.primary_text_disabled_material_dark = global::Google_sheetAndro.Droid.Resource.Color.primary_text_disabled_material_dark;
+			global::XFGloss.Droid.Resource.Color.primary_text_disabled_material_light = global::Google_sheetAndro.Droid.Resource.Color.primary_text_disabled_material_light;
+			global::XFGloss.Droid.Resource.Color.ripple_material_dark = global::Google_sheetAndro.Droid.Resource.Color.ripple_material_dark;
+			global::XFGloss.Droid.Resource.Color.ripple_material_light = global::Google_sheetAndro.Droid.Resource.Color.ripple_material_light;
+			global::XFGloss.Droid.Resource.Color.secondary_text_default_material_dark = global::Google_sheetAndro.Droid.Resource.Color.secondary_text_default_material_dark;
+			global::XFGloss.Droid.Resource.Color.secondary_text_default_material_light = global::Google_sheetAndro.Droid.Resource.Color.secondary_text_default_material_light;
+			global::XFGloss.Droid.Resource.Color.secondary_text_disabled_material_dark = global::Google_sheetAndro.Droid.Resource.Color.secondary_text_disabled_material_dark;
+			global::XFGloss.Droid.Resource.Color.secondary_text_disabled_material_light = global::Google_sheetAndro.Droid.Resource.Color.secondary_text_disabled_material_light;
+			global::XFGloss.Droid.Resource.Color.switch_thumb_disabled_material_dark = global::Google_sheetAndro.Droid.Resource.Color.switch_thumb_disabled_material_dark;
+			global::XFGloss.Droid.Resource.Color.switch_thumb_disabled_material_light = global::Google_sheetAndro.Droid.Resource.Color.switch_thumb_disabled_material_light;
+			global::XFGloss.Droid.Resource.Color.switch_thumb_material_dark = global::Google_sheetAndro.Droid.Resource.Color.switch_thumb_material_dark;
+			global::XFGloss.Droid.Resource.Color.switch_thumb_material_light = global::Google_sheetAndro.Droid.Resource.Color.switch_thumb_material_light;
+			global::XFGloss.Droid.Resource.Color.switch_thumb_normal_material_dark = global::Google_sheetAndro.Droid.Resource.Color.switch_thumb_normal_material_dark;
+			global::XFGloss.Droid.Resource.Color.switch_thumb_normal_material_light = global::Google_sheetAndro.Droid.Resource.Color.switch_thumb_normal_material_light;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_bar_content_inset_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_bar_default_height_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_bar_default_height_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_bar_elevation_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_bar_elevation_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_bar_stacked_max_height = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_bar_stacked_max_height;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_button_min_height_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_button_min_height_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_button_min_width_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_button_min_width_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height = global::Google_sheetAndro.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
+			global::XFGloss.Droid.Resource.Dimension.abc_button_inset_horizontal_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_button_inset_vertical_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_button_inset_vertical_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_button_padding_horizontal_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_button_padding_vertical_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_button_padding_vertical_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width = global::Google_sheetAndro.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width;
+			global::XFGloss.Droid.Resource.Dimension.abc_config_prefDialogWidth = global::Google_sheetAndro.Droid.Resource.Dimension.abc_config_prefDialogWidth;
+			global::XFGloss.Droid.Resource.Dimension.abc_control_corner_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_control_corner_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_control_inset_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_control_inset_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_control_padding_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_control_padding_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_dialog_fixed_height_major = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dialog_fixed_height_major;
+			global::XFGloss.Droid.Resource.Dimension.abc_dialog_fixed_height_minor = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dialog_fixed_height_minor;
+			global::XFGloss.Droid.Resource.Dimension.abc_dialog_fixed_width_major = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dialog_fixed_width_major;
+			global::XFGloss.Droid.Resource.Dimension.abc_dialog_fixed_width_minor = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dialog_fixed_width_minor;
+			global::XFGloss.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons;
+			global::XFGloss.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title;
+			global::XFGloss.Droid.Resource.Dimension.abc_dialog_min_width_major = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dialog_min_width_major;
+			global::XFGloss.Droid.Resource.Dimension.abc_dialog_min_width_minor = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dialog_min_width_minor;
+			global::XFGloss.Droid.Resource.Dimension.abc_dialog_padding_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dialog_padding_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_dialog_padding_top_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dialog_padding_top_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_dialog_title_divider_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dialog_title_divider_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_disabled_alpha_material_dark = global::Google_sheetAndro.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
+			global::XFGloss.Droid.Resource.Dimension.abc_disabled_alpha_material_light = global::Google_sheetAndro.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
+			global::XFGloss.Droid.Resource.Dimension.abc_dropdownitem_icon_width = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
+			global::XFGloss.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left;
+			global::XFGloss.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right = global::Google_sheetAndro.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right;
+			global::XFGloss.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_edit_text_inset_top_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_floating_window_z = global::Google_sheetAndro.Droid.Resource.Dimension.abc_floating_window_z;
+			global::XFGloss.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_panel_menu_list_width = global::Google_sheetAndro.Droid.Resource.Dimension.abc_panel_menu_list_width;
+			global::XFGloss.Droid.Resource.Dimension.abc_progress_bar_height_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_progress_bar_height_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_search_view_preferred_height = global::Google_sheetAndro.Droid.Resource.Dimension.abc_search_view_preferred_height;
+			global::XFGloss.Droid.Resource.Dimension.abc_search_view_preferred_width = global::Google_sheetAndro.Droid.Resource.Dimension.abc_search_view_preferred_width;
+			global::XFGloss.Droid.Resource.Dimension.abc_seekbar_track_background_height_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_seekbar_track_background_height_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_select_dialog_padding_start_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_select_dialog_padding_start_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_switch_padding = global::Google_sheetAndro.Droid.Resource.Dimension.abc_switch_padding;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_body_1_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_body_1_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_body_2_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_body_2_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_button_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_button_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_caption_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_caption_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_display_1_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_display_1_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_display_2_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_display_2_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_display_3_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_display_3_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_display_4_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_display_4_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_headline_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_headline_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_large_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_large_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_medium_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_medium_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_menu_header_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_menu_header_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_menu_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_menu_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_small_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_small_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_subhead_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_subhead_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_title_material = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_title_material;
+			global::XFGloss.Droid.Resource.Dimension.abc_text_size_title_material_toolbar = global::Google_sheetAndro.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
+			global::XFGloss.Droid.Resource.Dimension.cardview_compat_inset_shadow = global::Google_sheetAndro.Droid.Resource.Dimension.cardview_compat_inset_shadow;
+			global::XFGloss.Droid.Resource.Dimension.cardview_default_elevation = global::Google_sheetAndro.Droid.Resource.Dimension.cardview_default_elevation;
+			global::XFGloss.Droid.Resource.Dimension.cardview_default_radius = global::Google_sheetAndro.Droid.Resource.Dimension.cardview_default_radius;
+			global::XFGloss.Droid.Resource.Dimension.design_appbar_elevation = global::Google_sheetAndro.Droid.Resource.Dimension.design_appbar_elevation;
+			global::XFGloss.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width = global::Google_sheetAndro.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width;
+			global::XFGloss.Droid.Resource.Dimension.design_bottom_navigation_active_text_size = global::Google_sheetAndro.Droid.Resource.Dimension.design_bottom_navigation_active_text_size;
+			global::XFGloss.Droid.Resource.Dimension.design_bottom_navigation_elevation = global::Google_sheetAndro.Droid.Resource.Dimension.design_bottom_navigation_elevation;
+			global::XFGloss.Droid.Resource.Dimension.design_bottom_navigation_height = global::Google_sheetAndro.Droid.Resource.Dimension.design_bottom_navigation_height;
+			global::XFGloss.Droid.Resource.Dimension.design_bottom_navigation_item_max_width = global::Google_sheetAndro.Droid.Resource.Dimension.design_bottom_navigation_item_max_width;
+			global::XFGloss.Droid.Resource.Dimension.design_bottom_navigation_item_min_width = global::Google_sheetAndro.Droid.Resource.Dimension.design_bottom_navigation_item_min_width;
+			global::XFGloss.Droid.Resource.Dimension.design_bottom_navigation_margin = global::Google_sheetAndro.Droid.Resource.Dimension.design_bottom_navigation_margin;
+			global::XFGloss.Droid.Resource.Dimension.design_bottom_navigation_shadow_height = global::Google_sheetAndro.Droid.Resource.Dimension.design_bottom_navigation_shadow_height;
+			global::XFGloss.Droid.Resource.Dimension.design_bottom_navigation_text_size = global::Google_sheetAndro.Droid.Resource.Dimension.design_bottom_navigation_text_size;
+			global::XFGloss.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation = global::Google_sheetAndro.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation;
+			global::XFGloss.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min = global::Google_sheetAndro.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min;
+			global::XFGloss.Droid.Resource.Dimension.design_fab_border_width = global::Google_sheetAndro.Droid.Resource.Dimension.design_fab_border_width;
+			global::XFGloss.Droid.Resource.Dimension.design_fab_elevation = global::Google_sheetAndro.Droid.Resource.Dimension.design_fab_elevation;
+			global::XFGloss.Droid.Resource.Dimension.design_fab_image_size = global::Google_sheetAndro.Droid.Resource.Dimension.design_fab_image_size;
+			global::XFGloss.Droid.Resource.Dimension.design_fab_size_mini = global::Google_sheetAndro.Droid.Resource.Dimension.design_fab_size_mini;
+			global::XFGloss.Droid.Resource.Dimension.design_fab_size_normal = global::Google_sheetAndro.Droid.Resource.Dimension.design_fab_size_normal;
+			global::XFGloss.Droid.Resource.Dimension.design_fab_translation_z_pressed = global::Google_sheetAndro.Droid.Resource.Dimension.design_fab_translation_z_pressed;
+			global::XFGloss.Droid.Resource.Dimension.design_navigation_elevation = global::Google_sheetAndro.Droid.Resource.Dimension.design_navigation_elevation;
+			global::XFGloss.Droid.Resource.Dimension.design_navigation_icon_padding = global::Google_sheetAndro.Droid.Resource.Dimension.design_navigation_icon_padding;
+			global::XFGloss.Droid.Resource.Dimension.design_navigation_icon_size = global::Google_sheetAndro.Droid.Resource.Dimension.design_navigation_icon_size;
+			global::XFGloss.Droid.Resource.Dimension.design_navigation_max_width = global::Google_sheetAndro.Droid.Resource.Dimension.design_navigation_max_width;
+			global::XFGloss.Droid.Resource.Dimension.design_navigation_padding_bottom = global::Google_sheetAndro.Droid.Resource.Dimension.design_navigation_padding_bottom;
+			global::XFGloss.Droid.Resource.Dimension.design_navigation_separator_vertical_padding = global::Google_sheetAndro.Droid.Resource.Dimension.design_navigation_separator_vertical_padding;
+			global::XFGloss.Droid.Resource.Dimension.design_snackbar_action_inline_max_width = global::Google_sheetAndro.Droid.Resource.Dimension.design_snackbar_action_inline_max_width;
+			global::XFGloss.Droid.Resource.Dimension.design_snackbar_background_corner_radius = global::Google_sheetAndro.Droid.Resource.Dimension.design_snackbar_background_corner_radius;
+			global::XFGloss.Droid.Resource.Dimension.design_snackbar_elevation = global::Google_sheetAndro.Droid.Resource.Dimension.design_snackbar_elevation;
+			global::XFGloss.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal = global::Google_sheetAndro.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal;
+			global::XFGloss.Droid.Resource.Dimension.design_snackbar_max_width = global::Google_sheetAndro.Droid.Resource.Dimension.design_snackbar_max_width;
+			global::XFGloss.Droid.Resource.Dimension.design_snackbar_min_width = global::Google_sheetAndro.Droid.Resource.Dimension.design_snackbar_min_width;
+			global::XFGloss.Droid.Resource.Dimension.design_snackbar_padding_horizontal = global::Google_sheetAndro.Droid.Resource.Dimension.design_snackbar_padding_horizontal;
+			global::XFGloss.Droid.Resource.Dimension.design_snackbar_padding_vertical = global::Google_sheetAndro.Droid.Resource.Dimension.design_snackbar_padding_vertical;
+			global::XFGloss.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines = global::Google_sheetAndro.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines;
+			global::XFGloss.Droid.Resource.Dimension.design_snackbar_text_size = global::Google_sheetAndro.Droid.Resource.Dimension.design_snackbar_text_size;
+			global::XFGloss.Droid.Resource.Dimension.design_tab_max_width = global::Google_sheetAndro.Droid.Resource.Dimension.design_tab_max_width;
+			global::XFGloss.Droid.Resource.Dimension.design_tab_scrollable_min_width = global::Google_sheetAndro.Droid.Resource.Dimension.design_tab_scrollable_min_width;
+			global::XFGloss.Droid.Resource.Dimension.design_tab_text_size = global::Google_sheetAndro.Droid.Resource.Dimension.design_tab_text_size;
+			global::XFGloss.Droid.Resource.Dimension.design_tab_text_size_2line = global::Google_sheetAndro.Droid.Resource.Dimension.design_tab_text_size_2line;
+			global::XFGloss.Droid.Resource.Dimension.disabled_alpha_material_dark = global::Google_sheetAndro.Droid.Resource.Dimension.disabled_alpha_material_dark;
+			global::XFGloss.Droid.Resource.Dimension.disabled_alpha_material_light = global::Google_sheetAndro.Droid.Resource.Dimension.disabled_alpha_material_light;
+			global::XFGloss.Droid.Resource.Dimension.highlight_alpha_material_colored = global::Google_sheetAndro.Droid.Resource.Dimension.highlight_alpha_material_colored;
+			global::XFGloss.Droid.Resource.Dimension.highlight_alpha_material_dark = global::Google_sheetAndro.Droid.Resource.Dimension.highlight_alpha_material_dark;
+			global::XFGloss.Droid.Resource.Dimension.highlight_alpha_material_light = global::Google_sheetAndro.Droid.Resource.Dimension.highlight_alpha_material_light;
+			global::XFGloss.Droid.Resource.Dimension.hint_alpha_material_dark = global::Google_sheetAndro.Droid.Resource.Dimension.hint_alpha_material_dark;
+			global::XFGloss.Droid.Resource.Dimension.hint_alpha_material_light = global::Google_sheetAndro.Droid.Resource.Dimension.hint_alpha_material_light;
+			global::XFGloss.Droid.Resource.Dimension.hint_pressed_alpha_material_dark = global::Google_sheetAndro.Droid.Resource.Dimension.hint_pressed_alpha_material_dark;
+			global::XFGloss.Droid.Resource.Dimension.hint_pressed_alpha_material_light = global::Google_sheetAndro.Droid.Resource.Dimension.hint_pressed_alpha_material_light;
+			global::XFGloss.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::Google_sheetAndro.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::XFGloss.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::Google_sheetAndro.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::XFGloss.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::Google_sheetAndro.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::XFGloss.Droid.Resource.Dimension.mr_controller_volume_group_list_item_height = global::Google_sheetAndro.Droid.Resource.Dimension.mr_controller_volume_group_list_item_height;
+			global::XFGloss.Droid.Resource.Dimension.mr_controller_volume_group_list_item_icon_size = global::Google_sheetAndro.Droid.Resource.Dimension.mr_controller_volume_group_list_item_icon_size;
+			global::XFGloss.Droid.Resource.Dimension.mr_controller_volume_group_list_max_height = global::Google_sheetAndro.Droid.Resource.Dimension.mr_controller_volume_group_list_max_height;
+			global::XFGloss.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top = global::Google_sheetAndro.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top;
+			global::XFGloss.Droid.Resource.Dimension.mr_dialog_fixed_width_major = global::Google_sheetAndro.Droid.Resource.Dimension.mr_dialog_fixed_width_major;
+			global::XFGloss.Droid.Resource.Dimension.mr_dialog_fixed_width_minor = global::Google_sheetAndro.Droid.Resource.Dimension.mr_dialog_fixed_width_minor;
+			global::XFGloss.Droid.Resource.Dimension.notification_action_icon_size = global::Google_sheetAndro.Droid.Resource.Dimension.notification_action_icon_size;
+			global::XFGloss.Droid.Resource.Dimension.notification_action_text_size = global::Google_sheetAndro.Droid.Resource.Dimension.notification_action_text_size;
+			global::XFGloss.Droid.Resource.Dimension.notification_big_circle_margin = global::Google_sheetAndro.Droid.Resource.Dimension.notification_big_circle_margin;
+			global::XFGloss.Droid.Resource.Dimension.notification_content_margin_start = global::Google_sheetAndro.Droid.Resource.Dimension.notification_content_margin_start;
+			global::XFGloss.Droid.Resource.Dimension.notification_large_icon_height = global::Google_sheetAndro.Droid.Resource.Dimension.notification_large_icon_height;
+			global::XFGloss.Droid.Resource.Dimension.notification_large_icon_width = global::Google_sheetAndro.Droid.Resource.Dimension.notification_large_icon_width;
+			global::XFGloss.Droid.Resource.Dimension.notification_main_column_padding_top = global::Google_sheetAndro.Droid.Resource.Dimension.notification_main_column_padding_top;
+			global::XFGloss.Droid.Resource.Dimension.notification_media_narrow_margin = global::Google_sheetAndro.Droid.Resource.Dimension.notification_media_narrow_margin;
+			global::XFGloss.Droid.Resource.Dimension.notification_right_icon_size = global::Google_sheetAndro.Droid.Resource.Dimension.notification_right_icon_size;
+			global::XFGloss.Droid.Resource.Dimension.notification_right_side_padding_top = global::Google_sheetAndro.Droid.Resource.Dimension.notification_right_side_padding_top;
+			global::XFGloss.Droid.Resource.Dimension.notification_small_icon_background_padding = global::Google_sheetAndro.Droid.Resource.Dimension.notification_small_icon_background_padding;
+			global::XFGloss.Droid.Resource.Dimension.notification_small_icon_size_as_large = global::Google_sheetAndro.Droid.Resource.Dimension.notification_small_icon_size_as_large;
+			global::XFGloss.Droid.Resource.Dimension.notification_subtext_size = global::Google_sheetAndro.Droid.Resource.Dimension.notification_subtext_size;
+			global::XFGloss.Droid.Resource.Dimension.notification_top_pad = global::Google_sheetAndro.Droid.Resource.Dimension.notification_top_pad;
+			global::XFGloss.Droid.Resource.Dimension.notification_top_pad_large_text = global::Google_sheetAndro.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::XFGloss.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_action_bar_item_background_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_action_bar_item_background_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_btn_borderless_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_btn_borderless_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_btn_check_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_btn_check_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::Google_sheetAndro.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
+			global::XFGloss.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::Google_sheetAndro.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
+			global::XFGloss.Droid.Resource.Drawable.abc_btn_colored_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_btn_colored_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_btn_default_mtrl_shape = global::Google_sheetAndro.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
+			global::XFGloss.Droid.Resource.Drawable.abc_btn_radio_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_btn_radio_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::Google_sheetAndro.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
+			global::XFGloss.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::Google_sheetAndro.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
+			global::XFGloss.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::Google_sheetAndro.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
+			global::XFGloss.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::Google_sheetAndro.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
+			global::XFGloss.Droid.Resource.Drawable.abc_cab_background_internal_bg = global::Google_sheetAndro.Droid.Resource.Drawable.abc_cab_background_internal_bg;
+			global::XFGloss.Droid.Resource.Drawable.abc_cab_background_top_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_cab_background_top_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_control_background_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_control_background_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_dialog_material_background = global::Google_sheetAndro.Droid.Resource.Drawable.abc_dialog_material_background;
+			global::XFGloss.Droid.Resource.Drawable.abc_edit_text_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_edit_text_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_ab_back_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_ab_back_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_clear_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_clear_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_go_search_api_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_go_search_api_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_menu_overflow_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_menu_overflow_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_search_api_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_search_api_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_star_black_16dp = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_star_black_16dp;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_star_black_36dp = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_star_black_36dp;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_star_black_48dp = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_star_black_48dp;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_star_half_black_16dp = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_star_half_black_16dp;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_star_half_black_36dp = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_star_half_black_36dp;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_star_half_black_48dp = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_star_half_black_48dp;
+			global::XFGloss.Droid.Resource.Drawable.abc_ic_voice_search_api_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ic_voice_search_api_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_item_background_holo_dark = global::Google_sheetAndro.Droid.Resource.Drawable.abc_item_background_holo_dark;
+			global::XFGloss.Droid.Resource.Drawable.abc_item_background_holo_light = global::Google_sheetAndro.Droid.Resource.Drawable.abc_item_background_holo_light;
+			global::XFGloss.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_list_focused_holo = global::Google_sheetAndro.Droid.Resource.Drawable.abc_list_focused_holo;
+			global::XFGloss.Droid.Resource.Drawable.abc_list_longpressed_holo = global::Google_sheetAndro.Droid.Resource.Drawable.abc_list_longpressed_holo;
+			global::XFGloss.Droid.Resource.Drawable.abc_list_pressed_holo_dark = global::Google_sheetAndro.Droid.Resource.Drawable.abc_list_pressed_holo_dark;
+			global::XFGloss.Droid.Resource.Drawable.abc_list_pressed_holo_light = global::Google_sheetAndro.Droid.Resource.Drawable.abc_list_pressed_holo_light;
+			global::XFGloss.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::Google_sheetAndro.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
+			global::XFGloss.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::Google_sheetAndro.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
+			global::XFGloss.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::Google_sheetAndro.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
+			global::XFGloss.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light = global::Google_sheetAndro.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light;
+			global::XFGloss.Droid.Resource.Drawable.abc_list_selector_holo_dark = global::Google_sheetAndro.Droid.Resource.Drawable.abc_list_selector_holo_dark;
+			global::XFGloss.Droid.Resource.Drawable.abc_list_selector_holo_light = global::Google_sheetAndro.Droid.Resource.Drawable.abc_list_selector_holo_light;
+			global::XFGloss.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::Google_sheetAndro.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
+			global::XFGloss.Droid.Resource.Drawable.abc_popup_background_mtrl_mult = global::Google_sheetAndro.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
+			global::XFGloss.Droid.Resource.Drawable.abc_ratingbar_indicator_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ratingbar_indicator_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_ratingbar_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ratingbar_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_ratingbar_small_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_ratingbar_small_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::Google_sheetAndro.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
+			global::XFGloss.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005 = global::Google_sheetAndro.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005;
+			global::XFGloss.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_seekbar_thumb_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_seekbar_thumb_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_seekbar_tick_mark_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_seekbar_tick_mark_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_seekbar_track_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_seekbar_track_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_spinner_textfield_background_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_switch_thumb_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_switch_thumb_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_tab_indicator_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_tab_indicator_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_text_cursor_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_text_cursor_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark = global::Google_sheetAndro.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark;
+			global::XFGloss.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light = global::Google_sheetAndro.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light;
+			global::XFGloss.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark = global::Google_sheetAndro.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark;
+			global::XFGloss.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light = global::Google_sheetAndro.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light;
+			global::XFGloss.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark = global::Google_sheetAndro.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark;
+			global::XFGloss.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light = global::Google_sheetAndro.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light;
+			global::XFGloss.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::Google_sheetAndro.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
+			global::XFGloss.Droid.Resource.Drawable.abc_textfield_search_material = global::Google_sheetAndro.Droid.Resource.Drawable.abc_textfield_search_material;
+			global::XFGloss.Droid.Resource.Drawable.abc_vector_test = global::Google_sheetAndro.Droid.Resource.Drawable.abc_vector_test;
+			global::XFGloss.Droid.Resource.Drawable.avd_hide_password = global::Google_sheetAndro.Droid.Resource.Drawable.avd_hide_password;
+			global::XFGloss.Droid.Resource.Drawable.avd_show_password = global::Google_sheetAndro.Droid.Resource.Drawable.avd_show_password;
+			global::XFGloss.Droid.Resource.Drawable.design_bottom_navigation_item_background = global::Google_sheetAndro.Droid.Resource.Drawable.design_bottom_navigation_item_background;
+			global::XFGloss.Droid.Resource.Drawable.design_fab_background = global::Google_sheetAndro.Droid.Resource.Drawable.design_fab_background;
+			global::XFGloss.Droid.Resource.Drawable.design_ic_visibility = global::Google_sheetAndro.Droid.Resource.Drawable.design_ic_visibility;
+			global::XFGloss.Droid.Resource.Drawable.design_ic_visibility_off = global::Google_sheetAndro.Droid.Resource.Drawable.design_ic_visibility_off;
+			global::XFGloss.Droid.Resource.Drawable.design_password_eye = global::Google_sheetAndro.Droid.Resource.Drawable.design_password_eye;
+			global::XFGloss.Droid.Resource.Drawable.design_snackbar_background = global::Google_sheetAndro.Droid.Resource.Drawable.design_snackbar_background;
+			global::XFGloss.Droid.Resource.Drawable.ic_audiotrack_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_audiotrack_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_audiotrack_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_audiotrack_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_dialog_close_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_dialog_close_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_dialog_close_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_dialog_close_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_00 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_00;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_01 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_01;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_02 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_02;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_03 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_03;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_04 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_04;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_05 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_05;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_06 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_06;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_07 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_07;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_08 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_08;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_09 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_09;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_10 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_10;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_11 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_11;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_12 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_12;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_13 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_13;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_14 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_14;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_collapse_15 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_collapse_15;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_00 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_00;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_01 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_01;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_02 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_02;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_03 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_03;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_04 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_04;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_05 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_05;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_06 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_06;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_07 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_07;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_08 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_08;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_09 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_09;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_10 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_10;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_11 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_11;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_12 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_12;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_13 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_13;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_14 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_14;
+			global::XFGloss.Droid.Resource.Drawable.ic_group_expand_15 = global::Google_sheetAndro.Droid.Resource.Drawable.ic_group_expand_15;
+			global::XFGloss.Droid.Resource.Drawable.ic_media_pause_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_media_pause_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_media_pause_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_media_pause_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_media_play_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_media_play_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_media_play_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_media_play_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_media_stop_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_media_stop_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_media_stop_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_media_stop_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_00_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_00_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_00_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_00_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_01_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_01_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_01_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_01_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_02_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_02_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_02_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_02_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_03_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_03_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_03_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_03_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_04_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_04_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_04_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_04_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_05_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_05_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_05_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_05_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_06_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_06_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_06_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_06_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_07_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_07_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_07_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_07_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_08_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_08_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_08_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_08_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_09_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_09_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_09_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_09_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_10_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_10_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_10_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_10_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_11_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_11_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_11_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_11_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_12_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_12_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_12_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_12_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_13_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_13_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_13_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_13_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_14_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_14_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_14_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_14_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_15_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_15_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_15_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_15_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_16_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_16_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_16_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_16_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_17_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_17_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_17_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_17_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_18_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_18_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_18_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_18_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_19_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_19_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_19_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_19_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_20_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_20_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_20_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_20_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_21_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_21_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_21_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_21_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_22_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_22_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connected_22_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connected_22_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_00_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_00_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_00_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_00_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_01_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_01_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_01_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_01_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_02_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_02_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_02_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_02_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_03_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_03_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_03_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_03_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_04_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_04_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_04_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_04_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_05_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_05_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_05_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_05_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_06_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_06_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_06_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_06_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_07_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_07_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_07_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_07_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_08_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_08_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_08_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_08_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_09_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_09_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_09_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_09_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_10_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_10_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_10_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_10_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_11_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_11_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_11_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_11_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_12_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_12_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_12_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_12_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_13_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_13_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_13_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_13_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_14_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_14_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_14_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_14_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_15_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_15_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_15_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_15_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_16_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_16_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_16_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_16_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_17_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_17_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_17_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_17_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_18_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_18_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_18_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_18_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_19_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_19_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_19_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_19_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_20_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_20_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_20_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_20_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_21_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_21_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_21_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_21_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_22_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_22_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_connecting_22_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_connecting_22_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_disabled_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_disabled_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_disabled_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_disabled_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_disconnected_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_disconnected_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_disconnected_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_disconnected_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_mr_button_grey = global::Google_sheetAndro.Droid.Resource.Drawable.ic_mr_button_grey;
+			global::XFGloss.Droid.Resource.Drawable.ic_vol_type_speaker_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_vol_type_speaker_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_vol_type_speaker_group_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_vol_type_speaker_group_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_vol_type_speaker_group_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_vol_type_speaker_group_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_vol_type_speaker_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_vol_type_speaker_light;
+			global::XFGloss.Droid.Resource.Drawable.ic_vol_type_tv_dark = global::Google_sheetAndro.Droid.Resource.Drawable.ic_vol_type_tv_dark;
+			global::XFGloss.Droid.Resource.Drawable.ic_vol_type_tv_light = global::Google_sheetAndro.Droid.Resource.Drawable.ic_vol_type_tv_light;
+			global::XFGloss.Droid.Resource.Drawable.mr_button_connected_dark = global::Google_sheetAndro.Droid.Resource.Drawable.mr_button_connected_dark;
+			global::XFGloss.Droid.Resource.Drawable.mr_button_connected_light = global::Google_sheetAndro.Droid.Resource.Drawable.mr_button_connected_light;
+			global::XFGloss.Droid.Resource.Drawable.mr_button_connecting_dark = global::Google_sheetAndro.Droid.Resource.Drawable.mr_button_connecting_dark;
+			global::XFGloss.Droid.Resource.Drawable.mr_button_connecting_light = global::Google_sheetAndro.Droid.Resource.Drawable.mr_button_connecting_light;
+			global::XFGloss.Droid.Resource.Drawable.mr_button_dark = global::Google_sheetAndro.Droid.Resource.Drawable.mr_button_dark;
+			global::XFGloss.Droid.Resource.Drawable.mr_button_light = global::Google_sheetAndro.Droid.Resource.Drawable.mr_button_light;
+			global::XFGloss.Droid.Resource.Drawable.mr_dialog_close_dark = global::Google_sheetAndro.Droid.Resource.Drawable.mr_dialog_close_dark;
+			global::XFGloss.Droid.Resource.Drawable.mr_dialog_close_light = global::Google_sheetAndro.Droid.Resource.Drawable.mr_dialog_close_light;
+			global::XFGloss.Droid.Resource.Drawable.mr_dialog_material_background_dark = global::Google_sheetAndro.Droid.Resource.Drawable.mr_dialog_material_background_dark;
+			global::XFGloss.Droid.Resource.Drawable.mr_dialog_material_background_light = global::Google_sheetAndro.Droid.Resource.Drawable.mr_dialog_material_background_light;
+			global::XFGloss.Droid.Resource.Drawable.mr_group_collapse = global::Google_sheetAndro.Droid.Resource.Drawable.mr_group_collapse;
+			global::XFGloss.Droid.Resource.Drawable.mr_group_expand = global::Google_sheetAndro.Droid.Resource.Drawable.mr_group_expand;
+			global::XFGloss.Droid.Resource.Drawable.mr_media_pause_dark = global::Google_sheetAndro.Droid.Resource.Drawable.mr_media_pause_dark;
+			global::XFGloss.Droid.Resource.Drawable.mr_media_pause_light = global::Google_sheetAndro.Droid.Resource.Drawable.mr_media_pause_light;
+			global::XFGloss.Droid.Resource.Drawable.mr_media_play_dark = global::Google_sheetAndro.Droid.Resource.Drawable.mr_media_play_dark;
+			global::XFGloss.Droid.Resource.Drawable.mr_media_play_light = global::Google_sheetAndro.Droid.Resource.Drawable.mr_media_play_light;
+			global::XFGloss.Droid.Resource.Drawable.mr_media_stop_dark = global::Google_sheetAndro.Droid.Resource.Drawable.mr_media_stop_dark;
+			global::XFGloss.Droid.Resource.Drawable.mr_media_stop_light = global::Google_sheetAndro.Droid.Resource.Drawable.mr_media_stop_light;
+			global::XFGloss.Droid.Resource.Drawable.mr_vol_type_audiotrack_dark = global::Google_sheetAndro.Droid.Resource.Drawable.mr_vol_type_audiotrack_dark;
+			global::XFGloss.Droid.Resource.Drawable.mr_vol_type_audiotrack_light = global::Google_sheetAndro.Droid.Resource.Drawable.mr_vol_type_audiotrack_light;
+			global::XFGloss.Droid.Resource.Drawable.navigation_empty_icon = global::Google_sheetAndro.Droid.Resource.Drawable.navigation_empty_icon;
+			global::XFGloss.Droid.Resource.Drawable.notification_action_background = global::Google_sheetAndro.Droid.Resource.Drawable.notification_action_background;
+			global::XFGloss.Droid.Resource.Drawable.notification_bg = global::Google_sheetAndro.Droid.Resource.Drawable.notification_bg;
+			global::XFGloss.Droid.Resource.Drawable.notification_bg_low = global::Google_sheetAndro.Droid.Resource.Drawable.notification_bg_low;
+			global::XFGloss.Droid.Resource.Drawable.notification_bg_low_normal = global::Google_sheetAndro.Droid.Resource.Drawable.notification_bg_low_normal;
+			global::XFGloss.Droid.Resource.Drawable.notification_bg_low_pressed = global::Google_sheetAndro.Droid.Resource.Drawable.notification_bg_low_pressed;
+			global::XFGloss.Droid.Resource.Drawable.notification_bg_normal = global::Google_sheetAndro.Droid.Resource.Drawable.notification_bg_normal;
+			global::XFGloss.Droid.Resource.Drawable.notification_bg_normal_pressed = global::Google_sheetAndro.Droid.Resource.Drawable.notification_bg_normal_pressed;
+			global::XFGloss.Droid.Resource.Drawable.notification_icon_background = global::Google_sheetAndro.Droid.Resource.Drawable.notification_icon_background;
+			global::XFGloss.Droid.Resource.Drawable.notification_template_icon_bg = global::Google_sheetAndro.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::XFGloss.Droid.Resource.Drawable.notification_template_icon_low_bg = global::Google_sheetAndro.Droid.Resource.Drawable.notification_template_icon_low_bg;
+			global::XFGloss.Droid.Resource.Drawable.notification_tile_bg = global::Google_sheetAndro.Droid.Resource.Drawable.notification_tile_bg;
+			global::XFGloss.Droid.Resource.Drawable.notify_panel_notification_icon_bg = global::Google_sheetAndro.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
+			global::XFGloss.Droid.Resource.Id.action0 = global::Google_sheetAndro.Droid.Resource.Id.action0;
+			global::XFGloss.Droid.Resource.Id.action_bar = global::Google_sheetAndro.Droid.Resource.Id.action_bar;
+			global::XFGloss.Droid.Resource.Id.action_bar_activity_content = global::Google_sheetAndro.Droid.Resource.Id.action_bar_activity_content;
+			global::XFGloss.Droid.Resource.Id.action_bar_container = global::Google_sheetAndro.Droid.Resource.Id.action_bar_container;
+			global::XFGloss.Droid.Resource.Id.action_bar_root = global::Google_sheetAndro.Droid.Resource.Id.action_bar_root;
+			global::XFGloss.Droid.Resource.Id.action_bar_spinner = global::Google_sheetAndro.Droid.Resource.Id.action_bar_spinner;
+			global::XFGloss.Droid.Resource.Id.action_bar_subtitle = global::Google_sheetAndro.Droid.Resource.Id.action_bar_subtitle;
+			global::XFGloss.Droid.Resource.Id.action_bar_title = global::Google_sheetAndro.Droid.Resource.Id.action_bar_title;
+			global::XFGloss.Droid.Resource.Id.action_container = global::Google_sheetAndro.Droid.Resource.Id.action_container;
+			global::XFGloss.Droid.Resource.Id.action_context_bar = global::Google_sheetAndro.Droid.Resource.Id.action_context_bar;
+			global::XFGloss.Droid.Resource.Id.action_divider = global::Google_sheetAndro.Droid.Resource.Id.action_divider;
+			global::XFGloss.Droid.Resource.Id.action_image = global::Google_sheetAndro.Droid.Resource.Id.action_image;
+			global::XFGloss.Droid.Resource.Id.action_menu_divider = global::Google_sheetAndro.Droid.Resource.Id.action_menu_divider;
+			global::XFGloss.Droid.Resource.Id.action_menu_presenter = global::Google_sheetAndro.Droid.Resource.Id.action_menu_presenter;
+			global::XFGloss.Droid.Resource.Id.action_mode_bar = global::Google_sheetAndro.Droid.Resource.Id.action_mode_bar;
+			global::XFGloss.Droid.Resource.Id.action_mode_bar_stub = global::Google_sheetAndro.Droid.Resource.Id.action_mode_bar_stub;
+			global::XFGloss.Droid.Resource.Id.action_mode_close_button = global::Google_sheetAndro.Droid.Resource.Id.action_mode_close_button;
+			global::XFGloss.Droid.Resource.Id.action_text = global::Google_sheetAndro.Droid.Resource.Id.action_text;
+			global::XFGloss.Droid.Resource.Id.actions = global::Google_sheetAndro.Droid.Resource.Id.actions;
+			global::XFGloss.Droid.Resource.Id.activity_chooser_view_content = global::Google_sheetAndro.Droid.Resource.Id.activity_chooser_view_content;
+			global::XFGloss.Droid.Resource.Id.add = global::Google_sheetAndro.Droid.Resource.Id.add;
+			global::XFGloss.Droid.Resource.Id.alertTitle = global::Google_sheetAndro.Droid.Resource.Id.alertTitle;
+			global::XFGloss.Droid.Resource.Id.all = global::Google_sheetAndro.Droid.Resource.Id.all;
+			global::XFGloss.Droid.Resource.Id.always = global::Google_sheetAndro.Droid.Resource.Id.always;
+			global::XFGloss.Droid.Resource.Id.auto = global::Google_sheetAndro.Droid.Resource.Id.auto;
+			global::XFGloss.Droid.Resource.Id.beginning = global::Google_sheetAndro.Droid.Resource.Id.beginning;
+			global::XFGloss.Droid.Resource.Id.bottom = global::Google_sheetAndro.Droid.Resource.Id.bottom;
+			global::XFGloss.Droid.Resource.Id.buttonPanel = global::Google_sheetAndro.Droid.Resource.Id.buttonPanel;
+			global::XFGloss.Droid.Resource.Id.cancel_action = global::Google_sheetAndro.Droid.Resource.Id.cancel_action;
+			global::XFGloss.Droid.Resource.Id.center = global::Google_sheetAndro.Droid.Resource.Id.center;
+			global::XFGloss.Droid.Resource.Id.center_horizontal = global::Google_sheetAndro.Droid.Resource.Id.center_horizontal;
+			global::XFGloss.Droid.Resource.Id.center_vertical = global::Google_sheetAndro.Droid.Resource.Id.center_vertical;
+			global::XFGloss.Droid.Resource.Id.checkbox = global::Google_sheetAndro.Droid.Resource.Id.checkbox;
+			global::XFGloss.Droid.Resource.Id.chronometer = global::Google_sheetAndro.Droid.Resource.Id.chronometer;
+			global::XFGloss.Droid.Resource.Id.clip_horizontal = global::Google_sheetAndro.Droid.Resource.Id.clip_horizontal;
+			global::XFGloss.Droid.Resource.Id.clip_vertical = global::Google_sheetAndro.Droid.Resource.Id.clip_vertical;
+			global::XFGloss.Droid.Resource.Id.collapseActionView = global::Google_sheetAndro.Droid.Resource.Id.collapseActionView;
+			global::XFGloss.Droid.Resource.Id.container = global::Google_sheetAndro.Droid.Resource.Id.container;
+			global::XFGloss.Droid.Resource.Id.contentPanel = global::Google_sheetAndro.Droid.Resource.Id.contentPanel;
+			global::XFGloss.Droid.Resource.Id.coordinator = global::Google_sheetAndro.Droid.Resource.Id.coordinator;
+			global::XFGloss.Droid.Resource.Id.custom = global::Google_sheetAndro.Droid.Resource.Id.custom;
+			global::XFGloss.Droid.Resource.Id.customPanel = global::Google_sheetAndro.Droid.Resource.Id.customPanel;
+			global::XFGloss.Droid.Resource.Id.decor_content_parent = global::Google_sheetAndro.Droid.Resource.Id.decor_content_parent;
+			global::XFGloss.Droid.Resource.Id.default_activity_button = global::Google_sheetAndro.Droid.Resource.Id.default_activity_button;
+			global::XFGloss.Droid.Resource.Id.design_bottom_sheet = global::Google_sheetAndro.Droid.Resource.Id.design_bottom_sheet;
+			global::XFGloss.Droid.Resource.Id.design_menu_item_action_area = global::Google_sheetAndro.Droid.Resource.Id.design_menu_item_action_area;
+			global::XFGloss.Droid.Resource.Id.design_menu_item_action_area_stub = global::Google_sheetAndro.Droid.Resource.Id.design_menu_item_action_area_stub;
+			global::XFGloss.Droid.Resource.Id.design_menu_item_text = global::Google_sheetAndro.Droid.Resource.Id.design_menu_item_text;
+			global::XFGloss.Droid.Resource.Id.design_navigation_view = global::Google_sheetAndro.Droid.Resource.Id.design_navigation_view;
+			global::XFGloss.Droid.Resource.Id.disableHome = global::Google_sheetAndro.Droid.Resource.Id.disableHome;
+			global::XFGloss.Droid.Resource.Id.edit_query = global::Google_sheetAndro.Droid.Resource.Id.edit_query;
+			global::XFGloss.Droid.Resource.Id.end = global::Google_sheetAndro.Droid.Resource.Id.end;
+			global::XFGloss.Droid.Resource.Id.end_padder = global::Google_sheetAndro.Droid.Resource.Id.end_padder;
+			global::XFGloss.Droid.Resource.Id.enterAlways = global::Google_sheetAndro.Droid.Resource.Id.enterAlways;
+			global::XFGloss.Droid.Resource.Id.enterAlwaysCollapsed = global::Google_sheetAndro.Droid.Resource.Id.enterAlwaysCollapsed;
+			global::XFGloss.Droid.Resource.Id.exitUntilCollapsed = global::Google_sheetAndro.Droid.Resource.Id.exitUntilCollapsed;
+			global::XFGloss.Droid.Resource.Id.expand_activities_button = global::Google_sheetAndro.Droid.Resource.Id.expand_activities_button;
+			global::XFGloss.Droid.Resource.Id.expanded_menu = global::Google_sheetAndro.Droid.Resource.Id.expanded_menu;
+			global::XFGloss.Droid.Resource.Id.fill = global::Google_sheetAndro.Droid.Resource.Id.fill;
+			global::XFGloss.Droid.Resource.Id.fill_horizontal = global::Google_sheetAndro.Droid.Resource.Id.fill_horizontal;
+			global::XFGloss.Droid.Resource.Id.fill_vertical = global::Google_sheetAndro.Droid.Resource.Id.fill_vertical;
+			global::XFGloss.Droid.Resource.Id.@fixed = global::Google_sheetAndro.Droid.Resource.Id.@fixed;
+			global::XFGloss.Droid.Resource.Id.home = global::Google_sheetAndro.Droid.Resource.Id.home;
+			global::XFGloss.Droid.Resource.Id.homeAsUp = global::Google_sheetAndro.Droid.Resource.Id.homeAsUp;
+			global::XFGloss.Droid.Resource.Id.icon = global::Google_sheetAndro.Droid.Resource.Id.icon;
+			global::XFGloss.Droid.Resource.Id.icon_group = global::Google_sheetAndro.Droid.Resource.Id.icon_group;
+			global::XFGloss.Droid.Resource.Id.ifRoom = global::Google_sheetAndro.Droid.Resource.Id.ifRoom;
+			global::XFGloss.Droid.Resource.Id.image = global::Google_sheetAndro.Droid.Resource.Id.image;
+			global::XFGloss.Droid.Resource.Id.info = global::Google_sheetAndro.Droid.Resource.Id.info;
+			global::XFGloss.Droid.Resource.Id.item_touch_helper_previous_elevation = global::Google_sheetAndro.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::XFGloss.Droid.Resource.Id.largeLabel = global::Google_sheetAndro.Droid.Resource.Id.largeLabel;
+			global::XFGloss.Droid.Resource.Id.left = global::Google_sheetAndro.Droid.Resource.Id.left;
+			global::XFGloss.Droid.Resource.Id.line1 = global::Google_sheetAndro.Droid.Resource.Id.line1;
+			global::XFGloss.Droid.Resource.Id.line3 = global::Google_sheetAndro.Droid.Resource.Id.line3;
+			global::XFGloss.Droid.Resource.Id.listMode = global::Google_sheetAndro.Droid.Resource.Id.listMode;
+			global::XFGloss.Droid.Resource.Id.list_item = global::Google_sheetAndro.Droid.Resource.Id.list_item;
+			global::XFGloss.Droid.Resource.Id.masked = global::Google_sheetAndro.Droid.Resource.Id.masked;
+			global::XFGloss.Droid.Resource.Id.media_actions = global::Google_sheetAndro.Droid.Resource.Id.media_actions;
+			global::XFGloss.Droid.Resource.Id.middle = global::Google_sheetAndro.Droid.Resource.Id.middle;
+			global::XFGloss.Droid.Resource.Id.mini = global::Google_sheetAndro.Droid.Resource.Id.mini;
+			global::XFGloss.Droid.Resource.Id.mr_art = global::Google_sheetAndro.Droid.Resource.Id.mr_art;
+			global::XFGloss.Droid.Resource.Id.mr_chooser_list = global::Google_sheetAndro.Droid.Resource.Id.mr_chooser_list;
+			global::XFGloss.Droid.Resource.Id.mr_chooser_route_desc = global::Google_sheetAndro.Droid.Resource.Id.mr_chooser_route_desc;
+			global::XFGloss.Droid.Resource.Id.mr_chooser_route_icon = global::Google_sheetAndro.Droid.Resource.Id.mr_chooser_route_icon;
+			global::XFGloss.Droid.Resource.Id.mr_chooser_route_name = global::Google_sheetAndro.Droid.Resource.Id.mr_chooser_route_name;
+			global::XFGloss.Droid.Resource.Id.mr_chooser_title = global::Google_sheetAndro.Droid.Resource.Id.mr_chooser_title;
+			global::XFGloss.Droid.Resource.Id.mr_close = global::Google_sheetAndro.Droid.Resource.Id.mr_close;
+			global::XFGloss.Droid.Resource.Id.mr_control_divider = global::Google_sheetAndro.Droid.Resource.Id.mr_control_divider;
+			global::XFGloss.Droid.Resource.Id.mr_control_playback_ctrl = global::Google_sheetAndro.Droid.Resource.Id.mr_control_playback_ctrl;
+			global::XFGloss.Droid.Resource.Id.mr_control_subtitle = global::Google_sheetAndro.Droid.Resource.Id.mr_control_subtitle;
+			global::XFGloss.Droid.Resource.Id.mr_control_title = global::Google_sheetAndro.Droid.Resource.Id.mr_control_title;
+			global::XFGloss.Droid.Resource.Id.mr_control_title_container = global::Google_sheetAndro.Droid.Resource.Id.mr_control_title_container;
+			global::XFGloss.Droid.Resource.Id.mr_custom_control = global::Google_sheetAndro.Droid.Resource.Id.mr_custom_control;
+			global::XFGloss.Droid.Resource.Id.mr_default_control = global::Google_sheetAndro.Droid.Resource.Id.mr_default_control;
+			global::XFGloss.Droid.Resource.Id.mr_dialog_area = global::Google_sheetAndro.Droid.Resource.Id.mr_dialog_area;
+			global::XFGloss.Droid.Resource.Id.mr_expandable_area = global::Google_sheetAndro.Droid.Resource.Id.mr_expandable_area;
+			global::XFGloss.Droid.Resource.Id.mr_group_expand_collapse = global::Google_sheetAndro.Droid.Resource.Id.mr_group_expand_collapse;
+			global::XFGloss.Droid.Resource.Id.mr_media_main_control = global::Google_sheetAndro.Droid.Resource.Id.mr_media_main_control;
+			global::XFGloss.Droid.Resource.Id.mr_name = global::Google_sheetAndro.Droid.Resource.Id.mr_name;
+			global::XFGloss.Droid.Resource.Id.mr_playback_control = global::Google_sheetAndro.Droid.Resource.Id.mr_playback_control;
+			global::XFGloss.Droid.Resource.Id.mr_title_bar = global::Google_sheetAndro.Droid.Resource.Id.mr_title_bar;
+			global::XFGloss.Droid.Resource.Id.mr_volume_control = global::Google_sheetAndro.Droid.Resource.Id.mr_volume_control;
+			global::XFGloss.Droid.Resource.Id.mr_volume_group_list = global::Google_sheetAndro.Droid.Resource.Id.mr_volume_group_list;
+			global::XFGloss.Droid.Resource.Id.mr_volume_item_icon = global::Google_sheetAndro.Droid.Resource.Id.mr_volume_item_icon;
+			global::XFGloss.Droid.Resource.Id.mr_volume_slider = global::Google_sheetAndro.Droid.Resource.Id.mr_volume_slider;
+			global::XFGloss.Droid.Resource.Id.multiply = global::Google_sheetAndro.Droid.Resource.Id.multiply;
+			global::XFGloss.Droid.Resource.Id.navigation_header_container = global::Google_sheetAndro.Droid.Resource.Id.navigation_header_container;
+			global::XFGloss.Droid.Resource.Id.never = global::Google_sheetAndro.Droid.Resource.Id.never;
+			global::XFGloss.Droid.Resource.Id.none = global::Google_sheetAndro.Droid.Resource.Id.none;
+			global::XFGloss.Droid.Resource.Id.normal = global::Google_sheetAndro.Droid.Resource.Id.normal;
+			global::XFGloss.Droid.Resource.Id.notification_background = global::Google_sheetAndro.Droid.Resource.Id.notification_background;
+			global::XFGloss.Droid.Resource.Id.notification_main_column = global::Google_sheetAndro.Droid.Resource.Id.notification_main_column;
+			global::XFGloss.Droid.Resource.Id.notification_main_column_container = global::Google_sheetAndro.Droid.Resource.Id.notification_main_column_container;
+			global::XFGloss.Droid.Resource.Id.parallax = global::Google_sheetAndro.Droid.Resource.Id.parallax;
+			global::XFGloss.Droid.Resource.Id.parentPanel = global::Google_sheetAndro.Droid.Resource.Id.parentPanel;
+			global::XFGloss.Droid.Resource.Id.pin = global::Google_sheetAndro.Droid.Resource.Id.pin;
+			global::XFGloss.Droid.Resource.Id.progress_circular = global::Google_sheetAndro.Droid.Resource.Id.progress_circular;
+			global::XFGloss.Droid.Resource.Id.progress_horizontal = global::Google_sheetAndro.Droid.Resource.Id.progress_horizontal;
+			global::XFGloss.Droid.Resource.Id.radio = global::Google_sheetAndro.Droid.Resource.Id.radio;
+			global::XFGloss.Droid.Resource.Id.right = global::Google_sheetAndro.Droid.Resource.Id.right;
+			global::XFGloss.Droid.Resource.Id.right_icon = global::Google_sheetAndro.Droid.Resource.Id.right_icon;
+			global::XFGloss.Droid.Resource.Id.right_side = global::Google_sheetAndro.Droid.Resource.Id.right_side;
+			global::XFGloss.Droid.Resource.Id.screen = global::Google_sheetAndro.Droid.Resource.Id.screen;
+			global::XFGloss.Droid.Resource.Id.scroll = global::Google_sheetAndro.Droid.Resource.Id.scroll;
+			global::XFGloss.Droid.Resource.Id.scrollIndicatorDown = global::Google_sheetAndro.Droid.Resource.Id.scrollIndicatorDown;
+			global::XFGloss.Droid.Resource.Id.scrollIndicatorUp = global::Google_sheetAndro.Droid.Resource.Id.scrollIndicatorUp;
+			global::XFGloss.Droid.Resource.Id.scrollView = global::Google_sheetAndro.Droid.Resource.Id.scrollView;
+			global::XFGloss.Droid.Resource.Id.scrollable = global::Google_sheetAndro.Droid.Resource.Id.scrollable;
+			global::XFGloss.Droid.Resource.Id.search_badge = global::Google_sheetAndro.Droid.Resource.Id.search_badge;
+			global::XFGloss.Droid.Resource.Id.search_bar = global::Google_sheetAndro.Droid.Resource.Id.search_bar;
+			global::XFGloss.Droid.Resource.Id.search_button = global::Google_sheetAndro.Droid.Resource.Id.search_button;
+			global::XFGloss.Droid.Resource.Id.search_close_btn = global::Google_sheetAndro.Droid.Resource.Id.search_close_btn;
+			global::XFGloss.Droid.Resource.Id.search_edit_frame = global::Google_sheetAndro.Droid.Resource.Id.search_edit_frame;
+			global::XFGloss.Droid.Resource.Id.search_go_btn = global::Google_sheetAndro.Droid.Resource.Id.search_go_btn;
+			global::XFGloss.Droid.Resource.Id.search_mag_icon = global::Google_sheetAndro.Droid.Resource.Id.search_mag_icon;
+			global::XFGloss.Droid.Resource.Id.search_plate = global::Google_sheetAndro.Droid.Resource.Id.search_plate;
+			global::XFGloss.Droid.Resource.Id.search_src_text = global::Google_sheetAndro.Droid.Resource.Id.search_src_text;
+			global::XFGloss.Droid.Resource.Id.search_voice_btn = global::Google_sheetAndro.Droid.Resource.Id.search_voice_btn;
+			global::XFGloss.Droid.Resource.Id.select_dialog_listview = global::Google_sheetAndro.Droid.Resource.Id.select_dialog_listview;
+			global::XFGloss.Droid.Resource.Id.shortcut = global::Google_sheetAndro.Droid.Resource.Id.shortcut;
+			global::XFGloss.Droid.Resource.Id.showCustom = global::Google_sheetAndro.Droid.Resource.Id.showCustom;
+			global::XFGloss.Droid.Resource.Id.showHome = global::Google_sheetAndro.Droid.Resource.Id.showHome;
+			global::XFGloss.Droid.Resource.Id.showTitle = global::Google_sheetAndro.Droid.Resource.Id.showTitle;
+			global::XFGloss.Droid.Resource.Id.smallLabel = global::Google_sheetAndro.Droid.Resource.Id.smallLabel;
+			global::XFGloss.Droid.Resource.Id.snackbar_action = global::Google_sheetAndro.Droid.Resource.Id.snackbar_action;
+			global::XFGloss.Droid.Resource.Id.snackbar_text = global::Google_sheetAndro.Droid.Resource.Id.snackbar_text;
+			global::XFGloss.Droid.Resource.Id.snap = global::Google_sheetAndro.Droid.Resource.Id.snap;
+			global::XFGloss.Droid.Resource.Id.spacer = global::Google_sheetAndro.Droid.Resource.Id.spacer;
+			global::XFGloss.Droid.Resource.Id.split_action_bar = global::Google_sheetAndro.Droid.Resource.Id.split_action_bar;
+			global::XFGloss.Droid.Resource.Id.src_atop = global::Google_sheetAndro.Droid.Resource.Id.src_atop;
+			global::XFGloss.Droid.Resource.Id.src_in = global::Google_sheetAndro.Droid.Resource.Id.src_in;
+			global::XFGloss.Droid.Resource.Id.src_over = global::Google_sheetAndro.Droid.Resource.Id.src_over;
+			global::XFGloss.Droid.Resource.Id.start = global::Google_sheetAndro.Droid.Resource.Id.start;
+			global::XFGloss.Droid.Resource.Id.status_bar_latest_event_content = global::Google_sheetAndro.Droid.Resource.Id.status_bar_latest_event_content;
+			global::XFGloss.Droid.Resource.Id.submenuarrow = global::Google_sheetAndro.Droid.Resource.Id.submenuarrow;
+			global::XFGloss.Droid.Resource.Id.submit_area = global::Google_sheetAndro.Droid.Resource.Id.submit_area;
+			global::XFGloss.Droid.Resource.Id.tabMode = global::Google_sheetAndro.Droid.Resource.Id.tabMode;
+			global::XFGloss.Droid.Resource.Id.text = global::Google_sheetAndro.Droid.Resource.Id.text;
+			global::XFGloss.Droid.Resource.Id.text2 = global::Google_sheetAndro.Droid.Resource.Id.text2;
+			global::XFGloss.Droid.Resource.Id.textSpacerNoButtons = global::Google_sheetAndro.Droid.Resource.Id.textSpacerNoButtons;
+			global::XFGloss.Droid.Resource.Id.textSpacerNoTitle = global::Google_sheetAndro.Droid.Resource.Id.textSpacerNoTitle;
+			global::XFGloss.Droid.Resource.Id.text_input_password_toggle = global::Google_sheetAndro.Droid.Resource.Id.text_input_password_toggle;
+			global::XFGloss.Droid.Resource.Id.textinput_counter = global::Google_sheetAndro.Droid.Resource.Id.textinput_counter;
+			global::XFGloss.Droid.Resource.Id.textinput_error = global::Google_sheetAndro.Droid.Resource.Id.textinput_error;
+			global::XFGloss.Droid.Resource.Id.time = global::Google_sheetAndro.Droid.Resource.Id.time;
+			global::XFGloss.Droid.Resource.Id.title = global::Google_sheetAndro.Droid.Resource.Id.title;
+			global::XFGloss.Droid.Resource.Id.titleDividerNoCustom = global::Google_sheetAndro.Droid.Resource.Id.titleDividerNoCustom;
+			global::XFGloss.Droid.Resource.Id.title_template = global::Google_sheetAndro.Droid.Resource.Id.title_template;
+			global::XFGloss.Droid.Resource.Id.top = global::Google_sheetAndro.Droid.Resource.Id.top;
+			global::XFGloss.Droid.Resource.Id.topPanel = global::Google_sheetAndro.Droid.Resource.Id.topPanel;
+			global::XFGloss.Droid.Resource.Id.touch_outside = global::Google_sheetAndro.Droid.Resource.Id.touch_outside;
+			global::XFGloss.Droid.Resource.Id.transition_current_scene = global::Google_sheetAndro.Droid.Resource.Id.transition_current_scene;
+			global::XFGloss.Droid.Resource.Id.transition_scene_layoutid_cache = global::Google_sheetAndro.Droid.Resource.Id.transition_scene_layoutid_cache;
+			global::XFGloss.Droid.Resource.Id.up = global::Google_sheetAndro.Droid.Resource.Id.up;
+			global::XFGloss.Droid.Resource.Id.useLogo = global::Google_sheetAndro.Droid.Resource.Id.useLogo;
+			global::XFGloss.Droid.Resource.Id.view_offset_helper = global::Google_sheetAndro.Droid.Resource.Id.view_offset_helper;
+			global::XFGloss.Droid.Resource.Id.visible = global::Google_sheetAndro.Droid.Resource.Id.visible;
+			global::XFGloss.Droid.Resource.Id.volume_item_container = global::Google_sheetAndro.Droid.Resource.Id.volume_item_container;
+			global::XFGloss.Droid.Resource.Id.withText = global::Google_sheetAndro.Droid.Resource.Id.withText;
+			global::XFGloss.Droid.Resource.Id.wrap_content = global::Google_sheetAndro.Droid.Resource.Id.wrap_content;
+			global::XFGloss.Droid.Resource.Integer.abc_config_activityDefaultDur = global::Google_sheetAndro.Droid.Resource.Integer.abc_config_activityDefaultDur;
+			global::XFGloss.Droid.Resource.Integer.abc_config_activityShortDur = global::Google_sheetAndro.Droid.Resource.Integer.abc_config_activityShortDur;
+			global::XFGloss.Droid.Resource.Integer.app_bar_elevation_anim_duration = global::Google_sheetAndro.Droid.Resource.Integer.app_bar_elevation_anim_duration;
+			global::XFGloss.Droid.Resource.Integer.bottom_sheet_slide_duration = global::Google_sheetAndro.Droid.Resource.Integer.bottom_sheet_slide_duration;
+			global::XFGloss.Droid.Resource.Integer.cancel_button_image_alpha = global::Google_sheetAndro.Droid.Resource.Integer.cancel_button_image_alpha;
+			global::XFGloss.Droid.Resource.Integer.design_snackbar_text_max_lines = global::Google_sheetAndro.Droid.Resource.Integer.design_snackbar_text_max_lines;
+			global::XFGloss.Droid.Resource.Integer.hide_password_duration = global::Google_sheetAndro.Droid.Resource.Integer.hide_password_duration;
+			global::XFGloss.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms = global::Google_sheetAndro.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms;
+			global::XFGloss.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms = global::Google_sheetAndro.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms;
+			global::XFGloss.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms = global::Google_sheetAndro.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms;
+			global::XFGloss.Droid.Resource.Integer.show_password_duration = global::Google_sheetAndro.Droid.Resource.Integer.show_password_duration;
+			global::XFGloss.Droid.Resource.Integer.status_bar_notification_info_maxnum = global::Google_sheetAndro.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::XFGloss.Droid.Resource.Interpolator.mr_fast_out_slow_in = global::Google_sheetAndro.Droid.Resource.Interpolator.mr_fast_out_slow_in;
+			global::XFGloss.Droid.Resource.Interpolator.mr_linear_out_slow_in = global::Google_sheetAndro.Droid.Resource.Interpolator.mr_linear_out_slow_in;
+			global::XFGloss.Droid.Resource.Layout.abc_action_bar_title_item = global::Google_sheetAndro.Droid.Resource.Layout.abc_action_bar_title_item;
+			global::XFGloss.Droid.Resource.Layout.abc_action_bar_up_container = global::Google_sheetAndro.Droid.Resource.Layout.abc_action_bar_up_container;
+			global::XFGloss.Droid.Resource.Layout.abc_action_menu_item_layout = global::Google_sheetAndro.Droid.Resource.Layout.abc_action_menu_item_layout;
+			global::XFGloss.Droid.Resource.Layout.abc_action_menu_layout = global::Google_sheetAndro.Droid.Resource.Layout.abc_action_menu_layout;
+			global::XFGloss.Droid.Resource.Layout.abc_action_mode_bar = global::Google_sheetAndro.Droid.Resource.Layout.abc_action_mode_bar;
+			global::XFGloss.Droid.Resource.Layout.abc_action_mode_close_item_material = global::Google_sheetAndro.Droid.Resource.Layout.abc_action_mode_close_item_material;
+			global::XFGloss.Droid.Resource.Layout.abc_activity_chooser_view = global::Google_sheetAndro.Droid.Resource.Layout.abc_activity_chooser_view;
+			global::XFGloss.Droid.Resource.Layout.abc_activity_chooser_view_list_item = global::Google_sheetAndro.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
+			global::XFGloss.Droid.Resource.Layout.abc_alert_dialog_button_bar_material = global::Google_sheetAndro.Droid.Resource.Layout.abc_alert_dialog_button_bar_material;
+			global::XFGloss.Droid.Resource.Layout.abc_alert_dialog_material = global::Google_sheetAndro.Droid.Resource.Layout.abc_alert_dialog_material;
+			global::XFGloss.Droid.Resource.Layout.abc_alert_dialog_title_material = global::Google_sheetAndro.Droid.Resource.Layout.abc_alert_dialog_title_material;
+			global::XFGloss.Droid.Resource.Layout.abc_dialog_title_material = global::Google_sheetAndro.Droid.Resource.Layout.abc_dialog_title_material;
+			global::XFGloss.Droid.Resource.Layout.abc_expanded_menu_layout = global::Google_sheetAndro.Droid.Resource.Layout.abc_expanded_menu_layout;
+			global::XFGloss.Droid.Resource.Layout.abc_list_menu_item_checkbox = global::Google_sheetAndro.Droid.Resource.Layout.abc_list_menu_item_checkbox;
+			global::XFGloss.Droid.Resource.Layout.abc_list_menu_item_icon = global::Google_sheetAndro.Droid.Resource.Layout.abc_list_menu_item_icon;
+			global::XFGloss.Droid.Resource.Layout.abc_list_menu_item_layout = global::Google_sheetAndro.Droid.Resource.Layout.abc_list_menu_item_layout;
+			global::XFGloss.Droid.Resource.Layout.abc_list_menu_item_radio = global::Google_sheetAndro.Droid.Resource.Layout.abc_list_menu_item_radio;
+			global::XFGloss.Droid.Resource.Layout.abc_popup_menu_header_item_layout = global::Google_sheetAndro.Droid.Resource.Layout.abc_popup_menu_header_item_layout;
+			global::XFGloss.Droid.Resource.Layout.abc_popup_menu_item_layout = global::Google_sheetAndro.Droid.Resource.Layout.abc_popup_menu_item_layout;
+			global::XFGloss.Droid.Resource.Layout.abc_screen_content_include = global::Google_sheetAndro.Droid.Resource.Layout.abc_screen_content_include;
+			global::XFGloss.Droid.Resource.Layout.abc_screen_simple = global::Google_sheetAndro.Droid.Resource.Layout.abc_screen_simple;
+			global::XFGloss.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode = global::Google_sheetAndro.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode;
+			global::XFGloss.Droid.Resource.Layout.abc_screen_toolbar = global::Google_sheetAndro.Droid.Resource.Layout.abc_screen_toolbar;
+			global::XFGloss.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line = global::Google_sheetAndro.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
+			global::XFGloss.Droid.Resource.Layout.abc_search_view = global::Google_sheetAndro.Droid.Resource.Layout.abc_search_view;
+			global::XFGloss.Droid.Resource.Layout.abc_select_dialog_material = global::Google_sheetAndro.Droid.Resource.Layout.abc_select_dialog_material;
+			global::XFGloss.Droid.Resource.Layout.design_bottom_navigation_item = global::Google_sheetAndro.Droid.Resource.Layout.design_bottom_navigation_item;
+			global::XFGloss.Droid.Resource.Layout.design_bottom_sheet_dialog = global::Google_sheetAndro.Droid.Resource.Layout.design_bottom_sheet_dialog;
+			global::XFGloss.Droid.Resource.Layout.design_layout_snackbar = global::Google_sheetAndro.Droid.Resource.Layout.design_layout_snackbar;
+			global::XFGloss.Droid.Resource.Layout.design_layout_snackbar_include = global::Google_sheetAndro.Droid.Resource.Layout.design_layout_snackbar_include;
+			global::XFGloss.Droid.Resource.Layout.design_layout_tab_icon = global::Google_sheetAndro.Droid.Resource.Layout.design_layout_tab_icon;
+			global::XFGloss.Droid.Resource.Layout.design_layout_tab_text = global::Google_sheetAndro.Droid.Resource.Layout.design_layout_tab_text;
+			global::XFGloss.Droid.Resource.Layout.design_menu_item_action_area = global::Google_sheetAndro.Droid.Resource.Layout.design_menu_item_action_area;
+			global::XFGloss.Droid.Resource.Layout.design_navigation_item = global::Google_sheetAndro.Droid.Resource.Layout.design_navigation_item;
+			global::XFGloss.Droid.Resource.Layout.design_navigation_item_header = global::Google_sheetAndro.Droid.Resource.Layout.design_navigation_item_header;
+			global::XFGloss.Droid.Resource.Layout.design_navigation_item_separator = global::Google_sheetAndro.Droid.Resource.Layout.design_navigation_item_separator;
+			global::XFGloss.Droid.Resource.Layout.design_navigation_item_subheader = global::Google_sheetAndro.Droid.Resource.Layout.design_navigation_item_subheader;
+			global::XFGloss.Droid.Resource.Layout.design_navigation_menu = global::Google_sheetAndro.Droid.Resource.Layout.design_navigation_menu;
+			global::XFGloss.Droid.Resource.Layout.design_navigation_menu_item = global::Google_sheetAndro.Droid.Resource.Layout.design_navigation_menu_item;
+			global::XFGloss.Droid.Resource.Layout.design_text_input_password_icon = global::Google_sheetAndro.Droid.Resource.Layout.design_text_input_password_icon;
+			global::XFGloss.Droid.Resource.Layout.mr_chooser_dialog = global::Google_sheetAndro.Droid.Resource.Layout.mr_chooser_dialog;
+			global::XFGloss.Droid.Resource.Layout.mr_chooser_list_item = global::Google_sheetAndro.Droid.Resource.Layout.mr_chooser_list_item;
+			global::XFGloss.Droid.Resource.Layout.mr_controller_material_dialog_b = global::Google_sheetAndro.Droid.Resource.Layout.mr_controller_material_dialog_b;
+			global::XFGloss.Droid.Resource.Layout.mr_controller_volume_item = global::Google_sheetAndro.Droid.Resource.Layout.mr_controller_volume_item;
+			global::XFGloss.Droid.Resource.Layout.mr_playback_control = global::Google_sheetAndro.Droid.Resource.Layout.mr_playback_control;
+			global::XFGloss.Droid.Resource.Layout.mr_volume_control = global::Google_sheetAndro.Droid.Resource.Layout.mr_volume_control;
+			global::XFGloss.Droid.Resource.Layout.notification_action = global::Google_sheetAndro.Droid.Resource.Layout.notification_action;
+			global::XFGloss.Droid.Resource.Layout.notification_action_tombstone = global::Google_sheetAndro.Droid.Resource.Layout.notification_action_tombstone;
+			global::XFGloss.Droid.Resource.Layout.notification_media_action = global::Google_sheetAndro.Droid.Resource.Layout.notification_media_action;
+			global::XFGloss.Droid.Resource.Layout.notification_media_cancel_action = global::Google_sheetAndro.Droid.Resource.Layout.notification_media_cancel_action;
+			global::XFGloss.Droid.Resource.Layout.notification_template_big_media = global::Google_sheetAndro.Droid.Resource.Layout.notification_template_big_media;
+			global::XFGloss.Droid.Resource.Layout.notification_template_big_media_custom = global::Google_sheetAndro.Droid.Resource.Layout.notification_template_big_media_custom;
+			global::XFGloss.Droid.Resource.Layout.notification_template_big_media_narrow = global::Google_sheetAndro.Droid.Resource.Layout.notification_template_big_media_narrow;
+			global::XFGloss.Droid.Resource.Layout.notification_template_big_media_narrow_custom = global::Google_sheetAndro.Droid.Resource.Layout.notification_template_big_media_narrow_custom;
+			global::XFGloss.Droid.Resource.Layout.notification_template_custom_big = global::Google_sheetAndro.Droid.Resource.Layout.notification_template_custom_big;
+			global::XFGloss.Droid.Resource.Layout.notification_template_icon_group = global::Google_sheetAndro.Droid.Resource.Layout.notification_template_icon_group;
+			global::XFGloss.Droid.Resource.Layout.notification_template_lines_media = global::Google_sheetAndro.Droid.Resource.Layout.notification_template_lines_media;
+			global::XFGloss.Droid.Resource.Layout.notification_template_media = global::Google_sheetAndro.Droid.Resource.Layout.notification_template_media;
+			global::XFGloss.Droid.Resource.Layout.notification_template_media_custom = global::Google_sheetAndro.Droid.Resource.Layout.notification_template_media_custom;
+			global::XFGloss.Droid.Resource.Layout.notification_template_part_chronometer = global::Google_sheetAndro.Droid.Resource.Layout.notification_template_part_chronometer;
+			global::XFGloss.Droid.Resource.Layout.notification_template_part_time = global::Google_sheetAndro.Droid.Resource.Layout.notification_template_part_time;
+			global::XFGloss.Droid.Resource.Layout.select_dialog_item_material = global::Google_sheetAndro.Droid.Resource.Layout.select_dialog_item_material;
+			global::XFGloss.Droid.Resource.Layout.select_dialog_multichoice_material = global::Google_sheetAndro.Droid.Resource.Layout.select_dialog_multichoice_material;
+			global::XFGloss.Droid.Resource.Layout.select_dialog_singlechoice_material = global::Google_sheetAndro.Droid.Resource.Layout.select_dialog_singlechoice_material;
+			global::XFGloss.Droid.Resource.Layout.support_simple_spinner_dropdown_item = global::Google_sheetAndro.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::XFGloss.Droid.Resource.String.abc_action_bar_home_description = global::Google_sheetAndro.Droid.Resource.String.abc_action_bar_home_description;
+			global::XFGloss.Droid.Resource.String.abc_action_bar_up_description = global::Google_sheetAndro.Droid.Resource.String.abc_action_bar_up_description;
+			global::XFGloss.Droid.Resource.String.abc_action_menu_overflow_description = global::Google_sheetAndro.Droid.Resource.String.abc_action_menu_overflow_description;
+			global::XFGloss.Droid.Resource.String.abc_action_mode_done = global::Google_sheetAndro.Droid.Resource.String.abc_action_mode_done;
+			global::XFGloss.Droid.Resource.String.abc_activity_chooser_view_see_all = global::Google_sheetAndro.Droid.Resource.String.abc_activity_chooser_view_see_all;
+			global::XFGloss.Droid.Resource.String.abc_activitychooserview_choose_application = global::Google_sheetAndro.Droid.Resource.String.abc_activitychooserview_choose_application;
+			global::XFGloss.Droid.Resource.String.abc_capital_off = global::Google_sheetAndro.Droid.Resource.String.abc_capital_off;
+			global::XFGloss.Droid.Resource.String.abc_capital_on = global::Google_sheetAndro.Droid.Resource.String.abc_capital_on;
+			global::XFGloss.Droid.Resource.String.abc_font_family_body_1_material = global::Google_sheetAndro.Droid.Resource.String.abc_font_family_body_1_material;
+			global::XFGloss.Droid.Resource.String.abc_font_family_body_2_material = global::Google_sheetAndro.Droid.Resource.String.abc_font_family_body_2_material;
+			global::XFGloss.Droid.Resource.String.abc_font_family_button_material = global::Google_sheetAndro.Droid.Resource.String.abc_font_family_button_material;
+			global::XFGloss.Droid.Resource.String.abc_font_family_caption_material = global::Google_sheetAndro.Droid.Resource.String.abc_font_family_caption_material;
+			global::XFGloss.Droid.Resource.String.abc_font_family_display_1_material = global::Google_sheetAndro.Droid.Resource.String.abc_font_family_display_1_material;
+			global::XFGloss.Droid.Resource.String.abc_font_family_display_2_material = global::Google_sheetAndro.Droid.Resource.String.abc_font_family_display_2_material;
+			global::XFGloss.Droid.Resource.String.abc_font_family_display_3_material = global::Google_sheetAndro.Droid.Resource.String.abc_font_family_display_3_material;
+			global::XFGloss.Droid.Resource.String.abc_font_family_display_4_material = global::Google_sheetAndro.Droid.Resource.String.abc_font_family_display_4_material;
+			global::XFGloss.Droid.Resource.String.abc_font_family_headline_material = global::Google_sheetAndro.Droid.Resource.String.abc_font_family_headline_material;
+			global::XFGloss.Droid.Resource.String.abc_font_family_menu_material = global::Google_sheetAndro.Droid.Resource.String.abc_font_family_menu_material;
+			global::XFGloss.Droid.Resource.String.abc_font_family_subhead_material = global::Google_sheetAndro.Droid.Resource.String.abc_font_family_subhead_material;
+			global::XFGloss.Droid.Resource.String.abc_font_family_title_material = global::Google_sheetAndro.Droid.Resource.String.abc_font_family_title_material;
+			global::XFGloss.Droid.Resource.String.abc_search_hint = global::Google_sheetAndro.Droid.Resource.String.abc_search_hint;
+			global::XFGloss.Droid.Resource.String.abc_searchview_description_clear = global::Google_sheetAndro.Droid.Resource.String.abc_searchview_description_clear;
+			global::XFGloss.Droid.Resource.String.abc_searchview_description_query = global::Google_sheetAndro.Droid.Resource.String.abc_searchview_description_query;
+			global::XFGloss.Droid.Resource.String.abc_searchview_description_search = global::Google_sheetAndro.Droid.Resource.String.abc_searchview_description_search;
+			global::XFGloss.Droid.Resource.String.abc_searchview_description_submit = global::Google_sheetAndro.Droid.Resource.String.abc_searchview_description_submit;
+			global::XFGloss.Droid.Resource.String.abc_searchview_description_voice = global::Google_sheetAndro.Droid.Resource.String.abc_searchview_description_voice;
+			global::XFGloss.Droid.Resource.String.abc_shareactionprovider_share_with = global::Google_sheetAndro.Droid.Resource.String.abc_shareactionprovider_share_with;
+			global::XFGloss.Droid.Resource.String.abc_shareactionprovider_share_with_application = global::Google_sheetAndro.Droid.Resource.String.abc_shareactionprovider_share_with_application;
+			global::XFGloss.Droid.Resource.String.abc_toolbar_collapse_description = global::Google_sheetAndro.Droid.Resource.String.abc_toolbar_collapse_description;
+			global::XFGloss.Droid.Resource.String.appbar_scrolling_view_behavior = global::Google_sheetAndro.Droid.Resource.String.appbar_scrolling_view_behavior;
+			global::XFGloss.Droid.Resource.String.bottom_sheet_behavior = global::Google_sheetAndro.Droid.Resource.String.bottom_sheet_behavior;
+			global::XFGloss.Droid.Resource.String.character_counter_pattern = global::Google_sheetAndro.Droid.Resource.String.character_counter_pattern;
+			global::XFGloss.Droid.Resource.String.mr_button_content_description = global::Google_sheetAndro.Droid.Resource.String.mr_button_content_description;
+			global::XFGloss.Droid.Resource.String.mr_cast_button_connected = global::Google_sheetAndro.Droid.Resource.String.mr_cast_button_connected;
+			global::XFGloss.Droid.Resource.String.mr_cast_button_connecting = global::Google_sheetAndro.Droid.Resource.String.mr_cast_button_connecting;
+			global::XFGloss.Droid.Resource.String.mr_cast_button_disconnected = global::Google_sheetAndro.Droid.Resource.String.mr_cast_button_disconnected;
+			global::XFGloss.Droid.Resource.String.mr_chooser_searching = global::Google_sheetAndro.Droid.Resource.String.mr_chooser_searching;
+			global::XFGloss.Droid.Resource.String.mr_chooser_title = global::Google_sheetAndro.Droid.Resource.String.mr_chooser_title;
+			global::XFGloss.Droid.Resource.String.mr_controller_album_art = global::Google_sheetAndro.Droid.Resource.String.mr_controller_album_art;
+			global::XFGloss.Droid.Resource.String.mr_controller_casting_screen = global::Google_sheetAndro.Droid.Resource.String.mr_controller_casting_screen;
+			global::XFGloss.Droid.Resource.String.mr_controller_close_description = global::Google_sheetAndro.Droid.Resource.String.mr_controller_close_description;
+			global::XFGloss.Droid.Resource.String.mr_controller_collapse_group = global::Google_sheetAndro.Droid.Resource.String.mr_controller_collapse_group;
+			global::XFGloss.Droid.Resource.String.mr_controller_disconnect = global::Google_sheetAndro.Droid.Resource.String.mr_controller_disconnect;
+			global::XFGloss.Droid.Resource.String.mr_controller_expand_group = global::Google_sheetAndro.Droid.Resource.String.mr_controller_expand_group;
+			global::XFGloss.Droid.Resource.String.mr_controller_no_info_available = global::Google_sheetAndro.Droid.Resource.String.mr_controller_no_info_available;
+			global::XFGloss.Droid.Resource.String.mr_controller_no_media_selected = global::Google_sheetAndro.Droid.Resource.String.mr_controller_no_media_selected;
+			global::XFGloss.Droid.Resource.String.mr_controller_pause = global::Google_sheetAndro.Droid.Resource.String.mr_controller_pause;
+			global::XFGloss.Droid.Resource.String.mr_controller_play = global::Google_sheetAndro.Droid.Resource.String.mr_controller_play;
+			global::XFGloss.Droid.Resource.String.mr_controller_stop = global::Google_sheetAndro.Droid.Resource.String.mr_controller_stop;
+			global::XFGloss.Droid.Resource.String.mr_controller_stop_casting = global::Google_sheetAndro.Droid.Resource.String.mr_controller_stop_casting;
+			global::XFGloss.Droid.Resource.String.mr_controller_volume_slider = global::Google_sheetAndro.Droid.Resource.String.mr_controller_volume_slider;
+			global::XFGloss.Droid.Resource.String.mr_system_route_name = global::Google_sheetAndro.Droid.Resource.String.mr_system_route_name;
+			global::XFGloss.Droid.Resource.String.mr_user_route_category_name = global::Google_sheetAndro.Droid.Resource.String.mr_user_route_category_name;
+			global::XFGloss.Droid.Resource.String.password_toggle_content_description = global::Google_sheetAndro.Droid.Resource.String.password_toggle_content_description;
+			global::XFGloss.Droid.Resource.String.path_password_eye = global::Google_sheetAndro.Droid.Resource.String.path_password_eye;
+			global::XFGloss.Droid.Resource.String.path_password_eye_mask_strike_through = global::Google_sheetAndro.Droid.Resource.String.path_password_eye_mask_strike_through;
+			global::XFGloss.Droid.Resource.String.path_password_eye_mask_visible = global::Google_sheetAndro.Droid.Resource.String.path_password_eye_mask_visible;
+			global::XFGloss.Droid.Resource.String.path_password_strike_through = global::Google_sheetAndro.Droid.Resource.String.path_password_strike_through;
+			global::XFGloss.Droid.Resource.String.search_menu_title = global::Google_sheetAndro.Droid.Resource.String.search_menu_title;
+			global::XFGloss.Droid.Resource.String.status_bar_notification_info_overflow = global::Google_sheetAndro.Droid.Resource.String.status_bar_notification_info_overflow;
+			global::XFGloss.Droid.Resource.Style.AlertDialog_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.AlertDialog_AppCompat;
+			global::XFGloss.Droid.Resource.Style.AlertDialog_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.AlertDialog_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.Animation_AppCompat_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Animation_AppCompat_Dialog;
+			global::XFGloss.Droid.Resource.Style.Animation_AppCompat_DropDownUp = global::Google_sheetAndro.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
+			global::XFGloss.Droid.Resource.Style.Animation_Design_BottomSheetDialog = global::Google_sheetAndro.Droid.Resource.Style.Animation_Design_BottomSheetDialog;
+			global::XFGloss.Droid.Resource.Style.Base_AlertDialog_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Base_AlertDialog_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.Base_Animation_AppCompat_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Base_Animation_AppCompat_Dialog;
+			global::XFGloss.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::Google_sheetAndro.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
+			global::XFGloss.Droid.Resource.Style.Base_CardView = global::Google_sheetAndro.Droid.Resource.Style.Base_CardView;
+			global::XFGloss.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::XFGloss.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::Google_sheetAndro.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
+			global::XFGloss.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::Google_sheetAndro.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
+			global::XFGloss.Droid.Resource.Style.Base_ThemeOverlay_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::Google_sheetAndro.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
+			global::XFGloss.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::Google_sheetAndro.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
+			global::XFGloss.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::Google_sheetAndro.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::XFGloss.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog;
+			global::XFGloss.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert = global::Google_sheetAndro.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert;
+			global::XFGloss.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.Base_V21_Theme_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Base_V21_Theme_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
+			global::XFGloss.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
+			global::XFGloss.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog;
+			global::XFGloss.Droid.Resource.Style.Base_V22_Theme_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Base_V22_Theme_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.Base_V23_Theme_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Base_V23_Theme_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.Base_V7_Theme_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Base_V7_Theme_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
+			global::XFGloss.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
+			global::XFGloss.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog;
+			global::XFGloss.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::Google_sheetAndro.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
+			global::XFGloss.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::Google_sheetAndro.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Button = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Button;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_EditText = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_EditText;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ListView = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_SearchView = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Spinner = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
+			global::XFGloss.Droid.Resource.Style.Base_Widget_Design_TabLayout = global::Google_sheetAndro.Droid.Resource.Style.Base_Widget_Design_TabLayout;
+			global::XFGloss.Droid.Resource.Style.CardView = global::Google_sheetAndro.Droid.Resource.Style.CardView;
+			global::XFGloss.Droid.Resource.Style.CardView_Dark = global::Google_sheetAndro.Droid.Resource.Style.CardView_Dark;
+			global::XFGloss.Droid.Resource.Style.CardView_Light = global::Google_sheetAndro.Droid.Resource.Style.CardView_Light;
+			global::XFGloss.Droid.Resource.Style.Platform_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Platform_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Platform_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.Platform_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::Google_sheetAndro.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
+			global::XFGloss.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.Platform_V21_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Platform_V21_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Platform_V21_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.Platform_V21_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.Platform_V25_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Platform_V25_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Platform_V25_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.Platform_V25_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner = global::Google_sheetAndro.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
+			global::XFGloss.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
+			global::XFGloss.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::Google_sheetAndro.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
+			global::XFGloss.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::Google_sheetAndro.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
+			global::XFGloss.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::Google_sheetAndro.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
+			global::XFGloss.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::Google_sheetAndro.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
+			global::XFGloss.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::Google_sheetAndro.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
+			global::XFGloss.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::Google_sheetAndro.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
+			global::XFGloss.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::Google_sheetAndro.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
+			global::XFGloss.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::Google_sheetAndro.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
+			global::XFGloss.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::Google_sheetAndro.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
+			global::XFGloss.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::Google_sheetAndro.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
+			global::XFGloss.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::Google_sheetAndro.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
+			global::XFGloss.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::Google_sheetAndro.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
+			global::XFGloss.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::Google_sheetAndro.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Body1 = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Body2 = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Button = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Button;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Caption = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Caption;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Display1 = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Display1;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Display2 = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Display2;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Display3 = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Display3;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Display4 = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Display4;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Headline = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Headline;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Inverse = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Inverse;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Large = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Large;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Medium = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Menu = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Small = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Small;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Subhead = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Subhead;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Title = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Title;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_Design_Counter = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_Design_Counter;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_Design_Error = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_Design_Error;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_Design_Hint = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_Design_Hint;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_Design_Tab = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_Design_Tab;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_MediaRouter_PrimaryText = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_MediaRouter_PrimaryText;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_MediaRouter_SecondaryText = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_MediaRouter_SecondaryText;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_MediaRouter_Title = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_MediaRouter_Title;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::XFGloss.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::Google_sheetAndro.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_CompactMenu = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_DayNight = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_DayNight;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_Dialog;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_Light_Dialog = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
+			global::XFGloss.Droid.Resource.Style.Theme_AppCompat_NoActionBar = global::Google_sheetAndro.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
+			global::XFGloss.Droid.Resource.Style.Theme_Design = global::Google_sheetAndro.Droid.Resource.Style.Theme_Design;
+			global::XFGloss.Droid.Resource.Style.Theme_Design_BottomSheetDialog = global::Google_sheetAndro.Droid.Resource.Style.Theme_Design_BottomSheetDialog;
+			global::XFGloss.Droid.Resource.Style.Theme_Design_Light = global::Google_sheetAndro.Droid.Resource.Style.Theme_Design_Light;
+			global::XFGloss.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::Google_sheetAndro.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog;
+			global::XFGloss.Droid.Resource.Style.Theme_Design_Light_NoActionBar = global::Google_sheetAndro.Droid.Resource.Style.Theme_Design_Light_NoActionBar;
+			global::XFGloss.Droid.Resource.Style.Theme_Design_NoActionBar = global::Google_sheetAndro.Droid.Resource.Style.Theme_Design_NoActionBar;
+			global::XFGloss.Droid.Resource.Style.Theme_MediaRouter = global::Google_sheetAndro.Droid.Resource.Style.Theme_MediaRouter;
+			global::XFGloss.Droid.Resource.Style.Theme_MediaRouter_Light = global::Google_sheetAndro.Droid.Resource.Style.Theme_MediaRouter_Light;
+			global::XFGloss.Droid.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel = global::Google_sheetAndro.Droid.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel;
+			global::XFGloss.Droid.Resource.Style.Theme_MediaRouter_LightControlPanel = global::Google_sheetAndro.Droid.Resource.Style.Theme_MediaRouter_LightControlPanel;
+			global::XFGloss.Droid.Resource.Style.ThemeOverlay_AppCompat = global::Google_sheetAndro.Droid.Resource.Style.ThemeOverlay_AppCompat;
+			global::XFGloss.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::Google_sheetAndro.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
+			global::XFGloss.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark = global::Google_sheetAndro.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
+			global::XFGloss.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::Google_sheetAndro.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::XFGloss.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::Google_sheetAndro.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
+			global::XFGloss.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::Google_sheetAndro.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
+			global::XFGloss.Droid.Resource.Style.ThemeOverlay_AppCompat_Light = global::Google_sheetAndro.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
+			global::XFGloss.Droid.Resource.Style.ThemeOverlay_MediaRouter_Dark = global::Google_sheetAndro.Droid.Resource.Style.ThemeOverlay_MediaRouter_Dark;
+			global::XFGloss.Droid.Resource.Style.ThemeOverlay_MediaRouter_Light = global::Google_sheetAndro.Droid.Resource.Style.ThemeOverlay_MediaRouter_Light;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ActionBar = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ActionBar;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ActionButton = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ActionButton;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ActionMode = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ActionMode;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Button = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Button;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Button_Borderless = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Button_Colored = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Button_Small = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Button_Small;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ButtonBar = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_EditText = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_EditText;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ImageButton = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ImageButton;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_SearchView = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ListMenuView = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ListMenuView;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ListView = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ListView;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ListView_Menu = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_PopupMenu = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_PopupWindow = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ProgressBar = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ProgressBar;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_RatingBar = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_RatingBar;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_SearchView = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_SearchView;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_SeekBar = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_SeekBar;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Spinner = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Spinner;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Toolbar = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Toolbar;
+			global::XFGloss.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::Google_sheetAndro.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
+			global::XFGloss.Droid.Resource.Style.Widget_Design_AppBarLayout = global::Google_sheetAndro.Droid.Resource.Style.Widget_Design_AppBarLayout;
+			global::XFGloss.Droid.Resource.Style.Widget_Design_BottomNavigationView = global::Google_sheetAndro.Droid.Resource.Style.Widget_Design_BottomNavigationView;
+			global::XFGloss.Droid.Resource.Style.Widget_Design_BottomSheet_Modal = global::Google_sheetAndro.Droid.Resource.Style.Widget_Design_BottomSheet_Modal;
+			global::XFGloss.Droid.Resource.Style.Widget_Design_CollapsingToolbar = global::Google_sheetAndro.Droid.Resource.Style.Widget_Design_CollapsingToolbar;
+			global::XFGloss.Droid.Resource.Style.Widget_Design_FloatingActionButton = global::Google_sheetAndro.Droid.Resource.Style.Widget_Design_FloatingActionButton;
+			global::XFGloss.Droid.Resource.Style.Widget_Design_NavigationView = global::Google_sheetAndro.Droid.Resource.Style.Widget_Design_NavigationView;
+			global::XFGloss.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::Google_sheetAndro.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
+			global::XFGloss.Droid.Resource.Style.Widget_Design_Snackbar = global::Google_sheetAndro.Droid.Resource.Style.Widget_Design_Snackbar;
+			global::XFGloss.Droid.Resource.Style.Widget_Design_TabLayout = global::Google_sheetAndro.Droid.Resource.Style.Widget_Design_TabLayout;
+			global::XFGloss.Droid.Resource.Style.Widget_Design_TextInputLayout = global::Google_sheetAndro.Droid.Resource.Style.Widget_Design_TextInputLayout;
+			global::XFGloss.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton = global::Google_sheetAndro.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton;
+			global::XFGloss.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton = global::Google_sheetAndro.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_background = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_background;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_backgroundSplit = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_backgroundSplit;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_backgroundStacked = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_backgroundStacked;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_contentInsetEnd = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_contentInsetLeft = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_contentInsetRight = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_contentInsetRight;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_contentInsetStart = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_contentInsetStart;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_customNavigationLayout = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_displayOptions = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_displayOptions;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_divider = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_divider;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_elevation = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_elevation;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_height = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_height;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_hideOnContentScroll = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_hideOnContentScroll;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_homeLayout = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_homeLayout;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_icon = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_icon;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_itemPadding = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_itemPadding;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_logo = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_logo;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_navigationMode = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_navigationMode;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_popupTheme = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_popupTheme;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_progressBarPadding = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_progressBarPadding;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_progressBarStyle = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_progressBarStyle;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_subtitle = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_subtitle;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_subtitleTextStyle = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_title = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_title;
+			global::XFGloss.Droid.Resource.Styleable.ActionBar_titleTextStyle = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBar_titleTextStyle;
+			global::XFGloss.Droid.Resource.Styleable.ActionBarLayout = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBarLayout;
+			global::XFGloss.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::Google_sheetAndro.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
+			global::XFGloss.Droid.Resource.Styleable.ActionMenuItemView = global::Google_sheetAndro.Droid.Resource.Styleable.ActionMenuItemView;
+			global::XFGloss.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth = global::Google_sheetAndro.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
+			global::XFGloss.Droid.Resource.Styleable.ActionMenuView = global::Google_sheetAndro.Droid.Resource.Styleable.ActionMenuView;
+			global::XFGloss.Droid.Resource.Styleable.ActionMode = global::Google_sheetAndro.Droid.Resource.Styleable.ActionMode;
+			global::XFGloss.Droid.Resource.Styleable.ActionMode_background = global::Google_sheetAndro.Droid.Resource.Styleable.ActionMode_background;
+			global::XFGloss.Droid.Resource.Styleable.ActionMode_backgroundSplit = global::Google_sheetAndro.Droid.Resource.Styleable.ActionMode_backgroundSplit;
+			global::XFGloss.Droid.Resource.Styleable.ActionMode_closeItemLayout = global::Google_sheetAndro.Droid.Resource.Styleable.ActionMode_closeItemLayout;
+			global::XFGloss.Droid.Resource.Styleable.ActionMode_height = global::Google_sheetAndro.Droid.Resource.Styleable.ActionMode_height;
+			global::XFGloss.Droid.Resource.Styleable.ActionMode_subtitleTextStyle = global::Google_sheetAndro.Droid.Resource.Styleable.ActionMode_subtitleTextStyle;
+			global::XFGloss.Droid.Resource.Styleable.ActionMode_titleTextStyle = global::Google_sheetAndro.Droid.Resource.Styleable.ActionMode_titleTextStyle;
+			global::XFGloss.Droid.Resource.Styleable.ActivityChooserView = global::Google_sheetAndro.Droid.Resource.Styleable.ActivityChooserView;
+			global::XFGloss.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::Google_sheetAndro.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
+			global::XFGloss.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount = global::Google_sheetAndro.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
+			global::XFGloss.Droid.Resource.Styleable.AlertDialog = global::Google_sheetAndro.Droid.Resource.Styleable.AlertDialog;
+			global::XFGloss.Droid.Resource.Styleable.AlertDialog_android_layout = global::Google_sheetAndro.Droid.Resource.Styleable.AlertDialog_android_layout;
+			global::XFGloss.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::Google_sheetAndro.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
+			global::XFGloss.Droid.Resource.Styleable.AlertDialog_listItemLayout = global::Google_sheetAndro.Droid.Resource.Styleable.AlertDialog_listItemLayout;
+			global::XFGloss.Droid.Resource.Styleable.AlertDialog_listLayout = global::Google_sheetAndro.Droid.Resource.Styleable.AlertDialog_listLayout;
+			global::XFGloss.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::Google_sheetAndro.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
+			global::XFGloss.Droid.Resource.Styleable.AlertDialog_showTitle = global::Google_sheetAndro.Droid.Resource.Styleable.AlertDialog_showTitle;
+			global::XFGloss.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::Google_sheetAndro.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
+			global::XFGloss.Droid.Resource.Styleable.AppBarLayout = global::Google_sheetAndro.Droid.Resource.Styleable.AppBarLayout;
+			global::XFGloss.Droid.Resource.Styleable.AppBarLayout_android_background = global::Google_sheetAndro.Droid.Resource.Styleable.AppBarLayout_android_background;
+			global::XFGloss.Droid.Resource.Styleable.AppBarLayout_elevation = global::Google_sheetAndro.Droid.Resource.Styleable.AppBarLayout_elevation;
+			global::XFGloss.Droid.Resource.Styleable.AppBarLayout_expanded = global::Google_sheetAndro.Droid.Resource.Styleable.AppBarLayout_expanded;
+			global::XFGloss.Droid.Resource.Styleable.AppBarLayoutStates = global::Google_sheetAndro.Droid.Resource.Styleable.AppBarLayoutStates;
+			global::XFGloss.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed = global::Google_sheetAndro.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed;
+			global::XFGloss.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible = global::Google_sheetAndro.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible;
+			global::XFGloss.Droid.Resource.Styleable.AppBarLayout_Layout = global::Google_sheetAndro.Droid.Resource.Styleable.AppBarLayout_Layout;
+			global::XFGloss.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags = global::Google_sheetAndro.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags;
+			global::XFGloss.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator = global::Google_sheetAndro.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatImageView = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatImageView;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatImageView_android_src = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatImageView_android_src;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatImageView_srcCompat = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatImageView_srcCompat;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatImageView_tint = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatImageView_tint;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatImageView_tintMode = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatImageView_tintMode;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatSeekBar = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatSeekBar;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatSeekBar_tickMark = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatSeekBar_tickMark;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTextHelper = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTextHelper;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTextView = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTextView;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTextView_textAllCaps = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionBarSize = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionBarSize;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_buttonStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_buttonStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_colorAccent = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_colorAccent;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_colorPrimary = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_colorPrimary;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_controlBackground = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_controlBackground;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_dialogTheme = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_dialogTheme;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_dividerVertical = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_dividerVertical;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_editTextBackground = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_editTextBackground;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_editTextColor = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_editTextColor;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_editTextStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_editTextStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_panelBackground = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_panelBackground;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_switchStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_switchStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_windowActionBar = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_windowActionBar;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
+			global::XFGloss.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle = global::Google_sheetAndro.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle;
+			global::XFGloss.Droid.Resource.Styleable.BottomNavigationView = global::Google_sheetAndro.Droid.Resource.Styleable.BottomNavigationView;
+			global::XFGloss.Droid.Resource.Styleable.BottomNavigationView_elevation = global::Google_sheetAndro.Droid.Resource.Styleable.BottomNavigationView_elevation;
+			global::XFGloss.Droid.Resource.Styleable.BottomNavigationView_itemBackground = global::Google_sheetAndro.Droid.Resource.Styleable.BottomNavigationView_itemBackground;
+			global::XFGloss.Droid.Resource.Styleable.BottomNavigationView_itemIconTint = global::Google_sheetAndro.Droid.Resource.Styleable.BottomNavigationView_itemIconTint;
+			global::XFGloss.Droid.Resource.Styleable.BottomNavigationView_itemTextColor = global::Google_sheetAndro.Droid.Resource.Styleable.BottomNavigationView_itemTextColor;
+			global::XFGloss.Droid.Resource.Styleable.BottomNavigationView_menu = global::Google_sheetAndro.Droid.Resource.Styleable.BottomNavigationView_menu;
+			global::XFGloss.Droid.Resource.Styleable.BottomSheetBehavior_Layout = global::Google_sheetAndro.Droid.Resource.Styleable.BottomSheetBehavior_Layout;
+			global::XFGloss.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable = global::Google_sheetAndro.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable;
+			global::XFGloss.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight = global::Google_sheetAndro.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight;
+			global::XFGloss.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed = global::Google_sheetAndro.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed;
+			global::XFGloss.Droid.Resource.Styleable.ButtonBarLayout = global::Google_sheetAndro.Droid.Resource.Styleable.ButtonBarLayout;
+			global::XFGloss.Droid.Resource.Styleable.ButtonBarLayout_allowStacking = global::Google_sheetAndro.Droid.Resource.Styleable.ButtonBarLayout_allowStacking;
+			global::XFGloss.Droid.Resource.Styleable.CardView = global::Google_sheetAndro.Droid.Resource.Styleable.CardView;
+			global::XFGloss.Droid.Resource.Styleable.CardView_android_minHeight = global::Google_sheetAndro.Droid.Resource.Styleable.CardView_android_minHeight;
+			global::XFGloss.Droid.Resource.Styleable.CardView_android_minWidth = global::Google_sheetAndro.Droid.Resource.Styleable.CardView_android_minWidth;
+			global::XFGloss.Droid.Resource.Styleable.CardView_cardBackgroundColor = global::Google_sheetAndro.Droid.Resource.Styleable.CardView_cardBackgroundColor;
+			global::XFGloss.Droid.Resource.Styleable.CardView_cardCornerRadius = global::Google_sheetAndro.Droid.Resource.Styleable.CardView_cardCornerRadius;
+			global::XFGloss.Droid.Resource.Styleable.CardView_cardElevation = global::Google_sheetAndro.Droid.Resource.Styleable.CardView_cardElevation;
+			global::XFGloss.Droid.Resource.Styleable.CardView_cardMaxElevation = global::Google_sheetAndro.Droid.Resource.Styleable.CardView_cardMaxElevation;
+			global::XFGloss.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap = global::Google_sheetAndro.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap;
+			global::XFGloss.Droid.Resource.Styleable.CardView_cardUseCompatPadding = global::Google_sheetAndro.Droid.Resource.Styleable.CardView_cardUseCompatPadding;
+			global::XFGloss.Droid.Resource.Styleable.CardView_contentPadding = global::Google_sheetAndro.Droid.Resource.Styleable.CardView_contentPadding;
+			global::XFGloss.Droid.Resource.Styleable.CardView_contentPaddingBottom = global::Google_sheetAndro.Droid.Resource.Styleable.CardView_contentPaddingBottom;
+			global::XFGloss.Droid.Resource.Styleable.CardView_contentPaddingLeft = global::Google_sheetAndro.Droid.Resource.Styleable.CardView_contentPaddingLeft;
+			global::XFGloss.Droid.Resource.Styleable.CardView_contentPaddingRight = global::Google_sheetAndro.Droid.Resource.Styleable.CardView_contentPaddingRight;
+			global::XFGloss.Droid.Resource.Styleable.CardView_contentPaddingTop = global::Google_sheetAndro.Droid.Resource.Styleable.CardView_contentPaddingTop;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_title = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_title;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode;
+			global::XFGloss.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = global::Google_sheetAndro.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier;
+			global::XFGloss.Droid.Resource.Styleable.ColorStateListItem = global::Google_sheetAndro.Droid.Resource.Styleable.ColorStateListItem;
+			global::XFGloss.Droid.Resource.Styleable.ColorStateListItem_alpha = global::Google_sheetAndro.Droid.Resource.Styleable.ColorStateListItem_alpha;
+			global::XFGloss.Droid.Resource.Styleable.ColorStateListItem_android_alpha = global::Google_sheetAndro.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
+			global::XFGloss.Droid.Resource.Styleable.ColorStateListItem_android_color = global::Google_sheetAndro.Droid.Resource.Styleable.ColorStateListItem_android_color;
+			global::XFGloss.Droid.Resource.Styleable.CompoundButton = global::Google_sheetAndro.Droid.Resource.Styleable.CompoundButton;
+			global::XFGloss.Droid.Resource.Styleable.CompoundButton_android_button = global::Google_sheetAndro.Droid.Resource.Styleable.CompoundButton_android_button;
+			global::XFGloss.Droid.Resource.Styleable.CompoundButton_buttonTint = global::Google_sheetAndro.Droid.Resource.Styleable.CompoundButton_buttonTint;
+			global::XFGloss.Droid.Resource.Styleable.CompoundButton_buttonTintMode = global::Google_sheetAndro.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
+			global::XFGloss.Droid.Resource.Styleable.CoordinatorLayout = global::Google_sheetAndro.Droid.Resource.Styleable.CoordinatorLayout;
+			global::XFGloss.Droid.Resource.Styleable.CoordinatorLayout_keylines = global::Google_sheetAndro.Droid.Resource.Styleable.CoordinatorLayout_keylines;
+			global::XFGloss.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::Google_sheetAndro.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
+			global::XFGloss.Droid.Resource.Styleable.CoordinatorLayout_Layout = global::Google_sheetAndro.Droid.Resource.Styleable.CoordinatorLayout_Layout;
+			global::XFGloss.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity = global::Google_sheetAndro.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity;
+			global::XFGloss.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor = global::Google_sheetAndro.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor;
+			global::XFGloss.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity = global::Google_sheetAndro.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity;
+			global::XFGloss.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior = global::Google_sheetAndro.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior;
+			global::XFGloss.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges = global::Google_sheetAndro.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges;
+			global::XFGloss.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::Google_sheetAndro.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
+			global::XFGloss.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::Google_sheetAndro.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
+			global::XFGloss.Droid.Resource.Styleable.DesignTheme = global::Google_sheetAndro.Droid.Resource.Styleable.DesignTheme;
+			global::XFGloss.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::Google_sheetAndro.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
+			global::XFGloss.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle = global::Google_sheetAndro.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle;
+			global::XFGloss.Droid.Resource.Styleable.DrawerArrowToggle = global::Google_sheetAndro.Droid.Resource.Styleable.DrawerArrowToggle;
+			global::XFGloss.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::Google_sheetAndro.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
+			global::XFGloss.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::Google_sheetAndro.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
+			global::XFGloss.Droid.Resource.Styleable.DrawerArrowToggle_barLength = global::Google_sheetAndro.Droid.Resource.Styleable.DrawerArrowToggle_barLength;
+			global::XFGloss.Droid.Resource.Styleable.DrawerArrowToggle_color = global::Google_sheetAndro.Droid.Resource.Styleable.DrawerArrowToggle_color;
+			global::XFGloss.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize = global::Google_sheetAndro.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize;
+			global::XFGloss.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::Google_sheetAndro.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
+			global::XFGloss.Droid.Resource.Styleable.DrawerArrowToggle_spinBars = global::Google_sheetAndro.Droid.Resource.Styleable.DrawerArrowToggle_spinBars;
+			global::XFGloss.Droid.Resource.Styleable.DrawerArrowToggle_thickness = global::Google_sheetAndro.Droid.Resource.Styleable.DrawerArrowToggle_thickness;
+			global::XFGloss.Droid.Resource.Styleable.FloatingActionButton = global::Google_sheetAndro.Droid.Resource.Styleable.FloatingActionButton;
+			global::XFGloss.Droid.Resource.Styleable.FloatingActionButton_backgroundTint = global::Google_sheetAndro.Droid.Resource.Styleable.FloatingActionButton_backgroundTint;
+			global::XFGloss.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::Google_sheetAndro.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
+			global::XFGloss.Droid.Resource.Styleable.FloatingActionButton_borderWidth = global::Google_sheetAndro.Droid.Resource.Styleable.FloatingActionButton_borderWidth;
+			global::XFGloss.Droid.Resource.Styleable.FloatingActionButton_elevation = global::Google_sheetAndro.Droid.Resource.Styleable.FloatingActionButton_elevation;
+			global::XFGloss.Droid.Resource.Styleable.FloatingActionButton_fabSize = global::Google_sheetAndro.Droid.Resource.Styleable.FloatingActionButton_fabSize;
+			global::XFGloss.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::Google_sheetAndro.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
+			global::XFGloss.Droid.Resource.Styleable.FloatingActionButton_rippleColor = global::Google_sheetAndro.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
+			global::XFGloss.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding = global::Google_sheetAndro.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding;
+			global::XFGloss.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::Google_sheetAndro.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
+			global::XFGloss.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide = global::Google_sheetAndro.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide;
+			global::XFGloss.Droid.Resource.Styleable.ForegroundLinearLayout = global::Google_sheetAndro.Droid.Resource.Styleable.ForegroundLinearLayout;
+			global::XFGloss.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::Google_sheetAndro.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground;
+			global::XFGloss.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::Google_sheetAndro.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
+			global::XFGloss.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::Google_sheetAndro.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_divider = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_divider;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_showDividers = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_Layout = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
+			global::XFGloss.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::Google_sheetAndro.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
+			global::XFGloss.Droid.Resource.Styleable.ListPopupWindow = global::Google_sheetAndro.Droid.Resource.Styleable.ListPopupWindow;
+			global::XFGloss.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::Google_sheetAndro.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
+			global::XFGloss.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::Google_sheetAndro.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
+			global::XFGloss.Droid.Resource.Styleable.MediaRouteButton = global::Google_sheetAndro.Droid.Resource.Styleable.MediaRouteButton;
+			global::XFGloss.Droid.Resource.Styleable.MediaRouteButton_android_minHeight = global::Google_sheetAndro.Droid.Resource.Styleable.MediaRouteButton_android_minHeight;
+			global::XFGloss.Droid.Resource.Styleable.MediaRouteButton_android_minWidth = global::Google_sheetAndro.Droid.Resource.Styleable.MediaRouteButton_android_minWidth;
+			global::XFGloss.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable = global::Google_sheetAndro.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable;
+			global::XFGloss.Droid.Resource.Styleable.MenuGroup = global::Google_sheetAndro.Droid.Resource.Styleable.MenuGroup;
+			global::XFGloss.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior = global::Google_sheetAndro.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
+			global::XFGloss.Droid.Resource.Styleable.MenuGroup_android_enabled = global::Google_sheetAndro.Droid.Resource.Styleable.MenuGroup_android_enabled;
+			global::XFGloss.Droid.Resource.Styleable.MenuGroup_android_id = global::Google_sheetAndro.Droid.Resource.Styleable.MenuGroup_android_id;
+			global::XFGloss.Droid.Resource.Styleable.MenuGroup_android_menuCategory = global::Google_sheetAndro.Droid.Resource.Styleable.MenuGroup_android_menuCategory;
+			global::XFGloss.Droid.Resource.Styleable.MenuGroup_android_orderInCategory = global::Google_sheetAndro.Droid.Resource.Styleable.MenuGroup_android_orderInCategory;
+			global::XFGloss.Droid.Resource.Styleable.MenuGroup_android_visible = global::Google_sheetAndro.Droid.Resource.Styleable.MenuGroup_android_visible;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_actionLayout = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_actionLayout;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_actionProviderClass = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_actionProviderClass;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_actionViewClass = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_actionViewClass;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_android_checkable = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_android_checkable;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_android_checked = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_android_checked;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_android_enabled = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_android_enabled;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_android_icon = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_android_icon;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_android_id = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_android_id;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_android_menuCategory = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_android_menuCategory;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_android_numericShortcut = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_android_numericShortcut;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_android_onClick = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_android_onClick;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_android_orderInCategory = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_android_orderInCategory;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_android_title = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_android_title;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_android_titleCondensed = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_android_titleCondensed;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_android_visible = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_android_visible;
+			global::XFGloss.Droid.Resource.Styleable.MenuItem_showAsAction = global::Google_sheetAndro.Droid.Resource.Styleable.MenuItem_showAsAction;
+			global::XFGloss.Droid.Resource.Styleable.MenuView = global::Google_sheetAndro.Droid.Resource.Styleable.MenuView;
+			global::XFGloss.Droid.Resource.Styleable.MenuView_android_headerBackground = global::Google_sheetAndro.Droid.Resource.Styleable.MenuView_android_headerBackground;
+			global::XFGloss.Droid.Resource.Styleable.MenuView_android_horizontalDivider = global::Google_sheetAndro.Droid.Resource.Styleable.MenuView_android_horizontalDivider;
+			global::XFGloss.Droid.Resource.Styleable.MenuView_android_itemBackground = global::Google_sheetAndro.Droid.Resource.Styleable.MenuView_android_itemBackground;
+			global::XFGloss.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::Google_sheetAndro.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
+			global::XFGloss.Droid.Resource.Styleable.MenuView_android_itemTextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.MenuView_android_itemTextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.MenuView_android_verticalDivider = global::Google_sheetAndro.Droid.Resource.Styleable.MenuView_android_verticalDivider;
+			global::XFGloss.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle = global::Google_sheetAndro.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
+			global::XFGloss.Droid.Resource.Styleable.MenuView_preserveIconSpacing = global::Google_sheetAndro.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
+			global::XFGloss.Droid.Resource.Styleable.MenuView_subMenuArrow = global::Google_sheetAndro.Droid.Resource.Styleable.MenuView_subMenuArrow;
+			global::XFGloss.Droid.Resource.Styleable.NavigationView = global::Google_sheetAndro.Droid.Resource.Styleable.NavigationView;
+			global::XFGloss.Droid.Resource.Styleable.NavigationView_android_background = global::Google_sheetAndro.Droid.Resource.Styleable.NavigationView_android_background;
+			global::XFGloss.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::Google_sheetAndro.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows;
+			global::XFGloss.Droid.Resource.Styleable.NavigationView_android_maxWidth = global::Google_sheetAndro.Droid.Resource.Styleable.NavigationView_android_maxWidth;
+			global::XFGloss.Droid.Resource.Styleable.NavigationView_elevation = global::Google_sheetAndro.Droid.Resource.Styleable.NavigationView_elevation;
+			global::XFGloss.Droid.Resource.Styleable.NavigationView_headerLayout = global::Google_sheetAndro.Droid.Resource.Styleable.NavigationView_headerLayout;
+			global::XFGloss.Droid.Resource.Styleable.NavigationView_itemBackground = global::Google_sheetAndro.Droid.Resource.Styleable.NavigationView_itemBackground;
+			global::XFGloss.Droid.Resource.Styleable.NavigationView_itemIconTint = global::Google_sheetAndro.Droid.Resource.Styleable.NavigationView_itemIconTint;
+			global::XFGloss.Droid.Resource.Styleable.NavigationView_itemTextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.NavigationView_itemTextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.NavigationView_itemTextColor = global::Google_sheetAndro.Droid.Resource.Styleable.NavigationView_itemTextColor;
+			global::XFGloss.Droid.Resource.Styleable.NavigationView_menu = global::Google_sheetAndro.Droid.Resource.Styleable.NavigationView_menu;
+			global::XFGloss.Droid.Resource.Styleable.PopupWindow = global::Google_sheetAndro.Droid.Resource.Styleable.PopupWindow;
+			global::XFGloss.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle = global::Google_sheetAndro.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle;
+			global::XFGloss.Droid.Resource.Styleable.PopupWindow_android_popupBackground = global::Google_sheetAndro.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
+			global::XFGloss.Droid.Resource.Styleable.PopupWindow_overlapAnchor = global::Google_sheetAndro.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
+			global::XFGloss.Droid.Resource.Styleable.PopupWindowBackgroundState = global::Google_sheetAndro.Droid.Resource.Styleable.PopupWindowBackgroundState;
+			global::XFGloss.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::Google_sheetAndro.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
+			global::XFGloss.Droid.Resource.Styleable.RecycleListView = global::Google_sheetAndro.Droid.Resource.Styleable.RecycleListView;
+			global::XFGloss.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::Google_sheetAndro.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
+			global::XFGloss.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::Google_sheetAndro.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
+			global::XFGloss.Droid.Resource.Styleable.RecyclerView = global::Google_sheetAndro.Droid.Resource.Styleable.RecyclerView;
+			global::XFGloss.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability = global::Google_sheetAndro.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
+			global::XFGloss.Droid.Resource.Styleable.RecyclerView_android_orientation = global::Google_sheetAndro.Droid.Resource.Styleable.RecyclerView_android_orientation;
+			global::XFGloss.Droid.Resource.Styleable.RecyclerView_layoutManager = global::Google_sheetAndro.Droid.Resource.Styleable.RecyclerView_layoutManager;
+			global::XFGloss.Droid.Resource.Styleable.RecyclerView_reverseLayout = global::Google_sheetAndro.Droid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::XFGloss.Droid.Resource.Styleable.RecyclerView_spanCount = global::Google_sheetAndro.Droid.Resource.Styleable.RecyclerView_spanCount;
+			global::XFGloss.Droid.Resource.Styleable.RecyclerView_stackFromEnd = global::Google_sheetAndro.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
+			global::XFGloss.Droid.Resource.Styleable.ScrimInsetsFrameLayout = global::Google_sheetAndro.Droid.Resource.Styleable.ScrimInsetsFrameLayout;
+			global::XFGloss.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::Google_sheetAndro.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
+			global::XFGloss.Droid.Resource.Styleable.ScrollingViewBehavior_Layout = global::Google_sheetAndro.Droid.Resource.Styleable.ScrollingViewBehavior_Layout;
+			global::XFGloss.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::Google_sheetAndro.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
+			global::XFGloss.Droid.Resource.Styleable.SearchView = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_android_focusable = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_android_focusable;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_android_imeOptions = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_android_imeOptions;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_android_inputType = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_android_inputType;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_android_maxWidth = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_android_maxWidth;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_closeIcon = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_closeIcon;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_commitIcon = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_commitIcon;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_defaultQueryHint = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_defaultQueryHint;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_goIcon = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_goIcon;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_iconifiedByDefault = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_iconifiedByDefault;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_layout = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_layout;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_queryBackground = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_queryBackground;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_queryHint = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_queryHint;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_searchHintIcon = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_searchHintIcon;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_searchIcon = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_searchIcon;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_submitBackground = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_submitBackground;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_suggestionRowLayout = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
+			global::XFGloss.Droid.Resource.Styleable.SearchView_voiceIcon = global::Google_sheetAndro.Droid.Resource.Styleable.SearchView_voiceIcon;
+			global::XFGloss.Droid.Resource.Styleable.SnackbarLayout = global::Google_sheetAndro.Droid.Resource.Styleable.SnackbarLayout;
+			global::XFGloss.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth = global::Google_sheetAndro.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
+			global::XFGloss.Droid.Resource.Styleable.SnackbarLayout_elevation = global::Google_sheetAndro.Droid.Resource.Styleable.SnackbarLayout_elevation;
+			global::XFGloss.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::Google_sheetAndro.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
+			global::XFGloss.Droid.Resource.Styleable.Spinner = global::Google_sheetAndro.Droid.Resource.Styleable.Spinner;
+			global::XFGloss.Droid.Resource.Styleable.Spinner_android_dropDownWidth = global::Google_sheetAndro.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
+			global::XFGloss.Droid.Resource.Styleable.Spinner_android_entries = global::Google_sheetAndro.Droid.Resource.Styleable.Spinner_android_entries;
+			global::XFGloss.Droid.Resource.Styleable.Spinner_android_popupBackground = global::Google_sheetAndro.Droid.Resource.Styleable.Spinner_android_popupBackground;
+			global::XFGloss.Droid.Resource.Styleable.Spinner_android_prompt = global::Google_sheetAndro.Droid.Resource.Styleable.Spinner_android_prompt;
+			global::XFGloss.Droid.Resource.Styleable.Spinner_popupTheme = global::Google_sheetAndro.Droid.Resource.Styleable.Spinner_popupTheme;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_android_textOff = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_android_textOff;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_android_textOn = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_android_textOn;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_android_thumb = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_android_thumb;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_showText = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_showText;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_splitTrack = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_splitTrack;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_switchMinWidth = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_switchMinWidth;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_switchPadding = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_switchPadding;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_thumbTint = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_thumbTint;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_thumbTintMode = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_thumbTintMode;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_track = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_track;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_trackTint = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_trackTint;
+			global::XFGloss.Droid.Resource.Styleable.SwitchCompat_trackTintMode = global::Google_sheetAndro.Droid.Resource.Styleable.SwitchCompat_trackTintMode;
+			global::XFGloss.Droid.Resource.Styleable.TabItem = global::Google_sheetAndro.Droid.Resource.Styleable.TabItem;
+			global::XFGloss.Droid.Resource.Styleable.TabItem_android_icon = global::Google_sheetAndro.Droid.Resource.Styleable.TabItem_android_icon;
+			global::XFGloss.Droid.Resource.Styleable.TabItem_android_layout = global::Google_sheetAndro.Droid.Resource.Styleable.TabItem_android_layout;
+			global::XFGloss.Droid.Resource.Styleable.TabItem_android_text = global::Google_sheetAndro.Droid.Resource.Styleable.TabItem_android_text;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabBackground = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabBackground;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabContentStart = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabContentStart;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabGravity = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabGravity;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabIndicatorColor = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabIndicatorColor;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabMaxWidth = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabMaxWidth;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabMinWidth = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabMinWidth;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabMode = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabMode;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabPadding = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabPadding;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabPaddingBottom = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabPaddingBottom;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabPaddingEnd = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabPaddingEnd;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabPaddingStart = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabPaddingStart;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabPaddingTop = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabPaddingTop;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabTextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabTextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.TabLayout_tabTextColor = global::Google_sheetAndro.Droid.Resource.Styleable.TabLayout_tabTextColor;
+			global::XFGloss.Droid.Resource.Styleable.TextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.TextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.TextAppearance_android_shadowColor = global::Google_sheetAndro.Droid.Resource.Styleable.TextAppearance_android_shadowColor;
+			global::XFGloss.Droid.Resource.Styleable.TextAppearance_android_shadowDx = global::Google_sheetAndro.Droid.Resource.Styleable.TextAppearance_android_shadowDx;
+			global::XFGloss.Droid.Resource.Styleable.TextAppearance_android_shadowDy = global::Google_sheetAndro.Droid.Resource.Styleable.TextAppearance_android_shadowDy;
+			global::XFGloss.Droid.Resource.Styleable.TextAppearance_android_shadowRadius = global::Google_sheetAndro.Droid.Resource.Styleable.TextAppearance_android_shadowRadius;
+			global::XFGloss.Droid.Resource.Styleable.TextAppearance_android_textColor = global::Google_sheetAndro.Droid.Resource.Styleable.TextAppearance_android_textColor;
+			global::XFGloss.Droid.Resource.Styleable.TextAppearance_android_textColorHint = global::Google_sheetAndro.Droid.Resource.Styleable.TextAppearance_android_textColorHint;
+			global::XFGloss.Droid.Resource.Styleable.TextAppearance_android_textSize = global::Google_sheetAndro.Droid.Resource.Styleable.TextAppearance_android_textSize;
+			global::XFGloss.Droid.Resource.Styleable.TextAppearance_android_textStyle = global::Google_sheetAndro.Droid.Resource.Styleable.TextAppearance_android_textStyle;
+			global::XFGloss.Droid.Resource.Styleable.TextAppearance_android_typeface = global::Google_sheetAndro.Droid.Resource.Styleable.TextAppearance_android_typeface;
+			global::XFGloss.Droid.Resource.Styleable.TextAppearance_textAllCaps = global::Google_sheetAndro.Droid.Resource.Styleable.TextAppearance_textAllCaps;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_android_hint = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_android_hint;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_android_textColorHint = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_counterEnabled = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_counterEnabled;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_counterMaxLength = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_counterMaxLength;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_errorEnabled = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_errorEnabled;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_hintEnabled = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_hintEnabled;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint;
+			global::XFGloss.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode = global::Google_sheetAndro.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_android_gravity = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_android_gravity;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_android_minHeight = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_android_minHeight;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_buttonGravity = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_buttonGravity;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_collapseContentDescription = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_collapseIcon = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_collapseIcon;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_contentInsetEnd = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_contentInsetLeft = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_contentInsetRight = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_contentInsetRight;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_contentInsetStart = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_contentInsetStart;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_logo = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_logo;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_logoDescription = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_logoDescription;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_maxButtonHeight = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_navigationContentDescription = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_navigationIcon = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_navigationIcon;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_popupTheme = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_popupTheme;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_subtitle = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_subtitle;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_subtitleTextColor = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_title = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_title;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_titleMargin = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_titleMargin;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_titleMarginBottom = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_titleMarginEnd = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_titleMarginStart = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_titleMarginStart;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_titleMarginTop = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_titleMarginTop;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_titleMargins = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_titleMargins;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_titleTextAppearance = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
+			global::XFGloss.Droid.Resource.Styleable.Toolbar_titleTextColor = global::Google_sheetAndro.Droid.Resource.Styleable.Toolbar_titleTextColor;
+			global::XFGloss.Droid.Resource.Styleable.View = global::Google_sheetAndro.Droid.Resource.Styleable.View;
+			global::XFGloss.Droid.Resource.Styleable.View_android_focusable = global::Google_sheetAndro.Droid.Resource.Styleable.View_android_focusable;
+			global::XFGloss.Droid.Resource.Styleable.View_android_theme = global::Google_sheetAndro.Droid.Resource.Styleable.View_android_theme;
+			global::XFGloss.Droid.Resource.Styleable.View_paddingEnd = global::Google_sheetAndro.Droid.Resource.Styleable.View_paddingEnd;
+			global::XFGloss.Droid.Resource.Styleable.View_paddingStart = global::Google_sheetAndro.Droid.Resource.Styleable.View_paddingStart;
+			global::XFGloss.Droid.Resource.Styleable.View_theme = global::Google_sheetAndro.Droid.Resource.Styleable.View_theme;
+			global::XFGloss.Droid.Resource.Styleable.ViewBackgroundHelper = global::Google_sheetAndro.Droid.Resource.Styleable.ViewBackgroundHelper;
+			global::XFGloss.Droid.Resource.Styleable.ViewBackgroundHelper_android_background = global::Google_sheetAndro.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
+			global::XFGloss.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::Google_sheetAndro.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
+			global::XFGloss.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::Google_sheetAndro.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
+			global::XFGloss.Droid.Resource.Styleable.ViewStubCompat = global::Google_sheetAndro.Droid.Resource.Styleable.ViewStubCompat;
+			global::XFGloss.Droid.Resource.Styleable.ViewStubCompat_android_id = global::Google_sheetAndro.Droid.Resource.Styleable.ViewStubCompat_android_id;
+			global::XFGloss.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::Google_sheetAndro.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
+			global::XFGloss.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::Google_sheetAndro.Droid.Resource.Styleable.ViewStubCompat_android_layout;
 		}
 		
 		public partial class Animation
@@ -5906,805 +7976,832 @@ namespace Google_sheetAndro.Droid
 			public const int back_book = 2131165276;
 			
 			// aapt resource value: 0x7F07005D
-			public const int clear_day = 2131165277;
+			public const int bar = 2131165277;
 			
 			// aapt resource value: 0x7F07005E
-			public const int clear_night = 2131165278;
+			public const int clear_day = 2131165278;
 			
 			// aapt resource value: 0x7F07005F
-			public const int cloudy = 2131165279;
+			public const int clear_night = 2131165279;
 			
 			// aapt resource value: 0x7F070060
-			public const int common_full_open_on_phone = 2131165280;
+			public const int cloudy = 2131165280;
 			
 			// aapt resource value: 0x7F070061
-			public const int common_google_signin_btn_icon_dark = 2131165281;
+			public const int code = 2131165281;
 			
 			// aapt resource value: 0x7F070062
-			public const int common_google_signin_btn_icon_dark_focused = 2131165282;
+			public const int common_full_open_on_phone = 2131165282;
 			
 			// aapt resource value: 0x7F070063
-			public const int common_google_signin_btn_icon_dark_normal = 2131165283;
+			public const int common_google_signin_btn_icon_dark = 2131165283;
 			
 			// aapt resource value: 0x7F070064
-			public const int common_google_signin_btn_icon_dark_normal_background = 2131165284;
+			public const int common_google_signin_btn_icon_dark_focused = 2131165284;
 			
 			// aapt resource value: 0x7F070065
-			public const int common_google_signin_btn_icon_disabled = 2131165285;
+			public const int common_google_signin_btn_icon_dark_normal = 2131165285;
 			
 			// aapt resource value: 0x7F070066
-			public const int common_google_signin_btn_icon_light = 2131165286;
+			public const int common_google_signin_btn_icon_dark_normal_background = 2131165286;
 			
 			// aapt resource value: 0x7F070067
-			public const int common_google_signin_btn_icon_light_focused = 2131165287;
+			public const int common_google_signin_btn_icon_disabled = 2131165287;
 			
 			// aapt resource value: 0x7F070068
-			public const int common_google_signin_btn_icon_light_normal = 2131165288;
+			public const int common_google_signin_btn_icon_light = 2131165288;
 			
 			// aapt resource value: 0x7F070069
-			public const int common_google_signin_btn_icon_light_normal_background = 2131165289;
+			public const int common_google_signin_btn_icon_light_focused = 2131165289;
 			
 			// aapt resource value: 0x7F07006A
-			public const int common_google_signin_btn_text_dark = 2131165290;
+			public const int common_google_signin_btn_icon_light_normal = 2131165290;
 			
 			// aapt resource value: 0x7F07006B
-			public const int common_google_signin_btn_text_dark_focused = 2131165291;
+			public const int common_google_signin_btn_icon_light_normal_background = 2131165291;
 			
 			// aapt resource value: 0x7F07006C
-			public const int common_google_signin_btn_text_dark_normal = 2131165292;
+			public const int common_google_signin_btn_text_dark = 2131165292;
 			
 			// aapt resource value: 0x7F07006D
-			public const int common_google_signin_btn_text_dark_normal_background = 2131165293;
+			public const int common_google_signin_btn_text_dark_focused = 2131165293;
 			
 			// aapt resource value: 0x7F07006E
-			public const int common_google_signin_btn_text_disabled = 2131165294;
+			public const int common_google_signin_btn_text_dark_normal = 2131165294;
 			
 			// aapt resource value: 0x7F07006F
-			public const int common_google_signin_btn_text_light = 2131165295;
+			public const int common_google_signin_btn_text_dark_normal_background = 2131165295;
 			
 			// aapt resource value: 0x7F070070
-			public const int common_google_signin_btn_text_light_focused = 2131165296;
+			public const int common_google_signin_btn_text_disabled = 2131165296;
 			
 			// aapt resource value: 0x7F070071
-			public const int common_google_signin_btn_text_light_normal = 2131165297;
+			public const int common_google_signin_btn_text_light = 2131165297;
 			
 			// aapt resource value: 0x7F070072
-			public const int common_google_signin_btn_text_light_normal_background = 2131165298;
+			public const int common_google_signin_btn_text_light_focused = 2131165298;
 			
 			// aapt resource value: 0x7F070073
-			public const int def = 2131165299;
+			public const int common_google_signin_btn_text_light_normal = 2131165299;
 			
 			// aapt resource value: 0x7F070074
-			public const int design_bottom_navigation_item_background = 2131165300;
+			public const int common_google_signin_btn_text_light_normal_background = 2131165300;
 			
 			// aapt resource value: 0x7F070075
-			public const int design_fab_background = 2131165301;
+			public const int def = 2131165301;
 			
 			// aapt resource value: 0x7F070076
-			public const int design_ic_visibility = 2131165302;
+			public const int design_bottom_navigation_item_background = 2131165302;
 			
 			// aapt resource value: 0x7F070077
-			public const int design_ic_visibility_off = 2131165303;
+			public const int design_fab_background = 2131165303;
 			
 			// aapt resource value: 0x7F070078
-			public const int design_password_eye = 2131165304;
+			public const int design_ic_visibility = 2131165304;
 			
 			// aapt resource value: 0x7F070079
-			public const int design_snackbar_background = 2131165305;
+			public const int design_ic_visibility_off = 2131165305;
 			
 			// aapt resource value: 0x7F07007A
-			public const int fog = 2131165306;
+			public const int design_password_eye = 2131165306;
 			
 			// aapt resource value: 0x7F07007B
-			public const int googleg_disabled_color_18 = 2131165307;
+			public const int design_snackbar_background = 2131165307;
 			
 			// aapt resource value: 0x7F07007C
-			public const int googleg_standard_color_18 = 2131165308;
-			
-			// aapt resource value: 0x7F070131
-			public const int icon = 2131165489;
+			public const int fog = 2131165308;
 			
 			// aapt resource value: 0x7F07007D
-			public const int ic_audiotrack_dark = 2131165309;
+			public const int googleg_disabled_color_18 = 2131165309;
 			
 			// aapt resource value: 0x7F07007E
-			public const int ic_audiotrack_light = 2131165310;
+			public const int googleg_standard_color_18 = 2131165310;
 			
 			// aapt resource value: 0x7F07007F
-			public const int ic_dialog_close_dark = 2131165311;
-			
-			// aapt resource value: 0x7F070080
-			public const int ic_dialog_close_light = 2131165312;
-			
-			// aapt resource value: 0x7F070081
-			public const int ic_group_collapse_00 = 2131165313;
-			
-			// aapt resource value: 0x7F070082
-			public const int ic_group_collapse_01 = 2131165314;
-			
-			// aapt resource value: 0x7F070083
-			public const int ic_group_collapse_02 = 2131165315;
-			
-			// aapt resource value: 0x7F070084
-			public const int ic_group_collapse_03 = 2131165316;
-			
-			// aapt resource value: 0x7F070085
-			public const int ic_group_collapse_04 = 2131165317;
-			
-			// aapt resource value: 0x7F070086
-			public const int ic_group_collapse_05 = 2131165318;
-			
-			// aapt resource value: 0x7F070087
-			public const int ic_group_collapse_06 = 2131165319;
-			
-			// aapt resource value: 0x7F070088
-			public const int ic_group_collapse_07 = 2131165320;
-			
-			// aapt resource value: 0x7F070089
-			public const int ic_group_collapse_08 = 2131165321;
-			
-			// aapt resource value: 0x7F07008A
-			public const int ic_group_collapse_09 = 2131165322;
-			
-			// aapt resource value: 0x7F07008B
-			public const int ic_group_collapse_10 = 2131165323;
-			
-			// aapt resource value: 0x7F07008C
-			public const int ic_group_collapse_11 = 2131165324;
-			
-			// aapt resource value: 0x7F07008D
-			public const int ic_group_collapse_12 = 2131165325;
-			
-			// aapt resource value: 0x7F07008E
-			public const int ic_group_collapse_13 = 2131165326;
-			
-			// aapt resource value: 0x7F07008F
-			public const int ic_group_collapse_14 = 2131165327;
-			
-			// aapt resource value: 0x7F070090
-			public const int ic_group_collapse_15 = 2131165328;
-			
-			// aapt resource value: 0x7F070091
-			public const int ic_group_expand_00 = 2131165329;
-			
-			// aapt resource value: 0x7F070092
-			public const int ic_group_expand_01 = 2131165330;
-			
-			// aapt resource value: 0x7F070093
-			public const int ic_group_expand_02 = 2131165331;
-			
-			// aapt resource value: 0x7F070094
-			public const int ic_group_expand_03 = 2131165332;
-			
-			// aapt resource value: 0x7F070095
-			public const int ic_group_expand_04 = 2131165333;
-			
-			// aapt resource value: 0x7F070096
-			public const int ic_group_expand_05 = 2131165334;
-			
-			// aapt resource value: 0x7F070097
-			public const int ic_group_expand_06 = 2131165335;
-			
-			// aapt resource value: 0x7F070098
-			public const int ic_group_expand_07 = 2131165336;
-			
-			// aapt resource value: 0x7F070099
-			public const int ic_group_expand_08 = 2131165337;
-			
-			// aapt resource value: 0x7F07009A
-			public const int ic_group_expand_09 = 2131165338;
-			
-			// aapt resource value: 0x7F07009B
-			public const int ic_group_expand_10 = 2131165339;
-			
-			// aapt resource value: 0x7F07009C
-			public const int ic_group_expand_11 = 2131165340;
-			
-			// aapt resource value: 0x7F07009D
-			public const int ic_group_expand_12 = 2131165341;
-			
-			// aapt resource value: 0x7F07009E
-			public const int ic_group_expand_13 = 2131165342;
-			
-			// aapt resource value: 0x7F07009F
-			public const int ic_group_expand_14 = 2131165343;
-			
-			// aapt resource value: 0x7F0700A0
-			public const int ic_group_expand_15 = 2131165344;
-			
-			// aapt resource value: 0x7F0700A1
-			public const int ic_media_pause_dark = 2131165345;
-			
-			// aapt resource value: 0x7F0700A2
-			public const int ic_media_pause_light = 2131165346;
-			
-			// aapt resource value: 0x7F0700A3
-			public const int ic_media_play_dark = 2131165347;
-			
-			// aapt resource value: 0x7F0700A4
-			public const int ic_media_play_light = 2131165348;
-			
-			// aapt resource value: 0x7F0700A5
-			public const int ic_media_stop_dark = 2131165349;
-			
-			// aapt resource value: 0x7F0700A6
-			public const int ic_media_stop_light = 2131165350;
-			
-			// aapt resource value: 0x7F0700A7
-			public const int ic_mr_button_connected_00_dark = 2131165351;
-			
-			// aapt resource value: 0x7F0700A8
-			public const int ic_mr_button_connected_00_light = 2131165352;
-			
-			// aapt resource value: 0x7F0700A9
-			public const int ic_mr_button_connected_01_dark = 2131165353;
-			
-			// aapt resource value: 0x7F0700AA
-			public const int ic_mr_button_connected_01_light = 2131165354;
-			
-			// aapt resource value: 0x7F0700AB
-			public const int ic_mr_button_connected_02_dark = 2131165355;
-			
-			// aapt resource value: 0x7F0700AC
-			public const int ic_mr_button_connected_02_light = 2131165356;
-			
-			// aapt resource value: 0x7F0700AD
-			public const int ic_mr_button_connected_03_dark = 2131165357;
-			
-			// aapt resource value: 0x7F0700AE
-			public const int ic_mr_button_connected_03_light = 2131165358;
-			
-			// aapt resource value: 0x7F0700AF
-			public const int ic_mr_button_connected_04_dark = 2131165359;
-			
-			// aapt resource value: 0x7F0700B0
-			public const int ic_mr_button_connected_04_light = 2131165360;
-			
-			// aapt resource value: 0x7F0700B1
-			public const int ic_mr_button_connected_05_dark = 2131165361;
-			
-			// aapt resource value: 0x7F0700B2
-			public const int ic_mr_button_connected_05_light = 2131165362;
-			
-			// aapt resource value: 0x7F0700B3
-			public const int ic_mr_button_connected_06_dark = 2131165363;
-			
-			// aapt resource value: 0x7F0700B4
-			public const int ic_mr_button_connected_06_light = 2131165364;
-			
-			// aapt resource value: 0x7F0700B5
-			public const int ic_mr_button_connected_07_dark = 2131165365;
-			
-			// aapt resource value: 0x7F0700B6
-			public const int ic_mr_button_connected_07_light = 2131165366;
-			
-			// aapt resource value: 0x7F0700B7
-			public const int ic_mr_button_connected_08_dark = 2131165367;
-			
-			// aapt resource value: 0x7F0700B8
-			public const int ic_mr_button_connected_08_light = 2131165368;
-			
-			// aapt resource value: 0x7F0700B9
-			public const int ic_mr_button_connected_09_dark = 2131165369;
-			
-			// aapt resource value: 0x7F0700BA
-			public const int ic_mr_button_connected_09_light = 2131165370;
-			
-			// aapt resource value: 0x7F0700BB
-			public const int ic_mr_button_connected_10_dark = 2131165371;
-			
-			// aapt resource value: 0x7F0700BC
-			public const int ic_mr_button_connected_10_light = 2131165372;
-			
-			// aapt resource value: 0x7F0700BD
-			public const int ic_mr_button_connected_11_dark = 2131165373;
-			
-			// aapt resource value: 0x7F0700BE
-			public const int ic_mr_button_connected_11_light = 2131165374;
-			
-			// aapt resource value: 0x7F0700BF
-			public const int ic_mr_button_connected_12_dark = 2131165375;
-			
-			// aapt resource value: 0x7F0700C0
-			public const int ic_mr_button_connected_12_light = 2131165376;
-			
-			// aapt resource value: 0x7F0700C1
-			public const int ic_mr_button_connected_13_dark = 2131165377;
-			
-			// aapt resource value: 0x7F0700C2
-			public const int ic_mr_button_connected_13_light = 2131165378;
-			
-			// aapt resource value: 0x7F0700C3
-			public const int ic_mr_button_connected_14_dark = 2131165379;
-			
-			// aapt resource value: 0x7F0700C4
-			public const int ic_mr_button_connected_14_light = 2131165380;
-			
-			// aapt resource value: 0x7F0700C5
-			public const int ic_mr_button_connected_15_dark = 2131165381;
-			
-			// aapt resource value: 0x7F0700C6
-			public const int ic_mr_button_connected_15_light = 2131165382;
-			
-			// aapt resource value: 0x7F0700C7
-			public const int ic_mr_button_connected_16_dark = 2131165383;
-			
-			// aapt resource value: 0x7F0700C8
-			public const int ic_mr_button_connected_16_light = 2131165384;
-			
-			// aapt resource value: 0x7F0700C9
-			public const int ic_mr_button_connected_17_dark = 2131165385;
-			
-			// aapt resource value: 0x7F0700CA
-			public const int ic_mr_button_connected_17_light = 2131165386;
-			
-			// aapt resource value: 0x7F0700CB
-			public const int ic_mr_button_connected_18_dark = 2131165387;
-			
-			// aapt resource value: 0x7F0700CC
-			public const int ic_mr_button_connected_18_light = 2131165388;
-			
-			// aapt resource value: 0x7F0700CD
-			public const int ic_mr_button_connected_19_dark = 2131165389;
-			
-			// aapt resource value: 0x7F0700CE
-			public const int ic_mr_button_connected_19_light = 2131165390;
-			
-			// aapt resource value: 0x7F0700CF
-			public const int ic_mr_button_connected_20_dark = 2131165391;
-			
-			// aapt resource value: 0x7F0700D0
-			public const int ic_mr_button_connected_20_light = 2131165392;
-			
-			// aapt resource value: 0x7F0700D1
-			public const int ic_mr_button_connected_21_dark = 2131165393;
-			
-			// aapt resource value: 0x7F0700D2
-			public const int ic_mr_button_connected_21_light = 2131165394;
-			
-			// aapt resource value: 0x7F0700D3
-			public const int ic_mr_button_connected_22_dark = 2131165395;
-			
-			// aapt resource value: 0x7F0700D4
-			public const int ic_mr_button_connected_22_light = 2131165396;
-			
-			// aapt resource value: 0x7F0700D5
-			public const int ic_mr_button_connected_23_dark = 2131165397;
-			
-			// aapt resource value: 0x7F0700D6
-			public const int ic_mr_button_connected_23_light = 2131165398;
-			
-			// aapt resource value: 0x7F0700D7
-			public const int ic_mr_button_connected_24_dark = 2131165399;
-			
-			// aapt resource value: 0x7F0700D8
-			public const int ic_mr_button_connected_24_light = 2131165400;
-			
-			// aapt resource value: 0x7F0700D9
-			public const int ic_mr_button_connected_25_dark = 2131165401;
-			
-			// aapt resource value: 0x7F0700DA
-			public const int ic_mr_button_connected_25_light = 2131165402;
-			
-			// aapt resource value: 0x7F0700DB
-			public const int ic_mr_button_connected_26_dark = 2131165403;
-			
-			// aapt resource value: 0x7F0700DC
-			public const int ic_mr_button_connected_26_light = 2131165404;
-			
-			// aapt resource value: 0x7F0700DD
-			public const int ic_mr_button_connected_27_dark = 2131165405;
-			
-			// aapt resource value: 0x7F0700DE
-			public const int ic_mr_button_connected_27_light = 2131165406;
-			
-			// aapt resource value: 0x7F0700DF
-			public const int ic_mr_button_connected_28_dark = 2131165407;
-			
-			// aapt resource value: 0x7F0700E0
-			public const int ic_mr_button_connected_28_light = 2131165408;
-			
-			// aapt resource value: 0x7F0700E1
-			public const int ic_mr_button_connected_29_dark = 2131165409;
-			
-			// aapt resource value: 0x7F0700E2
-			public const int ic_mr_button_connected_29_light = 2131165410;
-			
-			// aapt resource value: 0x7F0700E3
-			public const int ic_mr_button_connected_30_dark = 2131165411;
-			
-			// aapt resource value: 0x7F0700E4
-			public const int ic_mr_button_connected_30_light = 2131165412;
-			
-			// aapt resource value: 0x7F0700E5
-			public const int ic_mr_button_connecting_00_dark = 2131165413;
-			
-			// aapt resource value: 0x7F0700E6
-			public const int ic_mr_button_connecting_00_light = 2131165414;
-			
-			// aapt resource value: 0x7F0700E7
-			public const int ic_mr_button_connecting_01_dark = 2131165415;
-			
-			// aapt resource value: 0x7F0700E8
-			public const int ic_mr_button_connecting_01_light = 2131165416;
-			
-			// aapt resource value: 0x7F0700E9
-			public const int ic_mr_button_connecting_02_dark = 2131165417;
-			
-			// aapt resource value: 0x7F0700EA
-			public const int ic_mr_button_connecting_02_light = 2131165418;
-			
-			// aapt resource value: 0x7F0700EB
-			public const int ic_mr_button_connecting_03_dark = 2131165419;
-			
-			// aapt resource value: 0x7F0700EC
-			public const int ic_mr_button_connecting_03_light = 2131165420;
-			
-			// aapt resource value: 0x7F0700ED
-			public const int ic_mr_button_connecting_04_dark = 2131165421;
-			
-			// aapt resource value: 0x7F0700EE
-			public const int ic_mr_button_connecting_04_light = 2131165422;
-			
-			// aapt resource value: 0x7F0700EF
-			public const int ic_mr_button_connecting_05_dark = 2131165423;
-			
-			// aapt resource value: 0x7F0700F0
-			public const int ic_mr_button_connecting_05_light = 2131165424;
-			
-			// aapt resource value: 0x7F0700F1
-			public const int ic_mr_button_connecting_06_dark = 2131165425;
-			
-			// aapt resource value: 0x7F0700F2
-			public const int ic_mr_button_connecting_06_light = 2131165426;
-			
-			// aapt resource value: 0x7F0700F3
-			public const int ic_mr_button_connecting_07_dark = 2131165427;
-			
-			// aapt resource value: 0x7F0700F4
-			public const int ic_mr_button_connecting_07_light = 2131165428;
-			
-			// aapt resource value: 0x7F0700F5
-			public const int ic_mr_button_connecting_08_dark = 2131165429;
-			
-			// aapt resource value: 0x7F0700F6
-			public const int ic_mr_button_connecting_08_light = 2131165430;
-			
-			// aapt resource value: 0x7F0700F7
-			public const int ic_mr_button_connecting_09_dark = 2131165431;
-			
-			// aapt resource value: 0x7F0700F8
-			public const int ic_mr_button_connecting_09_light = 2131165432;
-			
-			// aapt resource value: 0x7F0700F9
-			public const int ic_mr_button_connecting_10_dark = 2131165433;
-			
-			// aapt resource value: 0x7F0700FA
-			public const int ic_mr_button_connecting_10_light = 2131165434;
-			
-			// aapt resource value: 0x7F0700FB
-			public const int ic_mr_button_connecting_11_dark = 2131165435;
-			
-			// aapt resource value: 0x7F0700FC
-			public const int ic_mr_button_connecting_11_light = 2131165436;
-			
-			// aapt resource value: 0x7F0700FD
-			public const int ic_mr_button_connecting_12_dark = 2131165437;
-			
-			// aapt resource value: 0x7F0700FE
-			public const int ic_mr_button_connecting_12_light = 2131165438;
-			
-			// aapt resource value: 0x7F0700FF
-			public const int ic_mr_button_connecting_13_dark = 2131165439;
-			
-			// aapt resource value: 0x7F070100
-			public const int ic_mr_button_connecting_13_light = 2131165440;
-			
-			// aapt resource value: 0x7F070101
-			public const int ic_mr_button_connecting_14_dark = 2131165441;
-			
-			// aapt resource value: 0x7F070102
-			public const int ic_mr_button_connecting_14_light = 2131165442;
-			
-			// aapt resource value: 0x7F070103
-			public const int ic_mr_button_connecting_15_dark = 2131165443;
-			
-			// aapt resource value: 0x7F070104
-			public const int ic_mr_button_connecting_15_light = 2131165444;
-			
-			// aapt resource value: 0x7F070105
-			public const int ic_mr_button_connecting_16_dark = 2131165445;
-			
-			// aapt resource value: 0x7F070106
-			public const int ic_mr_button_connecting_16_light = 2131165446;
-			
-			// aapt resource value: 0x7F070107
-			public const int ic_mr_button_connecting_17_dark = 2131165447;
-			
-			// aapt resource value: 0x7F070108
-			public const int ic_mr_button_connecting_17_light = 2131165448;
-			
-			// aapt resource value: 0x7F070109
-			public const int ic_mr_button_connecting_18_dark = 2131165449;
-			
-			// aapt resource value: 0x7F07010A
-			public const int ic_mr_button_connecting_18_light = 2131165450;
-			
-			// aapt resource value: 0x7F07010B
-			public const int ic_mr_button_connecting_19_dark = 2131165451;
-			
-			// aapt resource value: 0x7F07010C
-			public const int ic_mr_button_connecting_19_light = 2131165452;
-			
-			// aapt resource value: 0x7F07010D
-			public const int ic_mr_button_connecting_20_dark = 2131165453;
-			
-			// aapt resource value: 0x7F07010E
-			public const int ic_mr_button_connecting_20_light = 2131165454;
-			
-			// aapt resource value: 0x7F07010F
-			public const int ic_mr_button_connecting_21_dark = 2131165455;
-			
-			// aapt resource value: 0x7F070110
-			public const int ic_mr_button_connecting_21_light = 2131165456;
-			
-			// aapt resource value: 0x7F070111
-			public const int ic_mr_button_connecting_22_dark = 2131165457;
-			
-			// aapt resource value: 0x7F070112
-			public const int ic_mr_button_connecting_22_light = 2131165458;
-			
-			// aapt resource value: 0x7F070113
-			public const int ic_mr_button_connecting_23_dark = 2131165459;
-			
-			// aapt resource value: 0x7F070114
-			public const int ic_mr_button_connecting_23_light = 2131165460;
-			
-			// aapt resource value: 0x7F070115
-			public const int ic_mr_button_connecting_24_dark = 2131165461;
-			
-			// aapt resource value: 0x7F070116
-			public const int ic_mr_button_connecting_24_light = 2131165462;
-			
-			// aapt resource value: 0x7F070117
-			public const int ic_mr_button_connecting_25_dark = 2131165463;
-			
-			// aapt resource value: 0x7F070118
-			public const int ic_mr_button_connecting_25_light = 2131165464;
-			
-			// aapt resource value: 0x7F070119
-			public const int ic_mr_button_connecting_26_dark = 2131165465;
-			
-			// aapt resource value: 0x7F07011A
-			public const int ic_mr_button_connecting_26_light = 2131165466;
-			
-			// aapt resource value: 0x7F07011B
-			public const int ic_mr_button_connecting_27_dark = 2131165467;
-			
-			// aapt resource value: 0x7F07011C
-			public const int ic_mr_button_connecting_27_light = 2131165468;
-			
-			// aapt resource value: 0x7F07011D
-			public const int ic_mr_button_connecting_28_dark = 2131165469;
-			
-			// aapt resource value: 0x7F07011E
-			public const int ic_mr_button_connecting_28_light = 2131165470;
-			
-			// aapt resource value: 0x7F07011F
-			public const int ic_mr_button_connecting_29_dark = 2131165471;
-			
-			// aapt resource value: 0x7F070120
-			public const int ic_mr_button_connecting_29_light = 2131165472;
-			
-			// aapt resource value: 0x7F070121
-			public const int ic_mr_button_connecting_30_dark = 2131165473;
-			
-			// aapt resource value: 0x7F070122
-			public const int ic_mr_button_connecting_30_light = 2131165474;
-			
-			// aapt resource value: 0x7F070123
-			public const int ic_mr_button_disabled_dark = 2131165475;
-			
-			// aapt resource value: 0x7F070124
-			public const int ic_mr_button_disabled_light = 2131165476;
-			
-			// aapt resource value: 0x7F070125
-			public const int ic_mr_button_disconnected_dark = 2131165477;
-			
-			// aapt resource value: 0x7F070126
-			public const int ic_mr_button_disconnected_light = 2131165478;
-			
-			// aapt resource value: 0x7F070127
-			public const int ic_mr_button_grey = 2131165479;
-			
-			// aapt resource value: 0x7F070128
-			public const int ic_mtrl_chip_checked_black = 2131165480;
-			
-			// aapt resource value: 0x7F070129
-			public const int ic_mtrl_chip_checked_circle = 2131165481;
-			
-			// aapt resource value: 0x7F07012A
-			public const int ic_mtrl_chip_close_circle = 2131165482;
-			
-			// aapt resource value: 0x7F07012B
-			public const int ic_vol_type_speaker_dark = 2131165483;
-			
-			// aapt resource value: 0x7F07012C
-			public const int ic_vol_type_speaker_group_dark = 2131165484;
-			
-			// aapt resource value: 0x7F07012D
-			public const int ic_vol_type_speaker_group_light = 2131165485;
-			
-			// aapt resource value: 0x7F07012E
-			public const int ic_vol_type_speaker_light = 2131165486;
-			
-			// aapt resource value: 0x7F07012F
-			public const int ic_vol_type_tv_dark = 2131165487;
-			
-			// aapt resource value: 0x7F070130
-			public const int ic_vol_type_tv_light = 2131165488;
-			
-			// aapt resource value: 0x7F070132
-			public const int info = 2131165490;
-			
-			// aapt resource value: 0x7F070133
-			public const int info1 = 2131165491;
+			public const int humi = 2131165311;
 			
 			// aapt resource value: 0x7F070134
-			public const int m = 2131165492;
+			public const int icon = 2131165492;
+			
+			// aapt resource value: 0x7F070080
+			public const int ic_audiotrack_dark = 2131165312;
+			
+			// aapt resource value: 0x7F070081
+			public const int ic_audiotrack_light = 2131165313;
+			
+			// aapt resource value: 0x7F070082
+			public const int ic_dialog_close_dark = 2131165314;
+			
+			// aapt resource value: 0x7F070083
+			public const int ic_dialog_close_light = 2131165315;
+			
+			// aapt resource value: 0x7F070084
+			public const int ic_group_collapse_00 = 2131165316;
+			
+			// aapt resource value: 0x7F070085
+			public const int ic_group_collapse_01 = 2131165317;
+			
+			// aapt resource value: 0x7F070086
+			public const int ic_group_collapse_02 = 2131165318;
+			
+			// aapt resource value: 0x7F070087
+			public const int ic_group_collapse_03 = 2131165319;
+			
+			// aapt resource value: 0x7F070088
+			public const int ic_group_collapse_04 = 2131165320;
+			
+			// aapt resource value: 0x7F070089
+			public const int ic_group_collapse_05 = 2131165321;
+			
+			// aapt resource value: 0x7F07008A
+			public const int ic_group_collapse_06 = 2131165322;
+			
+			// aapt resource value: 0x7F07008B
+			public const int ic_group_collapse_07 = 2131165323;
+			
+			// aapt resource value: 0x7F07008C
+			public const int ic_group_collapse_08 = 2131165324;
+			
+			// aapt resource value: 0x7F07008D
+			public const int ic_group_collapse_09 = 2131165325;
+			
+			// aapt resource value: 0x7F07008E
+			public const int ic_group_collapse_10 = 2131165326;
+			
+			// aapt resource value: 0x7F07008F
+			public const int ic_group_collapse_11 = 2131165327;
+			
+			// aapt resource value: 0x7F070090
+			public const int ic_group_collapse_12 = 2131165328;
+			
+			// aapt resource value: 0x7F070091
+			public const int ic_group_collapse_13 = 2131165329;
+			
+			// aapt resource value: 0x7F070092
+			public const int ic_group_collapse_14 = 2131165330;
+			
+			// aapt resource value: 0x7F070093
+			public const int ic_group_collapse_15 = 2131165331;
+			
+			// aapt resource value: 0x7F070094
+			public const int ic_group_expand_00 = 2131165332;
+			
+			// aapt resource value: 0x7F070095
+			public const int ic_group_expand_01 = 2131165333;
+			
+			// aapt resource value: 0x7F070096
+			public const int ic_group_expand_02 = 2131165334;
+			
+			// aapt resource value: 0x7F070097
+			public const int ic_group_expand_03 = 2131165335;
+			
+			// aapt resource value: 0x7F070098
+			public const int ic_group_expand_04 = 2131165336;
+			
+			// aapt resource value: 0x7F070099
+			public const int ic_group_expand_05 = 2131165337;
+			
+			// aapt resource value: 0x7F07009A
+			public const int ic_group_expand_06 = 2131165338;
+			
+			// aapt resource value: 0x7F07009B
+			public const int ic_group_expand_07 = 2131165339;
+			
+			// aapt resource value: 0x7F07009C
+			public const int ic_group_expand_08 = 2131165340;
+			
+			// aapt resource value: 0x7F07009D
+			public const int ic_group_expand_09 = 2131165341;
+			
+			// aapt resource value: 0x7F07009E
+			public const int ic_group_expand_10 = 2131165342;
+			
+			// aapt resource value: 0x7F07009F
+			public const int ic_group_expand_11 = 2131165343;
+			
+			// aapt resource value: 0x7F0700A0
+			public const int ic_group_expand_12 = 2131165344;
+			
+			// aapt resource value: 0x7F0700A1
+			public const int ic_group_expand_13 = 2131165345;
+			
+			// aapt resource value: 0x7F0700A2
+			public const int ic_group_expand_14 = 2131165346;
+			
+			// aapt resource value: 0x7F0700A3
+			public const int ic_group_expand_15 = 2131165347;
+			
+			// aapt resource value: 0x7F0700A4
+			public const int ic_media_pause_dark = 2131165348;
+			
+			// aapt resource value: 0x7F0700A5
+			public const int ic_media_pause_light = 2131165349;
+			
+			// aapt resource value: 0x7F0700A6
+			public const int ic_media_play_dark = 2131165350;
+			
+			// aapt resource value: 0x7F0700A7
+			public const int ic_media_play_light = 2131165351;
+			
+			// aapt resource value: 0x7F0700A8
+			public const int ic_media_stop_dark = 2131165352;
+			
+			// aapt resource value: 0x7F0700A9
+			public const int ic_media_stop_light = 2131165353;
+			
+			// aapt resource value: 0x7F0700AA
+			public const int ic_mr_button_connected_00_dark = 2131165354;
+			
+			// aapt resource value: 0x7F0700AB
+			public const int ic_mr_button_connected_00_light = 2131165355;
+			
+			// aapt resource value: 0x7F0700AC
+			public const int ic_mr_button_connected_01_dark = 2131165356;
+			
+			// aapt resource value: 0x7F0700AD
+			public const int ic_mr_button_connected_01_light = 2131165357;
+			
+			// aapt resource value: 0x7F0700AE
+			public const int ic_mr_button_connected_02_dark = 2131165358;
+			
+			// aapt resource value: 0x7F0700AF
+			public const int ic_mr_button_connected_02_light = 2131165359;
+			
+			// aapt resource value: 0x7F0700B0
+			public const int ic_mr_button_connected_03_dark = 2131165360;
+			
+			// aapt resource value: 0x7F0700B1
+			public const int ic_mr_button_connected_03_light = 2131165361;
+			
+			// aapt resource value: 0x7F0700B2
+			public const int ic_mr_button_connected_04_dark = 2131165362;
+			
+			// aapt resource value: 0x7F0700B3
+			public const int ic_mr_button_connected_04_light = 2131165363;
+			
+			// aapt resource value: 0x7F0700B4
+			public const int ic_mr_button_connected_05_dark = 2131165364;
+			
+			// aapt resource value: 0x7F0700B5
+			public const int ic_mr_button_connected_05_light = 2131165365;
+			
+			// aapt resource value: 0x7F0700B6
+			public const int ic_mr_button_connected_06_dark = 2131165366;
+			
+			// aapt resource value: 0x7F0700B7
+			public const int ic_mr_button_connected_06_light = 2131165367;
+			
+			// aapt resource value: 0x7F0700B8
+			public const int ic_mr_button_connected_07_dark = 2131165368;
+			
+			// aapt resource value: 0x7F0700B9
+			public const int ic_mr_button_connected_07_light = 2131165369;
+			
+			// aapt resource value: 0x7F0700BA
+			public const int ic_mr_button_connected_08_dark = 2131165370;
+			
+			// aapt resource value: 0x7F0700BB
+			public const int ic_mr_button_connected_08_light = 2131165371;
+			
+			// aapt resource value: 0x7F0700BC
+			public const int ic_mr_button_connected_09_dark = 2131165372;
+			
+			// aapt resource value: 0x7F0700BD
+			public const int ic_mr_button_connected_09_light = 2131165373;
+			
+			// aapt resource value: 0x7F0700BE
+			public const int ic_mr_button_connected_10_dark = 2131165374;
+			
+			// aapt resource value: 0x7F0700BF
+			public const int ic_mr_button_connected_10_light = 2131165375;
+			
+			// aapt resource value: 0x7F0700C0
+			public const int ic_mr_button_connected_11_dark = 2131165376;
+			
+			// aapt resource value: 0x7F0700C1
+			public const int ic_mr_button_connected_11_light = 2131165377;
+			
+			// aapt resource value: 0x7F0700C2
+			public const int ic_mr_button_connected_12_dark = 2131165378;
+			
+			// aapt resource value: 0x7F0700C3
+			public const int ic_mr_button_connected_12_light = 2131165379;
+			
+			// aapt resource value: 0x7F0700C4
+			public const int ic_mr_button_connected_13_dark = 2131165380;
+			
+			// aapt resource value: 0x7F0700C5
+			public const int ic_mr_button_connected_13_light = 2131165381;
+			
+			// aapt resource value: 0x7F0700C6
+			public const int ic_mr_button_connected_14_dark = 2131165382;
+			
+			// aapt resource value: 0x7F0700C7
+			public const int ic_mr_button_connected_14_light = 2131165383;
+			
+			// aapt resource value: 0x7F0700C8
+			public const int ic_mr_button_connected_15_dark = 2131165384;
+			
+			// aapt resource value: 0x7F0700C9
+			public const int ic_mr_button_connected_15_light = 2131165385;
+			
+			// aapt resource value: 0x7F0700CA
+			public const int ic_mr_button_connected_16_dark = 2131165386;
+			
+			// aapt resource value: 0x7F0700CB
+			public const int ic_mr_button_connected_16_light = 2131165387;
+			
+			// aapt resource value: 0x7F0700CC
+			public const int ic_mr_button_connected_17_dark = 2131165388;
+			
+			// aapt resource value: 0x7F0700CD
+			public const int ic_mr_button_connected_17_light = 2131165389;
+			
+			// aapt resource value: 0x7F0700CE
+			public const int ic_mr_button_connected_18_dark = 2131165390;
+			
+			// aapt resource value: 0x7F0700CF
+			public const int ic_mr_button_connected_18_light = 2131165391;
+			
+			// aapt resource value: 0x7F0700D0
+			public const int ic_mr_button_connected_19_dark = 2131165392;
+			
+			// aapt resource value: 0x7F0700D1
+			public const int ic_mr_button_connected_19_light = 2131165393;
+			
+			// aapt resource value: 0x7F0700D2
+			public const int ic_mr_button_connected_20_dark = 2131165394;
+			
+			// aapt resource value: 0x7F0700D3
+			public const int ic_mr_button_connected_20_light = 2131165395;
+			
+			// aapt resource value: 0x7F0700D4
+			public const int ic_mr_button_connected_21_dark = 2131165396;
+			
+			// aapt resource value: 0x7F0700D5
+			public const int ic_mr_button_connected_21_light = 2131165397;
+			
+			// aapt resource value: 0x7F0700D6
+			public const int ic_mr_button_connected_22_dark = 2131165398;
+			
+			// aapt resource value: 0x7F0700D7
+			public const int ic_mr_button_connected_22_light = 2131165399;
+			
+			// aapt resource value: 0x7F0700D8
+			public const int ic_mr_button_connected_23_dark = 2131165400;
+			
+			// aapt resource value: 0x7F0700D9
+			public const int ic_mr_button_connected_23_light = 2131165401;
+			
+			// aapt resource value: 0x7F0700DA
+			public const int ic_mr_button_connected_24_dark = 2131165402;
+			
+			// aapt resource value: 0x7F0700DB
+			public const int ic_mr_button_connected_24_light = 2131165403;
+			
+			// aapt resource value: 0x7F0700DC
+			public const int ic_mr_button_connected_25_dark = 2131165404;
+			
+			// aapt resource value: 0x7F0700DD
+			public const int ic_mr_button_connected_25_light = 2131165405;
+			
+			// aapt resource value: 0x7F0700DE
+			public const int ic_mr_button_connected_26_dark = 2131165406;
+			
+			// aapt resource value: 0x7F0700DF
+			public const int ic_mr_button_connected_26_light = 2131165407;
+			
+			// aapt resource value: 0x7F0700E0
+			public const int ic_mr_button_connected_27_dark = 2131165408;
+			
+			// aapt resource value: 0x7F0700E1
+			public const int ic_mr_button_connected_27_light = 2131165409;
+			
+			// aapt resource value: 0x7F0700E2
+			public const int ic_mr_button_connected_28_dark = 2131165410;
+			
+			// aapt resource value: 0x7F0700E3
+			public const int ic_mr_button_connected_28_light = 2131165411;
+			
+			// aapt resource value: 0x7F0700E4
+			public const int ic_mr_button_connected_29_dark = 2131165412;
+			
+			// aapt resource value: 0x7F0700E5
+			public const int ic_mr_button_connected_29_light = 2131165413;
+			
+			// aapt resource value: 0x7F0700E6
+			public const int ic_mr_button_connected_30_dark = 2131165414;
+			
+			// aapt resource value: 0x7F0700E7
+			public const int ic_mr_button_connected_30_light = 2131165415;
+			
+			// aapt resource value: 0x7F0700E8
+			public const int ic_mr_button_connecting_00_dark = 2131165416;
+			
+			// aapt resource value: 0x7F0700E9
+			public const int ic_mr_button_connecting_00_light = 2131165417;
+			
+			// aapt resource value: 0x7F0700EA
+			public const int ic_mr_button_connecting_01_dark = 2131165418;
+			
+			// aapt resource value: 0x7F0700EB
+			public const int ic_mr_button_connecting_01_light = 2131165419;
+			
+			// aapt resource value: 0x7F0700EC
+			public const int ic_mr_button_connecting_02_dark = 2131165420;
+			
+			// aapt resource value: 0x7F0700ED
+			public const int ic_mr_button_connecting_02_light = 2131165421;
+			
+			// aapt resource value: 0x7F0700EE
+			public const int ic_mr_button_connecting_03_dark = 2131165422;
+			
+			// aapt resource value: 0x7F0700EF
+			public const int ic_mr_button_connecting_03_light = 2131165423;
+			
+			// aapt resource value: 0x7F0700F0
+			public const int ic_mr_button_connecting_04_dark = 2131165424;
+			
+			// aapt resource value: 0x7F0700F1
+			public const int ic_mr_button_connecting_04_light = 2131165425;
+			
+			// aapt resource value: 0x7F0700F2
+			public const int ic_mr_button_connecting_05_dark = 2131165426;
+			
+			// aapt resource value: 0x7F0700F3
+			public const int ic_mr_button_connecting_05_light = 2131165427;
+			
+			// aapt resource value: 0x7F0700F4
+			public const int ic_mr_button_connecting_06_dark = 2131165428;
+			
+			// aapt resource value: 0x7F0700F5
+			public const int ic_mr_button_connecting_06_light = 2131165429;
+			
+			// aapt resource value: 0x7F0700F6
+			public const int ic_mr_button_connecting_07_dark = 2131165430;
+			
+			// aapt resource value: 0x7F0700F7
+			public const int ic_mr_button_connecting_07_light = 2131165431;
+			
+			// aapt resource value: 0x7F0700F8
+			public const int ic_mr_button_connecting_08_dark = 2131165432;
+			
+			// aapt resource value: 0x7F0700F9
+			public const int ic_mr_button_connecting_08_light = 2131165433;
+			
+			// aapt resource value: 0x7F0700FA
+			public const int ic_mr_button_connecting_09_dark = 2131165434;
+			
+			// aapt resource value: 0x7F0700FB
+			public const int ic_mr_button_connecting_09_light = 2131165435;
+			
+			// aapt resource value: 0x7F0700FC
+			public const int ic_mr_button_connecting_10_dark = 2131165436;
+			
+			// aapt resource value: 0x7F0700FD
+			public const int ic_mr_button_connecting_10_light = 2131165437;
+			
+			// aapt resource value: 0x7F0700FE
+			public const int ic_mr_button_connecting_11_dark = 2131165438;
+			
+			// aapt resource value: 0x7F0700FF
+			public const int ic_mr_button_connecting_11_light = 2131165439;
+			
+			// aapt resource value: 0x7F070100
+			public const int ic_mr_button_connecting_12_dark = 2131165440;
+			
+			// aapt resource value: 0x7F070101
+			public const int ic_mr_button_connecting_12_light = 2131165441;
+			
+			// aapt resource value: 0x7F070102
+			public const int ic_mr_button_connecting_13_dark = 2131165442;
+			
+			// aapt resource value: 0x7F070103
+			public const int ic_mr_button_connecting_13_light = 2131165443;
+			
+			// aapt resource value: 0x7F070104
+			public const int ic_mr_button_connecting_14_dark = 2131165444;
+			
+			// aapt resource value: 0x7F070105
+			public const int ic_mr_button_connecting_14_light = 2131165445;
+			
+			// aapt resource value: 0x7F070106
+			public const int ic_mr_button_connecting_15_dark = 2131165446;
+			
+			// aapt resource value: 0x7F070107
+			public const int ic_mr_button_connecting_15_light = 2131165447;
+			
+			// aapt resource value: 0x7F070108
+			public const int ic_mr_button_connecting_16_dark = 2131165448;
+			
+			// aapt resource value: 0x7F070109
+			public const int ic_mr_button_connecting_16_light = 2131165449;
+			
+			// aapt resource value: 0x7F07010A
+			public const int ic_mr_button_connecting_17_dark = 2131165450;
+			
+			// aapt resource value: 0x7F07010B
+			public const int ic_mr_button_connecting_17_light = 2131165451;
+			
+			// aapt resource value: 0x7F07010C
+			public const int ic_mr_button_connecting_18_dark = 2131165452;
+			
+			// aapt resource value: 0x7F07010D
+			public const int ic_mr_button_connecting_18_light = 2131165453;
+			
+			// aapt resource value: 0x7F07010E
+			public const int ic_mr_button_connecting_19_dark = 2131165454;
+			
+			// aapt resource value: 0x7F07010F
+			public const int ic_mr_button_connecting_19_light = 2131165455;
+			
+			// aapt resource value: 0x7F070110
+			public const int ic_mr_button_connecting_20_dark = 2131165456;
+			
+			// aapt resource value: 0x7F070111
+			public const int ic_mr_button_connecting_20_light = 2131165457;
+			
+			// aapt resource value: 0x7F070112
+			public const int ic_mr_button_connecting_21_dark = 2131165458;
+			
+			// aapt resource value: 0x7F070113
+			public const int ic_mr_button_connecting_21_light = 2131165459;
+			
+			// aapt resource value: 0x7F070114
+			public const int ic_mr_button_connecting_22_dark = 2131165460;
+			
+			// aapt resource value: 0x7F070115
+			public const int ic_mr_button_connecting_22_light = 2131165461;
+			
+			// aapt resource value: 0x7F070116
+			public const int ic_mr_button_connecting_23_dark = 2131165462;
+			
+			// aapt resource value: 0x7F070117
+			public const int ic_mr_button_connecting_23_light = 2131165463;
+			
+			// aapt resource value: 0x7F070118
+			public const int ic_mr_button_connecting_24_dark = 2131165464;
+			
+			// aapt resource value: 0x7F070119
+			public const int ic_mr_button_connecting_24_light = 2131165465;
+			
+			// aapt resource value: 0x7F07011A
+			public const int ic_mr_button_connecting_25_dark = 2131165466;
+			
+			// aapt resource value: 0x7F07011B
+			public const int ic_mr_button_connecting_25_light = 2131165467;
+			
+			// aapt resource value: 0x7F07011C
+			public const int ic_mr_button_connecting_26_dark = 2131165468;
+			
+			// aapt resource value: 0x7F07011D
+			public const int ic_mr_button_connecting_26_light = 2131165469;
+			
+			// aapt resource value: 0x7F07011E
+			public const int ic_mr_button_connecting_27_dark = 2131165470;
+			
+			// aapt resource value: 0x7F07011F
+			public const int ic_mr_button_connecting_27_light = 2131165471;
+			
+			// aapt resource value: 0x7F070120
+			public const int ic_mr_button_connecting_28_dark = 2131165472;
+			
+			// aapt resource value: 0x7F070121
+			public const int ic_mr_button_connecting_28_light = 2131165473;
+			
+			// aapt resource value: 0x7F070122
+			public const int ic_mr_button_connecting_29_dark = 2131165474;
+			
+			// aapt resource value: 0x7F070123
+			public const int ic_mr_button_connecting_29_light = 2131165475;
+			
+			// aapt resource value: 0x7F070124
+			public const int ic_mr_button_connecting_30_dark = 2131165476;
+			
+			// aapt resource value: 0x7F070125
+			public const int ic_mr_button_connecting_30_light = 2131165477;
+			
+			// aapt resource value: 0x7F070126
+			public const int ic_mr_button_disabled_dark = 2131165478;
+			
+			// aapt resource value: 0x7F070127
+			public const int ic_mr_button_disabled_light = 2131165479;
+			
+			// aapt resource value: 0x7F070128
+			public const int ic_mr_button_disconnected_dark = 2131165480;
+			
+			// aapt resource value: 0x7F070129
+			public const int ic_mr_button_disconnected_light = 2131165481;
+			
+			// aapt resource value: 0x7F07012A
+			public const int ic_mr_button_grey = 2131165482;
+			
+			// aapt resource value: 0x7F07012B
+			public const int ic_mtrl_chip_checked_black = 2131165483;
+			
+			// aapt resource value: 0x7F07012C
+			public const int ic_mtrl_chip_checked_circle = 2131165484;
+			
+			// aapt resource value: 0x7F07012D
+			public const int ic_mtrl_chip_close_circle = 2131165485;
+			
+			// aapt resource value: 0x7F07012E
+			public const int ic_vol_type_speaker_dark = 2131165486;
+			
+			// aapt resource value: 0x7F07012F
+			public const int ic_vol_type_speaker_group_dark = 2131165487;
+			
+			// aapt resource value: 0x7F070130
+			public const int ic_vol_type_speaker_group_light = 2131165488;
+			
+			// aapt resource value: 0x7F070131
+			public const int ic_vol_type_speaker_light = 2131165489;
+			
+			// aapt resource value: 0x7F070132
+			public const int ic_vol_type_tv_dark = 2131165490;
+			
+			// aapt resource value: 0x7F070133
+			public const int ic_vol_type_tv_light = 2131165491;
 			
 			// aapt resource value: 0x7F070135
-			public const int mm = 2131165493;
+			public const int info = 2131165493;
 			
 			// aapt resource value: 0x7F070136
-			public const int mr_button_connected_dark = 2131165494;
+			public const int info1 = 2131165494;
 			
 			// aapt resource value: 0x7F070137
-			public const int mr_button_connected_light = 2131165495;
+			public const int m = 2131165495;
 			
 			// aapt resource value: 0x7F070138
-			public const int mr_button_connecting_dark = 2131165496;
+			public const int mm = 2131165496;
 			
 			// aapt resource value: 0x7F070139
-			public const int mr_button_connecting_light = 2131165497;
+			public const int mr_button_connected_dark = 2131165497;
 			
 			// aapt resource value: 0x7F07013A
-			public const int mr_button_dark = 2131165498;
+			public const int mr_button_connected_light = 2131165498;
 			
 			// aapt resource value: 0x7F07013B
-			public const int mr_button_light = 2131165499;
+			public const int mr_button_connecting_dark = 2131165499;
 			
 			// aapt resource value: 0x7F07013C
-			public const int mr_dialog_close_dark = 2131165500;
+			public const int mr_button_connecting_light = 2131165500;
 			
 			// aapt resource value: 0x7F07013D
-			public const int mr_dialog_close_light = 2131165501;
+			public const int mr_button_dark = 2131165501;
 			
 			// aapt resource value: 0x7F07013E
-			public const int mr_dialog_material_background_dark = 2131165502;
+			public const int mr_button_light = 2131165502;
 			
 			// aapt resource value: 0x7F07013F
-			public const int mr_dialog_material_background_light = 2131165503;
+			public const int mr_dialog_close_dark = 2131165503;
 			
 			// aapt resource value: 0x7F070140
-			public const int mr_group_collapse = 2131165504;
+			public const int mr_dialog_close_light = 2131165504;
 			
 			// aapt resource value: 0x7F070141
-			public const int mr_group_expand = 2131165505;
+			public const int mr_dialog_material_background_dark = 2131165505;
 			
 			// aapt resource value: 0x7F070142
-			public const int mr_media_pause_dark = 2131165506;
+			public const int mr_dialog_material_background_light = 2131165506;
 			
 			// aapt resource value: 0x7F070143
-			public const int mr_media_pause_light = 2131165507;
+			public const int mr_group_collapse = 2131165507;
 			
 			// aapt resource value: 0x7F070144
-			public const int mr_media_play_dark = 2131165508;
+			public const int mr_group_expand = 2131165508;
 			
 			// aapt resource value: 0x7F070145
-			public const int mr_media_play_light = 2131165509;
+			public const int mr_media_pause_dark = 2131165509;
 			
 			// aapt resource value: 0x7F070146
-			public const int mr_media_stop_dark = 2131165510;
+			public const int mr_media_pause_light = 2131165510;
 			
 			// aapt resource value: 0x7F070147
-			public const int mr_media_stop_light = 2131165511;
+			public const int mr_media_play_dark = 2131165511;
 			
 			// aapt resource value: 0x7F070148
-			public const int mr_vol_type_audiotrack_dark = 2131165512;
+			public const int mr_media_play_light = 2131165512;
 			
 			// aapt resource value: 0x7F070149
-			public const int mr_vol_type_audiotrack_light = 2131165513;
+			public const int mr_media_stop_dark = 2131165513;
 			
 			// aapt resource value: 0x7F07014A
-			public const int mtrl_snackbar_background = 2131165514;
+			public const int mr_media_stop_light = 2131165514;
 			
 			// aapt resource value: 0x7F07014B
-			public const int mtrl_tabs_default_indicator = 2131165515;
+			public const int mr_vol_type_audiotrack_dark = 2131165515;
 			
 			// aapt resource value: 0x7F07014C
-			public const int navigation_empty_icon = 2131165516;
+			public const int mr_vol_type_audiotrack_light = 2131165516;
 			
 			// aapt resource value: 0x7F07014D
-			public const int new_one = 2131165517;
+			public const int mtrl_snackbar_background = 2131165517;
 			
 			// aapt resource value: 0x7F07014E
-			public const int notification_action_background = 2131165518;
+			public const int mtrl_tabs_default_indicator = 2131165518;
 			
 			// aapt resource value: 0x7F07014F
-			public const int notification_bg = 2131165519;
+			public const int navigation_empty_icon = 2131165519;
 			
 			// aapt resource value: 0x7F070150
-			public const int notification_bg_low = 2131165520;
+			public const int new_one = 2131165520;
 			
 			// aapt resource value: 0x7F070151
-			public const int notification_bg_low_normal = 2131165521;
+			public const int notification_action_background = 2131165521;
 			
 			// aapt resource value: 0x7F070152
-			public const int notification_bg_low_pressed = 2131165522;
+			public const int notification_bg = 2131165522;
 			
 			// aapt resource value: 0x7F070153
-			public const int notification_bg_normal = 2131165523;
+			public const int notification_bg_low = 2131165523;
 			
 			// aapt resource value: 0x7F070154
-			public const int notification_bg_normal_pressed = 2131165524;
+			public const int notification_bg_low_normal = 2131165524;
 			
 			// aapt resource value: 0x7F070155
-			public const int notification_icon_background = 2131165525;
+			public const int notification_bg_low_pressed = 2131165525;
 			
 			// aapt resource value: 0x7F070156
-			public const int notification_template_icon_bg = 2131165526;
+			public const int notification_bg_normal = 2131165526;
 			
 			// aapt resource value: 0x7F070157
-			public const int notification_template_icon_low_bg = 2131165527;
+			public const int notification_bg_normal_pressed = 2131165527;
 			
 			// aapt resource value: 0x7F070158
-			public const int notification_tile_bg = 2131165528;
+			public const int notification_icon_background = 2131165528;
 			
 			// aapt resource value: 0x7F070159
-			public const int notify_panel_notification_icon_bg = 2131165529;
+			public const int notification_template_icon_bg = 2131165529;
 			
 			// aapt resource value: 0x7F07015A
-			public const int out_chart = 2131165530;
+			public const int notification_template_icon_low_bg = 2131165530;
 			
 			// aapt resource value: 0x7F07015B
-			public const int p = 2131165531;
+			public const int notification_tile_bg = 2131165531;
 			
 			// aapt resource value: 0x7F07015C
-			public const int partly_cloudy_day = 2131165532;
+			public const int notify_panel_notification_icon_bg = 2131165532;
 			
 			// aapt resource value: 0x7F07015D
-			public const int partly_cloudy_night = 2131165533;
+			public const int out_chart = 2131165533;
 			
 			// aapt resource value: 0x7F07015E
-			public const int pp = 2131165534;
+			public const int p = 2131165534;
 			
 			// aapt resource value: 0x7F07015F
-			public const int rain = 2131165535;
+			public const int partly_cloudy_day = 2131165535;
 			
 			// aapt resource value: 0x7F070160
-			public const int select = 2131165536;
+			public const int partly_cloudy_night = 2131165536;
 			
 			// aapt resource value: 0x7F070161
-			public const int sleet = 2131165537;
+			public const int perc = 2131165537;
 			
 			// aapt resource value: 0x7F070162
-			public const int snow = 2131165538;
+			public const int pp = 2131165538;
 			
 			// aapt resource value: 0x7F070163
-			public const int splash_screen = 2131165539;
+			public const int rain = 2131165539;
 			
 			// aapt resource value: 0x7F070164
-			public const int tooltip_frame_dark = 2131165540;
+			public const int select = 2131165540;
 			
 			// aapt resource value: 0x7F070165
-			public const int tooltip_frame_light = 2131165541;
+			public const int sleet = 2131165541;
 			
 			// aapt resource value: 0x7F070166
-			public const int wind = 2131165542;
+			public const int snow = 2131165542;
 			
 			// aapt resource value: 0x7F070167
-			public const int Y = 2131165543;
+			public const int splash_screen = 2131165543;
+			
+			// aapt resource value: 0x7F070168
+			public const int time = 2131165544;
+			
+			// aapt resource value: 0x7F070169
+			public const int tooltip_frame_dark = 2131165545;
+			
+			// aapt resource value: 0x7F07016A
+			public const int tooltip_frame_light = 2131165546;
+			
+			// aapt resource value: 0x7F07016B
+			public const int visibility = 2131165547;
+			
+			// aapt resource value: 0x7F07016F
+			public const int wind = 2131165551;
+			
+			// aapt resource value: 0x7F07016C
+			public const int W_dir = 2131165548;
+			
+			// aapt resource value: 0x7F07016D
+			public const int W_Gust = 2131165549;
+			
+			// aapt resource value: 0x7F07016E
+			public const int W_lvl = 2131165550;
+			
+			// aapt resource value: 0x7F070170
+			public const int Y = 2131165552;
 			
 			static Drawable()
 			{
@@ -8114,103 +10211,100 @@ namespace Google_sheetAndro.Droid
 			public const int hide_bottom_view_on_scroll_behavior = 2131558463;
 			
 			// aapt resource value: 0x7F0D0040
-			public const int library_name = 2131558464;
+			public const int mr_button_content_description = 2131558464;
 			
 			// aapt resource value: 0x7F0D0041
-			public const int mr_button_content_description = 2131558465;
+			public const int mr_cast_button_connected = 2131558465;
 			
 			// aapt resource value: 0x7F0D0042
-			public const int mr_cast_button_connected = 2131558466;
+			public const int mr_cast_button_connecting = 2131558466;
 			
 			// aapt resource value: 0x7F0D0043
-			public const int mr_cast_button_connecting = 2131558467;
+			public const int mr_cast_button_disconnected = 2131558467;
 			
 			// aapt resource value: 0x7F0D0044
-			public const int mr_cast_button_disconnected = 2131558468;
+			public const int mr_cast_dialog_title_view_placeholder = 2131558468;
 			
 			// aapt resource value: 0x7F0D0045
-			public const int mr_cast_dialog_title_view_placeholder = 2131558469;
+			public const int mr_chooser_searching = 2131558469;
 			
 			// aapt resource value: 0x7F0D0046
-			public const int mr_chooser_searching = 2131558470;
+			public const int mr_chooser_title = 2131558470;
 			
 			// aapt resource value: 0x7F0D0047
-			public const int mr_chooser_title = 2131558471;
+			public const int mr_controller_album_art = 2131558471;
 			
 			// aapt resource value: 0x7F0D0048
-			public const int mr_controller_album_art = 2131558472;
+			public const int mr_controller_casting_screen = 2131558472;
 			
 			// aapt resource value: 0x7F0D0049
-			public const int mr_controller_casting_screen = 2131558473;
+			public const int mr_controller_close_description = 2131558473;
 			
 			// aapt resource value: 0x7F0D004A
-			public const int mr_controller_close_description = 2131558474;
+			public const int mr_controller_collapse_group = 2131558474;
 			
 			// aapt resource value: 0x7F0D004B
-			public const int mr_controller_collapse_group = 2131558475;
+			public const int mr_controller_disconnect = 2131558475;
 			
 			// aapt resource value: 0x7F0D004C
-			public const int mr_controller_disconnect = 2131558476;
+			public const int mr_controller_expand_group = 2131558476;
 			
 			// aapt resource value: 0x7F0D004D
-			public const int mr_controller_expand_group = 2131558477;
+			public const int mr_controller_no_info_available = 2131558477;
 			
 			// aapt resource value: 0x7F0D004E
-			public const int mr_controller_no_info_available = 2131558478;
+			public const int mr_controller_no_media_selected = 2131558478;
 			
 			// aapt resource value: 0x7F0D004F
-			public const int mr_controller_no_media_selected = 2131558479;
+			public const int mr_controller_pause = 2131558479;
 			
 			// aapt resource value: 0x7F0D0050
-			public const int mr_controller_pause = 2131558480;
+			public const int mr_controller_play = 2131558480;
 			
 			// aapt resource value: 0x7F0D0051
-			public const int mr_controller_play = 2131558481;
+			public const int mr_controller_stop = 2131558481;
 			
 			// aapt resource value: 0x7F0D0052
-			public const int mr_controller_stop = 2131558482;
+			public const int mr_controller_stop_casting = 2131558482;
 			
 			// aapt resource value: 0x7F0D0053
-			public const int mr_controller_stop_casting = 2131558483;
+			public const int mr_controller_volume_slider = 2131558483;
 			
 			// aapt resource value: 0x7F0D0054
-			public const int mr_controller_volume_slider = 2131558484;
+			public const int mr_dialog_device_header = 2131558484;
 			
 			// aapt resource value: 0x7F0D0055
-			public const int mr_dialog_device_header = 2131558485;
+			public const int mr_dialog_route_header = 2131558485;
 			
 			// aapt resource value: 0x7F0D0056
-			public const int mr_dialog_route_header = 2131558486;
+			public const int mr_system_route_name = 2131558486;
 			
 			// aapt resource value: 0x7F0D0057
-			public const int mr_system_route_name = 2131558487;
+			public const int mr_user_route_category_name = 2131558487;
 			
 			// aapt resource value: 0x7F0D0058
-			public const int mr_user_route_category_name = 2131558488;
+			public const int mtrl_chip_close_icon_content_description = 2131558488;
 			
 			// aapt resource value: 0x7F0D0059
-			public const int mtrl_chip_close_icon_content_description = 2131558489;
+			public const int password_toggle_content_description = 2131558489;
 			
 			// aapt resource value: 0x7F0D005A
-			public const int password_toggle_content_description = 2131558490;
+			public const int path_password_eye = 2131558490;
 			
 			// aapt resource value: 0x7F0D005B
-			public const int path_password_eye = 2131558491;
+			public const int path_password_eye_mask_strike_through = 2131558491;
 			
 			// aapt resource value: 0x7F0D005C
-			public const int path_password_eye_mask_strike_through = 2131558492;
+			public const int path_password_eye_mask_visible = 2131558492;
 			
 			// aapt resource value: 0x7F0D005D
-			public const int path_password_eye_mask_visible = 2131558493;
+			public const int path_password_strike_through = 2131558493;
 			
 			// aapt resource value: 0x7F0D005E
-			public const int path_password_strike_through = 2131558494;
+			public const int search_menu_title = 2131558494;
 			
 			// aapt resource value: 0x7F0D005F
-			public const int search_menu_title = 2131558495;
-			
-			// aapt resource value: 0x7F0D0060
-			public const int status_bar_notification_info_overflow = 2131558496;
+			public const int status_bar_notification_info_overflow = 2131558495;
 			
 			static String()
 			{

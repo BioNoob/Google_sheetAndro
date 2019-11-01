@@ -13,9 +13,13 @@
                     <Button x:Name="ItemsPg" Text="Просмотр записей"
                             Clicked="ItemPageView_Clicked"/>
                     <Button x:Name="OutPg" Text="Граф Отчёт"
-                            Clicked="GetItems_Clicked_1"/>
-                    <Button x:Name="InfoPg" Text="Инфо"
                             Clicked="GetItems_Clicked"/>
+                    <Button x:Name="MapPg" Text="Картография"
+                            Clicked="GetItems_Clicked_2"/>
+                    <Button x:Name="WheatherPg" Text="Погода"
+                            Clicked="GetItems_Clicked_3"/>
+                    <Button x:Name="InfoPg" Text="Инфо"
+                            Clicked="GetItems_Clicked_1"/>
                 </StackLayout>
             </ContentPage.Content>
         </ContentPage>

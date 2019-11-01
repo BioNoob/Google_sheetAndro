@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Google_sheetAndro.Class
 {
@@ -31,6 +31,8 @@ namespace Google_sheetAndro.Class
         public static event ParamSetterW DoSetWind;
         public delegate void ParamSetterT(string temp);
         public static event ParamSetterT DoSetTemp;
+        public delegate void ActivityEnabler(bool status);
+        public static event ActivityEnabler DoActiveAI;
 
         public static Location Pos { get; set; }
         public static string Place { get; set; }
@@ -98,11 +100,13 @@ namespace Google_sheetAndro.Class
             {
                 HttpContent responseContent = response.Content;
                 var json = await responseContent.ReadAsStringAsync();
-                dynamic stuff = JsonConvert.DeserializeObject(json);
+                //dynamic stuff = JsonConvert.DeserializeObject(json);
                 JObject obj = JObject.Parse(json);
                 var t = obj.SelectToken("currently");
                 //ResponsedData dd = new ResponsedData();
                 //dd = t.ToObject<ResponsedData>();
+                //Wheather = new ResponsedData();
+                //var q = t.SelectToken("temperature");
                 Wheather = t.ToObject<ResponsedData>();
                 BarWheather = Wheather.pressure;
                 //Wheather = JsonConvert.DeserializeObject<ResponsedData>(json);
@@ -129,7 +133,7 @@ namespace Google_sheetAndro.Class
                 try
                 {
                     var a = obj["response"]["GeoObjectCollection"]["featureMember"].ToObject<IList<JObject>>()[0].SelectToken("GeoObject");
-                    Place = a.SelectToken("description").ToString() +"/n"+ a.SelectToken("name").ToString();
+                    Place = a.SelectToken("description").ToString() + Environment.NewLine + a.SelectToken("name").ToString();
                 }
                 catch (Exception e)
                 {
@@ -137,6 +141,10 @@ namespace Google_sheetAndro.Class
                 }
 
             }
+        }
+        public static void EnableAI(bool status)
+        {
+            DoActiveAI?.Invoke(status);
         }
     }
 }

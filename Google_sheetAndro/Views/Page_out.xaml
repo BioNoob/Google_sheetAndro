@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:Refractored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh"
-             BackgroundColor="#39b1fd"
-             x:Class="Google_sheetAndro.Views.Page_out">
+             x:Class="Google_sheetAndro.Views.Page_out"
+             NavigationPage.HasNavigationBar="False">
 
     <controls:PullToRefreshLayout
           IsPullToRefreshEnabled="True"
@@ -15,19 +14,19 @@
           RefreshCommand="{Binding RefreshCommand}"
           IsRefreshing="{Binding IsBusy}"
           RefreshColor="Blue">
-    <ScrollView>
-        <StackLayout Orientation="Vertical" Margin="10,20,10,20">
-            <Grid x:Name="GraphGrid" RowSpacing="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.5*"/>
-                    <ColumnDefinition Width="0.5*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                    <Image x:Name="Out" Grid.Row="3"
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Margin="10,20,10,20">
+                <Grid x:Name="GraphGrid" RowSpacing="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image x:Name="Out" BackgroundColor="Aqua" Grid.Row="2"
                            Grid.ColumnSpan="2" Margin="10,5,10,10" HeightRequest="550">
 
                     </Image>
@@ -37,37 +36,43 @@
                                        Margin="10,5,10,10">
                 </microcharts:ChartView>-->
 
-                <Picker x:Name="Graph_pick" Grid.Row="0" Grid.Column="1"
-                        Margin="5,5,10,5" FontSize="18"
+                    <Picker x:Name="Graph_pick" Grid.Row="0" Grid.Column="1"
+                        Margin="10,5" FontSize="18"
                         VerticalOptions="Fill"
                         HorizontalOptions="Fill"
                         IsEnabled="False"
                         SelectedIndexChanged="Graph_pick_SelectedIndexChanged"
                     Title="3. Отобразить...">
-                    <Picker.Items>
-                        <x:String>Налет</x:String>
-                        <x:String>Ветер</x:String>
-                        <!--<x:String>Облачность</x:String>-->
-                        <x:String>Температура</x:String>
-                        <x:String>Задание</x:String>
-                        <x:String>Высота</x:String>
-                        <x:String>Дальность</x:String>
-                        <x:String>Примечание</x:String>
-                        <!--<x:String>Место</x:String>-->
-                    </Picker.Items>
-                </Picker>
-                <Picker x:Name="Graph_pick_date" Grid.Row="0" Grid.Column="0"
-                        Margin="10,5,5,5" FontSize="18"
+                        <Picker.Items>
+                            <x:String>Налет</x:String>
+                            <x:String>Ветер</x:String>
+                            <!--<x:String>Облачность</x:String>-->
+                            <x:String>Температура</x:String>
+                            <x:String>Задание</x:String>
+                            <x:String>Высота</x:String>
+                            <x:String>Дальность</x:String>
+                            <x:String>Примечание</x:String>
+                            <!--<x:String>Место</x:String>-->
+                        </Picker.Items>
+                    </Picker>
+                    <Picker x:Name="Graph_pick_date" Grid.Row="0" Grid.Column="0"
+                        Margin="10,5" FontSize="18"
                         SelectedIndexChanged="Graph_pick_date_SelectedIndexChanged"
                         VerticalOptions="Fill"
                         IsEnabled="False"
                         HorizontalOptions="Fill"
                     Title="1. За период...">
-                    <Picker.Items>
-                        <x:String>Все года</x:String>
-                    </Picker.Items>
-                </Picker>
-                <!--
+                        <Picker.Items>
+                            <x:String>Все года</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Picker x:Name="Mounth_pick" Grid.Row="1" Grid.Column="1"
+                        Margin="10,5" FontSize="18"
+                        SelectedIndexChanged="Mounth_pick_SelectedIndexChanged"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                    Title="Месяц"/>
+                    <!--
                 <CarouselView x:Name="VariantView" 
                               Grid.Row="1" Grid.ColumnSpan="2"
                               Margin="10,5"
@@ -84,45 +89,35 @@
                 </CarouselView>
                 -->
                     <Picker
-                    x:Name="VariantView" 
-                    Grid.Row="1" Grid.ColumnSpan="1"
-                    Margin="10,5,5,5" 
-                    FontSize="18"
-                    HeightRequest="50"              
-                    VerticalOptions="FillAndExpand"          
-                    HorizontalOptions="FillAndExpand"
-                    Title="2. Параметр"
-                    IsEnabled="False"
-                    SelectedIndexChanged="VariantView_SelectedIndexChanged"
-                    >
-                    </Picker>
-                    <Picker
-                    x:Name="Mounth_pick" 
-                    Grid.Row="1" Grid.ColumnSpan="1"
-                        Grid.Column="1"
-                    Margin="5,5,10,5" 
-                    FontSize="18"
-                    HeightRequest="50"              
-                    VerticalOptions="FillAndExpand"          
-                    HorizontalOptions="FillAndExpand"
-                    Title="4. За месяц"
-                    SelectedIndexChanged="Mounth_pick_SelectedIndexChanged"
-                    >
+                        x:Name="VariantView" 
+                        Grid.Row="1" Grid.Column ="0"
+                        Margin="10,5" 
+                        FontSize="18"
+                        HeightRequest="50"              
+                        VerticalOptions="FillAndExpand"          
+                        HorizontalOptions="FillAndExpand"
+                        Title="2. Параметр"
+                        IsEnabled="False"
+                        SelectedIndexChanged="VariantView_SelectedIndexChanged"
+                        >
+                        <Picker.Items>
+                            <x:String>Километраж</x:String>
+                        </Picker.Items>
                     </Picker>
                     <Button x:Name="Graph_create"
                                     Margin="10,0,10,10"
-                                    Grid.Row="2"
+                                    Grid.Row="3"
                                     Grid.ColumnSpan="2"
                                     HorizontalOptions="Fill"
                                     VerticalOptions="Fill"
                                     Text="Построить график" TextColor="#0078FF" 
-                                    FontAttributes="Bold" BackgroundColor="#FFFFFF"
+                                    FontAttributes="Bold"
                                     BorderColor="#000000" BorderWidth="2" Padding="0,10"
                                     FontSize="18"
                                     Clicked="Graph_create_Clicked" CornerRadius="5"/>
-            </Grid>
+                </Grid>
 
-        </StackLayout>
-    </ScrollView>
+            </StackLayout>
+        </ScrollView>
     </controls:PullToRefreshLayout>
 </ContentPage>

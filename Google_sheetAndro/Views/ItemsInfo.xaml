@@ -11,7 +11,7 @@
         <ToolbarItem Text="Добавить" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout x:Name="Sl">
+        <StackLayout x:Name="Sl" HorizontalOptions="Center" VerticalOptions="Center">
             <!--x:DataType="views:ItemsInfoVM"-->
             <Grid>
                 <Grid.RowDefinitions>
@@ -63,6 +63,15 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollView>
+            <!--<AbsoluteLayout>
+                <ActivityIndicator
+                    x:Name="activity"  
+                       IsRunning="False"  
+                       IsEnabled="False"  
+                       IsVisible="False"  
+                       Color="Blue"  
+                       BackgroundColor="Transparent"/>
+            </AbsoluteLayout>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,7 +1,4 @@
-﻿using Android.App;
-using Android.Graphics.Drawables;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Widget;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
@@ -14,7 +11,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using Xamarin.Forms;
 using static Google.Apis.Sheets.v4.SpreadsheetsResource;
 
 namespace TableAndro
@@ -117,6 +113,17 @@ namespace TableAndro
         }
         public static string SheetName = string.Empty;
         public static int sheet_id = 0;
+        public static ValueRange GetBaseData()
+        {
+            //var sheets = sheetInfo.Sheets;
+            //var sheet = sheets.Where(t => t.Properties.Title == "ÄirportBase").ToList().First();
+            //var shId = sheet.Properties.SheetId;
+            var range = $"ÄirportBase!A:C";
+            SpreadsheetsResource.ValuesResource.GetRequest request =
+        service.Spreadsheets.Values.Get(SpreadsheetId, range);
+            request.ValueRenderOption = ValuesResource.GetRequest.ValueRenderOptionEnum.FORMULA;
+            return request.Execute();
+        }
         public static void ShReader(string year_to = "")
         {
             var sheets = sheetInfo.Sheets;
@@ -218,7 +225,6 @@ namespace TableAndro
                     }
                 }
             }
-
         }
         public static void SheetExist(int year)
         {
@@ -302,13 +308,14 @@ namespace TableAndro
                     {
 
                         inp_row = inp_row_mount = values.IndexOf(row) + 1;
+                        ti.row_nb = inp_row;
                         break;
                     }
                 }
                 //нашли строку, смотрим пустая она
                 //если да пишем в нее
 
-                if(ti.exect_mounth != "")
+                if(ti.exect_mounth != "")//!string.IsNullOrEmpty(ti.exect_mounth))//ti.exect_mounth != "")
                 { 
                     IList<Request> LQReq = new List<Request>();
                     if (values[inp_row - 1].Count > 1)
@@ -440,7 +447,7 @@ namespace TableAndro
         {
             var range = tbl.tabelplase;
             var requestBody = new ClearValuesRequest();
-            if (tbl.exect_mounth == "")
+            if (tbl.exect_mounth == "")//string.IsNullOrEmpty(tbl.exect_mounth))//)
             {
                 BatchUpdateSpreadsheetRequest rqBody = new BatchUpdateSpreadsheetRequest();
                 rqBody.Requests = new List<Request>() { google_requests.DeleteRow(tbl) };

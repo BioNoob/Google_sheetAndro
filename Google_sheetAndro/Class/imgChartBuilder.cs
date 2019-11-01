@@ -6,21 +6,6 @@ namespace Google_sheetAndro.Class
 {
     public static class imgChartBuilder
     {
-        private static List<SkiaSharp.SKColor> dicColor = new List<SkiaSharp.SKColor>
-            {
-                {SkiaSharp.SKColor.Parse("#3914AF") },
-                {SkiaSharp.SKColor.Parse("#7109AA") },
-                {SkiaSharp.SKColor.Parse("#CD0074") },
-                {SkiaSharp.SKColor.Parse("#FF0000") },
-                {SkiaSharp.SKColor.Parse("#00CC00") },
-                {SkiaSharp.SKColor.Parse("#9FEE00") },
-                {SkiaSharp.SKColor.Parse("#FFFF00") },
-                {SkiaSharp.SKColor.Parse("#FFD300") },
-                {SkiaSharp.SKColor.Parse("#FFAA00") },
-                {SkiaSharp.SKColor.Parse("#FF7400") },
-                {SkiaSharp.SKColor.Parse("#009A9A") },
-                {SkiaSharp.SKColor.Parse("#1240AB") }
-            };
         //строим каждый в месяце
         public static string FormerPost_year(List<ValueDate> vl)
         {

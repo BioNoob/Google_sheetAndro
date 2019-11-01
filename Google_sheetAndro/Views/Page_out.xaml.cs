@@ -119,13 +119,13 @@ namespace Google_sheetAndro.Views
         }
         private void DeviceRotated(object s, PageOrientationEventArgs e)
         {
-            if(Out.Source != null)
+            if (Out.Source != null)
             {
-            string sourse = Out.Source.ToString();
-            Out.Source = null;
-            sourse = sourse.Replace($"{Options.opt.Width}x{Options.opt.Height}", $"{(int)Out.Width}x{(int)Out.Height}");
-            sourse = sourse.Replace("Uri: ", "");
-            Out.Source = sourse;
+                string sourse = Out.Source.ToString();
+                Out.Source = null;
+                sourse = sourse.Replace($"{Options.opt.Width}x{Options.opt.Height}", $"{(int)Out.Width}x{(int)Out.Height}");
+                sourse = sourse.Replace("Uri: ", "");
+                Out.Source = sourse;
             }
             Options.opt.Height = (int)Out.Height;
             Options.opt.Width = (int)Out.Width;
@@ -150,7 +150,7 @@ namespace Google_sheetAndro.Views
         }
         private void Graph_pick_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(Graph_pick.SelectedItem != null)
+            if (Graph_pick.SelectedItem != null)
                 Graph_create.IsEnabled = true;
             else
                 Graph_pick.IsEnabled = false;

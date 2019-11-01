@@ -12,7 +12,7 @@
         <ToolbarItem Text="Отменить" Clicked="ToolbarItem_Clicked_1" />
         <ToolbarItem Text="Сохранить" Clicked="ToolbarItem_Clicked" />
     </TabbedPage.ToolbarItems>
-    <TabbedPage.Children>
+    <!--<TabbedPage.Children>-->
         <!--<NavigationPage x:Name="InavPage" Title="Запись" IconImageSource="new_one.png">
             --><!--<x:Arguments>
                 <views:ItemsPage />
@@ -23,6 +23,6 @@
                 <views:MapPage />
             </x:Arguments>--><!--
         </NavigationPage>-->
-    </TabbedPage.Children>
+    <!--</TabbedPage.Children>-->
 
 </TabbedPage>

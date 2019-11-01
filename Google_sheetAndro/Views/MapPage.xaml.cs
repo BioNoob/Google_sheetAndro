@@ -1,15 +1,11 @@
-﻿using Android.Hardware;
-using Google_sheetAndro.Class;
-using Newtonsoft.Json;
+﻿using Google_sheetAndro.Class;
+using Google_sheetAndro.Models;
 using Plugin.DeviceSensors;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
+using System.Globalization;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
@@ -37,15 +33,24 @@ namespace Google_sheetAndro.Views
         public MapPage()
         {
             InitializeComponent();
-            b2.IsEnabled = false;
+            //b2.IsEnabled = false;
+            LoaderFunction.DoSetView += SetInitVew;
         }
         bool isLoaded;
-        protected async override void OnAppearing()
+        protected override async void OnAppearing()
         {
+
             if (!isLoaded)
             {
                 InitializeUiSettingsOnMap();
                 isLoaded = true;
+            }
+            if(StaticInfo.Pos != null)
+            {
+                await Task.Delay(1000);
+                SetInitVew();
+                //map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.GoogleMaps.Position(StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude), Xamarin.Forms.GoogleMaps.Distance.FromMiles(5)));
+                //map.MoveCamera(CameraUpdateFactory.NewPositionZoom(new Xamarin.Forms.GoogleMaps.Position(StaticInfo.Pos.Latitude,StaticInfo.Pos.Longitude), map.CameraPosition.Zoom));
             }
         }
         async Task StartListening()
@@ -65,7 +70,7 @@ namespace Google_sheetAndro.Views
             if (CrossGeolocator.Current.IsListening)
                 return;
             CrossGeolocator.Current.DesiredAccuracy = 25;
-           await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(1), 10, true, new ListenerSettings
+            await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(1), 10, true, new ListenerSettings
             {
                 ActivityType = ActivityType.OtherNavigation,
                 AllowBackgroundUpdates = true,
@@ -153,8 +158,8 @@ namespace Google_sheetAndro.Views
             //map.MoveToRegion(new Xamarin.Forms.GoogleMaps.MapSpan(new Xamarin.Forms.GoogleMaps.Position(),loc.Latitude,loc.Longitude));
         }
         private double _dist;
-        public double dist 
-        { 
+        public double dist
+        {
             get
             {
                 return _dist;
@@ -193,7 +198,7 @@ namespace Google_sheetAndro.Views
             {
                 dist += GeolocatorUtils.CalculateDistance(new Plugin.Geolocator.Abstractions.Position(pl.Positions[pl.Positions.Count - 1].Latitude, pl.Positions[pl.Positions.Count - 1].Longitude),
                 new Plugin.Geolocator.Abstractions.Position(e.Latitude, e.Longitude), GeolocatorUtils.DistanceUnits.Kilometers);
-                StatusD.Text = $"{dist} км";
+                StatusD.Text = string.Format(CultureInfo.InvariantCulture, "{0:#0.00} км", dist);
                 pl.Positions.Add(e);
                 map.Polylines.Clear();
                 map.Polylines.Add(pl);
@@ -222,40 +227,7 @@ namespace Google_sheetAndro.Views
                 TimeSpan.FromSeconds(2));
             }
         }
-        public async Task<bool> GetGEOAsync()
-        {
-            try
-            {
-                var request = new GeolocationRequest(GeolocationAccuracy.Best);
-                var s = await Geolocation.GetLocationAsync(request);
-                StaticInfo.Pos = s;
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Handle not supported on device exception
 
-                //return fnsEx.Message;
-            }
-            catch (FeatureNotEnabledException fneEx)
-            {
-                // Handle not enabled on device exception
-
-                //return fneEx.Message;
-            }
-            catch (PermissionException pEx)
-            {
-                // Handle permission exception
-
-                //return pEx.Message;
-            }
-            catch (Exception ex)
-            {
-
-                // Unable to get location
-                //return ex.Message;
-            }
-            return true;
-        }
         private async void SwManual_Toggled(object sender, ToggledEventArgs e)
         {
             if (await DisplayAlert("Предупреждение", "Текущий маршрут будет стёрт", "ОК", "Отммена"))
@@ -271,46 +243,59 @@ namespace Google_sheetAndro.Views
                 SwManual.Toggled += SwManual_Toggled;
             }
         }
-        private void b1_Clicked(object sender, EventArgs e)
+        bool fl_run = false;
+        private async void b1_Clicked(object sender, EventArgs e)
         {
-            start();
-            b2.IsEnabled = true;
-            b1.IsEnabled = false;
-            Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
-        }
-        bool alive = true;
-        Time_r t = new Time_r();
-        private bool OnTimerTick()
-        {
-                t.Sec++;
-                StatusTime.Text = t.ToString();
-                return alive;
-        }
-
-        private void TimeSt()
-        {
-            if (alive == true)
+            //start();
+            if(fl_run == false)
             {
-                alive = false;
+                if(!string.IsNullOrWhiteSpace(StaticInfo.Nalet))
+                {
+                    if (await DisplayAlert("Предупреждение", "Новая запись?", "Да", "Нет"))
+                    {
+                        t.Sec = 0;
+                        StaticInfo.Nalet = string.Empty;
+                        map.Pins.Clear();
+                        map.Polylines.Clear();
+                    }
+                }
+                b1.Text = "Стоп";
+                alife = true;
+                fl_run = true;
+                Device.StartTimer(TimeSpan.FromSeconds(1), () => OnTimerTick());
+                await StartListening();
             }
             else
             {
-                alive = true;
-                Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
+                await StopListening();
+                fl_run = false;
+                alife = false;
+                b1.Text = "Старт";
+                StaticInfo.Nalet = t.ToString();
             }
+            //b2.IsEnabled = true;
+            //b1.IsEnabled = false;
+            //Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
         }
-        private async void start()
+        Time_r t = new Time_r();
+        private bool alife = false;
+        private bool OnTimerTick()
         {
-            await StartListening();
-            TimeSt();
+            t.Sec++;
+            StatusTime.Text = t.ToString();
+            //StaticInfo.Nalet = t.ToString();
+            return alife;
         }
         private async void Button_Clicked(object sender, EventArgs e)
         {
-           await StopListening();
-            b2.IsEnabled = false;
-            b1.IsEnabled = true;
-            TimeSt();
+            await StopListening();
+            //b2.IsEnabled = false;
+            alife = false;
+            //b1.IsEnabled = true;
             StaticInfo.Nalet = t.ToString();
+            //tt.Stop();
+            //TimeSt();
+            //StaticInfo.Nalet = t.ToString();
         }
     }
 }
