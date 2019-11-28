@@ -1,14 +1,4 @@
-﻿using Google_sheetAndro.Class;
-using Newtonsoft.Json;
-using RefreshSample.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Essentials;
+﻿using RefreshSample.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

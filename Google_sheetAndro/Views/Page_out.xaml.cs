@@ -1,11 +1,9 @@
 ﻿using Android.Widget;
-using Google.Apis.Sheets.v4.Data;
 using Google_sheetAndro.Class;
 using RefreshSample.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using TableAndro;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

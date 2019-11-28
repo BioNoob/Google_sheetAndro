@@ -447,6 +447,7 @@ namespace TableAndro
         {
             var range = tbl.tabelplase;
             var requestBody = new ClearValuesRequest();
+            range = range.Replace("A", "B");
             if (tbl.exect_mounth == "")//string.IsNullOrEmpty(tbl.exect_mounth))//)
             {
                 BatchUpdateSpreadsheetRequest rqBody = new BatchUpdateSpreadsheetRequest();

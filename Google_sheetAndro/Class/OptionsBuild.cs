@@ -1,12 +1,4 @@
-﻿using Google.Apis.Sheets.v4.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Drawing;
-using System.Text.RegularExpressions;
-using System.Globalization;
-using System.Diagnostics;
-using Google_sheetAndro.Class;
+﻿using System;
 
 namespace Google_sheetAndro
 {

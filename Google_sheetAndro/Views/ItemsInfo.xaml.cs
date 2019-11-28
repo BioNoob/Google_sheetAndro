@@ -3,12 +3,6 @@ using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
 using Google_sheetAndro.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TableAndro;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -67,6 +61,7 @@ namespace Google_sheetAndro.Views
             //activity.Focus();
             //StaticInfo.AI = activity;
             //main = new NavigationPage(new MainPage());
+            NavigationPage.SetHasBackButton(LoaderFunction.MAINNavPage, true);
             await Navigation.PushModalAsync(LoaderFunction.MAINNavPage);//main);
         }
 

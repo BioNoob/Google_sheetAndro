@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google_sheetAndro.Android", "Google_sheetAndro.Android\Google_sheetAndro.Android.csproj", "{83E82780-017F-424D-84CD-7A4F5323CC4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google_sheetAndro", "Google_sheetAndro\Google_sheetAndro.csproj", "{92C67F1A-BABA-466E-A90C-49B1E6C1463E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google_sheetAndro", "Google_sheetAndro\Google_sheetAndro.csproj", "{92C67F1A-BABA-466E-A90C-49B1E6C1463E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

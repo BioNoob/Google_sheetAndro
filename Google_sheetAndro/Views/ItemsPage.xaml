@@ -511,19 +511,7 @@
                 </StackLayout>
 
             </ScrollView>
-            <ActivityIndicator x:Name="AcInd" 
-                IsVisible="False"
-                               IsRunning="False"
-                               IsEnabled="False"
-                               Color="Black"
-                               VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="CenterAndExpand"
-                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                        Property=Width,
-                                        Factor=0.33}"
-                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                                        Property=Height,
-                                        Factor=0.33}" />
+            
         </Grid>
         
 

@@ -18,21 +18,219 @@
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
-            <Style TargetType="Image">
-                <Setter Property="WidthRequest" Value="38"/>
-                <Setter Property="HeightRequest" Value="38"/>
-            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <xfg:ContentPageGloss.BackgroundGradient>
         <xfg:Gradient IsRotationTopToBottom="True">
             <xfg:Gradient.Steps>
-                <xfg:GradientStep StepColor="#2196F3" StepPercentage="0" />
-                <xfg:GradientStep StepColor="White" StepPercentage="1" />
+                <xfg:GradientStep StepColor="#FF9900" StepPercentage="0" />
+                <xfg:GradientStep StepColor="#000000" StepPercentage="1" />
             </xfg:Gradient.Steps>
         </xfg:Gradient>
     </xfg:ContentPageGloss.BackgroundGradient>
     <ScrollView>
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Vertical" Margin="10,20,10,0" Grid.Row="0">
+                <Label Text="{Binding Place}" FontSize="16" VerticalOptions="Center" TextColor="White"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Image x:Name="IcoWheather" Source="{Binding gpp.icon}" WidthRequest="50" HeightRequest="50" VerticalOptions="Center"/>
+                    <Label Text="{Binding Val[temperature]}" TextColor="White" FontSize="50" FontAttributes="Bold" VerticalOptions="Center"/>
+                    <Label Text="°C" TextColor="White" FontSize="50" VerticalOptions="Center"/>
+                </StackLayout>
+                <Label Text="{Binding gpp.summary}" TextColor="White" FontSize="16" HorizontalOptions="Center"/>
+                <Label Text="{Binding Time}" TextColor="White" FontSize="12" HorizontalOptions="Center"/>
+                <Frame  CornerRadius="10" BackgroundColor="Transparent" BorderColor="Orange"
+                   Padding="0" HeightRequest="180" VerticalOptions="Start">
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="precip_perc" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding Val[precipProbability]}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="Вероятность осадков" TextColor="#FFFFFFFF" FontSize="11" HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="humi" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding Val[humidity]}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="Влажность" TextColor="#FFFFFFFF" FontSize="11" HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="bar" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding Val[pressure]}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="Давление" TextColor="#FFFFFFFF" FontSize="11" HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="def" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding Val[cloudperc]}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="Облачность" TextColor="#FFFFFFFF" FontSize="11" HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="wind" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding Val[windSpeed]}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="Ветер" TextColor="#FFFFFFFF" FontSize="11" HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="W_dir" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding Val[windBearing]}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="Направелние" TextColor="#FFFFFFFF" FontSize="11" HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="W_Gust" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding Val[windGust]}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="Порывы" TextColor="#FFFFFFFF" FontSize="11" HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="visibility" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding Val[visibility]}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <Label Text="Видимость" TextColor="#FFFFFFFF" FontSize="11" HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+            <Frame Grid.Row="1" CornerRadius="10" Margin="10,0" BackgroundColor="Transparent" Padding="0"
+                   BorderColor="Orange" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <StackLayout Padding="5" Margin="0">
+                    <Grid>
+                        <StackLayout Grid.Column="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <Image Source="W_lvl" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                <Label Text="Высотный прогноз" TextColor="#FFFFFFFF" FontSize="11" HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <Image Source="code" HeightRequest="25" HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                            <StackLayout  HorizontalOptions="CenterAndExpand">
+                                <Label Text="Код лётной площадки" TextColor="#FFFFFFFF" FontSize="11" 
+                                       HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <Label Text="{Binding Airport}" TextColor="#FFFFFFFF" FontSize="16" HorizontalOptions="Center"
+                                         Grid.Column="2"   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <StackLayout Grid.Column="3" Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <Image Source="time" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                <Label Text="Дата прогноза" TextColor="#FFFFFFFF" FontSize="11" HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <Label Text="{Binding ActualDate, StringFormat='{0:HH:mm dd.MM}'}" TextColor="#FFFFFFFF" FontSize="11" HorizontalOptions="Center"
+                                       Grid.Column="4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </Grid>
+                    <ListView ItemsSource="{Binding ActualWind}"
+                              HasUnevenRows="True" HeightRequest="150"
+                          SeparatorColor="#008CFF" SelectionMode="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="0" Text="Высота" TextColor="White" FontSize="12"/>
+                                        <Label Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2" Text="{Binding hi}"  TextColor="Orange" FontSize="12"/>
+                                        <Label Grid.Row="1" Grid.Column="0" Text="Ветер" TextColor="White" FontSize="12"/>
+                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Asim}" TextColor="Orange" FontSize="12"/>
+                                        <Label Grid.Row="1" Grid.Column="2" Text="{Binding WindForm}" TextColor="Orange" FontSize="12"/>
+                                        <Label Grid.Row="2" Grid.Column="0" Text="Температура" TextColor="White" FontSize="12"/>
+                                        <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Temp}" TextColor="Orange" FontSize="12"/>
+                                    </Grid>
+                                </ViewCell>
+                                <!--<TextCell Text ="{Binding Out} " TextColor="#1976D2"/>-->
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView HasUnevenRows="True"
+                              ItemsSource="{Binding lw}" 
+                      ItemSelected="ListView_ItemSelected"
+                      SeparatorColor="#008CFF" SelectionMode="Single" HeightRequest="150"
+                          >
+                        <ListView.ItemTemplate>
+
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding time}"  TextColor="White" FontSize="12"/>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Date}"  TextColor="White" FontSize="12"/>
+                                    </Grid>
+                                </ViewCell>
+                                <!--<TextCell Text="{Binding Date}" TextColor="#1976D2"/>-->
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Frame>
+            <!--<ListView x:Name="WeatherForecastList" ItemsSource="{Binding Weathers}" SeparatorVisibility="None"
+                  Grid.Row="1" Margin="10,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                      BackgroundColor="#4CFFFFFF">
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+                        <ViewCell>
+                            <Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="5" Margin="0,0,0,5" HasShadow="False">
+                                <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Date}" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>
+                                    <Image Grid.Column="1" Source="{Binding Icon}" WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <StackLayout Grid.Column="2" Orientation="Horizontal" Margin="20,0" HorizontalOptions="End" VerticalOptions="Center">
+                                        <Label Text="{Binding Temp}" TextColor="Black" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
+                                        <Label Text="°C" TextColor="Black" FontSize="15" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+        </Grid>
+    </ScrollView>
+    <!--<ScrollView>
         <Grid Margin="5" VerticalOptions="Start">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -40,13 +238,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid Margin="5" ColumnSpacing="5" Grid.Row="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Label x:Name="sPlace" Text="{Binding Place}" HorizontalTextAlignment="Center"
-                       Grid.Column="0" Grid.Row="1"/>
-                <Label x:Name="sTime" Text="{Binding Time}"
+                <Label x:Name="sPlace" Text="{Binding Place}" HorizontalTextAlignment="Start"
                        Grid.Column="0" Grid.Row="0"/>
             </Grid>
             <Grid Grid.Row="1" Margin="5">
@@ -120,5 +312,5 @@
                 </ListView>
             </Grid>
         </Grid>
-    </ScrollView>
+    </ScrollView>-->
 </ContentPage>

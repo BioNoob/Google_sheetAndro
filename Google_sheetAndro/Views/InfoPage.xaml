@@ -4,28 +4,38 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:lc="clr-namespace:Google_sheetAndro"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
              mc:Ignorable="d"
              x:Class="Google_sheetAndro.Views.InfoPage" BackgroundColor="#39b1fd">
     <ContentPage.Resources>
         <ResourceDictionary>
             <OnPlatform x:Key="FontFamilyName" x:TypeArguments="x:String" Android="Jura-Bold.ttf#Jura-Bold"/>
-            <Style x:Key="lblstyle" TargetType="Label">
-                <Setter Property="TextColor" Value="White" />
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
-                <Setter Property="FontFamily" Value="{DynamicResource FontFamilyName}" />
+                <!--<Setter Property="FontFamily" Value="{DynamicResource FontFamilyName}" />-->
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient IsRotationTopToBottom="True">
+            <xfg:Gradient.Steps>
+                <xfg:GradientStep StepColor="#2196F3" StepPercentage="0" />
+                <xfg:GradientStep StepColor="White" StepPercentage="0.5" />
+                <xfg:GradientStep StepColor="#2196F3" StepPercentage="1" />
+            </xfg:Gradient.Steps>
+        </xfg:Gradient>
+    </xfg:ContentPageGloss.BackgroundGradient>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="10">
                 <Grid RowSpacing="1" ColumnSpacing="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -35,31 +45,15 @@
                         <RowDefinition Height="0.5*" />
                         <RowDefinition Height="0.5*" />
                     </Grid.RowDefinitions>
-                    <Label x:Name="Date_actual" Style="{StaticResource lblstyle}" Text="data" Grid.Row="0" Grid.ColumnSpan="2"
+                    <Label x:Name="Date_actual" Text="data" Grid.Row="0"
                        HorizontalTextAlignment="End"/>
-                    <Label Text="Google Sheets API" Style="{StaticResource lblstyle}" 
-                       Grid.Row="1" Grid.ColumnSpan ="2" FontSize="25"
-HorizontalTextAlignment="Center"
+                    <Label Text="Небо для всех"
+                       Grid.Row="1" FontSize="25"
+                           HorizontalTextAlignment="Center"
+                           FontAttributes="Bold"
                            Margin="0,20,0,0"/>
-                    <lc:TagLabel Text="Google Sheets API" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,0,20"
-                           Tag="https://docs.google.com/spreadsheets/d/1O8AeG_B45kAyG3cuClJigZhfKUtjV-0eQRZq8XzUutk/edit?usp=sharing"
-                        Style="{StaticResource lblstyle}" FontSize="25" HorizontalTextAlignment="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Налёт часов"
-                             TextColor="#FF9C0C"
-                                                           
-                                TextDecorations="Underline">
-                                    <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"
-                                          />
-                                    </Span.GestureRecognizers>
-                                </Span>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </lc:TagLabel>
-                    <Image Source="Y" Grid.Row="3" Grid.ColumnSpan="2" Margin="20,20,20,0"></Image>
-                    <lc:TagLabel Style="{StaticResource lblstyle}" Grid.Row="4" Grid.ColumnSpan="2"
+                    <!--<Image Source="Y" Grid.Row="3" Grid.Column="1" Margin="20,20,20,0" WidthRequest="100"/>
+                    <lc:TagLabel Grid.Row="3" Grid.Column="0" BackgroundColor="AntiqueWhite"
                            Tag="https://github.com/BioNoob/Google_sheetAndro"
                        HorizontalTextAlignment="Center">
                         <Label.FormattedText>
@@ -74,48 +68,86 @@ HorizontalTextAlignment="Center"
                                 </Span>
                             </FormattedString>
                         </Label.FormattedText>
-                    </lc:TagLabel>
-                    <Label Style="{StaticResource lblstyle}" Grid.Row="5" Grid.ColumnSpan="2" 
+                    </lc:TagLabel>-->
+                    <Label Grid.Row="5"
+                       Text ="Создано с помощью:"
+                       FontSize="25"
+                       HorizontalTextAlignment="Center" Margin="0,15,0,15"/>
+                    <ListView Grid.Row="6" HeightRequest="200"
+                              ItemsSource="{Binding APlist}" HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Margin="20,0,20,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image  Grid.Column="0"  Source="{Binding Img}" />
+                                        <lc:TagLabel Tag="{Binding Tag}" Grid.Column="1"
+                                                     HorizontalTextAlignment="Center"  VerticalTextAlignment="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Name}"
+                                                          TextColor="#FF9C0C"
+                                                          FontSize="18"
+                                                          TextDecorations="Underline">
+                                                        <Span.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                                                        </Span.GestureRecognizers>
+                                                    </Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </lc:TagLabel>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Grid Grid.Row="7">
+                        <Label Grid.Row="0" Grid.ColumnSpan="2" 
                        Text ="Адреса для связи:"
                        FontSize="25"
-                       
-                       HorizontalTextAlignment="Center" Margin="0,15,0,10"/>
-                    <Label Style="{StaticResource lblstyle}" Grid.Row="7" Grid.Column ="0"
-                        HorizontalTextAlignment="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="bigjarik@gmail.com"
-                             TextColor="#FF9C0C"
-                                TextDecorations="Underline">
-                                    <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                                    </Span.GestureRecognizers>
-                                </Span>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Label Text="gMail:" Style="{StaticResource lblstyle}" 
-                       Grid.Row="6" Grid.Column ="0" Margin="15,5,15,5"
+                       HorizontalTextAlignment="Center" Margin="0,15,0,15"/>
+                        <Label Grid.Row="2" Grid.Column ="0"
+                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="bigjarik@gmail.com"
+                                      TextColor="#FF9C0C"
+                                      FontSize="18"
+                                      TextDecorations="Underline">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="gMail:"  
+                       Grid.Row="1" Grid.Column ="0" Margin="15,5,15,5"
                        HorizontalTextAlignment="Center"></Label>
-                    <Label Text="Bug Tracking:" Style="{StaticResource lblstyle}" 
-                       Grid.Row="6" Grid.Column ="1" Margin="15,5,15,5"
+                        <Label Text="Bug Tracking:" 
+                       Grid.Row="1" Grid.Column ="1" Margin="15,5,15,5"
                        HorizontalTextAlignment="Center"></Label>
-                    <lc:TagLabel Style="{StaticResource lblstyle}" Grid.Row="7" Grid.Column ="1"
+                        <lc:TagLabel Grid.Row="2" Grid.Column ="1"
                        Margin="15,0,15,0" Tag="https://github.com/BioNoob/Google_sheetAndro/issues"
-                       HorizontalTextAlignment="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="github.com "
-                             TextColor="#FF9C0C"
-                                                           
-                                TextDecorations="Underline">
-                                    <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
-                                    </Span.GestureRecognizers>
-                                </Span>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </lc:TagLabel>
+                       HorizontalTextAlignment="Center"  VerticalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="github.com"
+                                      TextColor="#FF9C0C"
+                                      FontSize="18"
+                                      TextDecorations="Underline">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </lc:TagLabel>
+                    </Grid>
+
                 </Grid>
             </StackLayout>
         </ScrollView>

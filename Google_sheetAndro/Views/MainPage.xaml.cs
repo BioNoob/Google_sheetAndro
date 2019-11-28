@@ -1,14 +1,6 @@
-﻿using Google.Apis.Auth.OAuth2;
-using Google.Apis.Services;
-using Google.Apis.Sheets.v4;
-using Google_sheetAndro.Class;
-using Google_sheetAndro.Models;
+﻿using Google_sheetAndro.Models;
 using System;
 using System.ComponentModel;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-using TableAndro;
 using Xamarin.Forms;
 
 namespace Google_sheetAndro.Views

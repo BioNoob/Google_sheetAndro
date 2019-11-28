@@ -8,21 +8,51 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="Google_sheetAndro.Views.MapPage"
              >
-    <Grid>
+    <Grid x:Name="SL">
         <mp:Map x:Name="map" HeightRequest="500" BackgroundColor="Beige" MapType="Hybrid" 
                             MyLocationEnabled="True"
                             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+        
         <RelativeLayout x:Name="r1"  Margin="10" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="#77000000">
-            <Label Text="Ручной режим" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" Margin="5,0"
-                   RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToView,ElementName = SwManual,Property=Height, Factor=1, Constant=1}" 
+            <!--<Label Text="Ручной режим" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" Margin="5,0"
+                   RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToView,ElementName = PopSettings,Property=Height, Factor=1, Constant=1}" 
                    HorizontalTextAlignment="Center" LineBreakMode="WordWrap" VerticalTextAlignment="Center"
                    TextColor="White"
-                   WidthRequest="100"/>
-            <Switch x:Name="SwManual" VerticalOptions="CenterAndExpand"
+                   WidthRequest="100"/>-->
+            <!--<Switch x:Name="SwManual" VerticalOptions="CenterAndExpand"
                     HorizontalOptions="CenterAndExpand" Margin="5,5,5,0" OnColor="Orange" ThumbColor="#2196F3"
                     Scale="0.85"
                     Toggled="SwManual_Toggled"
-                    />
+                    />-->
+            <Grid x:Name="Buttons" Margin="0" HeightRequest="0" WidthRequest="0" Opacity="0"
+                RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToView,ElementName = PopSettings,Property=Height, Factor=1, Constant=1}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ImageButton x:Name="TypMap" HeightRequest="48" WidthRequest="48" Grid.Row="1"
+                       Source="Hybrid.png" HorizontalOptions="Center" Clicked="TypMap_Clicked"/>
+                <ImageButton x:Name="TypRoute" HeightRequest="48" WidthRequest="48" Grid.Row="3"
+                       Source="RoutePoint.png" HorizontalOptions="Center" Clicked="TypRoute_Clicked"/>
+                <Label Text="Тип карты" Grid.Row="0" HorizontalOptions="Center" 
+                       FontSize="16" FontAttributes="Bold" TextColor="White"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <!--<Label x:Name="LParamMap" Text="Гибрид" Grid.Row="2" HorizontalOptions="Center"
+                       FontSize="16" FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>-->
+                <Label Text="Установка" Grid.Row="2" HorizontalOptions="Center"
+                       FontSize="16" FontAttributes="Bold" TextColor="White"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <!--<Label x:Name="LParamRoute" Text="Маршрут" Grid.Row="5" HorizontalOptions="Center"
+                       FontSize="16" FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>-->
+            </Grid>
+            <ImageButton x:Name="PopSettings" VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand" Source="settings.png"
+                    HeightRequest="40" Clicked="PopSettings_Clicked"
+                />
         </RelativeLayout>
         <StackLayout VerticalOptions="End" Margin="10,0,0,20" HorizontalOptions="Start">
             <Button x:Name ="b1" Text="Старт" BackgroundColor="#77000000" BorderRadius="4" BorderColor="White" BorderWidth="2" 

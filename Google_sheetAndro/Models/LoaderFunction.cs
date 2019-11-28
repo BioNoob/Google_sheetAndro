@@ -1,13 +1,10 @@
 ﻿using Google_sheetAndro.Class;
 using Google_sheetAndro.Views;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using TableAndro;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using System.Threading;
 
 namespace Google_sheetAndro.Models
 {
@@ -55,12 +52,21 @@ namespace Google_sheetAndro.Models
             #endregion
             return true;
         }
-        public static async Task init()
+        public static async Task<bool> init()
         {
-            if (string.IsNullOrEmpty(StaticInfo.Place))
-                await StaticInfo.GetPlace(StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude);
-            if (StaticInfo.Wheather == null)
-                await StaticInfo.GetWeatherReqAsync(StaticInfo.Pos);
+            try
+            {
+                if (string.IsNullOrEmpty(StaticInfo.Place))
+                    await StaticInfo.GetPlace(StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude);
+                if (StaticInfo.Wheather == null)
+                    await StaticInfo.GetWeatherReqAsync(StaticInfo.Pos);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
 
             //Place = StaticInfo.Place;
             //gpp = StaticInfo.Wheather;
@@ -75,6 +81,8 @@ namespace Google_sheetAndro.Models
         }
         public static void EndLoad()
         {
+            ItemsInfoPage.Title = "Записи";
+            LoaderFunction.MenuPage.sett(LoaderFunction.ItemsInfoPage);
             DoWheatherLoad?.Invoke();
         }
         public static InfoPage InfoPage;
@@ -131,9 +139,30 @@ namespace Google_sheetAndro.Models
         public static async Task InitialiserPage()
         {
             Googles.InitService();
-            await GetGEOAsync();
-            await init();
-            EndLoad();
+            var q = await GetGEOAsync();
+            var qq = await init();
+            while (true)
+            {
+                //Меню имеет в  себе активити индикатор по дефолту на пустой странице
+                //по окончанию загрузки ставит итемсинфо
+                //запустить его в начале этого метода
+                //раскрасить его и страницу градиентом
+                //после выполнения endлоад выключать индикатор и ставить страницу
+                //баг карты которая вылезает за пейдж на меинпейдже с табами *не нашел. Кнопка обнуления карты, сброс текущих значений. перемещение к позиции запомненной? почему она другая
+                //добавить при выборе элемента кнопку назад!
+                //Аутентификация - метода - логин с гугл, запомнили почту, имя + фотка в меню пейдж + почта, при записи данных добавляем почту добавившего
+                //возможен функционал сейва маршрутов. (гугл таблица + джсон) в настройки = строка = разделенные геоточки.
+                //вместо тригера на ручное переключение настройки карты
+
+                if(q == true && qq == true)
+                {
+                    EndLoad();
+                    break;
+                }
+
+
+            }
+
             //Task.Run(async () => await Loader()).Wait();
 
             //Task t1 = GetGEOAsync();

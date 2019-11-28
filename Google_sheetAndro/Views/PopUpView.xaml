@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Google_sheetAndro.Views.PopUpView" BackgroundColor="Transparent">
+    <StackLayout
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" 
+        Padding="20, 20, 20, 20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Picker x:Name="MapStylePick" Grid.Row="0"/>
+            <Picker x:Name="EditModePick" Grid.Row="1"/>
+            <Button x:Name="BackBtn" Grid.Row="2" Clicked="BackBtn_Clicked"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>

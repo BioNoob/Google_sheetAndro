@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             mc:Ignorable="d"
+             x:Class="Google_sheetAndro.Views.MenuDetail">
+    <xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient IsRotationTopToBottom="True">
+            <xfg:Gradient.Steps>
+                <xfg:GradientStep StepColor="#FF9900" StepPercentage="0" />
+                <xfg:GradientStep StepColor="#000000" StepPercentage="1" />
+            </xfg:Gradient.Steps>
+        </xfg:Gradient>
+    </xfg:ContentPageGloss.BackgroundGradient>
+    <ContentPage.Content>
+
+        <ActivityIndicator x:Name="AcInd" 
+                IsVisible="False"
+                               IsRunning="False"
+                               IsEnabled="False"
+                               Color="Black"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                        Property=Width,
+                                        Factor=0.33}"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                        Property=Height,
+                                        Factor=0.33}" />
+    </ContentPage.Content>
+</ContentPage>

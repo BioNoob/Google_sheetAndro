@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -13,10 +14,31 @@ namespace Google_sheetAndro.Class
 {
     public static class StaticInfo
     {
+        // // OAuth
+        // // For Google login, configure at https://console.developers.google.com/
+        // //public static string iOSClientId = "<insert IOS client ID here>";
+        // public static string AndroidClientId = "502015475506-0g3ru4ej6h5h7vpv20m18rv5qapmo4vb.apps.googleusercontent.com";
+        // public static string AppName = "Yasma";
+        // // These values do not need changing
+        // public static string Scope = "https://www.googleapis.com/auth/userinfo.email";
+        // public static string AuthorizeUrl = "https://accounts.google.com/o/oauth2/auth";
+        // public static string AccessTokenUrl = "https://www.googleapis.com/oauth2/v4/token";
+        // public static string UserInfoUrl = "https://www.googleapis.com/oauth2/v2/userinfo";
+
+        // // Set these to reversed iOS/Android client ids, with :/oauth2redirect appended
+        //// public static string iOSRedirectUrl = "<insert IOS redirect URL here>:/oauth2redirect";
+        // public static string AndroidRedirectUrl = "https://android-sheets-flybase.firebaseapp.com/__/auth/handler";
+
+
+
         private static string nalet;
         private static float height;
         private static double dist;
         private static ResponsedData wheather = null;
+        private static string accountEmail;
+
+        public delegate void MenuSetPage(Page pg);
+        public static event MenuSetPage SetDetailPage;
 
         public delegate void ParamSetterN(string nalet);
         public static event ParamSetterN DoSetNalet;
@@ -33,9 +55,16 @@ namespace Google_sheetAndro.Class
         public static event ParamSetterT DoSetTemp;
         public delegate void ActivityEnabler(bool status);
         public static event ActivityEnabler DoActiveAI;
-
+        public static string AccountEmail { get => accountEmail; set => accountEmail = value; }
+        private static string accountPicture;
+        public static float BarWheather { get; set; } = 0;
+        public static string AccountPicture { get => accountPicture; set => accountPicture = value; }
         public static Location Pos { get; set; }
         public static string Place { get; set; }
+        public static void SetPage(Page pg)
+        {
+            SetDetailPage?.Invoke(pg);
+        }
         public static ResponsedData Wheather
         {
             get { return wheather; }
@@ -78,7 +107,8 @@ namespace Google_sheetAndro.Class
             get { return dist; }
             set { DoSetDist?.Invoke(value); dist = value; }
         }
-        public static float BarWheather { get; set; } = 0;
+
+
         public static float GetHeight(double bardata)
         {
             if (bardata != 0)
@@ -94,8 +124,10 @@ namespace Google_sheetAndro.Class
         {
             string api_key = "42b983a01370d4d851e3fccc2b3cfd4b";
             HttpClient client = new HttpClient();
-            string req = $"?apikey={api_key}&q={coord.Latitude},{coord.Longitude}&language=ru-ru&details=true HTTP/1.1";
-            HttpResponseMessage response = await client.GetAsync($"https://api.darksky.net/forecast/{api_key}/{coord.Latitude},{coord.Longitude}?&lang=ru&units=si&exclude=hourly,daily,minutely,flags");
+            //string req = $"?apikey={api_key}&q={coord.Latitude},{coord.Longitude}&language=ru-ru&details=true HTTP/1.1";
+            string lat = coord.Latitude.ToString(CultureInfo.InvariantCulture);
+            string lon = coord.Longitude.ToString(CultureInfo.InvariantCulture);
+            HttpResponseMessage response = await client.GetAsync($"https://api.darksky.net/forecast/{api_key}/{lat},{lon}?&lang=ru&units=si&exclude=hourly,daily,minutely,flags");
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 HttpContent responseContent = response.Content;
@@ -108,6 +140,8 @@ namespace Google_sheetAndro.Class
                 //Wheather = new ResponsedData();
                 //var q = t.SelectToken("temperature");
                 Wheather = t.ToObject<ResponsedData>();
+                if (Wheather == null)
+                    throw new Exception("Ошибка погоды");
                 BarWheather = Wheather.pressure;
                 //Wheather = JsonConvert.DeserializeObject<ResponsedData>(json);
                 //string pressure = stuff.currently.pressure; // давление, для рассчета высоты

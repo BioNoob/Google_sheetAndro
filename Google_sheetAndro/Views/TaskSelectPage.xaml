@@ -8,13 +8,12 @@
              x:Class="Google_sheetAndro.Views.TaskSelectPage"
                               NavigationPage.HasNavigationBar="False"
                  NavigationPage.HasBackButton="False"
-             NavigationPage.BackButtonTitle="LOL"
-             BackgroundColor="#1976D2">
+             NavigationPage.BackButtonTitle="LOL">
     <ContentPage.Resources>
         <ResourceDictionary>
             <OnPlatform x:Key="FontFamilyName" x:TypeArguments="x:String" Android="Jura-Bold.ttf#Jura-Bold"/>
             <Style x:Key="lblstyle" TargetType="Label">
-                <Setter Property="TextColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
                 <!--<Setter Property="FontFamily" Value="{DynamicResource FontFamilyName}" />-->

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 
 namespace Google_sheetAndro.Class
 {
@@ -27,7 +26,7 @@ namespace Google_sheetAndro.Class
         public float pressure { get; set; }
         private string _source;
         private float temperature1;
-
+        public string summary { get; set; }
         public float windSpeed { get; set; }
         public float windGust { get; set; }
         public float cloudCover { get; set; }
@@ -44,7 +43,7 @@ namespace Google_sheetAndro.Class
             string temp_sign = string.Empty;
             if (temperature > 0)
                 temp_sign = "+";
-            dic.Add("temperature", temp_sign + Math.Round(temperature).ToString() + " C°");
+            dic.Add("temperature", temp_sign + Math.Round(temperature).ToString());
             dic.Add("windSpeed", string.Format("{0:#0.# м/с}", windSpeed));
             dic.Add("pressure", string.Format("{0:#0 hPa}", pressure));
             if (cloudCover <= 0.0)
@@ -55,6 +54,7 @@ namespace Google_sheetAndro.Class
                 dic.Add("cloudCover", "высокая");
             dic.Add("windGust", string.Format("{0:#0.# м/с}", windGust));
             dic.Add("humidity", string.Format(CultureInfo.InvariantCulture, "{0:P1}", humidity));
+            dic.Add("cloudperc", string.Format(CultureInfo.InvariantCulture, "{0:P1}", cloudCover));
             dic.Add("precipIntensity", string.Format("{0:#0.# ?}", precipIntensity));
             dic.Add("visibility", string.Format("{0:#0.# км}", visibility));
             dic.Add("precipProbability", string.Format(CultureInfo.InvariantCulture, "{0:P1}", precipProbability));

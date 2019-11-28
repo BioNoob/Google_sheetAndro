@@ -3,25 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
                   xmlns:views="clr-namespace:Google_sheetAndro.Views"
                   mc:Ignorable="d"
-             x:Class="Google_sheetAndro.Views.MenuPage">
+             x:Class="Google_sheetAndro.Views.MenuPage" IsPresented="True">
     <MasterDetailPage.Master>
+
         <ContentPage Title="Master">
-            <ContentPage.Content>
-                <StackLayout Padding="5,5,5,5">
-                    <Button x:Name="ItemsPg" Text="Просмотр записей"
+            <StackLayout Padding="5,5,5,5">
+                <Frame BackgroundColor="Aquamarine" HeightRequest="150">
+                    <Image/>
+                </Frame>
+                <Button x:Name="ItemsPg" Text="Просмотр записей"
                             Clicked="ItemPageView_Clicked"/>
-                    <Button x:Name="OutPg" Text="Граф Отчёт"
+                <Button x:Name="OutPg" Text="Граф Отчёт"
                             Clicked="GetItems_Clicked"/>
-                    <Button x:Name="MapPg" Text="Картография"
+                <Button x:Name="MapPg" Text="Картография"
                             Clicked="GetItems_Clicked_2"/>
-                    <Button x:Name="WheatherPg" Text="Погода"
+                <Button x:Name="WheatherPg" Text="Погода"
                             Clicked="GetItems_Clicked_3"/>
-                    <Button x:Name="InfoPg" Text="Инфо"
+                <Button x:Name="InfoPg" Text="Инфо"
                             Clicked="GetItems_Clicked_1"/>
-                </StackLayout>
-            </ContentPage.Content>
+            </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <views:MenuDetail Title="Detail"/>
+    </MasterDetailPage.Detail>
 </MasterDetailPage>

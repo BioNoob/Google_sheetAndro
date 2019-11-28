@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 
 namespace Google_sheetAndro.Class
 {
@@ -36,6 +35,7 @@ namespace Google_sheetAndro.Class
                 _wind = t;
             }
         }
+        public string WindForm { get { return $"{Wind} км/ч ({ ConvWindMs()})";}}
         private string ConvWindMs()
         {
             return String.Format(CultureInfo.InvariantCulture, "{0:#0.#}м/с", _wind * 5/18);
@@ -44,7 +44,7 @@ namespace Google_sheetAndro.Class
         {
             get
             {
-                return _asim.ToString(CultureInfo.InvariantCulture);
+                return _asim.ToString(CultureInfo.InvariantCulture) + "°";
             }
             set
             {
@@ -90,11 +90,18 @@ namespace Google_sheetAndro.Class
                 return _dt;
             }
         }
-        public string Date
+        public string time
         {
             get
             {
                 return _dt.ToString("HH:mm");
+            }
+        }
+        public string Date
+        {
+            get
+            {
+                return _dt.ToString("dd MMMM yyyy");
             }
             set
             {

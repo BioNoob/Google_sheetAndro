@@ -1,10 +1,12 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Google_sheetAndro.Services;
-using Google_sheetAndro.Views;
+﻿using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
+using Google_sheetAndro.Views;
+using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Google_sheetAndro
 {
@@ -14,7 +16,6 @@ namespace Google_sheetAndro
         public App()
         {
             InitializeComponent();
-            DependencyService.Register<MockDataStore>();
             //LoaderFunction.InitialiserPage();
 
 
@@ -42,7 +43,7 @@ namespace Google_sheetAndro
             LoaderFunction.ItemsInfoPage = new ItemsInfo();//not ok need items
             LoaderFunction.ItInfoNavPage = new NavigationPage(LoaderFunction.ItemsInfoPage);
             LoaderFunction.MenuPage = new MenuPage();
-            LoaderFunction.MenuPage.sett(LoaderFunction.ItemsInfoPage);
+
             MainPage = LoaderFunction.MenuPage;
             //LoaderFunction.EndLoad();
             //MainPage = new MenuPage();
@@ -50,9 +51,12 @@ namespace Google_sheetAndro
 
         }
         bool fl_wait = false;
+
+
         protected override async void OnStart()
         {
-            if(!fl_wait)
+
+            if (!fl_wait)
             {
                 Debug.WriteLine("RunStart");
                 await LoaderFunction.InitialiserPage().ConfigureAwait(true);
@@ -62,7 +66,6 @@ namespace Google_sheetAndro
             // Handle when your app starts
 
         }
-
         protected override void OnSleep()
         {
             fl_wait = true;

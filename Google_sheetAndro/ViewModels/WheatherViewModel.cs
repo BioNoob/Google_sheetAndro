@@ -37,7 +37,7 @@ namespace RefreshSample.ViewModels
         //public ObservableCollection<string> Items { get; set; }
         public WheatherViewModel()
         {
-            Time = DateTime.Now.ToString("HH:mm dd MMMM yyyy");
+            Time = DateTime.Now.ToString("dd MMMM, HH:mm");
             LoaderFunction.DoWheatherLoad += LoaderFunction_DoWheatherLoad;
         }
 
@@ -49,7 +49,7 @@ namespace RefreshSample.ViewModels
             string key = Searcher(StaticInfo.Pos);
             lw = kek(key);
             Airport = key;
-            ActualDate = lw.First().Date;
+            ActualDate = lw.First().DateFormat;
             ActualWind = lw.First().Wind;
         }
         public string Airport { get => airport; set { airport = value; OnPropertyChanged("Airport");} }
@@ -57,7 +57,7 @@ namespace RefreshSample.ViewModels
         public Dictionary<string, string> Val { get => val; set { val = value; OnPropertyChanged("Val");  } }
         public string Place { get => place; set { place = value; OnPropertyChanged("Place"); } }
         public string Time { get => time; set { time = value; OnPropertyChanged("Time"); } }
-        public string ActualDate { get => actualDate; set { actualDate = value; OnPropertyChanged("ActualDate");} }
+        public DateTime ActualDate { get => actualDate; set { actualDate = value; OnPropertyChanged("ActualDate");} }
         public List<windout> lw { get => lw1; set { lw1 = value; OnPropertyChanged("lw");  } }
         public List<Winder> ActualWind { get => actualWind; set { actualWind = value; OnPropertyChanged("ActualWind");  } }
         bool canRefresh = true;
@@ -89,7 +89,7 @@ namespace RefreshSample.ViewModels
         }
         ICommand refreshCommand;
         private List<windout> lw1;
-        private string actualDate;
+        private DateTime actualDate;
         private string time;
         private string place;
         private Dictionary<string, string> val;

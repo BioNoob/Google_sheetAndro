@@ -26,7 +26,18 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Image x:Name="Out" BackgroundColor="Aqua" Grid.Row="2"
+                    <Button x:Name="Graph_create"
+                                    Margin="10,0,10,10"
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill"
+                                    Text="Построить график" TextColor="#0078FF" 
+                                    FontAttributes="Bold"
+                                    BorderColor="#000000" BorderWidth="2" Padding="0,10"
+                                    FontSize="18"
+                                    Clicked="Graph_create_Clicked" CornerRadius="5"/>
+                    <Image x:Name="Out" Grid.Row="3"
                            Grid.ColumnSpan="2" Margin="10,5,10,10" HeightRequest="550">
 
                     </Image>
@@ -104,17 +115,7 @@
                             <x:String>Километраж</x:String>
                         </Picker.Items>
                     </Picker>
-                    <Button x:Name="Graph_create"
-                                    Margin="10,0,10,10"
-                                    Grid.Row="3"
-                                    Grid.ColumnSpan="2"
-                                    HorizontalOptions="Fill"
-                                    VerticalOptions="Fill"
-                                    Text="Построить график" TextColor="#0078FF" 
-                                    FontAttributes="Bold"
-                                    BorderColor="#000000" BorderWidth="2" Padding="0,10"
-                                    FontSize="18"
-                                    Clicked="Graph_create_Clicked" CornerRadius="5"/>
+
                 </Grid>
 
             </StackLayout>

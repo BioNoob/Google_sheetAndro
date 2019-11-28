@@ -1,5 +1,4 @@
-﻿using Google.Apis.Sheets.v4.Data;
-using Google_sheetAndro.Class;
+﻿using Google_sheetAndro.Class;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

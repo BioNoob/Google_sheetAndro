@@ -1,17 +1,12 @@
-﻿using System;
+﻿using Google_sheetAndro.Class;
+using Google_sheetAndro.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Xamarin.Forms;
-using Google_sheetAndro.ViewModels;
-using System.Text.RegularExpressions;
-using System.Reflection;
-using TableAndro;
-using Google.Apis.Sheets.v4;
-using Google.Apis.Services;
-using Google.Apis.Auth.OAuth2;
 using System.Globalization;
-using Google_sheetAndro.Class;
-using Google_sheetAndro.Models;
+using System.Text.RegularExpressions;
+using TableAndro;
+using Xamarin.Forms;
 
 namespace Google_sheetAndro.Views
 {
@@ -56,17 +51,17 @@ namespace Google_sheetAndro.Views
             StaticInfo.DoSetWind += SetWind;
             StaticInfo.DoSetCloud += SetCloud;
             LoaderFunction.DoCreateRow += CreateRow;
-            StaticInfo.DoActiveAI += StaticInfo_DoActiveAI;
+            //StaticInfo.DoActiveAI += StaticInfo_DoActiveAI;
         }
 
-        private void StaticInfo_DoActiveAI(bool status)
-        {
-            AcInd.IsEnabled = status;
-            AcInd.IsRunning = status;
-            AcInd.IsVisible = status;
-            if(status)
-                AcInd.Focus();
-        }
+        //private void StaticInfo_DoActiveAI(bool status)
+        //{
+        //    AcInd.IsEnabled = status;
+        //    AcInd.IsRunning = status;
+        //    AcInd.IsVisible = status;
+        //    if(status)
+        //        AcInd.Focus();
+        //}
 
         private void SetTemp(string temp)
         {
