@@ -58,7 +58,7 @@ namespace Google_sheetAndro.Class
         public static string AccountEmail { get => accountEmail; set => accountEmail = value; }
         private static string accountPicture;
         public static float BarWheather { get; set; } = 0;
-        public static string AccountPicture { get => accountPicture; set => accountPicture = value; }
+        public static string AccountPicture { get => accountPicture; set { accountPicture = value; } }
         public static Location Pos { get; set; }
         public static string Place { get; set; }
         public static void SetPage(Page pg)

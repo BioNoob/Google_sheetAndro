@@ -30,15 +30,16 @@ namespace Google_sheetAndro.Droid
             //XFGloss.Droid.Library.Init(this, savedInstanceState);
 
             //global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
-            LoadApplication(new App());
             LoginDo();
+            LoadApplication(new App());
+
         }
         public async void LoginDo()
         {
 
             var oathToken = await SecureStorage.GetAsync("token");
             var tt = await SecureStorage.GetAsync("picture");
-            if(oathToken != null && tt != null)
+            if (oathToken != null && tt != null)
             {
                 StaticInfo.AccountEmail = oathToken;
                 StaticInfo.AccountPicture = tt;
@@ -50,8 +51,8 @@ namespace Google_sheetAndro.Droid
                 intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
                 CustomTabsConfiguration.CustomTabsClosingMessage = null;
                 StartActivity(intent);
-            }
         }
+    }
         //public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         //{
         //    Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

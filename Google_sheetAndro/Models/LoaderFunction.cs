@@ -84,6 +84,10 @@ namespace Google_sheetAndro.Models
             ItemsInfoPage.Title = "Записи";
             LoaderFunction.MenuPage.sett(LoaderFunction.ItemsInfoPage);
             DoWheatherLoad?.Invoke();
+            if(MenuPage != null && StaticInfo.AccountEmail != null)
+            {
+                MenuPage.setImg(StaticInfo.AccountPicture,StaticInfo.AccountEmail);
+            }
         }
         public static InfoPage InfoPage;
         public static ItemsInfo ItemsInfoPage;

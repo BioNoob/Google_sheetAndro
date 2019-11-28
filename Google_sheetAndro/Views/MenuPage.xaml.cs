@@ -16,6 +16,8 @@ namespace Google_sheetAndro.Views
         public MenuPage()
         {
             InitializeComponent();
+            if (StaticInfo.AccountEmail != null && StaticInfo.AccountPicture != null)
+                setImg(StaticInfo.AccountPicture, StaticInfo.AccountEmail);
             StaticInfo.SetDetailPage += sett;
         }
         private async void ItemPageView_Clicked(object sender, EventArgs e)
@@ -45,6 +47,13 @@ namespace Google_sheetAndro.Views
         {
             LoaderFunction.WheatherPage.Title = "Погода";
             await Task.Run(() => StaticInfo.SetPage(LoaderFunction.WheatherPage));//_mp.sett(LoaderFunction.WheatherPage));
+        }
+        public bool mailIsSet = false;
+        public void setImg(string source,string email)
+        {
+            profileImg.Source = source;
+            profileEmail.Text = email;
+            mailIsSet = true;
         }
         public void sett(Page pg)
         {

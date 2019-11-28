@@ -3,16 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                  xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
                   xmlns:views="clr-namespace:Google_sheetAndro.Views"
                   mc:Ignorable="d"
              x:Class="Google_sheetAndro.Views.MenuPage" IsPresented="True">
     <MasterDetailPage.Master>
 
-        <ContentPage Title="Master">
+        <ContentPage Title="Master" BackgroundColor="Beige">
             <StackLayout Padding="5,5,5,5">
-                <Frame BackgroundColor="Aquamarine" HeightRequest="150">
-                    <Image/>
+                <Frame BackgroundColor="Aquamarine" HeightRequest="170" Padding="0"
+                       Margin="0">
+                    <Frame BackgroundColor="Yellow" IsClippedToBounds="True" Padding="0" Margin="0">
+                        <RelativeLayout>
+                            <Image Source="backMenu.png" Aspect="Fill"
+                                   x:Name="abv"
+                               />
+                            <RelativeLayout IsClippedToBounds="True"
+                                                    RelativeLayout.XConstraint= "{ConstraintExpression Type=RelativeToParent, 
+                Property=Width, Factor=0.5, Constant=-50}" 
+           RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToParent,
+                Property=Height, Factor=0.4, Constant=-50}"   >
+                                <Frame BorderColor="Black"
+                                    CornerRadius="50"  
+                                       OutlineColor ="Black"
+           HeightRequest="100"
+           WidthRequest="100"
+           HorizontalOptions="Center"
+           Padding="0"
+           IsClippedToBounds="False" HasShadow="False">
+                                    <Image x:Name="profileImg"  Source="settings" Aspect="AspectFit"/>
+                                </Frame>
+                            </RelativeLayout>
+                            <Label x:Name="profileEmail" Text="yasma_corp@gmail.com" TextColor="Black" VerticalTextAlignment="Center"
+                                   WidthRequest="250"    
+                                   HorizontalTextAlignment="Center" FontSize="21" FontAttributes="Bold"
+                                        RelativeLayout.XConstraint= "{ConstraintExpression Type=RelativeToParent, 
+                Property=Width, Factor=0.5, Constant=-125}" 
+           RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToParent,
+                Property=Height, Factor=0.7, Constant=10}" />
+                        </RelativeLayout>
+                    </Frame>
                 </Frame>
                 <Button x:Name="ItemsPg" Text="Просмотр записей"
                             Clicked="ItemPageView_Clicked"/>
