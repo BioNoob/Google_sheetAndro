@@ -83,7 +83,7 @@ namespace Google_sheetAndro.Models
         {
             ItemsInfoPage.Title = "Записи";
             LoaderFunction.MenuPage.sett(LoaderFunction.ItemsInfoPage);
-            DoWheatherLoad?.Invoke();
+            //DoWheatherLoad?.Invoke();
             if(MenuPage != null && StaticInfo.AccountEmail != null)
             {
                 MenuPage.setImg(StaticInfo.AccountPicture,StaticInfo.AccountEmail);
@@ -108,6 +108,10 @@ namespace Google_sheetAndro.Models
         public static NavigationPage MAINNavPage;
         public static NavigationPage ItInfoNavPage;
         //NavigationPage itemspg;
+        public static void EndWheatherLoad()
+        {
+            DoWheatherLoad?.Invoke();
+        }
         //NavigationPage outpg;
         private static async Task Loader()
         {

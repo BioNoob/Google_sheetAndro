@@ -1,4 +1,5 @@
 ﻿using Android.Hardware;
+using Google_sheetAndro.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -70,7 +71,7 @@ namespace Google_sheetAndro.Class
             get { return wheather; }
             set
             {
-                if (wheather == null)
+                //if (wheather == null)
                 {
                     wheather = value;
                     DoSetCloud?.Invoke(CloudConverter());
@@ -149,6 +150,7 @@ namespace Google_sheetAndro.Class
                 //string windspeed = stuff.currently.windSpeed;//скорость ветра
                 //string cloud = stuff.currently.summary;//облачность
                 //string time = stuff.currently.time; //время формата UNIX
+                LoaderFunction.EndWheatherLoad();
             }
         }
         public static async Task GetPlace(double lat, double lon)

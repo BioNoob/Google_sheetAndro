@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+using Android.Widget;
 using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
 using HtmlAgilityPack;
@@ -41,16 +42,18 @@ namespace RefreshSample.ViewModels
             LoaderFunction.DoWheatherLoad += LoaderFunction_DoWheatherLoad;
         }
 
-        private void LoaderFunction_DoWheatherLoad()
+        private async void LoaderFunction_DoWheatherLoad()
         {
             gpp = StaticInfo.Wheather;
+            
             Place = StaticInfo.Place;
             Val = gpp.getParams();
             string key = Searcher(StaticInfo.Pos);
-            lw = kek(key);
+            lw = await kek(key);
             Airport = key;
             ActualDate = lw.First().DateFormat;
             ActualWind = lw.First().Wind;
+            IsBusy = false;
         }
         public string Airport { get => airport; set { airport = value; OnPropertyChanged("Airport");} }
         public ResponsedData gpp { get => gpp1; set { gpp1 = value; OnPropertyChanged("gpp");  } }
@@ -60,34 +63,16 @@ namespace RefreshSample.ViewModels
         public DateTime ActualDate { get => actualDate; set { actualDate = value; OnPropertyChanged("ActualDate");} }
         public List<windout> lw { get => lw1; set { lw1 = value; OnPropertyChanged("lw");  } }
         public List<Winder> ActualWind { get => actualWind; set { actualWind = value; OnPropertyChanged("ActualWind");  } }
-        bool canRefresh = true;
-
-        public bool CanRefresh
-        {
-            get { return canRefresh; }
-            set
-            {
-                if (canRefresh == value)
-                    return;
-
-                canRefresh = value;
-                OnPropertyChanged("CanRefresh");
-            }
-        }
         bool isBusy;
         public bool IsBusy
         {
             get { return isBusy; }
             set
             {
-                if (isBusy == value)
-                    return;
-
                 isBusy = value;
                 OnPropertyChanged("IsBusy");
             }
         }
-        ICommand refreshCommand;
         private List<windout> lw1;
         private DateTime actualDate;
         private string time;
@@ -96,43 +81,39 @@ namespace RefreshSample.ViewModels
         private ResponsedData gpp1;
         private string airport;
         private List<Winder> actualWind;
-
-        public ICommand RefreshCommand
+        public async Task ExecuteRefreshCommand()
         {
-            get { return refreshCommand ?? (refreshCommand = new Command(async () => await ExecuteRefreshCommand())); }
-        }
-        async Task ExecuteRefreshCommand()
-        {
-            if (IsBusy)
-                return;
-
             IsBusy = true;
-            //Items.Clear();
-            //page.SetDateFields();
-            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
-              {
-
-                  //for (int i = 0; i < 100; i++)
-                  //Items.Add(DateTime.Now.AddMinutes(i).ToString("F"));
-
-                  IsBusy = false;
-                  //caller();
-                  this.CanRefresh = false;
-
-                  return false;
-              });
+            caller();
         }
         private async void caller()
         {
+            DateTime buf = DateTime.Now;
+            if (LastReq != DateTime.MinValue)//TEST ON NULL
+            {
+                TimeSpan tms = buf - LastReq;
+
+                if (tms.TotalSeconds < 60)
+                {
+                    Toast.MakeText(Android.App.Application.Context, "Последнее обновление менее минуты назад. Подождите!", ToastLength.Long).Show();
+                    IsBusy = false;
+                    return;
+                }
+            }
+            else
+            {
+                LastReq = DateTime.Now;
+            }
             await StaticInfo.GetWeatherReqAsync(StaticInfo.Pos);
-            gpp = StaticInfo.Wheather;
+            //gpp = StaticInfo.Wheather;
         }
+        private DateTime LastReq = DateTime.MinValue;
         #region INotifyPropertyChanged implementation
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
-        public List<windout> kek(string key)
+        public async Task<List<windout>> kek(string key)
         {
             var url = $"http://meteocenter.asia/?m=gcc&p={key}";
             var web = new HtmlWeb();
@@ -142,10 +123,11 @@ namespace RefreshSample.ViewModels
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             web.OverrideEncoding = Encoding.GetEncoding("windows-1251");
-            var doc = web.Load(url);
-            List<windout> lw = ParseAllTables(doc);
-            lw = lw.Where(t => t.DateFormat >= DateTime.Now && t.DateFormat <= DateTime.Now.AddDays(1)).ToList();
-            return lw;
+            var doc = await web.LoadFromWebAsync(url);
+            List<windout> lw11 = ParseAllTables(doc);
+            lw11 = lw11.Where(t => t.DateFormat >= DateTime.Now && t.DateFormat <= DateTime.Now.AddDays(1)).ToList();
+            Time = LastReq.ToString("dd MMMM, HH:mm");
+            return lw11;
         }
         public List<windout> ParseAllTables(HtmlDocument doc)
         {
@@ -235,8 +217,13 @@ namespace RefreshSample.ViewModels
                     data_import.Add(values[0], new Location(lat, lon));
                 }
             }
-            double step = 10;
+            double step = 100;
             double step_step = 1;
+
+            //var st = data_import.First().Value;
+            //var qt = cur;
+            //var sss = Location.CalculateDistance(st, cur, DistanceUnits.Kilometers);
+            //var lol = data_import.Where(t => Location.CalculateDistance(t.Value, cur, DistanceUnits.Kilometers) < step).Select(t=>t.Key).ToList();
             while (data_import.Count > 5)
             {
                 //data_import = data_import.Where(t => Math.Abs(t.Value.Lat - cur.Lat) < step && Math.Abs(t.Value.Lon - cur.Lon) < step).ToDictionary(t => t.Key, t => t.Value);

@@ -12,18 +12,7 @@
         <mp:Map x:Name="map" HeightRequest="500" BackgroundColor="Beige" MapType="Hybrid" 
                             MyLocationEnabled="True"
                             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
-        
         <RelativeLayout x:Name="r1"  Margin="10" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="#77000000">
-            <!--<Label Text="Ручной режим" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" Margin="5,0"
-                   RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToView,ElementName = PopSettings,Property=Height, Factor=1, Constant=1}" 
-                   HorizontalTextAlignment="Center" LineBreakMode="WordWrap" VerticalTextAlignment="Center"
-                   TextColor="White"
-                   WidthRequest="100"/>-->
-            <!--<Switch x:Name="SwManual" VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="CenterAndExpand" Margin="5,5,5,0" OnColor="Orange" ThumbColor="#2196F3"
-                    Scale="0.85"
-                    Toggled="SwManual_Toggled"
-                    />-->
             <Grid x:Name="Buttons" Margin="0" HeightRequest="0" WidthRequest="0" Opacity="0"
                 RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToView,ElementName = PopSettings,Property=Height, Factor=1, Constant=1}">
                 <Grid.RowDefinitions>

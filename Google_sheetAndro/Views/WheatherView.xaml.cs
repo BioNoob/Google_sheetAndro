@@ -17,5 +17,19 @@ namespace Google_sheetAndro.Views
         {
 
         }
+
+        private async void PopSettings_Clicked(object sender, System.EventArgs e)
+        {
+            await PopSettings.FadeTo(0, 100);
+            await ((WheatherViewModel)this.BindingContext).ExecuteRefreshCommand();
+
+
+            await PopSettings.FadeTo(1, 100);
+        }
+
+        private void ActivityIndicator_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
+        }
     }
 }
