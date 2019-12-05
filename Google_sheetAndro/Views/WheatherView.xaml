@@ -177,13 +177,13 @@
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Grid.Row="0" Grid.Column="0" Text="Высота" TextColor="LightBlue" FontSize="12"/>
-                                            <Label Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2" Text="{Binding hi}"  TextColor="#12F499" FontSize="12"/>
-                                            <Label Grid.Row="1" Grid.Column="0" Text="Ветер" TextColor="LightBlue" FontSize="12"/>
-                                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Asim}" TextColor="#12F499" FontSize="12"/>
-                                            <Label Grid.Row="1" Grid.Column="2" Text="{Binding WindForm}" TextColor="#12F499" FontSize="12"/>
-                                            <Label Grid.Row="2" Grid.Column="0" Text="Температура" TextColor="LightBlue" FontSize="12"/>
-                                            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Temp}" TextColor="#12F499" FontSize="12"/>
+                                            <Label Grid.Row="0" Grid.Column="0" Text="Высота" TextColor="2F2F2F" FontSize="12"/>
+                                            <Label Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2" Text="{Binding hi}"  TextColor="#0064FF" FontSize="12"/>
+                                            <Label Grid.Row="1" Grid.Column="0" Text="Ветер" TextColor="2F2F2F" FontSize="12"/>
+                                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Asim}" TextColor="#0064FF" FontSize="12"/>
+                                            <Label Grid.Row="1" Grid.Column="2" Text="{Binding WindForm}" TextColor="#0064FF" FontSize="12"/>
+                                            <Label Grid.Row="2" Grid.Column="0" Text="Температура" TextColor="#2F2F2F" FontSize="12"/>
+                                            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Temp}" TextColor="#0064FF" FontSize="12"/>
                                         </Grid>
                                     </ViewCell>
                                     <!--<TextCell Text ="{Binding Out} " TextColor="#1976D2"/>-->
@@ -204,8 +204,8 @@
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding time}"  TextColor="#12F499" FontSize="12"/>
-                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Date}"  TextColor="#12F499" FontSize="12"/>
+                                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding time}"  TextColor="#0064FF" FontSize="12"/>
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Date}"  TextColor="#0064FF" FontSize="12"/>
                                         </Grid>
                                     </ViewCell>
                                     <!--<TextCell Text="{Binding Date}" TextColor="#1976D2"/>-->
@@ -217,7 +217,7 @@
             </Grid>
         </ScrollView>
         <RelativeLayout x:Name="r1"  Margin="10" HorizontalOptions="End"
-                        VerticalOptions="Start" BackgroundColor="#77000000">
+                        VerticalOptions="Start" BackgroundColor="Transparent">
             <ImageButton x:Name="PopSettings" VerticalOptions="CenterAndExpand"
                     HorizontalOptions="End" Source="settings.png" BackgroundColor="Transparent"
                     HeightRequest="40" Clicked="PopSettings_Clicked"
