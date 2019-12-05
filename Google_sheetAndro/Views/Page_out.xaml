@@ -8,12 +8,12 @@
              x:Class="Google_sheetAndro.Views.Page_out"
              NavigationPage.HasNavigationBar="False">
 
-    <controls:PullToRefreshLayout
+    <!--<controls:PullToRefreshLayout
           IsPullToRefreshEnabled="True"
           x:Name="Refresher"
           RefreshCommand="{Binding RefreshCommand}"
           IsRefreshing="{Binding IsBusy}"
-          RefreshColor="Blue">
+          RefreshColor="Blue">-->
         <ScrollView>
             <StackLayout Orientation="Vertical" Margin="10,20,10,20">
                 <Grid x:Name="GraphGrid" RowSpacing="1">
@@ -120,5 +120,5 @@
 
             </StackLayout>
         </ScrollView>
-    </controls:PullToRefreshLayout>
+    <!--</controls:PullToRefreshLayout>-->
 </ContentPage>

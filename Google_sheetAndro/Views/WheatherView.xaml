@@ -177,9 +177,9 @@
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Grid.Row="0" Grid.Column="0" Text="Высота" TextColor="2F2F2F" FontSize="12"/>
+                                            <Label Grid.Row="0" Grid.Column="0" Text="Высота" TextColor="#2F2F2F" FontSize="12"/>
                                             <Label Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2" Text="{Binding hi}"  TextColor="#0064FF" FontSize="12"/>
-                                            <Label Grid.Row="1" Grid.Column="0" Text="Ветер" TextColor="2F2F2F" FontSize="12"/>
+                                            <Label Grid.Row="1" Grid.Column="0" Text="Ветер" TextColor="#2F2F2F" FontSize="12"/>
                                             <Label Grid.Row="1" Grid.Column="1" Text="{Binding Asim}" TextColor="#0064FF" FontSize="12"/>
                                             <Label Grid.Row="1" Grid.Column="2" Text="{Binding WindForm}" TextColor="#0064FF" FontSize="12"/>
                                             <Label Grid.Row="2" Grid.Column="0" Text="Температура" TextColor="#2F2F2F" FontSize="12"/>
@@ -204,7 +204,7 @@
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding time}"  TextColor="#0064FF" FontSize="12"/>
+                                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding time}"  TextColor="#2F2F2F" FontSize="12"/>
                                             <Label Grid.Row="0" Grid.Column="1" Text="{Binding Date}"  TextColor="#0064FF" FontSize="12"/>
                                         </Grid>
                                     </ViewCell>
