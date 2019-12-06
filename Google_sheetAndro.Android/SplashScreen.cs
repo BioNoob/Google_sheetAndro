@@ -49,10 +49,6 @@ namespace Google_sheetAndro.Droid
             await Xamarin.Essentials.SecureStorage.SetAsync("picture", email.picture);
             StaticInfo.AccountEmail = email.email;
             StaticInfo.AccountPicture = email.picture;
-            //System.Diagnostics.Debug.WriteLine(email);
-            // Display it on the UI
-            //var googleButton = FindViewById<Button>(Resource.Id.googleLoginButton);
-            //googleButton.Text = $"Connected with {email}";
         }
 
         public void OnAuthenticationCanceled()
