@@ -3,9 +3,11 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Android.Widget;
 using Google_sheetAndro.Class;
 using Plugin.CurrentActivity;
 using Refractored.XamForms.PullToRefresh.Droid;
+using System.Threading.Tasks;
 using Xamarin.Auth;
 using Xamarin.Essentials;
 
@@ -15,7 +17,7 @@ namespace Google_sheetAndro.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         //public static GoogleOauth Auth;
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             //TabLayoutResource = Resource.Layout.Tabbar;
             //ToolbarResource = Resource.Layout.Toolbar;
@@ -30,9 +32,17 @@ namespace Google_sheetAndro.Droid
             //XFGloss.Droid.Library.Init(this, savedInstanceState);
 
             //global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
-            LoginDo();
-            LoadApplication(new App());
-
+            var network = Connectivity.NetworkAccess;
+            if (network == NetworkAccess.None)
+            {
+                Toast.MakeText(Android.App.Application.Context, "Отсутствует интернет соединение", ToastLength.Long).Show();
+                await Task.Delay(1000);
+                Toast.MakeText(Android.App.Application.Context, "Приложение пока не поддерживает редактирование офлайн", ToastLength.Long).Show();
+            }
+            else
+            {
+                LoginDo();
+            }
         }
         public async void LoginDo()
         {

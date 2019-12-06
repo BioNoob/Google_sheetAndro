@@ -9,15 +9,18 @@ using System;
 using Google_sheetAndro.Services;
 using Android.Widget;
 using Google_sheetAndro.Class;
+using Xamarin.Essentials;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Google_sheetAndro.Droid
 {
-    [Activity(Label = "База полётов", Theme = "@style/Theme.Splash", Icon = "@mipmap/icon",
+    [Activity(Label = "Небо для всех", Theme = "@style/Theme.Splash", Icon = "@mipmap/icon",
         MainLauncher = true, NoHistory = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class SplashScreen : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IGoogleAuthenticationDelegate//Activity
     {
         public static GoogleAuthenticator Auth;
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
@@ -49,16 +52,21 @@ namespace Google_sheetAndro.Droid
             await Xamarin.Essentials.SecureStorage.SetAsync("picture", email.picture);
             StaticInfo.AccountEmail = email.email;
             StaticInfo.AccountPicture = email.picture;
+            LoadApplication(new App());
         }
 
-        public void OnAuthenticationCanceled()
+        public async void OnAuthenticationCanceled()
         {
             Toast.MakeText(Android.App.Application.Context, "Вход отменен", ToastLength.Long).Show();
+            await Task.Delay(1000);
+            Toast.MakeText(Android.App.Application.Context, "Приложение будет закрыто", ToastLength.Long).Show();
         }
 
-        public void OnAuthenticationFailed(string message, Exception exception)
+        public async void OnAuthenticationFailed(string message, Exception exception)
         {
             Toast.MakeText(Android.App.Application.Context, "Ошибка входа " + message, ToastLength.Long).Show();
+            await Task.Delay(1000);
+            Toast.MakeText(Android.App.Application.Context, "Приложение будет закрыто", ToastLength.Long).Show();
         }
     }
 
