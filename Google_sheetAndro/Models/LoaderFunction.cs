@@ -1,6 +1,11 @@
 ﻿using Google_sheetAndro.Class;
 using Google_sheetAndro.Views;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Net;
+using System.Reflection;
 using System.Threading.Tasks;
 using TableAndro;
 using Xamarin.Essentials;
@@ -108,6 +113,7 @@ namespace Google_sheetAndro.Models
         public static NavigationPage MAINNavPage;
         public static NavigationPage ItInfoNavPage;
         //NavigationPage itemspg;
+        public static readonly string GetAopaPath = "https://maps.aopa.ru/export/exportFormRequest/?exportType=standart&exportAll%5B%5D=airport&exportAll%5B%5D=vert&exportFormat=csv&csv_options%5Bcharset%5D=utf8&csv_options%5Bdata%5D=objects_data&f%5B%5D=index&f%5B%5D=kta_lon&f%5B%5D=kta_lat&api_key=7380-9xJ8zG";
         public static void EndWheatherLoad()
         {
             DoWheatherLoad?.Invoke();
@@ -186,6 +192,59 @@ namespace Google_sheetAndro.Models
 
             //return true;
             //then load all info wheather and map and etc/
+        }
+        static public Dictionary<string, Location> GetCSV()
+        {
+
+
+            Dictionary<string, Location> data_import = new Dictionary<string, Location>();
+            string results = string.Empty;
+
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var filename = Path.Combine(path, "aopa-points-export.csv");
+            var t = Preferences.Get("AopaTable", DateTime.MinValue);
+            var q = (DateTime.Now - t).TotalDays;
+            if (t == null || q > 60)
+            {
+                Preferences.Set("AopaTable", DateTime.Now);
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(GetAopaPath);
+                HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+                StreamReader sr = new StreamReader(resp.GetResponseStream());
+                using (var reader = new StreamWriter(filename, false, System.Text.Encoding.UTF8))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        var line = sr.ReadLine();
+                        reader.WriteLine(line);
+                        var values = line.Split(';');
+                        double lat = 0;
+                        double lon = 0;
+                        lat = Convert.ToDouble(values[2], CultureInfo.InvariantCulture);
+                        lon = Convert.ToDouble(values[1], CultureInfo.InvariantCulture);
+                        data_import.Add(values[0], new Location(lat, lon));
+                    }
+                    reader.Close();
+                    sr.Close();
+                }
+            }
+            else
+            {
+                using (var reader = new StreamReader(filename, System.Text.Encoding.UTF8))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        var values = line.Split(';');
+                        double lat = 0;
+                        double lon = 0;
+                        lat = Convert.ToDouble(values[2], CultureInfo.InvariantCulture);
+                        lon = Convert.ToDouble(values[1], CultureInfo.InvariantCulture);
+                        data_import.Add(values[0], new Location(lat, lon));
+                    }
+                    reader.Close();
+                }
+            }
+            return data_import;
         }
     }
 }

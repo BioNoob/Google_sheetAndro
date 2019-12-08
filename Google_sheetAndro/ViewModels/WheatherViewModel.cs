@@ -45,7 +45,7 @@ namespace RefreshSample.ViewModels
         private async void LoaderFunction_DoWheatherLoad()
         {
             gpp = StaticInfo.Wheather;
-            
+
             Place = StaticInfo.Place;
             Val = gpp.getParams();
             string key = Searcher(StaticInfo.Pos);
@@ -55,14 +55,14 @@ namespace RefreshSample.ViewModels
             ActualWind = lw.First().Wind;
             IsBusy = false;
         }
-        public string Airport { get => airport; set { airport = value; OnPropertyChanged("Airport");} }
-        public ResponsedData gpp { get => gpp1; set { gpp1 = value; OnPropertyChanged("gpp");  } }
-        public Dictionary<string, string> Val { get => val; set { val = value; OnPropertyChanged("Val");  } }
+        public string Airport { get => airport; set { airport = value; OnPropertyChanged("Airport"); } }
+        public ResponsedData gpp { get => gpp1; set { gpp1 = value; OnPropertyChanged("gpp"); } }
+        public Dictionary<string, string> Val { get => val; set { val = value; OnPropertyChanged("Val"); } }
         public string Place { get => place; set { place = value; OnPropertyChanged("Place"); } }
         public string Time { get => time; set { time = value; OnPropertyChanged("Time"); } }
-        public DateTime ActualDate { get => actualDate; set { actualDate = value; OnPropertyChanged("ActualDate");} }
-        public List<windout> lw { get => lw1; set { lw1 = value; OnPropertyChanged("lw");  } }
-        public List<Winder> ActualWind { get => actualWind; set { actualWind = value; OnPropertyChanged("ActualWind");  } }
+        public DateTime ActualDate { get => actualDate; set { actualDate = value; OnPropertyChanged("ActualDate"); } }
+        public List<windout> lw { get => lw1; set { lw1 = value; OnPropertyChanged("lw"); } }
+        public List<Winder> ActualWind { get => actualWind; set { actualWind = value; OnPropertyChanged("ActualWind"); } }
         bool isBusy;
         public bool IsBusy
         {
@@ -196,37 +196,11 @@ namespace RefreshSample.ViewModels
         }
         public string Searcher(Location cur)
         {
-            Dictionary<string, Location> data_import = new Dictionary<string, Location>();
-            //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Google_sheetAndro.aopa-points-export.csv");
-            var assembly = Assembly.GetExecutingAssembly();
-            //string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "aopa-points-export.csv");
-            //var assembly = IntrospectionExtensions.GetTypeInfo(typeof(LoadResourceText)).Assembly;
-            //Stream stream = assembly.GetManifestResourceStream("WorkingWithFiles.LibTextResource.txt");
-            Stream stream = assembly.GetManifestResourceStream("Google_sheetAndro.aopa-points-export.csv");
-
-            using (var reader = new StreamReader(stream))
-            {
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var values = line.Split(';');
-                    double lat = 0;
-                    double lon = 0;
-                    lat = Convert.ToDouble(values[2], CultureInfo.InvariantCulture);
-                    lon = Convert.ToDouble(values[1], CultureInfo.InvariantCulture);
-                    data_import.Add(values[0], new Location(lat, lon));
-                }
-            }
             double step = 100;
             double step_step = 1;
-
-            //var st = data_import.First().Value;
-            //var qt = cur;
-            //var sss = Location.CalculateDistance(st, cur, DistanceUnits.Kilometers);
-            //var lol = data_import.Where(t => Location.CalculateDistance(t.Value, cur, DistanceUnits.Kilometers) < step).Select(t=>t.Key).ToList();
+            var data_import = LoaderFunction.GetCSV();
             while (data_import.Count > 5)
             {
-                //data_import = data_import.Where(t => Math.Abs(t.Value.Lat - cur.Lat) < step && Math.Abs(t.Value.Lon - cur.Lon) < step).ToDictionary(t => t.Key, t => t.Value);
                 data_import = data_import.Where(t => Location.CalculateDistance(t.Value, cur, DistanceUnits.Kilometers) < step).ToDictionary(t => t.Key, t => t.Value);
                 if (step == 1)
                 {

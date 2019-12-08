@@ -1,17 +1,17 @@
-﻿using Android.Content.PM;
-using Android.App;
+﻿using Android.App;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Android.Widget;
+using Google_sheetAndro.Authentication;
+using Google_sheetAndro.Class;
+using Google_sheetAndro.Services;
 using Plugin.CurrentActivity;
 using Refractored.XamForms.PullToRefresh.Droid;
-using Google_sheetAndro.Authentication;
 using System;
-using Google_sheetAndro.Services;
-using Android.Widget;
-using Google_sheetAndro.Class;
-using Xamarin.Essentials;
-using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Google_sheetAndro.Droid
 {
@@ -34,8 +34,23 @@ namespace Google_sheetAndro.Droid
             PullToRefreshLayoutRenderer.Init();
             XFGloss.Droid.Library.Init(this, savedInstanceState);
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
-            Auth = new GoogleAuthenticator(Configuration.ClientId, Configuration.Scope, Configuration.RedirectUrl, this);
-            StartActivity(typeof(MainActivity));
+            var network = Connectivity.NetworkAccess;
+            if (network == NetworkAccess.None)
+            {
+                Toast.MakeText(Android.App.Application.Context, "Отсутствует интернет соединение", ToastLength.Long).Show();
+                //Toast.MakeText(Android.App.Application.Context, "Приложение пока не поддерживает редактирование офлайн", ToastLength.Long).Show();
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+
+                    await Task.Delay(1000);
+                    Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+                });
+            }
+            else
+            {
+                Auth = new GoogleAuthenticator(Configuration.ClientId, Configuration.Scope, Configuration.RedirectUrl, this);
+                StartActivity(typeof(MainActivity));
+            }
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -52,7 +67,6 @@ namespace Google_sheetAndro.Droid
             await Xamarin.Essentials.SecureStorage.SetAsync("picture", email.picture);
             StaticInfo.AccountEmail = email.email;
             StaticInfo.AccountPicture = email.picture;
-            LoadApplication(new App());
         }
 
         public async void OnAuthenticationCanceled()
@@ -60,6 +74,8 @@ namespace Google_sheetAndro.Droid
             Toast.MakeText(Android.App.Application.Context, "Вход отменен", ToastLength.Long).Show();
             await Task.Delay(1000);
             Toast.MakeText(Android.App.Application.Context, "Приложение будет закрыто", ToastLength.Long).Show();
+            //var closer = DependencyService.Get<ICloseApplication>();
+            //closer?.closeApplication();
         }
 
         public async void OnAuthenticationFailed(string message, Exception exception)
@@ -67,6 +83,8 @@ namespace Google_sheetAndro.Droid
             Toast.MakeText(Android.App.Application.Context, "Ошибка входа " + message, ToastLength.Long).Show();
             await Task.Delay(1000);
             Toast.MakeText(Android.App.Application.Context, "Приложение будет закрыто", ToastLength.Long).Show();
+            //var closer = DependencyService.Get<ICloseApplication>();
+            //closer?.closeApplication();
         }
     }
 

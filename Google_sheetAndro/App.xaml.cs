@@ -1,11 +1,6 @@
-﻿using Google_sheetAndro.Class;
-using Google_sheetAndro.Models;
+﻿using Google_sheetAndro.Models;
 using Google_sheetAndro.Views;
-using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Google_sheetAndro

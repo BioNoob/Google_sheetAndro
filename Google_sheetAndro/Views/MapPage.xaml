@@ -18,27 +18,38 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <ImageButton x:Name="TypMap" HeightRequest="48" WidthRequest="48" Grid.Row="1"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".75*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Picker x:Name="MapTypePick" Grid.Row="0" Grid.Column="0" FontSize="14" TextColor="White"
+                        SelectedIndexChanged="MapTypePick_SelectedIndexChanged"/>
+                <Picker x:Name="RouteTypePick" Grid.Row="1" Grid.Column="0" FontSize="14" TextColor="White"
+                        SelectedIndexChanged="RouteTypePick_SelectedIndexChanged"/>
+                <ImageButton  Source="CancelLast" Grid.Row="0" Grid.Column="1" WidthRequest="40" x:Name="CancelBtn"
+                              Clicked="CancelBtn_Clicked"/>
+                <ImageButton  Source="ClearAll" Grid.Row="1" Grid.Column="1" WidthRequest="40" x:Name="ClearBtn"
+                              Clicked="ClearBtn_Clicked"/>
+                <!--<ImageButton x:Name="TypMap" HeightRequest="48" WidthRequest="48" Grid.Row="1"
                        Source="Hybrid.png" HorizontalOptions="Center" Clicked="TypMap_Clicked"/>
                 <ImageButton x:Name="TypRoute" HeightRequest="48" WidthRequest="48" Grid.Row="3"
                        Source="RoutePoint.png" HorizontalOptions="Center" Clicked="TypRoute_Clicked"/>
                 <Label Text="Тип карты" Grid.Row="0" HorizontalOptions="Center" 
                        FontSize="16" FontAttributes="Bold" TextColor="White"
-                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>-->
                 <!--<Label x:Name="LParamMap" Text="Гибрид" Grid.Row="2" HorizontalOptions="Center"
                        FontSize="16" FontAttributes="Bold"
                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>-->
-                <Label Text="Установка" Grid.Row="2" HorizontalOptions="Center"
+                <!--<Label Text="Установка" Grid.Row="2" HorizontalOptions="Center"
                        FontSize="16" FontAttributes="Bold" TextColor="White"
-                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>-->
                 <!--<Label x:Name="LParamRoute" Text="Маршрут" Grid.Row="5" HorizontalOptions="Center"
                        FontSize="16" FontAttributes="Bold"
                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>-->
             </Grid>
             <ImageButton x:Name="PopSettings" VerticalOptions="CenterAndExpand"
+                        
                     HorizontalOptions="CenterAndExpand" Source="settings.png"
                     HeightRequest="40" Clicked="PopSettings_Clicked"
                 />

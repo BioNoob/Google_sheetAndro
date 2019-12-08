@@ -11,7 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="aopa-points-export.csv" />
     <None Remove="client_secret.json" />
     <None Remove="google-services.json" />
     <None Remove="sicret_new.json" />
@@ -26,9 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="aopa-points-export.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="client_secret.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -101,5 +97,11 @@
     <Compile Update="Views\MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="aopa-points-export.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

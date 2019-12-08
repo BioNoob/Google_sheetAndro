@@ -23,7 +23,7 @@ namespace Google_sheetAndro.Views
             OnOrientationChanged += DeviceRotated;
             Graph_create.IsEnabled = false;
             VariantView.ItemsSource = new List<string> { "Ожидание выбора параметров.." };
-            BindingContext = new TestViewModel(this);
+            BindingContext = new TestViewModel();
             Mounth_pick.ItemsSource = new List<string>()
             {
                 "Все доступные","январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"
@@ -157,6 +157,7 @@ namespace Google_sheetAndro.Views
         //Каждый в месяце не работает. Количество в месяце не работает. Привести налет к понятному, передавать размер элемента управления, проверить за все года
         private void Graph_create_Clicked(object sender, EventArgs e)
         {
+            ((TestViewModel)this.BindingContext).IsBusy = true;
             string Year = Graph_pick_date.SelectedItem.ToString();
             string image_source = string.Empty;
             //var sss = tabelValue[lll];
@@ -183,7 +184,7 @@ namespace Google_sheetAndro.Views
                 Graph_create.IsEnabled = false;
                 Toast.MakeText(Android.App.Application.Context, "Один из параметров выбран неверно", ToastLength.Long).Show();
             }
-
+            ((TestViewModel)this.BindingContext).IsBusy = true;
 
         }
         public void SetDateFields()

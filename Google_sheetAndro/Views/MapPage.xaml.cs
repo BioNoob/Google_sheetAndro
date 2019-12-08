@@ -1,6 +1,5 @@
 ﻿using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
-using Google_sheetAndro.ViewModels;
 using Plugin.DeviceSensors;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
@@ -8,6 +7,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
@@ -32,35 +32,87 @@ namespace Google_sheetAndro.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapPage : ContentPage
     {
-        EditType edtype = EditType.Fl_Route;
         public MapPage()
         {
             InitializeComponent();
             map.PinClicked += Map_PinClicked;
+            init();
             //b2.IsEnabled = false;
             LoaderFunction.DoSetView += SetInitVew;
             //PopSettings.Clicked += PopSettings_Clicked;
         }
-
-
-
-        private enum EditType
+        private async void init()
         {
-            Fl_Point = 0,
-            Fl_Route = 1
+            var route_type = await SecureStorage.GetAsync("route");
+            var map_type = await SecureStorage.GetAsync("map");
+
+            MapTypePick.Items.Add("Гибридная");
+            MapTypePick.Items.Add("Схема");
+
+            RouteTypePick.Items.Add("Маршрут");
+            RouteTypePick.Items.Add("Точки");
+
+            if (map_type != null && route_type != null)
+            {
+                MapTypePick.SelectedIndex = Convert.ToInt32(map_type);
+                RouteTypePick.SelectedIndex = Convert.ToInt32(route_type);
+            }
+            else
+            {
+                await SecureStorage.SetAsync("route", "0");
+                await SecureStorage.SetAsync("map", "0");
+                MapTypePick.SelectedIndex = 0;
+                RouteTypePick.SelectedIndex = 0;
+            }
         }
+
         bool fl = false;
         double cur_pos_w1;
         double cur_pos_w2;
         double cur_pos_h2;
+        private double _dist;
+        private double _height;
+        private double bar;
+        bool isLoaded;
+        bool fl_run = false;
+        bool fl_USE_MAP_CLICK = true; // в настройки добавить чекбокс использовать маркеры в маршрутах
+        bool fl_route = true;
+        public double dist
+        {
+            get
+            {
+                return _dist;
+            }
+            set
+            {
+                _dist = value;
+                StaticInfo.Dist = dist;
+            }
+        }
+        public double height
+        {
+            get
+            {
+                return _height;
+            }
+            set
+            {
+                _height = StaticInfo.GetHeight(value);
+                StatusH.Text = string.Format("{0:#0.0 м}", _height);
+            }
+        }
+        public string address = string.Empty;
+        Time_r t = new Time_r();
+        private bool alife = false;
+
         //АНИМИРУЕТ ПО ШИРИНЕ
         private async void AnimateIn()
         {
             var animate = new Animation(d => r1.WidthRequest = d, r1.Width, SL.Width / 2, Easing.SinInOut);
-            animate.Commit(r1, "BarGraph", 16, 1200);
+            animate.Commit(r1, "BarGraph", 16, 1000);
             var animate2 = new Animation(d => r1.HeightRequest = d, r1.Height, 210, Easing.SinInOut);
-            animate2.Commit(r1, "BarGraph1", 16, 1200);
-            await PopSettings.TranslateTo(SL.Width / 2 - cur_pos_w2/*- r1.Bounds.Left - cur_pos_w2*/, PopSettings.Y /*- PopSettings.Height*/, 1200, Easing.SinInOut);
+            animate2.Commit(r1, "BarGraph1", 16, 1000);
+            await PopSettings.TranslateTo(SL.Width / 2 - cur_pos_w2/*- r1.Bounds.Left - cur_pos_w2*/, PopSettings.Y /*- PopSettings.Height*/, 1000, Easing.SinInOut);
             var animate3 = new Animation(d => Buttons.WidthRequest = d, Buttons.Width, SL.Width / 2, Easing.SinInOut);
             animate3.Commit(Buttons, "BarGraph2", 16, 100);
             var animate4 = new Animation(d => Buttons.HeightRequest = d, Buttons.Height, 210, Easing.SinInOut);
@@ -78,10 +130,10 @@ namespace Google_sheetAndro.Views
         {
             await Buttons.FadeTo(0, 700, Easing.SinInOut);
             var animate = new Animation(d => r1.WidthRequest = d, SL.Width / 2, cur_pos_w1 - r1.Margin.Right, Easing.SinInOut);
-            animate.Commit(r1, "BarGraph", 16, 1200);
+            animate.Commit(r1, "BarGraph", 16, 1000);
             var animate2 = new Animation(d => r1.HeightRequest = d, 210, cur_pos_h2, Easing.SinInOut);
-            animate2.Commit(r1, "BarGraph1", 16, 1200);
-            await PopSettings.TranslateTo(cur_pos_w2 - PopSettings.Width, PopSettings.Y, 1200, Easing.SinInOut);
+            animate2.Commit(r1, "BarGraph1", 16, 1000);
+            await PopSettings.TranslateTo(cur_pos_w2 - PopSettings.Width, PopSettings.Y, 1000, Easing.SinInOut);
             var animate3 = new Animation(d => Buttons.WidthRequest = d, SL.Width / 2, 0, Easing.SinInOut);
             animate3.Commit(Buttons, "BarGraph2", 16, 100);
             var animate4 = new Animation(d => Buttons.HeightRequest = d, 210, 0, Easing.SinInOut);
@@ -111,8 +163,6 @@ namespace Google_sheetAndro.Views
             }
         }
 
-
-        bool isLoaded;
         protected override async void OnAppearing()
         {
 
@@ -177,7 +227,7 @@ namespace Google_sheetAndro.Views
 
             //System.Diagnostics.Debug.WriteLine(e.Reading);
         }
-        public string address = string.Empty;
+
         private void PositionChanged(object sender, PositionEventArgs e)
         {
             Plugin.Geolocator.Abstractions.Position poss = new Plugin.Geolocator.Abstractions.Position(map.CameraPosition.Target.Latitude, map.CameraPosition.Target.Longitude);
@@ -234,33 +284,7 @@ namespace Google_sheetAndro.Views
             //GetGEOAsync();
             //map.MoveToRegion(new Xamarin.Forms.GoogleMaps.MapSpan(new Xamarin.Forms.GoogleMaps.Position(),loc.Latitude,loc.Longitude));
         }
-        private double _dist;
-        public double dist
-        {
-            get
-            {
-                return _dist;
-            }
-            set
-            {
-                _dist = value;
-                StaticInfo.Dist = dist;
-            }
-        }
-        private double _height;
-        private double bar;
-        public double height
-        {
-            get
-            {
-                return _height;
-            }
-            set
-            {
-                _height = StaticInfo.GetHeight(value);
-                StatusH.Text = string.Format("{0:#0.0 м}", _height);
-            }
-        }
+
         private void map_MapLongClicked(object sender, MapLongClickedEventArgs e)
         {
             if(fl_route)
@@ -272,7 +296,7 @@ namespace Google_sheetAndro.Views
                 SetPoint(e.Point);
             }
         }
-        bool fl_USE_MAP_CLICK = true; // в настройки добавить чекбокс использовать маркеры в маршрутах
+        
         private void Map_PinClicked(object sender, PinClickedEventArgs e)
         {
             Xamarin.Forms.GoogleMaps.Position t;
@@ -339,7 +363,7 @@ namespace Google_sheetAndro.Views
             else
             {
                 pl.Positions.Add(e);
-                map.Pins.Add(new Pin() { Label = "Старт", Position = e });
+                map.Pins.Add(new Pin() { Label = "Start", Position = e });
             }
             //Polyline plm = ((List<Polyline>)map.Polylines).Find(t => t.Tag.ToString() == "Line");
             //Xamarin.Forms.GoogleMaps.Position pt = new Xamarin.Forms.GoogleMaps.Position(pl.Positions[pl.Positions.Count - 1].Latitude, pl.Positions[pl.Positions.Count - 1].Longitude);
@@ -376,7 +400,7 @@ namespace Google_sheetAndro.Views
                 //SwManual.Toggled += SwManual_Toggled;
             }
         }
-        bool fl_run = false;
+
         private async void b1_Clicked(object sender, EventArgs e)
         {
             //start();
@@ -412,8 +436,7 @@ namespace Google_sheetAndro.Views
             //b1.IsEnabled = false;
             //Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
         }
-        Time_r t = new Time_r();
-        private bool alife = false;
+
         private bool OnTimerTick()
         {
             t.Sec++;
@@ -432,38 +455,109 @@ namespace Google_sheetAndro.Views
             //TimeSt();
             //StaticInfo.Nalet = t.ToString();
         }
-        bool fl_route = true;
-        private async void TypRoute_Clicked(object sender, EventArgs e)
+
+        private async void CancelBtn_Clicked(object sender, EventArgs e)
         {
-            await TypRoute.FadeTo(0,100);
-            if (fl_route)
+            await CancelBtn.FadeTo(0, 100);
+            if(fl_route)
             {
-                fl_route = false;
-                TypRoute.Source = "Point.png";
+                if(map.Polylines.FirstOrDefault().Positions.Count > 0) // ЕСЛИ СОВСЕМ НЕТУ ТО ФЕРСТ НЕ СПАСЕТ!
+                {
+                    map.Polylines.First().Positions.RemoveAt(map.Polylines.First().Positions.Count - 1);
+                }
+                if(map.Pins.Count > 1)
+                {
+                    Pin pn = map.Pins.Where(i => i.Label == "End").First();
+                    map.Pins.Remove(pn);
+                    if(map.Polylines.FirstOrDefault().Positions.Count > 0)
+                    {
+                        pn.Position = map.Polylines.First().Positions[map.Polylines.First().Positions.Count - 1];
+                        map.Pins.Add(pn);
+                    }
+                }
+                else
+                {
+                    map.Pins.Remove(map.Pins.Last());
+                }
             }
             else
             {
-                fl_route = true;
-                TypRoute.Source = "RoutePoint.png";
+                map.Pins.Remove(map.Pins.Last());
             }
-            await TypRoute.FadeTo(1, 100);
+
+            await CancelBtn.FadeTo(1, 100);
         }
 
-        private async void TypMap_Clicked(object sender, EventArgs e)
+        private async void ClearBtn_Clicked(object sender, EventArgs e)
         {
-            await TypMap.FadeTo(0, 100);
-            if(map.MapType == MapType.Hybrid)
+            await ClearBtn.FadeTo(0, 100);
+            if (await DisplayAlert("Предупреждение", "Очистить карту", "Да", "Нет"))
             {
-                map.MapType = MapType.Street;
-                TypMap.Source = "Street.png";
-
+                map.Pins.Clear();
+                map.Polylines.Clear();
             }
-            else
-            {
-                map.MapType = MapType.Hybrid;
-                TypMap.Source = "Hybrid.png";
-            }
-            await TypMap.FadeTo(1, 100);
+            await ClearBtn.FadeTo(1, 100);
         }
+
+        private async void RouteTypePick_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await SecureStorage.SetAsync("route", RouteTypePick.SelectedIndex.ToString());
+            switch (RouteTypePick.SelectedIndex)
+            {
+                case 0:
+                    fl_route = true;
+                    break;
+                case 1:
+                    fl_route = false;
+                    break;
+            }
+        }
+
+        private async void MapTypePick_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await SecureStorage.SetAsync("map", MapTypePick.SelectedIndex.ToString());
+            switch (MapTypePick.SelectedIndex)
+            {
+                case 0:
+                    map.MapType = MapType.Hybrid;
+                    break;
+                case 1:
+                    map.MapType = MapType.Street;
+                    break;
+            }
+        }
+
+        //private async void TypRoute_Clicked(object sender, EventArgs e)
+        //{
+        //    await TypRoute.FadeTo(0,100);
+        //    if (fl_route)
+        //    {
+        //        fl_route = false;
+        //        TypRoute.Source = "Point.png";
+        //    }
+        //    else
+        //    {
+        //        fl_route = true;
+        //        TypRoute.Source = "RoutePoint.png";
+        //    }
+        //    await TypRoute.FadeTo(1, 100);
+        //}
+
+        //    private async void TypMap_Clicked(object sender, EventArgs e)
+        //    {
+        //        await TypMap.FadeTo(0, 100);
+        //        if(map.MapType == MapType.Hybrid)
+        //        {
+        //            map.MapType = MapType.Street;
+        //            TypMap.Source = "Street.png";
+
+        //        }
+        //        else
+        //        {
+        //            map.MapType = MapType.Hybrid;
+        //            TypMap.Source = "Hybrid.png";
+        //        }
+        //        await TypMap.FadeTo(1, 100);
+        //    }
     }
 }

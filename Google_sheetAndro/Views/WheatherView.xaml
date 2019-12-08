@@ -37,8 +37,9 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackLayout Orientation="Vertical" Margin="10,20,10,0" Grid.Row="0">
-                    <Label Text="{Binding Place}" FontSize="14" VerticalOptions="Center" TextColor="White"/>
-                    <Frame BackgroundColor="Transparent" HorizontalOptions="Center"
+                    <Label Text="{Binding Place}" FontSize="13" VerticalOptions="Start" TextColor="White"
+                          />
+                    <Frame BackgroundColor="#40000000" HorizontalOptions="Center"
                        BorderColor="Orange" CornerRadius="10">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                             <Image x:Name="IcoWheather" Source="{Binding gpp.icon}" WidthRequest="50" HeightRequest="50" VerticalOptions="Center"/>
@@ -46,7 +47,7 @@
                             <Label Text="°C" TextColor="White" FontSize="50" VerticalOptions="Center"/>
                         </StackLayout>
                     </Frame>
-                    <Frame BackgroundColor="Transparent" HorizontalOptions="Center"
+                    <Frame BackgroundColor="#40000000" HorizontalOptions="Center"
                        BorderColor="Orange" CornerRadius="10">
                         <StackLayout Orientation="Vertical" HorizontalOptions="Center">
                             <Label Text="{Binding gpp.summary}" TextColor="White" FontSize="16" HorizontalOptions="Center"/>
@@ -54,8 +55,8 @@
                         </StackLayout>
                     </Frame>
 
-                    <Frame  CornerRadius="10" BackgroundColor="Transparent" BorderColor="Orange"
-                   Padding="0" HeightRequest="180" VerticalOptions="Start">
+                    <Frame  CornerRadius="10" BackgroundColor="#40000000" BorderColor="Orange"
+                   Padding="0" HeightRequest="180" VerticalOptions="Start" HasShadow="True">
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -134,7 +135,7 @@
                     </Frame>
                 </StackLayout>
                 <Frame Grid.Row="1" CornerRadius="10" Margin="10,0" BackgroundColor="#40000000" Padding="0"
-                   BorderColor="Orange" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                   BorderColor="Orange" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HasShadow="True">
                     <StackLayout Padding="5" Margin="0">
                         <Grid>
                             <StackLayout Grid.Column="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand">
@@ -219,7 +220,7 @@
         <RelativeLayout x:Name="r1"  Margin="10" HorizontalOptions="End"
                         VerticalOptions="Start" BackgroundColor="Transparent">
             <ImageButton x:Name="PopSettings" VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="End" Source="settings.png" BackgroundColor="Transparent"
+                    HorizontalOptions="End" Source="refresh.png" BackgroundColor="Transparent"
                     HeightRequest="40" Clicked="PopSettings_Clicked"
                 />
         </RelativeLayout>
