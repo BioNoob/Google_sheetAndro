@@ -184,7 +184,7 @@ namespace Google_sheetAndro.Views
                 Graph_create.IsEnabled = false;
                 Toast.MakeText(Android.App.Application.Context, "Один из параметров выбран неверно", ToastLength.Long).Show();
             }
-            ((TestViewModel)this.BindingContext).IsBusy = true;
+            ((TestViewModel)this.BindingContext).IsBusy = false;
 
         }
         public void SetDateFields()

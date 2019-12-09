@@ -31,35 +31,8 @@ namespace Google_sheetAndro.Views
             await Navigation.PopModalAsync();
         }
 
-        private async void TabbedPage_Appearing(object sender, EventArgs e)
+        private void TabbedPage_Appearing(object sender, EventArgs e)
         {
-            //ItemsPage ip = LoaderFunction.ItemsPageAlone;//new ItemsPage(true);
-            //MapPage mp = LoaderFunction.MapPage;
-            //WheatherView wp = LoaderFunction.WheatherPage;
-            //mp = new MapPage();
-            //wp = new WheatherView();
-            //map = new MapPage();
-            //item = new ItemsPage(true);
-            //Device.BeginInvokeOnMainThread(() =>
-            //{
-            //    this.Children.Add(LoaderFunction.ItAlNavPage)/*new NavigationPage(ip) { Title = "Запись", IconImageSource = "new_one.png" })*/;
-            //    
-            //    this.Children.Add(LoaderFunction.MapNavPage);//new NavigationPage(mp) { Title = "Навигация", IconImageSource = "info1.png" });
-            //    this.Children.Add(LoaderFunction.WheNavPage);//new NavigationPage(wp) { Title = "Погода", IconImageSource = "info1.png" });
-
-            //});
-
-            //this.Children.Add(new NavigationPage(item) { Title = "Запись", IconImageSource = "new_one.png" });
-            //this.Children.Add(new NavigationPage(map) { Title = "Навигация", IconImageSource = "info1.png" });
-            //if(StaticInfo.Pos == null)
-            //{
-            //    await map.GetGEOAsync();
-            //}
-            //await init();
-            //this.Children.Add(new NavigationPage(new WheatherView()) { Title = "Погода", IconImageSource = "info1.png" });
-            //StaticInfo.AI.IsEnabled = false;
-            //StaticInfo.AI.IsRunning = false;
-            //StaticInfo.AI.IsVisible = false;
         }
         private void TabbedPage_CurrentPageChanged(object sender, EventArgs e)
         {

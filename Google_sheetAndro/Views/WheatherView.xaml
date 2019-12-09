@@ -227,8 +227,7 @@
                         VerticalOptions="Start" BackgroundColor="Transparent">
             <ImageButton x:Name="PopSettings" VerticalOptions="CenterAndExpand"
                     HorizontalOptions="End" Source="refresh.png" BackgroundColor="Transparent"
-                    HeightRequest="40" Clicked="PopSettings_Clicked" BorderColor="Black" 
-                         BorderWidth="2" CornerRadius="999"
+                    HeightRequest="40" Clicked="PopSettings_Clicked"
                 />
         </RelativeLayout>
         <ActivityIndicator IsRunning="{Binding IsBusy}"

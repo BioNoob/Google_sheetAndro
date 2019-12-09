@@ -28,9 +28,9 @@
                 <Picker x:Name="RouteTypePick" Grid.Row="1" Grid.Column="0" FontSize="14" TextColor="White"
                         SelectedIndexChanged="RouteTypePick_SelectedIndexChanged"/>
                 <ImageButton  Source="CancelLast" Grid.Row="0" Grid.Column="1" WidthRequest="40" x:Name="CancelBtn"
-                              Clicked="CancelBtn_Clicked"/>
+                              Clicked="CancelBtn_Clicked" BackgroundColor="Transparent"/>
                 <ImageButton  Source="ClearAll" Grid.Row="1" Grid.Column="1" WidthRequest="40" x:Name="ClearBtn"
-                              Clicked="ClearBtn_Clicked"/>
+                              Clicked="ClearBtn_Clicked" BackgroundColor="Transparent"/>
                 <!--<ImageButton x:Name="TypMap" HeightRequest="48" WidthRequest="48" Grid.Row="1"
                        Source="Hybrid.png" HorizontalOptions="Center" Clicked="TypMap_Clicked"/>
                 <ImageButton x:Name="TypRoute" HeightRequest="48" WidthRequest="48" Grid.Row="3"
@@ -49,7 +49,7 @@
                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>-->
             </Grid>
             <ImageButton x:Name="PopSettings" VerticalOptions="CenterAndExpand"
-                        
+                         BackgroundColor="Transparent"
                     HorizontalOptions="CenterAndExpand" Source="settings.png"
                     HeightRequest="40" Clicked="PopSettings_Clicked"
                 />

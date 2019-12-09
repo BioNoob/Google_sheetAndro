@@ -27,9 +27,9 @@ namespace Google_sheetAndro
                                                     //WheatherPage = new WheatherView();//ok
 
             LoaderFunction.ItAlNavPage = new NavigationPage(LoaderFunction.ItemsPageAlone) { Title = "Запись", IconImageSource = "new_one.png" };
-            LoaderFunction.MapNavPage = new NavigationPage(LoaderFunction.MapPage) { Title = "Навигация", IconImageSource = "info1.png" };
-            LoaderFunction.WheNavPage = new NavigationPage(LoaderFunction.WheatherPage) { Title = "Погода", IconImageSource = "info1.png" };
-            LoaderFunction.ItNavPage = new NavigationPage(LoaderFunction.ItemsPage);
+            LoaderFunction.MapNavPage = new NavigationPage(LoaderFunction.MapPage) { Title = "Навигация", IconImageSource = "gogMap.png" };
+            LoaderFunction.WheNavPage = new NavigationPage(LoaderFunction.WheatherPage) { Title = "Погода", IconImageSource = "partly_cloudy_day.png" };
+            LoaderFunction.ItNavPage = new NavigationPage(LoaderFunction.ItemsPage) { Title = "Данные" , IconImageSource = "EditTable.png"};
             LoaderFunction.MainPage = new MainPage();//ok ItemsPageAlone MapPage WheatherView
             LoaderFunction.MainPage.Children.Add(LoaderFunction.ItAlNavPage);
             LoaderFunction.MainPage.Children.Add(LoaderFunction.MapNavPage);

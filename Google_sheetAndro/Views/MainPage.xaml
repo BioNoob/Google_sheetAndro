@@ -9,8 +9,8 @@
             CurrentPageChanged="TabbedPage_CurrentPageChanged"
             >
     <TabbedPage.ToolbarItems>
-        <ToolbarItem Text="Отменить" Clicked="ToolbarItem_Clicked_1" />
-        <ToolbarItem Text="Сохранить" Clicked="ToolbarItem_Clicked" />
+        <!--<ToolbarItem Text="Отменить" Clicked="ToolbarItem_Clicked_1" />
+        <ToolbarItem Text="Сохранить" Clicked="ToolbarItem_Clicked" />-->
     </TabbedPage.ToolbarItems>
     <!--<TabbedPage.Children>-->
         <!--<NavigationPage x:Name="InavPage" Title="Запись" IconImageSource="new_one.png">
