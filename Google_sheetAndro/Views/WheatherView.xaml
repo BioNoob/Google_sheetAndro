@@ -37,8 +37,15 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackLayout Orientation="Vertical" Margin="10,20,10,0" Grid.Row="0">
-                    <Label Text="{Binding Place}" FontSize="13" VerticalOptions="Start" TextColor="White"
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".8*"/>
+                            <ColumnDefinition Width=".2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Place}" FontSize="13"
+                           VerticalOptions="Start" TextColor="White" HorizontalOptions="Start" Grid.Column="0"
                           />
+                    </Grid>
                     <Frame BackgroundColor="#40000000" HorizontalOptions="Center"
                        BorderColor="Orange" CornerRadius="10">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
@@ -54,7 +61,6 @@
                             <Label Text="{Binding Time}" TextColor="White" FontSize="12" HorizontalOptions="Center"/>
                         </StackLayout>
                     </Frame>
-
                     <Frame  CornerRadius="10" BackgroundColor="#40000000" BorderColor="Orange"
                    Padding="0" HeightRequest="180" VerticalOptions="Start" HasShadow="True">
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
@@ -221,7 +227,8 @@
                         VerticalOptions="Start" BackgroundColor="Transparent">
             <ImageButton x:Name="PopSettings" VerticalOptions="CenterAndExpand"
                     HorizontalOptions="End" Source="refresh.png" BackgroundColor="Transparent"
-                    HeightRequest="40" Clicked="PopSettings_Clicked"
+                    HeightRequest="40" Clicked="PopSettings_Clicked" BorderColor="Black" 
+                         BorderWidth="2" CornerRadius="999"
                 />
         </RelativeLayout>
         <ActivityIndicator IsRunning="{Binding IsBusy}"

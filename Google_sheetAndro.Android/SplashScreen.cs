@@ -41,7 +41,6 @@ namespace Google_sheetAndro.Droid
                 //Toast.MakeText(Android.App.Application.Context, "Приложение пока не поддерживает редактирование офлайн", ToastLength.Long).Show();
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-
                     await Task.Delay(1000);
                     Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
                 });
@@ -69,20 +68,31 @@ namespace Google_sheetAndro.Droid
             StaticInfo.AccountPicture = email.picture;
         }
 
-        public async void OnAuthenticationCanceled()
+        public void OnAuthenticationCanceled()
         {
             Toast.MakeText(Android.App.Application.Context, "Вход отменен", ToastLength.Long).Show();
-            await Task.Delay(1000);
-            Toast.MakeText(Android.App.Application.Context, "Приложение будет закрыто", ToastLength.Long).Show();
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Task.Delay(1000);
+                Toast.MakeText(Android.App.Application.Context, "Приложение будет закрыто", ToastLength.Long).Show();
+                await Task.Delay(1000);
+                Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+            });
             //var closer = DependencyService.Get<ICloseApplication>();
             //closer?.closeApplication();
         }
 
-        public async void OnAuthenticationFailed(string message, Exception exception)
+        public void OnAuthenticationFailed(string message, Exception exception)
         {
             Toast.MakeText(Android.App.Application.Context, "Ошибка входа " + message, ToastLength.Long).Show();
-            await Task.Delay(1000);
-            Toast.MakeText(Android.App.Application.Context, "Приложение будет закрыто", ToastLength.Long).Show();
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Task.Delay(1000);
+                Toast.MakeText(Android.App.Application.Context, "Приложение будет закрыто", ToastLength.Long).Show();
+                await Task.Delay(1000);
+                Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+            });
+
             //var closer = DependencyService.Get<ICloseApplication>();
             //closer?.closeApplication();
         }

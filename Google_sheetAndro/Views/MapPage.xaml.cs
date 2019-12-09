@@ -461,28 +461,35 @@ namespace Google_sheetAndro.Views
             await CancelBtn.FadeTo(0, 100);
             if(fl_route)
             {
-                if(map.Polylines.FirstOrDefault().Positions.Count > 0) // ЕСЛИ СОВСЕМ НЕТУ ТО ФЕРСТ НЕ СПАСЕТ!
+                if(map.Polylines.Count > 0)
                 {
-                    map.Polylines.First().Positions.RemoveAt(map.Polylines.First().Positions.Count - 1);
+                    if (map.Polylines.First().Positions.Count > 0) // ЕСЛИ СОВСЕМ НЕТУ ТО ФЕРСТ НЕ СПАСЕТ!
+                    {
+                        map.Polylines.First().Positions.RemoveAt(map.Polylines.First().Positions.Count - 1);
+                    }
                 }
                 if(map.Pins.Count > 1)
                 {
                     Pin pn = map.Pins.Where(i => i.Label == "End").First();
                     map.Pins.Remove(pn);
-                    if(map.Polylines.FirstOrDefault().Positions.Count > 0)
+                    if (map.Polylines.Count > 0)
                     {
-                        pn.Position = map.Polylines.First().Positions[map.Polylines.First().Positions.Count - 1];
-                        map.Pins.Add(pn);
+                        if (map.Polylines.First().Positions.Count > 0)
+                        {
+                            pn.Position = map.Polylines.First().Positions[map.Polylines.First().Positions.Count - 1];
+                            map.Pins.Add(pn);
+                        }
                     }
                 }
-                else
+                else if(map.Pins.Count == 1)
                 {
                     map.Pins.Remove(map.Pins.Last());
                 }
             }
             else
             {
-                map.Pins.Remove(map.Pins.Last());
+                if(map.Pins.Count > 0)
+                    map.Pins.Remove(map.Pins.Last());
             }
 
             await CancelBtn.FadeTo(1, 100);
