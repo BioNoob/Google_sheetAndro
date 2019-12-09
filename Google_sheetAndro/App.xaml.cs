@@ -35,6 +35,11 @@ namespace Google_sheetAndro
             LoaderFunction.MainPage.Children.Add(LoaderFunction.MapNavPage);
             LoaderFunction.MainPage.Children.Add(LoaderFunction.WheNavPage);
             LoaderFunction.MAINNavPage = new NavigationPage(LoaderFunction.MainPage);
+
+            LoaderFunction.ExtItemsViewer = new MainPage();
+            LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.ItNavPage);
+            LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.MapNavPage);
+            LoaderFunction.ExtItNavPage = new NavigationPage(LoaderFunction.ExtItemsViewer);
             LoaderFunction.ItemsInfoPage = new ItemsInfo();//not ok need items
             LoaderFunction.ItInfoNavPage = new NavigationPage(LoaderFunction.ItemsInfoPage);
             LoaderFunction.MenuPage = new MenuPage();

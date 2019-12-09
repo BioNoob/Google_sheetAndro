@@ -126,15 +126,24 @@ namespace Google_sheetAndro.Views
         private async void TableItems_ItemTapped(object sender, ItemTappedEventArgs e)
         {
 
-            LoaderFunction.ItNavPage.ToolbarItems.Clear();
-            LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Изменить", "", update));
-            LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));
-            ItemsPage tp = LoaderFunction.ItemsPage;//(ItemsPage)item.RootPage;
-            NavigationPage.SetHasNavigationBar(tp, true);
-            NavigationPage.SetBackButtonTitle(tp, "Назад");
-            NavigationPage.SetHasBackButton(tp, true);
+            //LoaderFunction.ItNavPage.ToolbarItems.Clear();
+            //LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Изменить", "", update));
+            //LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));
+
+            LoaderFunction.ExtItNavPage.ToolbarItems.Clear();
+            LoaderFunction.ExtItNavPage.ToolbarItems.Add(new ToolbarItem("Изменить", "", update));
+            LoaderFunction.ExtItNavPage.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));
+            ItemsPage tp = LoaderFunction.ItemsPage;
+            NavigationPage.SetHasNavigationBar(LoaderFunction.ExtItNavPage, false);
+            //NavigationPage.SetHasNavigationBar(tp, true);
+            //NavigationPage.SetBackButtonTitle(tp, "Назад");
+            //NavigationPage.SetHasBackButton(tp, true);            
+            //NavigationPage.SetHasNavigationBar(LoaderFunction.ExtItNavPage, true);
+            //NavigationPage.SetBackButtonTitle(LoaderFunction.ExtItNavPage, "Назад");
+            //NavigationPage.SetHasBackButton(LoaderFunction.ExtItNavPage, true);
             tp.setter((TableItem)e.Item);
-            await Navigation.PushModalAsync(LoaderFunction.ItNavPage);
+            //await Navigation.PushModalAsync(LoaderFunction.ItNavPage);
+            await Navigation.PushModalAsync(LoaderFunction.ExtItNavPage);
         }
         private void ContentPage_Appearing(object sender, EventArgs e)
         {

@@ -99,6 +99,7 @@ namespace Google_sheetAndro.Models
         public static ItemsPage ItemsPage;
         public static ItemsPage ItemsPageAlone;
         public static MainPage MainPage;
+        public static MainPage ExtItemsViewer;
         public static MapPage MapPage;
         public static MenuPage MenuPage;
         public static Page_out OutPage;
@@ -112,6 +113,7 @@ namespace Google_sheetAndro.Models
         public static NavigationPage OutNavPage;
         public static NavigationPage MAINNavPage;
         public static NavigationPage ItInfoNavPage;
+        public static NavigationPage ExtItNavPage;
         //NavigationPage itemspg;
         public static readonly string GetAopaPath = "https://maps.aopa.ru/export/exportFormRequest/?exportType=standart&exportAll%5B%5D=airport&exportAll%5B%5D=vert&exportFormat=csv&csv_options%5Bcharset%5D=utf8&csv_options%5Bdata%5D=objects_data&f%5B%5D=index&f%5B%5D=kta_lon&f%5B%5D=kta_lat&api_key=7380-9xJ8zG";
         public static void EndWheatherLoad()

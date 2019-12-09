@@ -144,7 +144,8 @@ namespace TableAndro
                 {
                     sh_name = item.Properties.Title;
                     shid = (int)item.Properties.SheetId;
-                    var range = $"{year}!A:K";
+                    //var range = $"{year}!A:K";
+                    var range = $"{year}!A:N";
                     SpreadsheetsResource.ValuesResource.GetRequest request =
         service.Spreadsheets.Values.Get(SpreadsheetId, range);
                     request.ValueRenderOption = ValuesResource.GetRequest.ValueRenderOptionEnum.FORMULA;
@@ -211,8 +212,30 @@ namespace TableAndro
                                     ti.comment = row[10].ToString();
                                 else
                                     ti.comment = "";
+
+                                if(row.Count > 11)
+                                {
+                                    if (row[11].ToString() == "")
+                                        ti.author = "Oparakhin@gmail.com";
+                                    else
+                                        ti.author = row[11].ToString();
+                                }
+                                else
+                                    ti.author = "Oparakhin@gmail.com";
+
+                                if (row.Count > 12)
+                                    ti.points = row[12].ToString();
+                                else
+                                    ti.points = "";
+
+                                if (row.Count > 13)
+                                    ti.route = row[13].ToString();
+                                else
+                                    ti.route = "";
+
                                 ti.row_nb = row_indx + 1;
-                                ti.tabelplase = $"{year}!A{row_indx + 1}:K{row_indx + 1}";
+                                //ti.tabelplase = $"{year}!A{row_indx + 1}:K{row_indx + 1}";
+                                ti.tabelplase = $"{year}!A{row_indx + 1}:N{row_indx + 1}";
                                 if (row[0].ToString() != "")
                                     ti.exect_mounth = row[0].ToString();
                                 else
@@ -286,7 +309,8 @@ namespace TableAndro
                 SheetExist(year);
                 sh_ID = sheet_id;//ti.sh_id;//Googles.sheet_id;
                 sheet = SheetName;
-                var range = $"{sheet}!A:K";
+                //var range = $"{sheet}!A:K";
+                var range = $"{sheet}!A:N";
                 //находить пустые строки при месяце
                 //range A:A 
                 //IF row[0] == mont_nm то вставить строчку выше(если строчка выше пустая if предыдущий row[1] <> "", то получить ее номер, если нет новую)
@@ -385,35 +409,12 @@ namespace TableAndro
         /// <param name="Row_after"></param>
         static bool InsertRowAsync(TableItem ti,int Row_after/*Dictionary<string, object> dic, int Row_after*/)
         {
-            //var range = $"{sheet}!B{Row_after}:K{Row_after}";
-            //var valueRange = new ValueRange();
-            //IList<Object> obj = new List<Object>();
-
-            //foreach (string item in dic.Keys)
-            //{
-            //    obj.Add(dic[item]);
-            //}
-
-            //IList<IList<Object>> values = new List<IList<Object>>();
-            //values.Add(obj);
-            //valueRange.Values = new List<IList<Object>>();//values;
-            //valueRange.Range = range;
-
-            //SpreadsheetsResource.ValuesResource.AppendRequest request =
-            //        service.Spreadsheets.Values.Append(valueRange, SpreadsheetId, $"{sheet}!B{Row_after}");//range);
-            //valueRange.MajorDimension = "ROWS";
-            //request.InsertDataOption = SpreadsheetsResource.ValuesResource.AppendRequest.InsertDataOptionEnum.INSERTROWS;
-            //request.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
-            ////var response = 
-            //Debug.WriteLine("Entry RowIns");
-            //var rr = google_requests.InsRow(Googles.sheet_id, Row_after);
             BatchUpdateSpreadsheetRequest requestBody = new BatchUpdateSpreadsheetRequest();
             requestBody.Requests = new List<Request>() { google_requests.InsRow(Googles.sheet_id, Row_after - 1) };
             BatchUpdateRequest BUrequest = service.Spreadsheets.BatchUpdate(requestBody, SpreadsheetId);
             var resp = BUrequest.Execute();
             ti.row_nb = Row_after;
             UpdateEntry(ti);
-            //var resp = request.Execute();
             Debug.WriteLine("EXIT RowIns");
             return true;
         }
@@ -429,7 +430,8 @@ namespace TableAndro
         public static void UpdateEntry(TableItem tbi/*int num_inp, Dictionary<string, object> dic*/)
         {
             var sheet = tbi.year.ToString();
-            var range = $"{sheet}!B{tbi.row_nb}:K{tbi.row_nb}";
+            //var range = $"{sheet}!B{tbi.row_nb}:K{tbi.row_nb}";
+            var range = $"{sheet}!B{tbi.row_nb}:N{tbi.row_nb}";
             var valueRange = new ValueRange();
             //var oblist = new List<object>();
             //foreach (string item in dic.Keys)

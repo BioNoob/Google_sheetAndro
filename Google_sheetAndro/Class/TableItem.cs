@@ -91,10 +91,15 @@ namespace Google_sheetAndro.Class
         public string exect_mounth { get; set; }
         public int sh_id { get; set; }
         public int row_nb { get; set; }
+
+
+        public string author { get; set; }
+        public string points { get; set; }
+        public string route { get; set; }
         public List<object> GetListForEntry()
         {
             List<object> lst = new List<object>();
-            lst.AddRange(new List<object>() { this.date.ToString("dd/MM/yyyy"), this.time, this.wind, this.cloud, this.temp, this.task, this.height, this.range, this.plase, this.comment });
+            lst.AddRange(new List<object>() { this.date.ToString("dd/MM/yyyy"), this.time, this.wind, this.cloud, this.temp, this.task, this.height, this.range, this.plase, this.comment,this.author,this.points,this.route });
             return lst;
         }
         //public Dictionary<string, object> getDic()
