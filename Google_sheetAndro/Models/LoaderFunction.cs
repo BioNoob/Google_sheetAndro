@@ -30,25 +30,25 @@ namespace Google_sheetAndro.Models
                 StaticInfo.Pos = s;
             }
             #region catch
-            catch (FeatureNotSupportedException fnsEx)
+            catch (FeatureNotSupportedException)
             {
                 // Handle not supported on device exception
 
                 //return fnsEx.Message;
             }
-            catch (FeatureNotEnabledException fneEx)
+            catch (FeatureNotEnabledException)
             {
                 // Handle not enabled on device exception
 
                 //return fneEx.Message;
             }
-            catch (PermissionException pEx)
+            catch (PermissionException)
             {
                 // Handle permission exception
 
                 //return pEx.Message;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 // Unable to get location
@@ -103,6 +103,7 @@ namespace Google_sheetAndro.Models
         public static MapPage MapPage;
         public static MenuPage MenuPage;
         public static Page_out OutPage;
+        public static SimpleListView SimpPage;
         public static TaskSelectPage TaskSelectPage;
         public static WheatherView WheatherPage;
         public static NavigationPage ItAlNavPage;

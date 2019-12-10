@@ -1,4 +1,6 @@
-﻿using RefreshSample.ViewModels;
+﻿using Google_sheetAndro.Class;
+using Google_sheetAndro.Models;
+using RefreshSample.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,15 +15,25 @@ namespace Google_sheetAndro.Views
             BindingContext = new WheatherViewModel();
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-
+            var q = (windout)e.SelectedItem;
+            LoaderFunction.SimpPage.ActualWind = q.Wind;
+            if(LoaderFunction.SimpPage.ToolbarItems.Count < 1)
+            {
+                LoaderFunction.SimpPage.ToolbarItems.Add(new ToolbarItem("Назад", "CancelLast", new System.Action(() => { backpress(); })));
+            }
+            NavigationPage navigationPage = new NavigationPage(LoaderFunction.SimpPage);
+            await Navigation.PushModalAsync(navigationPage);
         }
-
+        async void backpress()
+        {
+            await Navigation.PopModalAsync(true);
+        }
         private async void PopSettings_Clicked(object sender, System.EventArgs e)
         {
             await PopSettings.FadeTo(0, 100);
-            await ((WheatherViewModel)this.BindingContext).ExecuteRefreshCommand();
+            ((WheatherViewModel)this.BindingContext).ExecuteRefreshCommand();
 
 
             await PopSettings.FadeTo(1, 100);

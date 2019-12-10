@@ -44,11 +44,6 @@ namespace RefreshSample.ViewModels
             }
         }
 
-        async Task ExecuteRefreshCommand()
-        {
-
-        }
-
         #region INotifyPropertyChanged implementation
 
         public event PropertyChangedEventHandler PropertyChanged;

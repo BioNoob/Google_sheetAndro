@@ -24,7 +24,8 @@ namespace Google_sheetAndro
             LoaderFunction.OutPage = new Page_out();//ok //переделать чтоб брал инфу с внутреннего хранилища?
             LoaderFunction.OutNavPage = new NavigationPage(LoaderFunction.OutPage);
             LoaderFunction.MapPage = new MapPage(); //ok
-                                                    //WheatherPage = new WheatherView();//ok
+            LoaderFunction.SimpPage = new SimpleListView();
+
 
             LoaderFunction.ItAlNavPage = new NavigationPage(LoaderFunction.ItemsPageAlone) { Title = "Запись", IconImageSource = "new_one.png" };
             LoaderFunction.MapNavPage = new NavigationPage(LoaderFunction.MapPage) { Title = "Навигация", IconImageSource = "gogMap.png" };

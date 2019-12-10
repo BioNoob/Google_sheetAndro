@@ -135,6 +135,8 @@ namespace Google_sheetAndro.Views
             LoaderFunction.ExtItNavPage.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));
             ItemsPage tp = LoaderFunction.ItemsPage;
             NavigationPage.SetHasNavigationBar(LoaderFunction.ExtItNavPage, false);
+            NavigationPage.SetHasBackButton(LoaderFunction.ExtItNavPage, true);
+            NavigationPage.SetBackButtonTitle(LoaderFunction.ExtItNavPage, "Назад");
             //NavigationPage.SetHasNavigationBar(tp, true);
             //NavigationPage.SetBackButtonTitle(tp, "Назад");
             //NavigationPage.SetHasBackButton(tp, true);            

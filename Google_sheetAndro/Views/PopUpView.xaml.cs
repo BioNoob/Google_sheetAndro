@@ -12,7 +12,7 @@ namespace Google_sheetAndro.Views
             InitializeComponent();
         }
 
-        private async void BackBtn_Clicked(object sender, EventArgs e)
+        private void BackBtn_Clicked(object sender, EventArgs e)
         {
         }
     }

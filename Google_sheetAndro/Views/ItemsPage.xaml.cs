@@ -302,7 +302,7 @@ namespace Google_sheetAndro.Views
             if (rg.Match(Temp_Num.Text).Success)
             {
                 double val = Convert.ToDouble(match.Groups["value"].Value);
-                string dob = "";
+                //string dob = "";
                 switch (match.Groups["sign"].Value)
                 {
                     case "+":
@@ -312,7 +312,7 @@ namespace Google_sheetAndro.Views
                             val = 50.0;
                         }
                         TempSlider.Value = 50 + val;
-                        dob = "+";
+                        //dob = "+";
                         break;
                     case "-":
                         if (val > 50.0)
@@ -320,7 +320,7 @@ namespace Google_sheetAndro.Views
                             val = 50.0;
                         }
                         TempSlider.Value = 50 - val;
-                        dob = "-";
+                        //dob = "-";
                         break;
                 }
             }

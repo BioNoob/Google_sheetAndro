@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -27,21 +28,24 @@ namespace Google_sheetAndro.Views
             BindingContext = this;
         }
         public List<ApiInfo> APlist { get; set; }
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            Device.OpenUri(new Uri("mailto:bigjarik@gmail.com"));
+            await Launcher.OpenAsync(new Uri("mailto:bigjarik@gmail.com"));
+            //Device.OpenUri(new Uri("mailto:bigjarik@gmail.com"));
         }
 
-        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
             TagLabel tagSpan = (TagLabel)sender;
-            Device.OpenUri(new Uri(tagSpan.Tag));
+            await Launcher.OpenAsync(new Uri(tagSpan.Tag));
+            //Device.OpenUri(new Uri(tagSpan.Tag));
         }
 
-        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
         {
             TagLabel tagSpan = (TagLabel)sender;
-            Device.OpenUri(new Uri(tagSpan.Tag));
+            await Launcher.OpenAsync(new Uri(tagSpan.Tag));
+            //Device.OpenUri(new Uri(tagSpan.Tag));
         }
     }
     public class ApiInfo

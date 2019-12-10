@@ -45,7 +45,6 @@ namespace RefreshSample.ViewModels
         private async void LoaderFunction_DoWheatherLoad()
         {
             gpp = StaticInfo.Wheather;
-
             Place = StaticInfo.Place;
             Val = gpp.getParams();
             string key = Searcher(StaticInfo.Pos);
@@ -81,7 +80,7 @@ namespace RefreshSample.ViewModels
         private ResponsedData gpp1;
         private string airport;
         private List<Winder> actualWind;
-        public async Task ExecuteRefreshCommand()
+        public void ExecuteRefreshCommand()
         {
             IsBusy = true;
             caller();

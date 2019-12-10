@@ -40,7 +40,7 @@ namespace Google_sheetAndro.ViewModels
         }
         public ObservableCollection<Grouping<string, TableItem>> ItemGroups { get { return _ItemGroups; } set { _ItemGroups = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ItemGroups")); } }
         private ObservableCollection<Grouping<string, TableItem>> _ItemGroups;
-        bool isBusy;
+        //bool isBusy;
         private List<string> _years;
         private List<string> _mounths;
         public List<string> years { get { return _years; } set { _years = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("years")); } }
