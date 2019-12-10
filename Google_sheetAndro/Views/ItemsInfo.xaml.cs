@@ -134,6 +134,7 @@ namespace Google_sheetAndro.Views
             LoaderFunction.ExtItNavPage.ToolbarItems.Add(new ToolbarItem("Изменить", "", update));
             LoaderFunction.ExtItNavPage.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));
             ItemsPage tp = LoaderFunction.ItemsPage;
+            MapPage mp = LoaderFunction.MapPage;
             NavigationPage.SetHasNavigationBar(LoaderFunction.ExtItNavPage, false);
             NavigationPage.SetHasBackButton(LoaderFunction.ExtItNavPage, true);
             NavigationPage.SetBackButtonTitle(LoaderFunction.ExtItNavPage, "Назад");
@@ -144,6 +145,7 @@ namespace Google_sheetAndro.Views
             //NavigationPage.SetBackButtonTitle(LoaderFunction.ExtItNavPage, "Назад");
             //NavigationPage.SetHasBackButton(LoaderFunction.ExtItNavPage, true);
             tp.setter((TableItem)e.Item);
+            mp.setter((TableItem)e.Item);
             //await Navigation.PushModalAsync(LoaderFunction.ItNavPage);
             await Navigation.PushModalAsync(LoaderFunction.ExtItNavPage);
         }

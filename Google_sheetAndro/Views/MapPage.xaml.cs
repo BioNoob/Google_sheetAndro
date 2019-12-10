@@ -65,7 +65,14 @@ namespace Google_sheetAndro.Views
                 RouteTypePick.SelectedIndex = 0;
             }
         }
+        public bool setter_route(string Route)
+        {
 
+        }
+        public bool setter_point(string Point)
+        {
+
+        }
         bool fl = false;
         double cur_pos_w1;
         double cur_pos_w2;
