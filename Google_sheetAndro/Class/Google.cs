@@ -118,7 +118,7 @@ namespace TableAndro
             //var sheets = sheetInfo.Sheets;
             //var sheet = sheets.Where(t => t.Properties.Title == "ÄirportBase").ToList().First();
             //var shId = sheet.Properties.SheetId;
-            var range = $"ÄirportBase!A:C";
+            var range = $"AirportBase!A:C";
             SpreadsheetsResource.ValuesResource.GetRequest request =
         service.Spreadsheets.Values.Get(SpreadsheetId, range);
             request.ValueRenderOption = ValuesResource.GetRequest.ValueRenderOptionEnum.FORMULA;

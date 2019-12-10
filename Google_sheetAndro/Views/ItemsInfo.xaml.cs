@@ -72,8 +72,12 @@ namespace Google_sheetAndro.Views
             int last = Year_pick.SelectedIndex;
             try
             {
-                Googles.UpdateEntry(tp.getter());
-                tp.Navigation.PopModalAsync();
+                TableItem ti = tp.getter();
+                ti.author = StaticInfo.AccountEmail;
+                ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
+                ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
+                Googles.UpdateEntry(ti);
+                LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
                 Toast.MakeText(Android.App.Application.Context, "Обновление прошло успешно", ToastLength.Long).Show();
             }
             catch (Exception)
@@ -101,8 +105,12 @@ namespace Google_sheetAndro.Views
             int last = Year_pick.SelectedIndex;
             try
             {
-                Googles.DeleteEntry(tp.getter());
-                tp.Navigation.PopModalAsync();
+                TableItem ti = tp.getter();
+                ti.author = StaticInfo.AccountEmail;
+                ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
+                ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
+                Googles.DeleteEntry(ti);
+                LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
                 Toast.MakeText(Android.App.Application.Context, "Удаление прошло успешно", ToastLength.Long).Show();
             }
             catch (Exception)
@@ -145,7 +153,8 @@ namespace Google_sheetAndro.Views
             //NavigationPage.SetBackButtonTitle(LoaderFunction.ExtItNavPage, "Назад");
             //NavigationPage.SetHasBackButton(LoaderFunction.ExtItNavPage, true);
             tp.setter((TableItem)e.Item);
-            mp.setter((TableItem)e.Item);
+            mp.setter_point(((TableItem)e.Item).points);
+            mp.setter_route(((TableItem)e.Item).route);
             //await Navigation.PushModalAsync(LoaderFunction.ItNavPage);
             await Navigation.PushModalAsync(LoaderFunction.ExtItNavPage);
         }

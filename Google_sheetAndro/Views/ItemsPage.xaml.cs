@@ -381,7 +381,11 @@ namespace Google_sheetAndro.Views
         public void CreateRow()
         {
             IsBusy = true;
-            if (Googles.ReadEntriesAsync(getter()))
+            TableItem ti = getter();
+            ti.author = StaticInfo.AccountEmail;
+            ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
+            ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
+            if (Googles.ReadEntriesAsync(ti))
             {
 
             }

@@ -54,6 +54,23 @@ namespace Google_sheetAndro.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            //if (requestCode == RequestLocationId)
+            //{
+            //    if ((grantResults.Length == 1) && (grantResults[0] == (int)Permission.Granted))
+            //    {
+
+            //    }
+            //// Permissions granted - display a message.
+            //        else
+            //    {
+
+            //    }
+            //// Permissions denied - display a message.
+            //}
+            //else
+            //{
+            //    base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            //}
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }

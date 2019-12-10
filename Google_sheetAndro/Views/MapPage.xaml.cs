@@ -1,9 +1,11 @@
 ﻿using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
+using Newtonsoft.Json;
 using Plugin.DeviceSensors;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,11 +34,14 @@ namespace Google_sheetAndro.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapPage : ContentPage
     {
+        private MapObjects mapObjects;
+        public MapObjects MapObj { get { SerToJsonMapData(); return mapObjects; } }
         public MapPage()
         {
             InitializeComponent();
             map.PinClicked += Map_PinClicked;
             init();
+            mapObjects = new MapObjects();
             //b2.IsEnabled = false;
             LoaderFunction.DoSetView += SetInitVew;
             //PopSettings.Clicked += PopSettings_Clicked;
@@ -65,13 +70,52 @@ namespace Google_sheetAndro.Views
                 RouteTypePick.SelectedIndex = 0;
             }
         }
+        //проверка на нулли
+        private void SerToJsonMapData()
+        {
+            mapObjects = new MapObjects();
+            if (map.Polylines.Count > 0)
+            {
+                mapObjects.Polyline = map.Polylines.First();
+            }
+            if (map.Pins.Count > 0)
+            {
+                mapObjects.Pins = map.Pins.ToList();
+            }
+
+        }
         public bool setter_route(string Route)
         {
-
+            mapObjects.Polyline = JsonConvert.DeserializeObject<Polyline>(Route);
+            if(mapObjects.Polyline != null)
+            {
+                map.Polylines.Add(mapObjects.Polyline);
+                pl = mapObjects.Polyline;
+                dist = CalcDistForLine(pl);
+            }
+            return true;
+        }
+        private double CalcDistForLine(Polyline ple)
+        {
+            for (int i = 0; i < ple.Positions.Count; i++)
+            {
+                var q = ple.Positions[i];
+                var tt = ple.Positions[i++];
+                dist += GeolocatorUtils.CalculateDistance(q.Latitude, q.Longitude, tt.Latitude, tt.Longitude, GeolocatorUtils.DistanceUnits.Kilometers);
+            }
+            return dist;
         }
         public bool setter_point(string Point)
         {
-
+            mapObjects.Pins = JsonConvert.DeserializeObject<List<Pin>>(Point);
+            if(mapObjects.Pins != null)
+            {
+                foreach (var item in mapObjects.Pins)
+                {
+                    map.Pins.Add(item);
+                }
+            }
+            return true;
         }
         bool fl = false;
         double cur_pos_w1;
@@ -93,7 +137,8 @@ namespace Google_sheetAndro.Views
             set
             {
                 _dist = value;
-                StaticInfo.Dist = dist;
+                StaticInfo.Dist = _dist;
+                StatusD.Text = string.Format(CultureInfo.InvariantCulture, "{0:#0.00} км", _dist);
             }
         }
         public double height
@@ -116,10 +161,10 @@ namespace Google_sheetAndro.Views
         private async void AnimateIn()
         {
             var animate = new Animation(d => r1.WidthRequest = d, r1.Width, SL.Width / 2, Easing.SinInOut);
-            animate.Commit(r1, "BarGraph", 16, 1000);
+            animate.Commit(r1, "BarGraph", 16, 500);
             var animate2 = new Animation(d => r1.HeightRequest = d, r1.Height, 210, Easing.SinInOut);
-            animate2.Commit(r1, "BarGraph1", 16, 1000);
-            await PopSettings.TranslateTo(SL.Width / 2 - cur_pos_w2/*- r1.Bounds.Left - cur_pos_w2*/, PopSettings.Y /*- PopSettings.Height*/, 1000, Easing.SinInOut);
+            animate2.Commit(r1, "BarGraph1", 16, 500);
+            await PopSettings.TranslateTo(SL.Width / 2 - cur_pos_w2/*- r1.Bounds.Left - cur_pos_w2*/, PopSettings.Y /*- PopSettings.Height*/, 500, Easing.SinInOut);
             var animate3 = new Animation(d => Buttons.WidthRequest = d, Buttons.Width, SL.Width / 2, Easing.SinInOut);
             animate3.Commit(Buttons, "BarGraph2", 16, 100);
             var animate4 = new Animation(d => Buttons.HeightRequest = d, Buttons.Height, 210, Easing.SinInOut);
@@ -137,10 +182,10 @@ namespace Google_sheetAndro.Views
         {
             await Buttons.FadeTo(0, 700, Easing.SinInOut);
             var animate = new Animation(d => r1.WidthRequest = d, SL.Width / 2, cur_pos_w1 - r1.Margin.Right, Easing.SinInOut);
-            animate.Commit(r1, "BarGraph", 16, 1000);
+            animate.Commit(r1, "BarGraph", 16, 500);
             var animate2 = new Animation(d => r1.HeightRequest = d, 210, cur_pos_h2, Easing.SinInOut);
-            animate2.Commit(r1, "BarGraph1", 16, 1000);
-            await PopSettings.TranslateTo(cur_pos_w2 - PopSettings.Width, PopSettings.Y, 1000, Easing.SinInOut);
+            animate2.Commit(r1, "BarGraph1", 16, 500);
+            await PopSettings.TranslateTo(cur_pos_w2 - PopSettings.Width, PopSettings.Y, 500, Easing.SinInOut);
             var animate3 = new Animation(d => Buttons.WidthRequest = d, SL.Width / 2, 0, Easing.SinInOut);
             animate3.Commit(Buttons, "BarGraph2", 16, 100);
             var animate4 = new Animation(d => Buttons.HeightRequest = d, 210, 0, Easing.SinInOut);
@@ -181,7 +226,6 @@ namespace Google_sheetAndro.Views
             if (StaticInfo.Pos != null)
             {
                 await Task.Delay(1000);
-
                 SetInitVew();
                 //map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.GoogleMaps.Position(StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude), Xamarin.Forms.GoogleMaps.Distance.FromMiles(5)));
                 //map.MoveCamera(CameraUpdateFactory.NewPositionZoom(new Xamarin.Forms.GoogleMaps.Position(StaticInfo.Pos.Latitude,StaticInfo.Pos.Longitude), map.CameraPosition.Zoom));
@@ -238,7 +282,7 @@ namespace Google_sheetAndro.Views
         private void PositionChanged(object sender, PositionEventArgs e)
         {
             Plugin.Geolocator.Abstractions.Position poss = new Plugin.Geolocator.Abstractions.Position(map.CameraPosition.Target.Latitude, map.CameraPosition.Target.Longitude);
-            if (GeolocatorUtils.CalculateDistance(poss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) < 5)
+            if (GeolocatorUtils.CalculateDistance(poss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) < 25)//was 5 set 25 to Lost GeoPos
             {
                 var zoom = map.CameraPosition.Zoom;
                 Xamarin.Forms.GoogleMaps.Position pos = new Xamarin.Forms.GoogleMaps.Position(e.Position.Latitude, e.Position.Longitude);
@@ -254,7 +298,10 @@ namespace Google_sheetAndro.Views
                     SetLine(pos);
                 }
                 map.MoveCamera(CameraUpdateFactory.NewPositionZoom(new Xamarin.Forms.GoogleMaps.Position(e.Position.Latitude, e.Position.Longitude), zoom));
+                string p = string.Format("{0:#0.#};{1:#0.#}", e.Position.Latitude, e.Position.Longitude, CultureInfo.InvariantCulture);
+                Preferences.Set("LastKnownPosition", p);
             }
+
 
             //map.InitialCameraUpdate = CameraUpdateFactory.NewPosition(new Xamarin.Forms.GoogleMaps.Position(position.Latitude, position.Longitude));
         }
@@ -282,8 +329,10 @@ namespace Google_sheetAndro.Views
             map.MyLocationEnabled = true;
             map.UiSettings.ZoomGesturesEnabled = true;
             map.UiSettings.MapToolbarEnabled = true;
-            map.InitialCameraUpdate = CameraUpdateFactory.NewPositionZoom(new Xamarin.Forms.GoogleMaps.Position(55.751316, 37.620915), 11);
-
+            string buf = Preferences.Get("LastKnownPosition", "55.751316;37.620915");
+            var op = buf.Split(';');
+            var pos = new Xamarin.Forms.GoogleMaps.Position(Convert.ToDouble(op[0]),Convert.ToDouble(op[1]));
+            map.InitialCameraUpdate = CameraUpdateFactory.NewPositionZoom(pos, 11);
             map.MapLongClicked += map_MapLongClicked;
             pl.Tag = "Line";
             pl.StrokeWidth = 10;
@@ -294,7 +343,7 @@ namespace Google_sheetAndro.Views
 
         private void map_MapLongClicked(object sender, MapLongClickedEventArgs e)
         {
-            if(fl_route)
+            if (fl_route)
             {
                 SetLine(e.Point);
             }
@@ -303,20 +352,19 @@ namespace Google_sheetAndro.Views
                 SetPoint(e.Point);
             }
         }
-        
+
         private void Map_PinClicked(object sender, PinClickedEventArgs e)
         {
             Xamarin.Forms.GoogleMaps.Position t;
             t = e.Pin.Position;
             if (fl_route)
             {
-                if(fl_USE_MAP_CLICK)
+                if (fl_USE_MAP_CLICK)
                 {
                     if (pl.Positions.Count >= 1)
                     {
                         dist += GeolocatorUtils.CalculateDistance(new Plugin.Geolocator.Abstractions.Position(pl.Positions[pl.Positions.Count - 1].Latitude, pl.Positions[pl.Positions.Count - 1].Longitude),
                        new Plugin.Geolocator.Abstractions.Position(t.Latitude, t.Longitude), GeolocatorUtils.DistanceUnits.Kilometers);
-                        StatusD.Text = string.Format(CultureInfo.InvariantCulture, "{0:#0.00} км", dist);
                         pl.Positions.Add(t);
                         map.Polylines.Clear();
                         map.Polylines.Add(pl);
@@ -333,9 +381,9 @@ namespace Google_sheetAndro.Views
 
         private void SetPoint(Xamarin.Forms.GoogleMaps.Position e)
         {
-            if(map.Pins.Count >= 1)
+            if (map.Pins.Count >= 1)
             {
-                map.Pins.Add(new Pin() { Label = $"{map.Pins.Count - 1}", Position = e, IsDraggable = true, Icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Blue)});
+                map.Pins.Add(new Pin() { Label = $"{map.Pins.Count - 1}", Position = e, IsDraggable = true, Icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Blue) });
             }
             else
             {
@@ -349,14 +397,13 @@ namespace Google_sheetAndro.Views
             {
                 dist += GeolocatorUtils.CalculateDistance(new Plugin.Geolocator.Abstractions.Position(pl.Positions[pl.Positions.Count - 1].Latitude, pl.Positions[pl.Positions.Count - 1].Longitude),
                 new Plugin.Geolocator.Abstractions.Position(e.Latitude, e.Longitude), GeolocatorUtils.DistanceUnits.Kilometers);
-                StatusD.Text = string.Format(CultureInfo.InvariantCulture, "{0:#0.00} км", dist);
                 pl.Positions.Add(e);
                 map.Polylines.Clear();
                 map.Polylines.Add(pl);
                 Pin pn;
                 if (map.Pins.Count >= 1)
                 {
-                    if(map.Pins.Any(q => q.Label == "End"))
+                    if (map.Pins.Any(q => q.Label == "End"))
                     {
                         pn = map.Pins.Where(i => i.Label == "End").First();
                         map.Pins.Remove(pn);
@@ -411,9 +458,9 @@ namespace Google_sheetAndro.Views
         private async void b1_Clicked(object sender, EventArgs e)
         {
             //start();
-            if(fl_run == false)
+            if (fl_run == false)
             {
-                if(!string.IsNullOrWhiteSpace(StaticInfo.Nalet))
+                if (!string.IsNullOrWhiteSpace(StaticInfo.Nalet))
                 {
                     if (await DisplayAlert("Предупреждение", "Новая запись?", "Да", "Нет"))
                     {
@@ -437,7 +484,7 @@ namespace Google_sheetAndro.Views
                 b1.Text = "Старт";
                 StaticInfo.Nalet = t.ToString();
                 Xamarin.Forms.GoogleMaps.Position pp = map.Polylines.First().Positions.Last();
-                map.Pins.Add(new Pin() {Label = "End", Position = pp });
+                map.Pins.Add(new Pin() { Label = "End", Position = pp });
             }
             //b2.IsEnabled = true;
             //b1.IsEnabled = false;
@@ -466,16 +513,18 @@ namespace Google_sheetAndro.Views
         private async void CancelBtn_Clicked(object sender, EventArgs e)
         {
             await CancelBtn.FadeTo(0, 100);
-            if(fl_route)
+            if (fl_route)
             {
-                if(map.Polylines.Count > 0)
+                if (map.Polylines.Count > 0)
                 {
                     if (map.Polylines.First().Positions.Count > 0) // ЕСЛИ СОВСЕМ НЕТУ ТО ФЕРСТ НЕ СПАСЕТ!
                     {
                         map.Polylines.First().Positions.RemoveAt(map.Polylines.First().Positions.Count - 1);
+                        pl.Positions.RemoveAt(pl.Positions.Count - 1);
+                        dist = CalcDistForLine(pl);
                     }
                 }
-                if(map.Pins.Count > 1)
+                if (map.Pins.Count > 1)
                 {
                     Pin pn = map.Pins.Where(i => i.Label == "End").First();
                     map.Pins.Remove(pn);
@@ -488,14 +537,14 @@ namespace Google_sheetAndro.Views
                         }
                     }
                 }
-                else if(map.Pins.Count == 1)
+                else if (map.Pins.Count == 1)
                 {
                     map.Pins.Remove(map.Pins.Last());
                 }
             }
             else
             {
-                if(map.Pins.Count > 0)
+                if (map.Pins.Count > 0)
                     map.Pins.Remove(map.Pins.Last());
             }
 
@@ -509,6 +558,8 @@ namespace Google_sheetAndro.Views
             {
                 map.Pins.Clear();
                 map.Polylines.Clear();
+                pl.Positions.Clear();
+                dist = 0;
             }
             await ClearBtn.FadeTo(1, 100);
         }
