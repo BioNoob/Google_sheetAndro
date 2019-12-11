@@ -26,23 +26,29 @@ namespace Google_sheetAndro
             LoaderFunction.MapPage = new MapPage(); //ok
             LoaderFunction.SimpPage = new SimpleListView();
 
-
+            //отдельные навигационные 
             LoaderFunction.ItAlNavPage = new NavigationPage(LoaderFunction.ItemsPageAlone) { Title = "Запись", IconImageSource = "new_one.png" };
             LoaderFunction.MapNavPage = new NavigationPage(LoaderFunction.MapPage) { Title = "Навигация", IconImageSource = "gogMap.png" };
             LoaderFunction.WheNavPage = new NavigationPage(LoaderFunction.WheatherPage) { Title = "Погода", IconImageSource = "partly_cloudy_day.png" };
             LoaderFunction.ItNavPage = new NavigationPage(LoaderFunction.ItemsPage) { Title = "Данные" , IconImageSource = "EditTable.png"};
-            LoaderFunction.MainPage = new MainPage();//ok ItemsPageAlone MapPage WheatherView
+
+            //ЭТО ЕСТЬ НОВЫЙ ИТЕМ
+            LoaderFunction.MainPage = new MainPage();
             LoaderFunction.MainPage.Children.Add(LoaderFunction.ItAlNavPage);
             LoaderFunction.MainPage.Children.Add(LoaderFunction.MapNavPage);
             LoaderFunction.MainPage.Children.Add(LoaderFunction.WheNavPage);
             LoaderFunction.MAINNavPage = new NavigationPage(LoaderFunction.MainPage);
 
+            //Это есть итем для отображения
             LoaderFunction.ExtItemsViewer = new MainPage();
             LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.ItNavPage);
             LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.MapNavPage);
             LoaderFunction.ExtItNavPage = new NavigationPage(LoaderFunction.ExtItemsViewer);
+
+            //вывод бд
             LoaderFunction.ItemsInfoPage = new ItemsInfo();//not ok need items
             LoaderFunction.ItInfoNavPage = new NavigationPage(LoaderFunction.ItemsInfoPage);
+
             LoaderFunction.MenuPage = new MenuPage();
 
             MainPage = LoaderFunction.MenuPage;

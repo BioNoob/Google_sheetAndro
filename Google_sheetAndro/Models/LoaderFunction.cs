@@ -125,34 +125,6 @@ namespace Google_sheetAndro.Models
         private static async Task Loader()
         {
         }
-        private static Task IniPage()
-        {
-            return new Task(() =>
-            {
-                InfoPage = new InfoPage();//ok
-                AbNavPage = new NavigationPage(InfoPage);
-                TaskSelectPage = new TaskSelectPage();//ok
-                ItemsPage = new ItemsPage();//ok TaskSelectPage
-                ItemsPageAlone = new ItemsPage(true);//ok TaskSelectPage
-                OutPage = new Page_out();//ok //переделать чтоб брал инфу с внутреннего хранилища?
-                OutNavPage = new NavigationPage(OutPage);
-                MapPage = new MapPage(); //ok
-                                         //WheatherPage = new WheatherView();//ok
-
-                ItAlNavPage = new NavigationPage(ItemsPageAlone) { Title = "Запись", IconImageSource = "new_one.png" };
-                MapNavPage = new NavigationPage(MapPage) { Title = "Навигация", IconImageSource = "info1.png" };
-                WheNavPage = new NavigationPage(WheatherPage) { Title = "Погода", IconImageSource = "info1.png" };
-                ItNavPage = new NavigationPage(ItemsPage);
-                MainPage = new MainPage();//ok ItemsPageAlone MapPage WheatherView
-                MainPage.Children.Add(ItAlNavPage);
-                MainPage.Children.Add(MapNavPage);
-                MainPage.Children.Add(WheNavPage);
-                MAINNavPage = new NavigationPage(MainPage);
-                ItemsInfoPage = new ItemsInfo();//not ok need items
-                ItInfoNavPage = new NavigationPage(ItemsInfoPage);
-                MenuPage = new MenuPage();
-            });
-        }
         public static async Task InitialiserPage()
         {
             Googles.InitService();

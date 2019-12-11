@@ -20,7 +20,7 @@ namespace Google_sheetAndro.Droid
     public class SplashScreen : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IGoogleAuthenticationDelegate//Activity
     {
         public static GoogleAuthenticator Auth;
-        protected override async void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;

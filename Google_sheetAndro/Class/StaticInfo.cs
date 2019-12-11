@@ -110,11 +110,18 @@ namespace Google_sheetAndro.Class
         }
 
 
-        public static float GetHeight(double bardata)
+        public static float GetHeight(double bardata, bool fl = false)
         {
             if (bardata != 0)
             {
-                Height = Math.Abs(SensorManager.GetAltitude(BarWheather, (float)bardata));
+                if(!fl)
+                {
+                    Height = Math.Abs(SensorManager.GetAltitude(BarWheather, (float)bardata));
+                }
+                else
+                {
+                    return Math.Abs(SensorManager.GetAltitude(BarWheather, (float)bardata));
+                }
                 return Height;
             }
             else

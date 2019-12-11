@@ -35,10 +35,12 @@ namespace Google_sheetAndro.Views
     public partial class MapPage : ContentPage
     {
         private MapObjects mapObjects;
+        public bool Is_base { get; set; }
         public MapObjects MapObj { get { SerToJsonMapData(); return mapObjects; } }
-        public MapPage()
+        public MapPage(bool single = false)
         {
             InitializeComponent();
+            Is_base = single;
             map.PinClicked += Map_PinClicked;
             init();
             mapObjects = new MapObjects();
@@ -137,8 +139,10 @@ namespace Google_sheetAndro.Views
             set
             {
                 _dist = value;
-                StaticInfo.Dist = _dist;
-                StatusD.Text = string.Format(CultureInfo.InvariantCulture, "{0:#0.00} км", _dist);
+                if (!Is_base)
+                {
+                    StaticInfo.Dist = _dist;
+                }
             }
         }
         public double height
@@ -149,7 +153,7 @@ namespace Google_sheetAndro.Views
             }
             set
             {
-                _height = StaticInfo.GetHeight(value);
+                _height = StaticInfo.GetHeight(value, Is_base);
                 StatusH.Text = string.Format("{0:#0.0 м}", _height);
             }
         }
