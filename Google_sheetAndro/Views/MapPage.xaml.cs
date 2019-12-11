@@ -89,7 +89,7 @@ namespace Google_sheetAndro.Views
         public bool setter_route(string Route)
         {
             mapObjects.Polyline = JsonConvert.DeserializeObject<Polyline>(Route);
-            if(mapObjects.Polyline != null)
+            if (mapObjects.Polyline != null)
             {
                 map.Polylines.Add(mapObjects.Polyline);
                 pl = mapObjects.Polyline;
@@ -110,7 +110,7 @@ namespace Google_sheetAndro.Views
         public bool setter_point(string Point)
         {
             mapObjects.Pins = JsonConvert.DeserializeObject<List<Pin>>(Point);
-            if(mapObjects.Pins != null)
+            if (mapObjects.Pins != null)
             {
                 foreach (var item in mapObjects.Pins)
                 {
@@ -130,6 +130,12 @@ namespace Google_sheetAndro.Views
         bool fl_run = false;
         bool fl_USE_MAP_CLICK = true; // в настройки добавить чекбокс использовать маркеры в маршрутах
         bool fl_route = true;
+        bool? fl_handle_ok_to_edit = null;
+        public void SetDSetH(double D, double H)
+        {
+            _dist = D;
+            _height = H;
+        }
         public double dist
         {
             get
@@ -143,7 +149,25 @@ namespace Google_sheetAndro.Views
                 {
                     StaticInfo.Dist = _dist;
                 }
+                else
+                {
+                    switch (fl_handle_ok_to_edit)
+                    {
+                        case null:
+                            DispMes();
+                            if (fl_handle_ok_to_edit == false)
+                                LoaderFunction.ItemsPageAlone.SetDist(_dist);
+                            break;
+                        case false:
+                            LoaderFunction.ItemsPageAlone.SetDist(_dist);
+                            break;
+                    }
+                }
             }
+        }
+        private async void DispMes()
+        {
+            fl_handle_ok_to_edit = await DisplayAlert("Предупреждение", "Сохранить имеющиеся данные о дистанции и высоте?", "Да", "Нет");
         }
         public double height
         {
@@ -154,6 +178,20 @@ namespace Google_sheetAndro.Views
             set
             {
                 _height = StaticInfo.GetHeight(value, Is_base);
+                if (Is_base)
+                {
+                    switch (fl_handle_ok_to_edit)
+                    {
+                        case null:
+                            DispMes();
+                            if(fl_handle_ok_to_edit==false)
+                                LoaderFunction.ItemsPageAlone.SetHeight((int)_height);
+                            break;
+                        case false:
+                            LoaderFunction.ItemsPageAlone.SetHeight((int)_height);
+                            break;
+                    }
+                }
                 StatusH.Text = string.Format("{0:#0.0 м}", _height);
             }
         }
@@ -335,7 +373,7 @@ namespace Google_sheetAndro.Views
             map.UiSettings.MapToolbarEnabled = true;
             string buf = Preferences.Get("LastKnownPosition", "55.751316;37.620915");
             var op = buf.Split(';');
-            var pos = new Xamarin.Forms.GoogleMaps.Position(Convert.ToDouble(op[0]),Convert.ToDouble(op[1]));
+            var pos = new Xamarin.Forms.GoogleMaps.Position(Convert.ToDouble(op[0]), Convert.ToDouble(op[1]));
             map.InitialCameraUpdate = CameraUpdateFactory.NewPositionZoom(pos, 11);
             map.MapLongClicked += map_MapLongClicked;
             pl.Tag = "Line";

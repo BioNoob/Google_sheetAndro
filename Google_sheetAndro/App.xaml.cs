@@ -20,21 +20,27 @@ namespace Google_sheetAndro
             LoaderFunction.AbNavPage = new NavigationPage(LoaderFunction.InfoPage);
             LoaderFunction.TaskSelectPage = new TaskSelectPage();//ok
             LoaderFunction.ItemsPage = new ItemsPage();//ok TaskSelectPage
+
             LoaderFunction.ItemsPageAlone = new ItemsPage(true);//ok TaskSelectPage
+            LoaderFunction.MapPageAlone = new MapPage(true);
+
             LoaderFunction.OutPage = new Page_out();//ok //переделать чтоб брал инфу с внутреннего хранилища?
             LoaderFunction.OutNavPage = new NavigationPage(LoaderFunction.OutPage);
             LoaderFunction.MapPage = new MapPage(); //ok
             LoaderFunction.SimpPage = new SimpleListView();
 
-            //отдельные навигационные 
+
+
             LoaderFunction.ItAlNavPage = new NavigationPage(LoaderFunction.ItemsPageAlone) { Title = "Запись", IconImageSource = "new_one.png" };
-            LoaderFunction.MapNavPage = new NavigationPage(LoaderFunction.MapPage) { Title = "Навигация", IconImageSource = "gogMap.png" };
-            LoaderFunction.WheNavPage = new NavigationPage(LoaderFunction.WheatherPage) { Title = "Погода", IconImageSource = "partly_cloudy_day.png" };
-            LoaderFunction.ItNavPage = new NavigationPage(LoaderFunction.ItemsPage) { Title = "Данные" , IconImageSource = "EditTable.png"};
+            LoaderFunction.MapAlNavPage = new NavigationPage(LoaderFunction.MapPageAlone) { Title = "Навигация", IconImageSource = "gogMap.png" };
 
             //ЭТО ЕСТЬ НОВЫЙ ИТЕМ
+
+            LoaderFunction.ItNavPage = new NavigationPage(LoaderFunction.ItemsPage) { Title = "Данные", IconImageSource = "EditTable.png" };
+            LoaderFunction.MapNavPage = new NavigationPage(LoaderFunction.MapPage) { Title = "Навигация", IconImageSource = "gogMap.png" };
+            LoaderFunction.WheNavPage = new NavigationPage(LoaderFunction.WheatherPage) { Title = "Погода", IconImageSource = "partly_cloudy_day.png" };
             LoaderFunction.MainPage = new MainPage();
-            LoaderFunction.MainPage.Children.Add(LoaderFunction.ItAlNavPage);
+            LoaderFunction.MainPage.Children.Add(LoaderFunction.ItNavPage);
             LoaderFunction.MainPage.Children.Add(LoaderFunction.MapNavPage);
             LoaderFunction.MainPage.Children.Add(LoaderFunction.WheNavPage);
             LoaderFunction.MAINNavPage = new NavigationPage(LoaderFunction.MainPage);

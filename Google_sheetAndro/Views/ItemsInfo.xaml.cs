@@ -68,7 +68,7 @@ namespace Google_sheetAndro.Views
         private void update()
         {
             //ItemsPage tp = (ItemsPage)item.CurrentPage;
-            ItemsPage tp = LoaderFunction.ItemsPage;
+            ItemsPage tp = LoaderFunction.ItemsPageAlone;
             int last = Year_pick.SelectedIndex;
             try
             {
@@ -100,7 +100,7 @@ namespace Google_sheetAndro.Views
         }
         private void delete()
         {
-            ItemsPage tp = LoaderFunction.ItemsPage;
+            ItemsPage tp = LoaderFunction.ItemsPageAlone;
             //ItemsPage tp = (ItemsPage)item.CurrentPage;
             int last = Year_pick.SelectedIndex;
             try
@@ -137,12 +137,12 @@ namespace Google_sheetAndro.Views
             //LoaderFunction.ItNavPage.ToolbarItems.Clear();
             //LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Изменить", "", update));
             //LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));
-
+            TableItem Ti = (TableItem)e.Item;
             LoaderFunction.ExtItNavPage.ToolbarItems.Clear();
             LoaderFunction.ExtItNavPage.ToolbarItems.Add(new ToolbarItem("Изменить", "", update));
             LoaderFunction.ExtItNavPage.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));
-            ItemsPage tp = LoaderFunction.ItemsPage;
-            MapPage mp = LoaderFunction.MapPage;
+            ItemsPage tp = LoaderFunction.ItemsPageAlone;
+            MapPage mp = LoaderFunction.MapPageAlone;
             NavigationPage.SetHasNavigationBar(LoaderFunction.ExtItNavPage, false);
             NavigationPage.SetHasBackButton(LoaderFunction.ExtItNavPage, true);
             NavigationPage.SetBackButtonTitle(LoaderFunction.ExtItNavPage, "Назад");
@@ -152,9 +152,10 @@ namespace Google_sheetAndro.Views
             //NavigationPage.SetHasNavigationBar(LoaderFunction.ExtItNavPage, true);
             //NavigationPage.SetBackButtonTitle(LoaderFunction.ExtItNavPage, "Назад");
             //NavigationPage.SetHasBackButton(LoaderFunction.ExtItNavPage, true);
-            tp.setter((TableItem)e.Item);
-            mp.setter_point(((TableItem)e.Item).points);
-            mp.setter_route(((TableItem)e.Item).route);
+            tp.setter(Ti);
+            mp.setter_point(Ti.points);
+            mp.setter_route(Ti.route);
+            mp.SetDSetH(Ti.range, Ti.height);
             //await Navigation.PushModalAsync(LoaderFunction.ItNavPage);
             await Navigation.PushModalAsync(LoaderFunction.ExtItNavPage);
         }

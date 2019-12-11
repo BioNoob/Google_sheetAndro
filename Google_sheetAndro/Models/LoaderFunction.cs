@@ -101,6 +101,7 @@ namespace Google_sheetAndro.Models
         public static MainPage MainPage;
         public static MainPage ExtItemsViewer;
         public static MapPage MapPage;
+        public static MapPage MapPageAlone;
         public static MenuPage MenuPage;
         public static Page_out OutPage;
         public static SimpleListView SimpPage;
@@ -108,6 +109,7 @@ namespace Google_sheetAndro.Models
         public static WheatherView WheatherPage;
         public static NavigationPage ItAlNavPage;
         public static NavigationPage MapNavPage;
+        public static NavigationPage MapAlNavPage;
         public static NavigationPage WheNavPage;
         public static NavigationPage ItNavPage;
         public static NavigationPage AbNavPage;

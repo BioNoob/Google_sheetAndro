@@ -81,11 +81,11 @@ namespace Google_sheetAndro.Views
         {
             Time_pick.Text = nal;
         }
-        private void SetDist(double dist)
+        public void SetDist(double dist)
         {
             Range_txt.Text = string.Format(CultureInfo.InvariantCulture, "{0:#0.#}", dist);
         }
-        private void SetHeight(int height)
+        public void SetHeight(int height)
         {
             Hight_txt_num.Text = height.ToString();
         }
