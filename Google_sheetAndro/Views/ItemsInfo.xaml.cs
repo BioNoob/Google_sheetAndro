@@ -149,8 +149,11 @@ namespace Google_sheetAndro.Views
             LoaderFunction.ItAlNavPage = new NavigationPage(tp) { Title = "Запись", IconImageSource = "new_one.png" };
             LoaderFunction.MapAlNavPage = new NavigationPage(mp) { Title = "Навигация", IconImageSource = "gogMap.png" };
 
+            LoaderFunction.ExtItemsViewer = new MainPage();
+            LoaderFunction.ExtItemsViewer.Children.Clear();
             LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.ItAlNavPage);
             LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.MapAlNavPage);
+
             LoaderFunction.ExtItNavPage = new NavigationPage(LoaderFunction.ExtItemsViewer);
             LoaderFunction.ExtItNavPage.ToolbarItems.Clear();
             LoaderFunction.ExtItNavPage.ToolbarItems.Add(new ToolbarItem("Изменить", "", update));

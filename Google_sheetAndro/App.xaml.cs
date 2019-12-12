@@ -46,7 +46,7 @@ namespace Google_sheetAndro
             LoaderFunction.MAINNavPage = new NavigationPage(LoaderFunction.MainPage);
 
             //Это есть итем для отображения
-            LoaderFunction.ExtItemsViewer = new MainPage();
+
             //LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.ItNavPage);
             //LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.MapNavPage);
             //LoaderFunction.ExtItNavPage = new NavigationPage(LoaderFunction.ExtItemsViewer);

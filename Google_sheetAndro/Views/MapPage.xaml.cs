@@ -49,6 +49,14 @@ namespace Google_sheetAndro.Views
             LoaderFunction.DoSetView += SetInitVew;
             //PopSettings.Clicked += PopSettings_Clicked;
         }
+        protected override bool OnBackButtonPressed()
+        {
+            map.Pins.Clear();
+            map.Polylines.Clear();
+            SetDSetH(0, 0);
+            Navigation.PopAsync();
+            return true;
+        }
         private async void init()
         {
             var route_type = await SecureStorage.GetAsync("route");
@@ -72,7 +80,39 @@ namespace Google_sheetAndro.Views
                 MapTypePick.SelectedIndex = 0;
                 RouteTypePick.SelectedIndex = 0;
             }
+            map.PinDragEnd += Map_PinDragEnd;
+            map.PinDragStart += Map_PinDragStart;
+            map.PinDragging += Map_PinDragging;
         }
+
+        private void Map_PinDragging(object sender, PinDragEventArgs e)
+        {
+            //map.
+
+            int m = map.Pins.IndexOf(e.Pin);
+            map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (0.001347153801 * 0.5), e.Pin.Position.Longitude);
+            //if(map.Pins.Contains(DragPin))
+            //{
+            //    map.Pins.Remove(DragPin);
+            //}
+            //map.Pins.Add(pin);
+        }
+
+        private void Map_PinDragStart(object sender, PinDragEventArgs e)
+        {
+            //DragPin = e.Pin;
+            int m = map.Pins.IndexOf(e.Pin);
+            map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (0.001347153801 * 0.5), e.Pin.Position.Longitude);
+        }
+        Pin DragPin;
+        private void Map_PinDragEnd(object sender, PinDragEventArgs e)
+        {
+            int m = map.Pins.IndexOf(e.Pin);
+            map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (0.001347153801*0.5), e.Pin.Position.Longitude);
+            //map.Pins.Select(t => DragPin);
+            //throw new NotImplementedException();
+        }
+
         //проверка на нулли
         private void SerToJsonMapData()
         {
@@ -135,7 +175,9 @@ namespace Google_sheetAndro.Views
         public void SetDSetH(double D, double H)
         {
             _dist = D;
+            StatusD.Text = string.Format("{0:#0.0} км", _dist);
             _height = H;
+            StatusH.Text = string.Format("{0:#0.0 м}", _height);
         }
         public double dist
         {
@@ -149,29 +191,36 @@ namespace Google_sheetAndro.Views
                 if (!Is_base)
                 {
                     StaticInfo.Dist = _dist;
+                    StatusD.Text = string.Format("{0:#0.0} км", _dist);
                 }
                 else
                 {
                     switch (fl_handle_ok_to_edit)
                     {
                         case null:
-                            DispMes();
+                            DispMes(true);
                             break;
                         case false:
                             LoaderFunction.ItemsPageAlone.SetDist(_dist);
+                            break;
+                        case true:
+                            StatusD.Text = string.Format("{0:#0.0} км", _dist);
                             break;
                     }
                 }
             }
         }
-        private void DispMes()
+        private void DispMes(bool fl_dist)
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
                 fl_handle_ok_to_edit = await DisplayAlert("Предупреждение", "Сохранить имеющиеся данные о дистанции и высоте?", "Да", "Нет");
                 if (!fl_handle_ok_to_edit == false)
                 {
-                    LoaderFunction.ItemsPageAlone.SetDist(_dist);
+                    if (fl_dist)
+                        LoaderFunction.ItemsPageAlone.SetDist(_dist);
+                    else
+                        LoaderFunction.ItemsPageAlone.SetHeight((int)_height);
                 }
             }
             );
@@ -190,16 +239,21 @@ namespace Google_sheetAndro.Views
                     switch (fl_handle_ok_to_edit)
                     {
                         case null:
-                            DispMes();
-                            if(fl_handle_ok_to_edit==false)
-                                LoaderFunction.ItemsPageAlone.SetHeight((int)_height);
+                            DispMes(false);
                             break;
                         case false:
                             LoaderFunction.ItemsPageAlone.SetHeight((int)_height);
                             break;
+                        case true:
+                            StatusH.Text = string.Format("{0:#0.0 м}", _height);
+                            break;
                     }
                 }
-                StatusH.Text = string.Format("{0:#0.0 м}", _height);
+                else
+                {
+                    StatusH.Text = string.Format("{0:#0.0 м}", _height);
+                }
+
             }
         }
         public string address = string.Empty;
@@ -460,13 +514,13 @@ namespace Google_sheetAndro.Views
                         map.Pins.Add(pn);
                     }
                     else
-                        map.Pins.Add(new Pin() { Label = "End", Position = e });
+                        map.Pins.Add(new Pin() { Label = "End", Position = e, IsDraggable = true }) ;
                 }
             }
             else
             {
                 pl.Positions.Add(e);
-                map.Pins.Add(new Pin() { Label = "Start", Position = e });
+                map.Pins.Add(new Pin() { Label = "Start", Position = e, IsDraggable = true });
             }
             //Polyline plm = ((List<Polyline>)map.Polylines).Find(t => t.Tag.ToString() == "Line");
             //Xamarin.Forms.GoogleMaps.Position pt = new Xamarin.Forms.GoogleMaps.Position(pl.Positions[pl.Positions.Count - 1].Latitude, pl.Positions[pl.Positions.Count - 1].Longitude);
@@ -533,7 +587,7 @@ namespace Google_sheetAndro.Views
                 b1.Text = "Старт";
                 StaticInfo.Nalet = t.ToString();
                 Xamarin.Forms.GoogleMaps.Position pp = map.Polylines.First().Positions.Last();
-                map.Pins.Add(new Pin() { Label = "End", Position = pp });
+                map.Pins.Add(new Pin() { Label = "End", Position = pp, IsDraggable = true});
             }
             //b2.IsEnabled = true;
             //b1.IsEnabled = false;
