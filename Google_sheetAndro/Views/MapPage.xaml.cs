@@ -85,6 +85,10 @@ namespace Google_sheetAndro.Views
             map.PinDragging += Map_PinDragging;
         }
 
+
+        ///ОБРАБОТКА ПЕРЕТАСКИВАНИЯ МАРКЕРОВ СТАРТ И ЕНД, ПЕРЕЦЕПЛЕНИЕ ЛИНИИ ПОД НИХ. (ИЗМЕНЕНИЯ ЛИНИИ?)
+
+
         private void Map_PinDragging(object sender, PinDragEventArgs e)
         {
             //map.
