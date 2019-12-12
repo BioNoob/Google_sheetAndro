@@ -31,8 +31,8 @@ namespace Google_sheetAndro
 
 
 
-            LoaderFunction.ItAlNavPage = new NavigationPage(LoaderFunction.ItemsPageAlone) { Title = "Запись", IconImageSource = "new_one.png" };
-            LoaderFunction.MapAlNavPage = new NavigationPage(LoaderFunction.MapPageAlone) { Title = "Навигация", IconImageSource = "gogMap.png" };
+            //LoaderFunction.ItAlNavPage = new NavigationPage(LoaderFunction.ItemsPageAlone) { Title = "Запись", IconImageSource = "new_one.png" };
+            //LoaderFunction.MapAlNavPage = new NavigationPage(LoaderFunction.MapPageAlone) { Title = "Навигация", IconImageSource = "gogMap.png" };
 
             //ЭТО ЕСТЬ НОВЫЙ ИТЕМ
 
@@ -47,9 +47,9 @@ namespace Google_sheetAndro
 
             //Это есть итем для отображения
             LoaderFunction.ExtItemsViewer = new MainPage();
-            LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.ItNavPage);
-            LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.MapNavPage);
-            LoaderFunction.ExtItNavPage = new NavigationPage(LoaderFunction.ExtItemsViewer);
+            //LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.ItNavPage);
+            //LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.MapNavPage);
+            //LoaderFunction.ExtItNavPage = new NavigationPage(LoaderFunction.ExtItemsViewer);
 
             //вывод бд
             LoaderFunction.ItemsInfoPage = new ItemsInfo();//not ok need items

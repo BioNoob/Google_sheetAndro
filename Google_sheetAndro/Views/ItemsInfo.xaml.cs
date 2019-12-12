@@ -138,24 +138,39 @@ namespace Google_sheetAndro.Views
             //LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Изменить", "", update));
             //LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));
             TableItem Ti = (TableItem)e.Item;
+
+            ItemsPage tp = LoaderFunction.ItemsPageAlone;
+            MapPage mp = LoaderFunction.MapPageAlone;
+            tp.setter(Ti);
+            mp.setter_point(Ti.points);
+            mp.setter_route(Ti.route);
+            mp.SetDSetH(Ti.range, Ti.height);
+
+            LoaderFunction.ItAlNavPage = new NavigationPage(tp) { Title = "Запись", IconImageSource = "new_one.png" };
+            LoaderFunction.MapAlNavPage = new NavigationPage(mp) { Title = "Навигация", IconImageSource = "gogMap.png" };
+
+            LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.ItAlNavPage);
+            LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.MapAlNavPage);
+            LoaderFunction.ExtItNavPage = new NavigationPage(LoaderFunction.ExtItemsViewer);
             LoaderFunction.ExtItNavPage.ToolbarItems.Clear();
             LoaderFunction.ExtItNavPage.ToolbarItems.Add(new ToolbarItem("Изменить", "", update));
             LoaderFunction.ExtItNavPage.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));
-            ItemsPage tp = LoaderFunction.ItemsPageAlone;
-            MapPage mp = LoaderFunction.MapPageAlone;
+
+
+
             NavigationPage.SetHasNavigationBar(LoaderFunction.ExtItNavPage, false);
-            NavigationPage.SetHasBackButton(LoaderFunction.ExtItNavPage, true);
-            NavigationPage.SetBackButtonTitle(LoaderFunction.ExtItNavPage, "Назад");
+            //NavigationPage.SetHasBackButton(LoaderFunction.ExtItNavPage, true);
+            //NavigationPage.SetBackButtonTitle(LoaderFunction.ExtItNavPage, "Назад");
+           
+
+
             //NavigationPage.SetHasNavigationBar(tp, true);
             //NavigationPage.SetBackButtonTitle(tp, "Назад");
             //NavigationPage.SetHasBackButton(tp, true);            
             //NavigationPage.SetHasNavigationBar(LoaderFunction.ExtItNavPage, true);
             //NavigationPage.SetBackButtonTitle(LoaderFunction.ExtItNavPage, "Назад");
             //NavigationPage.SetHasBackButton(LoaderFunction.ExtItNavPage, true);
-            tp.setter(Ti);
-            mp.setter_point(Ti.points);
-            mp.setter_route(Ti.route);
-            mp.SetDSetH(Ti.range, Ti.height);
+
             //await Navigation.PushModalAsync(LoaderFunction.ItNavPage);
             await Navigation.PushModalAsync(LoaderFunction.ExtItNavPage);
         }

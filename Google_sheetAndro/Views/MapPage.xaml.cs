@@ -44,6 +44,7 @@ namespace Google_sheetAndro.Views
             map.PinClicked += Map_PinClicked;
             init();
             mapObjects = new MapObjects();
+            fl_handle_ok_to_edit = null;
             //b2.IsEnabled = false;
             LoaderFunction.DoSetView += SetInitVew;
             //PopSettings.Clicked += PopSettings_Clicked;
@@ -93,7 +94,7 @@ namespace Google_sheetAndro.Views
             {
                 map.Polylines.Add(mapObjects.Polyline);
                 pl = mapObjects.Polyline;
-                dist = CalcDistForLine(pl);
+                //dist = CalcDistForLine(pl);
             }
             return true;
         }
@@ -130,7 +131,7 @@ namespace Google_sheetAndro.Views
         bool fl_run = false;
         bool fl_USE_MAP_CLICK = true; // в настройки добавить чекбокс использовать маркеры в маршрутах
         bool fl_route = true;
-        bool? fl_handle_ok_to_edit = null;
+        bool? fl_handle_ok_to_edit { get; set; }
         public void SetDSetH(double D, double H)
         {
             _dist = D;
@@ -155,8 +156,6 @@ namespace Google_sheetAndro.Views
                     {
                         case null:
                             DispMes();
-                            if (fl_handle_ok_to_edit == false)
-                                LoaderFunction.ItemsPageAlone.SetDist(_dist);
                             break;
                         case false:
                             LoaderFunction.ItemsPageAlone.SetDist(_dist);
@@ -165,9 +164,17 @@ namespace Google_sheetAndro.Views
                 }
             }
         }
-        private async void DispMes()
+        private void DispMes()
         {
-            fl_handle_ok_to_edit = await DisplayAlert("Предупреждение", "Сохранить имеющиеся данные о дистанции и высоте?", "Да", "Нет");
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                fl_handle_ok_to_edit = await DisplayAlert("Предупреждение", "Сохранить имеющиеся данные о дистанции и высоте?", "Да", "Нет");
+                if (!fl_handle_ok_to_edit == false)
+                {
+                    LoaderFunction.ItemsPageAlone.SetDist(_dist);
+                }
+            }
+            );
         }
         public double height
         {
