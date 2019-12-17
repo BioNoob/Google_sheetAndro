@@ -15,7 +15,7 @@ namespace Google_sheetAndro.Models
 {
     public static class LoaderFunction
     {
-        public delegate void SetView();
+        public delegate void SetView(Location location);
         public static event SetView DoSetView;
         public delegate void CreateRow();
         public static event CreateRow DoCreateRow;
@@ -76,9 +76,9 @@ namespace Google_sheetAndro.Models
             //Place = StaticInfo.Place;
             //gpp = StaticInfo.Wheather;
         }
-        public static void RunSetter()
+        public static void RunSetter(Location pos)
         {
-            DoSetView?.Invoke();
+            DoSetView?.Invoke(pos);
         }
         public static void CreRow()
         {

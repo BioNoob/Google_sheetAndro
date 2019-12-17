@@ -1,4 +1,5 @@
-﻿using Google_sheetAndro.Models;
+﻿using Google_sheetAndro.Class;
+using Google_sheetAndro.Models;
 using System;
 using System.ComponentModel;
 using Xamarin.Forms;
@@ -39,7 +40,7 @@ namespace Google_sheetAndro.Views
             NavigationPage.SetHasNavigationBar(((NavigationPage)CurrentPage).RootPage, false);
             if (((NavigationPage)CurrentPage).RootPage.GetType() == typeof(MapPage))// == map)
             {
-                LoaderFunction.RunSetter();
+                LoaderFunction.RunSetter(StaticInfo.Pos);
                 //map.SetInitVew();
             }
         }
