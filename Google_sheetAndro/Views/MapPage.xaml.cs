@@ -51,6 +51,10 @@ namespace Google_sheetAndro.Views
         }
         protected override bool OnBackButtonPressed()
         {
+            //НЕ РАБОТАЕТ КНОПКА НАЗАД. НЕ ПРОБРАСЫВАЕТСЯ
+            //ХРАНИТЬ 10 ПОЛСЕДНИХ ВАРИАЦИЙ КАРТЫ
+            //В ЛИСТЕ. ПРИ НАЖАТИИ КНОПКИ НАЗАД УДАЛЯТЬ МАРКЕРЫ ЛИНИИ ГРУЗИТЬ ПО ИНДЕКСУ В ЛИСТЕ
+            //ПРИ СОВЕРШЕНИИ ДЕЙСТВИЯ ДОБАВЛЯТЬ В КОНЕЦ ЛИСТА. ПЕРВОЕ УДАЛЯТЬ
             map.Pins.Clear();
             map.Polylines.Clear();
             SetDSetH(0, 0);
@@ -106,13 +110,28 @@ namespace Google_sheetAndro.Views
         {
             //DragPin = e.Pin;
             int m = map.Pins.IndexOf(e.Pin);
-            map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (0.001347153801 * 0.5), e.Pin.Position.Longitude);
+            var l = map.Pins.Where(t => t.Label == e.Pin.Label).SingleOrDefault();
+            var p = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (0.001347153801 * 0.5), e.Pin.Position.Longitude);
+
+            //map.Pins.ElementAt(m).Position = p;
+
+            //if (map.Polylines.Count > 0)
+            //{
+            //    int k = map.Polylines.First().Positions.IndexOf(p);
+            //    if(k>=0)
+            //    {
+            //        map.Polylines.First().Positions.RemoveAt(k);
+            //        map.Polylines.First().Positions.Insert(k, e.Pin.Position);
+            //    }
+            //}
+
+
         }
         Pin DragPin;
         private void Map_PinDragEnd(object sender, PinDragEventArgs e)
         {
             int m = map.Pins.IndexOf(e.Pin);
-            map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (0.001347153801*0.5), e.Pin.Position.Longitude);
+            map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (0.001347153801 * 0.5), e.Pin.Position.Longitude);
             //map.Pins.Select(t => DragPin);
             //throw new NotImplementedException();
         }
@@ -518,7 +537,7 @@ namespace Google_sheetAndro.Views
                         map.Pins.Add(pn);
                     }
                     else
-                        map.Pins.Add(new Pin() { Label = "End", Position = e, IsDraggable = true }) ;
+                        map.Pins.Add(new Pin() { Label = "End", Position = e, IsDraggable = true });
                 }
             }
             else
@@ -591,7 +610,7 @@ namespace Google_sheetAndro.Views
                 b1.Text = "Старт";
                 StaticInfo.Nalet = t.ToString();
                 Xamarin.Forms.GoogleMaps.Position pp = map.Polylines.First().Positions.Last();
-                map.Pins.Add(new Pin() { Label = "End", Position = pp, IsDraggable = true});
+                map.Pins.Add(new Pin() { Label = "End", Position = pp, IsDraggable = true });
             }
             //b2.IsEnabled = true;
             //b1.IsEnabled = false;
