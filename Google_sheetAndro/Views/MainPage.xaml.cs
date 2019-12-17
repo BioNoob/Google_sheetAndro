@@ -18,7 +18,12 @@ namespace Google_sheetAndro.Views
         {
             InitializeComponent();
         }
-
+        protected override bool OnBackButtonPressed()
+        {
+            LoaderFunction.callClearMap();
+            Navigation.PopToRootAsync();
+            return true;
+        }
 
         private async void ToolbarItem_Clicked(object sender, System.EventArgs e)
         {

@@ -53,7 +53,6 @@ namespace Google_sheetAndro.Views
             LoaderFunction.DoCreateRow += CreateRow;
             //StaticInfo.DoActiveAI += StaticInfo_DoActiveAI;
         }
-
         //private void StaticInfo_DoActiveAI(bool status)
         //{
         //    AcInd.IsEnabled = status;

@@ -25,9 +25,15 @@ namespace Google_sheetAndro.Views
 
             vM = new ItemsInfoVM();
             vM.DoSetSelect += VM_DoSetSelect;
+            LoaderFunction.DoClearMap += LoaderFunction_DoClearMap;
             //Year_pick.SelectedIndex = Year_pick.Items.Count - 1;
             Mounth_pick.SelectedIndex = 0;
             BindingContext = vM;
+        }
+
+        private void LoaderFunction_DoClearMap()
+        {
+            LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
         }
 
         private void VM_DoSetSelect()
@@ -142,8 +148,8 @@ namespace Google_sheetAndro.Views
             ItemsPage tp = LoaderFunction.ItemsPageAlone;
             MapPage mp = LoaderFunction.MapPageAlone;
             tp.setter(Ti);
-            mp.setter_point(Ti.points);
-            mp.setter_route(Ti.route);
+            mp.AbsSetter(Ti.route,Ti.points);
+            
             mp.SetDSetH(Ti.range, Ti.height);
 
             LoaderFunction.ItAlNavPage = new NavigationPage(tp) { Title = "Запись", IconImageSource = "new_one.png" };
@@ -162,19 +168,6 @@ namespace Google_sheetAndro.Views
 
 
             NavigationPage.SetHasNavigationBar(LoaderFunction.ExtItNavPage, false);
-            //NavigationPage.SetHasBackButton(LoaderFunction.ExtItNavPage, true);
-            //NavigationPage.SetBackButtonTitle(LoaderFunction.ExtItNavPage, "Назад");
-           
-
-
-            //NavigationPage.SetHasNavigationBar(tp, true);
-            //NavigationPage.SetBackButtonTitle(tp, "Назад");
-            //NavigationPage.SetHasBackButton(tp, true);            
-            //NavigationPage.SetHasNavigationBar(LoaderFunction.ExtItNavPage, true);
-            //NavigationPage.SetBackButtonTitle(LoaderFunction.ExtItNavPage, "Назад");
-            //NavigationPage.SetHasBackButton(LoaderFunction.ExtItNavPage, true);
-
-            //await Navigation.PushModalAsync(LoaderFunction.ItNavPage);
             await Navigation.PushModalAsync(LoaderFunction.ExtItNavPage);
         }
         private void ContentPage_Appearing(object sender, EventArgs e)

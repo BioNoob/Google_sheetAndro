@@ -21,6 +21,12 @@ namespace Google_sheetAndro.Models
         public static event CreateRow DoCreateRow;
         public delegate void WheatherLoad();
         public static event WheatherLoad DoWheatherLoad;
+        public delegate void ClearMap();
+        public static event ClearMap DoClearMap;
+        public static void callClearMap()
+        {
+            LoaderFunction.DoClearMap?.Invoke();
+        }
         public static async Task<bool> GetGEOAsync()
         {
             try

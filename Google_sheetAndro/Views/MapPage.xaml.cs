@@ -49,21 +49,19 @@ namespace Google_sheetAndro.Views
             History = new MapObjects[10];
             //b2.IsEnabled = false;
             LoaderFunction.DoSetView += SetInitVew;
+            LoaderFunction.DoClearMap += ClearMap;
             //PopSettings.Clicked += PopSettings_Clicked;
         }
 
-
-        protected override bool OnBackButtonPressed()
+        public void ClearMap()
         {
-            //НЕ РАБОТАЕТ КНОПКА НАЗАД. НЕ ПРОБРАСЫВАЕТСЯ
-            //ХРАНИТЬ 10 ПОЛСЕДНИХ ВАРИАЦИЙ КАРТЫ
-            //В ЛИСТЕ. ПРИ НАЖАТИИ КНОПКИ НАЗАД УДАЛЯТЬ МАРКЕРЫ ЛИНИИ ГРУЗИТЬ ПО ИНДЕКСУ В ЛИСТЕ
-            //ПРИ СОВЕРШЕНИИ ДЕЙСТВИЯ ДОБАВЛЯТЬ В КОНЕЦ ЛИСТА. ПЕРВОЕ УДАЛЯТЬ
-            map.Pins.Clear();
-            map.Polylines.Clear();
-            SetDSetH(0, 0);
-            Navigation.PopAsync();
-            return true;
+            if (Is_base)
+            {
+                map.Pins.Clear();
+                map.Polylines.Clear();
+                SetDSetH(0, 0);
+                History = new MapObjects[10];
+            }
         }
         private async void init()
         {
@@ -154,7 +152,7 @@ namespace Google_sheetAndro.Views
             }
 
         }
-        public bool setter_route(string Route)
+        private bool setter_route(string Route)
         {
             mapObjects.Polyline = JsonConvert.DeserializeObject<Polyline>(Route);
             if (mapObjects.Polyline != null)
@@ -162,6 +160,34 @@ namespace Google_sheetAndro.Views
                 map.Polylines.Add(mapObjects.Polyline);
                 pl = mapObjects.Polyline;
                 //dist = CalcDistForLine(pl);
+            }
+            else
+                return false;
+            return true;
+        }
+        public void AbsSetter(string Route, string Points)
+        {
+            MapObjects mo;
+            setter_point(Points);
+            if (setter_route(Route))
+            {
+                mo = new MapObjects(map.Pins.ToList(), map.Polylines.First());
+            }
+            else
+                mo = new MapObjects() { Pins = map.Pins.ToList() };
+            SaveToHist(mo);
+
+        }
+        private bool setter_point(string Point)
+        {
+            mapObjects.Pins = JsonConvert.DeserializeObject<List<Pin>>(Point);
+            if (mapObjects.Pins != null)
+            {
+                foreach (var item in mapObjects.Pins)
+                {
+                    map.Pins.Add(item);
+                }
+                ToinitPos = map.Pins.Last().Position;
             }
             return true;
         }
@@ -175,19 +201,7 @@ namespace Google_sheetAndro.Views
             }
             return dist;
         }
-        public bool setter_point(string Point)
-        {
-            mapObjects.Pins = JsonConvert.DeserializeObject<List<Pin>>(Point);
-            if (mapObjects.Pins != null)
-            {
-                foreach (var item in mapObjects.Pins)
-                {
-                    map.Pins.Add(item);
-                }
-                ToinitPos = map.Pins.Last().Position;
-            }
-            return true;
-        }
+
         Xamarin.Forms.GoogleMaps.Position ToinitPos = new Xamarin.Forms.GoogleMaps.Position();
         bool fl = false;
         double cur_pos_w1;
@@ -355,7 +369,7 @@ namespace Google_sheetAndro.Views
                 InitializeUiSettingsOnMap();
                 isLoaded = true;
             }
-            if(Is_base)
+            if (Is_base)
             {
                 SetInitVew(new Location(ToinitPos.Latitude, ToinitPos.Longitude));
             }
@@ -534,6 +548,10 @@ namespace Google_sheetAndro.Views
                 map.Pins.Add(new Pin() { Label = $"Start", Position = e, IsDraggable = true });
             }
             MapObjects mo = new MapObjects() { Pins = map.Pins.ToList() };
+            if (map.Polylines.Count > 0)
+            {
+                mo.Polyline = map.Polylines.First();
+            }
             SaveToHist(mo);
         }
 
@@ -580,7 +598,7 @@ namespace Google_sheetAndro.Views
             {
                 var animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
                 new CameraPosition(
-                    new Xamarin.Forms.GoogleMaps.Position(location.Latitude,location.Longitude),//StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude), // Tokyo
+                    new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude),//StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude), // Tokyo
                     15d, // zoom
                     0)),
                 TimeSpan.FromSeconds(2));
@@ -681,7 +699,7 @@ namespace Google_sheetAndro.Views
             map.Pins.Clear();
             map.Polylines.Clear();
             MapObjects mi = LoadFromHist();
-            if(mi.Polyline != null)
+            if (mi.Polyline != null)
                 map.Polylines.Add(mi.Polyline);
             foreach (var item in mi.Pins)
             {
