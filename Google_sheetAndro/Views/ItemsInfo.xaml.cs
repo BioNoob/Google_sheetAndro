@@ -80,8 +80,8 @@ namespace Google_sheetAndro.Views
             {
                 TableItem ti = tp.getter();
                 ti.author = StaticInfo.AccountEmail;
-                ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
-                ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
+                ti.route = LoaderFunction.MapPageAlone.MapObj.SerializableLine;
+                ti.points = LoaderFunction.MapPageAlone.MapObj.SerializablePins;
                 Googles.UpdateEntry(ti);
                 LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
                 Toast.MakeText(Android.App.Application.Context, "Обновление прошло успешно", ToastLength.Long).Show();
@@ -113,8 +113,8 @@ namespace Google_sheetAndro.Views
             {
                 TableItem ti = tp.getter();
                 ti.author = StaticInfo.AccountEmail;
-                ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
-                ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
+                ti.route = LoaderFunction.MapPageAlone.MapObj.SerializableLine;
+                ti.points = LoaderFunction.MapPageAlone.MapObj.SerializablePins;
                 Googles.DeleteEntry(ti);
                 LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
                 Toast.MakeText(Android.App.Application.Context, "Удаление прошло успешно", ToastLength.Long).Show();

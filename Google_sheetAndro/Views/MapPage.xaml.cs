@@ -37,7 +37,7 @@ namespace Google_sheetAndro.Views
     {
         private MapObjects mapObjects;
         public bool Is_base { get; set; }
-        public MapObjects MapObj { get { SerToJsonMapData(); return mapObjects; } }
+        public MapObjects MapObj { get { if(mapObjects==null)ClearMap(); SerToJsonMapData(); return mapObjects; } }
         private MapObjects[] History { get; set; }
         bool? fl_handle_ok_to_edit { get; set; }
         public MapPage(bool single = false)
@@ -101,6 +101,7 @@ namespace Google_sheetAndro.Views
 
             }
         }
+        //КНОПКА ПЕРЕРАСЧЕТ ПУТИ?
         public double dist
         {
             get
@@ -138,7 +139,7 @@ namespace Google_sheetAndro.Views
             if (Is_base)
             {
                 mapObjects = new MapObjects();
-                if(map.Polylines.Count > 0)
+                if (map.Polylines.Count > 0)
                 {
                     mapObjects.Pins = map.Pins.ToList();
                     mapObjects.Polyline = map.Polylines.First();
@@ -284,7 +285,7 @@ namespace Google_sheetAndro.Views
             return dist;
         }
 
-        
+
         public void SetDSetH(double D, double H)
         {
             _dist = D;
@@ -598,7 +599,7 @@ namespace Google_sheetAndro.Views
                 map.Pins.Add(new Pin() { Label = "Start", Position = e, IsDraggable = true });
             }
             MapObjects mo = new MapObjects();
-            if(map.Polylines.Count > 0)
+            if (map.Polylines.Count > 0)
             {
                 mo.Polyline = map.Polylines.First();
             }
@@ -613,15 +614,28 @@ namespace Google_sheetAndro.Views
 
         public async void SetInitVew(Location location)
         {
-            if (StaticInfo.Pos != null)
+            if (ToinitPos != new Xamarin.Forms.GoogleMaps.Position())
             {
                 var animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
-                new CameraPosition(
-                    new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude),//StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude), // Tokyo
-                    15d, // zoom
-                    0)),
-                TimeSpan.FromSeconds(2));
+                    new CameraPosition(
+                        ToinitPos,//StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude), // Tokyo
+                        15d, // zoom
+                        0)),
+                        TimeSpan.FromSeconds(2));
             }
+            else
+            {
+                if (StaticInfo.Pos != null)
+                {
+                    var animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
+                    new CameraPosition(
+                        new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude),//StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude), // Tokyo
+                        15d, // zoom
+                        0)),
+                    TimeSpan.FromSeconds(2));
+                }
+            }
+
         }
         private MapObjects LoadFromHist()
         {
