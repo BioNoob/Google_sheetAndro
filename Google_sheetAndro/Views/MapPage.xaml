@@ -18,6 +18,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".75*"/>
@@ -31,6 +33,10 @@
                               Clicked="CancelBtn_Clicked" BackgroundColor="Transparent"/>
                 <ImageButton  Source="ClearAll" Grid.Row="1" Grid.Column="1" WidthRequest="40" x:Name="ClearBtn"
                               Clicked="ClearBtn_Clicked" BackgroundColor="Transparent"/>
+                <Button x:Name="ReCalcDist" Grid.Row="2" Grid.ColumnSpan="2" Clicked="ReCalcDist_Clicked" Text="Пересчет дистанции"/>
+                <Label Grid.Row="3" Grid.Column="0" Text="Привязка линии к маркерам"/>
+                <Switch Grid.Row="3" Grid.Column="1" IsToggled="false" x:Name="SetToPinRoute"  Toggled="SetToPinRoute_Toggled"/>
+
                 <!--<ImageButton x:Name="TypMap" HeightRequest="48" WidthRequest="48" Grid.Row="1"
                        Source="Hybrid.png" HorizontalOptions="Center" Clicked="TypMap_Clicked"/>
                 <ImageButton x:Name="TypRoute" HeightRequest="48" WidthRequest="48" Grid.Row="3"

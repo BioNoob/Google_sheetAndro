@@ -1,4 +1,5 @@
-﻿using Google_sheetAndro.Class;
+﻿using Android.Widget;
+using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
 using Newtonsoft.Json;
 using Plugin.DeviceSensors;
@@ -14,6 +15,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
+
 /*
 * ПОРЯДОК СБОРКИ
 * https://docs.microsoft.com/ru-ru/xamarin/android/platform/maps-and-location/maps/maps-api#install-gpsmaps-nuget
@@ -35,6 +37,16 @@ namespace Google_sheetAndro.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapPage : ContentPage
     {
+        const double OffsetPos = 0.001347153801;
+        private double OffsetCalc
+        {
+            get
+            {
+                return ((OffsetPos * 0.5) * 15/map.CameraPosition.Zoom);
+                //return (OffsetPos * (map.CameraPosition.Zoom * 0.5) / 15);
+            }
+        }
+
         private MapObjects mapObjects;
         public bool Is_base { get; set; }
         public MapObjects MapObj { get { if(mapObjects==null)ClearMap(); SerToJsonMapData(); return mapObjects; } }
@@ -136,7 +148,7 @@ namespace Google_sheetAndro.Views
         }
         public void ClearMap()
         {
-            if (Is_base)
+            //if (Is_base)
             {
                 mapObjects = new MapObjects();
                 if (map.Polylines.Count > 0)
@@ -148,6 +160,7 @@ namespace Google_sheetAndro.Views
                 map.Polylines.Clear();
                 SetDSetH(0, 0);
                 History = new MapObjects[10];
+                ToinitPos = new Xamarin.Forms.GoogleMaps.Position();
             }
         }
         private async void init()
@@ -183,7 +196,7 @@ namespace Google_sheetAndro.Views
             //map.
 
             int m = map.Pins.IndexOf(e.Pin);
-            map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (0.001347153801 * 0.5), e.Pin.Position.Longitude);
+            map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (OffsetCalc), e.Pin.Position.Longitude);
             //if(map.Pins.Contains(DragPin))
             //{
             //    map.Pins.Remove(DragPin);
@@ -197,7 +210,7 @@ namespace Google_sheetAndro.Views
 
             int m = map.Pins.IndexOf(e.Pin);
             var l = map.Pins.Where(t => t.Label == e.Pin.Label).SingleOrDefault();
-            var p = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (0.001347153801 * 0.5), e.Pin.Position.Longitude);
+            var p = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (OffsetCalc), e.Pin.Position.Longitude);
 
             //map.Pins.ElementAt(m).Position = p;
 
@@ -216,7 +229,7 @@ namespace Google_sheetAndro.Views
         private void Map_PinDragEnd(object sender, PinDragEventArgs e)
         {
             int m = map.Pins.IndexOf(e.Pin);
-            map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (0.001347153801 * 0.5), e.Pin.Position.Longitude);
+            map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (OffsetCalc), e.Pin.Position.Longitude);
             //map.Pins.Select(t => DragPin);
             //throw new NotImplementedException();
         }
@@ -320,12 +333,12 @@ namespace Google_sheetAndro.Views
         {
             var animate = new Animation(d => r1.WidthRequest = d, r1.Width, SL.Width / 2, Easing.SinInOut);
             animate.Commit(r1, "BarGraph", 16, 500);
-            var animate2 = new Animation(d => r1.HeightRequest = d, r1.Height, 210, Easing.SinInOut);
+            var animate2 = new Animation(d => r1.HeightRequest = d, r1.Height, 260, Easing.SinInOut);
             animate2.Commit(r1, "BarGraph1", 16, 500);
             await PopSettings.TranslateTo(SL.Width / 2 - cur_pos_w2/*- r1.Bounds.Left - cur_pos_w2*/, PopSettings.Y /*- PopSettings.Height*/, 500, Easing.SinInOut);
             var animate3 = new Animation(d => Buttons.WidthRequest = d, Buttons.Width, SL.Width / 2, Easing.SinInOut);
             animate3.Commit(Buttons, "BarGraph2", 16, 100);
-            var animate4 = new Animation(d => Buttons.HeightRequest = d, Buttons.Height, 210, Easing.SinInOut);
+            var animate4 = new Animation(d => Buttons.HeightRequest = d, Buttons.Height, 260, Easing.SinInOut);
             animate4.Commit(Buttons, "BarGraph3", 16, 100);
             await Buttons.FadeTo(1, 1000, Easing.SinInOut);
             fl = !fl;
@@ -340,12 +353,12 @@ namespace Google_sheetAndro.Views
             await Buttons.FadeTo(0, 700, Easing.SinInOut);
             var animate = new Animation(d => r1.WidthRequest = d, SL.Width / 2, cur_pos_w1 - r1.Margin.Right, Easing.SinInOut);
             animate.Commit(r1, "BarGraph", 16, 500);
-            var animate2 = new Animation(d => r1.HeightRequest = d, 210, cur_pos_h2, Easing.SinInOut);
+            var animate2 = new Animation(d => r1.HeightRequest = d, 260, cur_pos_h2, Easing.SinInOut);
             animate2.Commit(r1, "BarGraph1", 16, 500);
             await PopSettings.TranslateTo(cur_pos_w2 - PopSettings.Width, PopSettings.Y, 500, Easing.SinInOut);
             var animate3 = new Animation(d => Buttons.WidthRequest = d, SL.Width / 2, 0, Easing.SinInOut);
             animate3.Commit(Buttons, "BarGraph2", 16, 100);
-            var animate4 = new Animation(d => Buttons.HeightRequest = d, 210, 0, Easing.SinInOut);
+            var animate4 = new Animation(d => Buttons.HeightRequest = d, 260, 0, Easing.SinInOut);
             animate4.Commit(Buttons, "BarGraph3", 16, 100);
 
 
@@ -637,9 +650,20 @@ namespace Google_sheetAndro.Views
             }
 
         }
+        int chet_active_hist = 8;
         private MapObjects LoadFromHist()
         {
-            return History.Last();
+
+            var q = History[chet_active_hist];
+            if (q== null)
+            {
+                return null;
+            }
+            else
+            {
+                chet_active_hist--;
+                return q;
+            }
         }
         private bool OnTimerTick()
         {
@@ -652,6 +676,7 @@ namespace Google_sheetAndro.Views
         {
             Array.Copy(History, 1, History, 0, History.Length - 1);
             History[History.Length - 1] = obj;
+            chet_active_hist = 8;
         }
 
         private async void SwManual_Toggled(object sender, ToggledEventArgs e)
@@ -726,15 +751,21 @@ namespace Google_sheetAndro.Views
         private async void CancelBtn_Clicked(object sender, EventArgs e)
         {
             await CancelBtn.FadeTo(0, 100);
-            map.Pins.Clear();
-            map.Polylines.Clear();
             MapObjects mi = LoadFromHist();
-            if (mi.Polyline != null)
-                map.Polylines.Add(mi.Polyline);
-            foreach (var item in mi.Pins)
+            if(mi == null)
+                Toast.MakeText(Android.App.Application.Context, "Нет сохранений в буфере", ToastLength.Long).Show();
+            else
             {
-                map.Pins.Add(item);
+                map.Pins.Clear();
+                map.Polylines.Clear();
+                if (mi.Polyline != null)
+                    map.Polylines.Add(mi.Polyline);
+                foreach (var item in mi.Pins)
+                {
+                    map.Pins.Add(item);
+                }
             }
+
             //if (fl_route)
             //{
             //    if (map.Polylines.Count > 0)
@@ -812,6 +843,16 @@ namespace Google_sheetAndro.Views
                     map.MapType = MapType.Street;
                     break;
             }
+        }
+
+        private void ReCalcDist_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SetToPinRoute_Toggled(object sender, ToggledEventArgs e)
+        {
+
         }
     }
 }
