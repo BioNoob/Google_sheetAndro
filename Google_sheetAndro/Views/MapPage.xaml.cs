@@ -158,6 +158,7 @@ namespace Google_sheetAndro.Views
                 }
                 map.Pins.Clear();
                 map.Polylines.Clear();
+                pl = new Polyline() { Tag = "Line", StrokeWidth = 10, StrokeColor = Color.Blue };
                 SetDSetH(0, 0);
                 History = new MapObjects[10];
                 ToinitPos = new Xamarin.Forms.GoogleMaps.Position();
@@ -167,13 +168,13 @@ namespace Google_sheetAndro.Views
         {
             var route_type = await SecureStorage.GetAsync("route");
             var map_type = await SecureStorage.GetAsync("map");
-
+            var switch_s = await SecureStorage.GetAsync("switch");
+            bool kk = Preferences.Get("SwitchValue", false);
+            SetToPinRoute.IsToggled = kk;
             MapTypePick.Items.Add("Гибридная");
             MapTypePick.Items.Add("Схема");
-
             RouteTypePick.Items.Add("Маршрут");
             RouteTypePick.Items.Add("Точки");
-
             if (map_type != null && route_type != null)
             {
                 MapTypePick.SelectedIndex = Convert.ToInt32(map_type);
@@ -253,8 +254,12 @@ namespace Google_sheetAndro.Views
             mapObjects.Polyline = JsonConvert.DeserializeObject<Polyline>(Route);
             if (mapObjects.Polyline != null)
             {
-                map.Polylines.Add(mapObjects.Polyline);
-                pl = mapObjects.Polyline;
+                foreach (var item in MapObj.Polyline.Positions)
+                {
+                    pl.Positions.Add(item);
+                }
+                map.Polylines.Add(pl);
+                //pl.Positions = mapObjects.Polyline.Positions;
                 //dist = CalcDistForLine(pl);
             }
             else
@@ -559,7 +564,6 @@ namespace Google_sheetAndro.Views
                     {
                         pl.Positions.Add(t);
                     }
-
                 }
             }
         }
@@ -847,12 +851,16 @@ namespace Google_sheetAndro.Views
 
         private void ReCalcDist_Clicked(object sender, EventArgs e)
         {
-
+            if(map.Polylines.Count > 0)
+                dist = CalcDistForLine(map.Polylines.First());
+            else
+                Toast.MakeText(Android.App.Application.Context, "Нет пути для рассчета", ToastLength.Long).Show();
         }
 
         private void SetToPinRoute_Toggled(object sender, ToggledEventArgs e)
         {
-
+            fl_USE_MAP_CLICK = e.Value;
+            Preferences.Set("SwitchValue",e.Value);
         }
     }
 }
