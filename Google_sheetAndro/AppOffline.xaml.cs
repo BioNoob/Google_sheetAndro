@@ -14,18 +14,18 @@ namespace Google_sheetAndro
         NavigationPage np;
         List<TableItem> ti;
         OfflineList ofl;
+        ItemsPage ip;
         public AppOffline()
         {
             InitializeComponent();
             np = new NavigationPage(new OfflineList() { Title = "Сохраненные в оффлайн" });
             string kk = Preferences.Get("Offline_data", "");
             ti = JsonConvert.DeserializeObject<List<TableItem>>(kk);
-
             ofl = new OfflineList();
             np = new NavigationPage(ofl);
             np.ToolbarItems.Add(new ToolbarItem("Добавить", "", add_item));
             //np.ToolbarItems.Add(new ToolbarItem("Удалить все", "", delete_all));
-            if(ti.Count > 0)
+            if(ti != null)
             {
                 ofl.SetTableData(ti);
             }
@@ -56,14 +56,28 @@ namespace Google_sheetAndro
             //LoaderFunction.ItemsInfoPage.fl_init = false;
             // Handle when your app resumes
         }
-        private void add_item()
+        private void Saver()
         {
-            ItemsPage ip = new ItemsPage(true);
-            ip.setter(new TableItem());
+            ofl.SetTableData(new List<TableItem>() { ip.getter()});
+            ofl.Navigation.PopAsync();
+        }
+        private void Deleter()
+        {
+
+        }
+        private async void add_item()
+        {
+
+
+            //NavigationPage.SetHasNavigationBar(ip, true);
+            ip = new ItemsPage(true);
             NavigationPage nnp = new NavigationPage(ip);
-            NavigationPage.SetBackButtonTitle(nnp, "Назад");
-            NavigationPage.SetHasBackButton(nnp, true);
-            ofl.Navigation.PushModalAsync(nnp);
+            //NavigationPage.SetHasNavigationBar(np, false);
+            nnp.ToolbarItems.Add(new ToolbarItem("Сохранить", "", Saver));
+            nnp.ToolbarItems.Add(new ToolbarItem("Удалить", "", Deleter));
+            //NavigationPage.SetHasNavigationBar(nnp, true);
+            ip.setter(new TableItem());
+            await ofl.Navigation.PushAsync(nnp, true);
         }
     }
 }

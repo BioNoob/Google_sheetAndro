@@ -74,7 +74,19 @@ namespace Google_sheetAndro.Class
     {
         public TableItem()
         {
-
+            //date = DateTime.Now;
+            //time = "00:00:00";
+            //wind = 0;
+            //cloud = "";
+            //temp = 0;
+            //task = "";
+            //height = 0;
+            //plase = "";
+            //comment = "";
+            //tabelplase = "";
+            //exect_mounth = "";
+            //sh_id = 0;
+            //row_nb = 0;
         }
         public int year { get { return date.Year; } }
         public string mounth { get { return date.ToString("MMMM"); } }
@@ -103,16 +115,6 @@ namespace Google_sheetAndro.Class
             lst.AddRange(new List<object>() { this.date.ToString("dd/MM/yyyy"), this.time, this.wind, this.cloud, this.temp, this.task, this.height, this.range, this.plase, this.comment,this.author,this.points,this.route });
             return lst;
         }
-        //public Dictionary<string, object> getDic()
-        //{
-        //    var dic = new Dictionary<string, object>();
-        //    foreach (var item in this.GetType().GetProperties())
-        //    {
-        //        if (item.Name != "mounth" && item.Name != "year")
-        //            dic.Add(item.Name, item.GetValue(this));
-        //    }
-        //    return dic;
-        //}
     }
 
 }

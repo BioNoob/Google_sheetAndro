@@ -51,18 +51,18 @@ namespace Google_sheetAndro.Droid
                 LoadOfflineVersion();
             }
         }
-        private async void LoadOfflineVersion()
+        private void LoadOfflineVersion()
         {
-            var oathToken = await SecureStorage.GetAsync("token");
-            if (oathToken != null)
-            {
-                StaticInfo.AccountEmail = oathToken;
-            }
-            else
-            {
-                StaticInfo.AccountEmail = "offline";
-                StaticInfo.AccountPicture = "disconnect.png";
-            }
+            //var oathToken = await SecureStorage.GetAsync("token");
+            //if (oathToken != null)
+            //{
+            //    StaticInfo.AccountEmail = oathToken;
+            //}
+            //else
+            //{
+            //    StaticInfo.AccountEmail = "offline";
+            //    StaticInfo.AccountPicture = "disconnect.png";
+            //}
             LoadApplication(new AppOffline());
         }
         public async void LoginDo()

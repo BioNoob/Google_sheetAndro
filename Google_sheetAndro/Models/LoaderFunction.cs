@@ -1,5 +1,6 @@
 ﻿using Google_sheetAndro.Class;
 using Google_sheetAndro.Views;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -144,10 +145,16 @@ namespace Google_sheetAndro.Models
                 if(q == true && qq == true)
                 {
                     EndLoad();
+                    string kk = Preferences.Get("Offline_data", "");
+                    List<TableItem> ti = JsonConvert.DeserializeObject<List<TableItem>>(kk);
+                    if (ti != null)
+                    {
+                        OfflineList ofl = new OfflineList(true);
+                        ofl.SetTableData(ti);
+                        StaticInfo.SetPage(ofl);
+                    }
                     break;
                 }
-
-
             }
 
             //Task.Run(async () => await Loader()).Wait();

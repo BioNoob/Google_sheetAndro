@@ -23,24 +23,41 @@ namespace Google_sheetAndro.Views
         public event EventHandler<PageOrientationEventArgs> OnOrientationChanged = (e, a) => { };
         public void setter(TableItem ti)
         {
-            ti_local = ti;
-            Date_pick.Date = ti.date;
-            Time_pick.Text = ti.time;
-            Wind_Num.Text = ti.wind.ToString();
-            if (!cloud_list.Contains(ti.cloud))
-                cloud_list.Add(ti.cloud);
-            CloudPicker.SelectedItem = ti.cloud;
-            if (ti.temp > 0)
-                Temp_Num.Text = "+" + ti.temp.ToString();
+            if(ti.date == new DateTime())
+            {
+                Date_pick.Date = DateTime.Now;
+                Time_pick.Text = "00:00:00";
+                Wind_Num.Text = "0";
+                CloudPicker.SelectedIndex = 0;
+                Temp_Num.Text = "0";
+                Task_txt.Text = "";
+                Hight_txt_num.Text = "0";
+                Range_txt.Text = "0";
+                Place_txt.SelectedIndex = 0;
+                Comment_txt.Text = "";
+                ti_local = getter();
+            }
             else
-                Temp_Num.Text = ti.temp.ToString();
-            Task_txt.Text = ti.task;
-            Hight_txt_num.Text = ti.height.ToString();
-            Range_txt.Text = ti.range.ToString();
-            if (!place_list.Contains(ti.plase))
-                place_list.Add(ti.plase);
-            Place_txt.SelectedItem = ti.plase;
-            Comment_txt.Text = ti.comment;
+            {
+                ti_local = ti;
+                Date_pick.Date = ti.date;
+                Time_pick.Text = ti.time;
+                Wind_Num.Text = ti.wind.ToString();
+                if (!cloud_list.Contains(ti.cloud))
+                    cloud_list.Add(ti.cloud);
+                CloudPicker.SelectedItem = ti.cloud;
+                if (ti.temp > 0)
+                    Temp_Num.Text = "+" + ti.temp.ToString();
+                else
+                    Temp_Num.Text = ti.temp.ToString();
+                Task_txt.Text = ti.task;
+                Hight_txt_num.Text = ti.height.ToString();
+                Range_txt.Text = ti.range.ToString();
+                if (!place_list.Contains(ti.plase))
+                    place_list.Add(ti.plase);
+                Place_txt.SelectedItem = ti.plase;
+                Comment_txt.Text = ti.comment;
+            }
         }
         private void InitEvent()
         {
@@ -402,7 +419,9 @@ namespace Google_sheetAndro.Views
             if (tm.Sec >= 359999)
                 tm.Sec = 359999;
             val = tm.ToString();
+            Time_pick.TextChanged -= Time_pick_TextChanged;
             Time_pick.Text = val;
+            Time_pick.TextChanged += Time_pick_TextChanged;
         }
         private void WindSlider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
