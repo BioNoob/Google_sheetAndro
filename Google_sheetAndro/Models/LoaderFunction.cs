@@ -23,6 +23,7 @@ namespace Google_sheetAndro.Models
         public static event WheatherLoad DoWheatherLoad;
         public delegate void ClearMap();
         public static event ClearMap DoClearMap;
+        public static bool fl_offline { get; set; }
         public static void callClearMap()
         {
             LoaderFunction.DoClearMap?.Invoke();

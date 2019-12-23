@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Google_sheetAndro.Views.OfflineList"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss">
+    <xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient IsRotationTopToBottom="True">
+            <xfg:Gradient.Steps>
+                <xfg:GradientStep StepColor="#2196F3" StepPercentage="0" />
+                <xfg:GradientStep StepColor="White" StepPercentage="1" />
+            </xfg:Gradient.Steps>
+        </xfg:Gradient>
+    </xfg:ContentPageGloss.BackgroundGradient>
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Text="Сохранить всё" x:Name="SaveAllBtn"
+                    Grid.Column="0" Clicked="SaveAllBtn_Clicked"/>
+            <Button Text="Удалить всё" x:Name="DellAllBtn" 
+                    Grid.Column="1" Clicked="DellAllBtn_Clicked"/>   
+        </Grid>
+        <ListView x:Name="MyListView"
+            ItemsSource="{Binding Items}"
+            ItemTapped="Handle_ItemTapped"
+            CachingStrategy="RecycleElement">
+
+            <!--Built in Cells-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding .}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <!--Custom View Cells-->
+            <!--
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout>
+            <Label Text="{Binding Text}" 
+                   Style="{DynamicResource ListItemTextStyle}" />
+            <Label Text="{Binding Detail}" 
+                   Style="{DynamicResource ListItemDetailTextStyle}"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+    -->
+        </ListView>
+    </StackLayout>
+</ContentPage>

@@ -6,7 +6,16 @@
              xmlns:views="clr-namespace:Google_sheetAndro.ViewModels"
              mc:Ignorable="d"
              x:Class="Google_sheetAndro.Views.ItemsInfo"
-             Appearing="ContentPage_Appearing">
+             Appearing="ContentPage_Appearing"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss">
+    <xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient IsRotationTopToBottom="True">
+            <xfg:Gradient.Steps>
+                <xfg:GradientStep StepColor="#2196F3" StepPercentage="0" />
+                <xfg:GradientStep StepColor="White" StepPercentage="1" />
+            </xfg:Gradient.Steps>
+        </xfg:Gradient>
+    </xfg:ContentPageGloss.BackgroundGradient>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Добавить" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>

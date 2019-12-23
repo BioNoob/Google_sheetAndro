@@ -34,6 +34,7 @@ namespace Google_sheetAndro.Views
         private void LoaderFunction_DoClearMap()
         {
             LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
+            TableItems.SelectedItem = null;
         }
 
         private void VM_DoSetSelect()
@@ -101,6 +102,7 @@ namespace Google_sheetAndro.Views
                 vM.years = LocalTable.GetYearsList();
                 Year_pick.SelectedIndexChanged += Graph_pick_date_SelectedIndexChanged;
                 Year_pick.SelectedIndex = last;
+                TableItems.SelectedItem = null;
             }
 
         }
@@ -134,12 +136,14 @@ namespace Google_sheetAndro.Views
                 vM.years = LocalTable.GetYearsList();
                 Year_pick.SelectedIndexChanged += Graph_pick_date_SelectedIndexChanged;
                 Year_pick.SelectedIndex = last;
+                TableItems.SelectedItem = null;
             }
 
         }
         private async void TableItems_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-
+            if (e.Item == null)
+                return;
             //LoaderFunction.ItNavPage.ToolbarItems.Clear();
             //LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Изменить", "", update));
             //LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));

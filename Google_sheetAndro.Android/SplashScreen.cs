@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Widget;
 using Google_sheetAndro.Authentication;
 using Google_sheetAndro.Class;
+using Google_sheetAndro.Models;
 using Google_sheetAndro.Services;
 using Plugin.CurrentActivity;
 using Refractored.XamForms.PullToRefresh.Droid;
@@ -39,14 +40,17 @@ namespace Google_sheetAndro.Droid
             {
                 Toast.MakeText(Android.App.Application.Context, "Отсутствует интернет соединение", ToastLength.Long).Show();
                 //Toast.MakeText(Android.App.Application.Context, "Приложение пока не поддерживает редактирование офлайн", ToastLength.Long).Show();
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await Task.Delay(1000);
-                    Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
-                });
+                //Device.BeginInvokeOnMainThread(async () =>
+                //{
+                //    await Task.Delay(1000);
+                //    Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+                //});
+                LoaderFunction.fl_offline = true;
+                StartActivity(typeof(MainActivity));
             }
             else
             {
+                LoaderFunction.fl_offline = false;
                 Auth = new GoogleAuthenticator(Configuration.ClientId, Configuration.Scope, Configuration.RedirectUrl, this);
                 StartActivity(typeof(MainActivity));
             }

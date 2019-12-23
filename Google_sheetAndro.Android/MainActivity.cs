@@ -3,6 +3,7 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Google_sheetAndro.Class;
+using Google_sheetAndro.Models;
 using Xamarin.Auth;
 using Xamarin.Essentials;
 
@@ -40,8 +41,29 @@ namespace Google_sheetAndro.Droid
             //{
 
             //}
-            LoadApplication(new App());
-            LoginDo();
+            if(!LoaderFunction.fl_offline)
+            {
+                LoadApplication(new App());
+                LoginDo();
+            }
+            else
+            {
+                LoadOfflineVersion();
+            }
+        }
+        private async void LoadOfflineVersion()
+        {
+            var oathToken = await SecureStorage.GetAsync("token");
+            if (oathToken != null)
+            {
+                StaticInfo.AccountEmail = oathToken;
+            }
+            else
+            {
+                StaticInfo.AccountEmail = "offline";
+                StaticInfo.AccountPicture = "disconnect.png";
+            }
+            LoadApplication(new AppOffline());
         }
         public async void LoginDo()
         {

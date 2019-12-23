@@ -6,8 +6,16 @@
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:Refractored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh"
              x:Class="Google_sheetAndro.Views.Page_out"
-             NavigationPage.HasNavigationBar="False">
-
+             NavigationPage.HasNavigationBar="False"             
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss">
+    <xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient IsRotationTopToBottom="True">
+            <xfg:Gradient.Steps>
+                <xfg:GradientStep StepColor="#2196F3" StepPercentage="0" />
+                <xfg:GradientStep StepColor="White" StepPercentage="1" />
+            </xfg:Gradient.Steps>
+        </xfg:Gradient>
+    </xfg:ContentPageGloss.BackgroundGradient>
     <!--<controls:PullToRefreshLayout
           IsPullToRefreshEnabled="True"
           x:Name="Refresher"
