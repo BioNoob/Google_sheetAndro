@@ -33,7 +33,12 @@ namespace Google_sheetAndro.Views
 
         private void LoaderFunction_DoClearMap()
         {
-            LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
+            if (LoaderFunction.ExtItNavPage != null)
+            {
+                LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
+            }
+            else
+                Navigation.PopModalAsync();
             TableItems.SelectedItem = null;
         }
 
@@ -62,16 +67,23 @@ namespace Google_sheetAndro.Views
             int yy = 0;
             if (int.TryParse(Year_pick.SelectedItem.ToString(), out yy) && Mounth_pick.SelectedIndex != 0)
                 Options.opt.dateTime = new DateTime(yy, Mounth_pick.SelectedIndex, 1);
-            //activity.IsEnabled = true;
-            //activity.IsRunning = true;
-            //activity.IsVisible = true;
-            //activity.Focus();
-            //StaticInfo.AI = activity;
-            //main = new NavigationPage(new MainPage());
-            NavigationPage.SetHasBackButton(LoaderFunction.MAINNavPage, true);
+            //NavigationPage.SetHasBackButton(LoaderFunction.MAINNavPage, true);
+            if(LoaderFunction.MAINNavPage.ToolbarItems.Count < 1)
+            {
+                LoaderFunction.MAINNavPage.ToolbarItems.Add(new ToolbarItem("Сохранить", "", redirect));
+                LoaderFunction.MAINNavPage.ToolbarItems.Add(new ToolbarItem("Отмена", "", backbattonimit));
+            }
             await Navigation.PushModalAsync(LoaderFunction.MAINNavPage);//main);
         }
-
+        void backbattonimit()
+        {
+            Navigation.PopModalAsync();
+        }
+        void redirect()
+        {
+            LoaderFunction.CreRow();
+            Navigation.PopModalAsync();
+        }
         private void update()
         {
             //ItemsPage tp = (ItemsPage)item.CurrentPage;
@@ -84,7 +96,10 @@ namespace Google_sheetAndro.Views
                 ti.route = LoaderFunction.MapPageAlone.MapObj.SerializableLine;
                 ti.points = LoaderFunction.MapPageAlone.MapObj.SerializablePins;
                 Googles.UpdateEntry(ti);
-                LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
+                if (LoaderFunction.ExtItNavPage != null)
+                {
+                    LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
+                }
                 Toast.MakeText(Android.App.Application.Context, "Обновление прошло успешно", ToastLength.Long).Show();
             }
             catch (Exception)
@@ -173,6 +188,7 @@ namespace Google_sheetAndro.Views
 
             NavigationPage.SetHasNavigationBar(LoaderFunction.ExtItNavPage, false);
             await Navigation.PushModalAsync(LoaderFunction.ExtItNavPage);
+            ((Xamarin.Forms.ListView)sender).SelectedItem = null;
         }
         private void ContentPage_Appearing(object sender, EventArgs e)
         {

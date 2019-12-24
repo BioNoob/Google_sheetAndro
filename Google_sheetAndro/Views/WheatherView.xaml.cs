@@ -13,18 +13,22 @@ namespace Google_sheetAndro.Views
         {
             InitializeComponent();
             BindingContext = new WheatherViewModel();
+            //StatusError.PropertyChanging += StatusError_PropertyChanging;
         }
-
         private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var q = (windout)e.SelectedItem;
-            LoaderFunction.SimpPage.ActualWind = q.Wind;
-            if(LoaderFunction.SimpPage.ToolbarItems.Count < 1)
+            if (q != null)
             {
-                LoaderFunction.SimpPage.ToolbarItems.Add(new ToolbarItem("Назад", "CancelLast", new System.Action(() => { backpress(); })));
+                LoaderFunction.SimpPage.ActualWind = q.Wind;
+                if (LoaderFunction.SimpPage.ToolbarItems.Count < 1)
+                {
+                    LoaderFunction.SimpPage.ToolbarItems.Add(new ToolbarItem("Назад", "CancelLast", new System.Action(() => { backpress(); })));
+                }
+                NavigationPage navigationPage = new NavigationPage(LoaderFunction.SimpPage);
+                await Navigation.PushModalAsync(navigationPage);
             }
-            NavigationPage navigationPage = new NavigationPage(LoaderFunction.SimpPage);
-            await Navigation.PushModalAsync(navigationPage);
+            ((Xamarin.Forms.ListView)sender).SelectedItem = null;
         }
         async void backpress()
         {
@@ -34,8 +38,6 @@ namespace Google_sheetAndro.Views
         {
             await PopSettings.FadeTo(0, 100);
             ((WheatherViewModel)this.BindingContext).ExecuteRefreshCommand();
-
-
             await PopSettings.FadeTo(1, 100);
         }
 

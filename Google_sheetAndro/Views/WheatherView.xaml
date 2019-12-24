@@ -173,6 +173,7 @@
                                        Grid.Column="4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </Grid>
                         <ListView ItemsSource="{Binding ActualWind}"
+                                  x:Name="AAP1A"
                               HasUnevenRows="True" HeightRequest="150"
                           SeparatorColor="#008CFF" SelectionMode="None">
                             <ListView.ItemTemplate>
@@ -197,13 +198,12 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                        <ListView HasUnevenRows="True"
+                        <ListView HasUnevenRows="True" x:Name="AAPA"
                               ItemsSource="{Binding lw}" 
                       ItemSelected="ListView_ItemSelected"
                       SeparatorColor="#008CFF" SelectionMode="Single" HeightRequest="150"
                           >
                             <ListView.ItemTemplate>
-
                                 <DataTemplate>
                                     <ViewCell>
                                         <Grid>
@@ -223,6 +223,15 @@
                 </Frame>
             </Grid>
         </ScrollView>
+        <RelativeLayout BackgroundColor="Transparent" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,100">
+            <Frame BackgroundColor="#90005AFF" VerticalOptions="Center" HorizontalOptions="Center" Padding="5" Margin="10" 
+                   CornerRadius="20" BorderColor="Orange" IsVisible="{Binding ErrorVisual}">
+                <Label x:Name="StatusError"  Text="{Binding ErrorStatus}" VerticalOptions="FillAndExpand" Margin="0" Padding="0"
+                       HorizontalOptions="Center"
+                               TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                               FontSize="15"/>
+            </Frame>
+        </RelativeLayout>
         <RelativeLayout x:Name="r1"  Margin="10" HorizontalOptions="End"
                         VerticalOptions="Start" BackgroundColor="Transparent">
             <ImageButton x:Name="PopSettings" VerticalOptions="CenterAndExpand"
@@ -230,7 +239,8 @@
                     HeightRequest="40" Clicked="PopSettings_Clicked"
                 />
         </RelativeLayout>
-        <ActivityIndicator IsRunning="{Binding IsBusy}"
+        <RelativeLayout BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
                          IsVisible="{Binding IsBusy}"
                           HeightRequest="80"
                            WidthRequest="80"
@@ -239,8 +249,9 @@
                            BackgroundColor="#50000000"
                           HorizontalOptions="CenterAndExpand"
                            Color="Orange">
-        </ActivityIndicator>
-        
+            </ActivityIndicator>
+        </RelativeLayout>
+
     </Grid>
     
 </ContentPage>

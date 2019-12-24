@@ -20,8 +20,17 @@ namespace Google_sheetAndro.Class
     //}
     public class ResponsedData
     {
-
-        public DateTime duration { get; set; }
+        private DateTime _duration;
+        public string time {
+            get
+            {
+                return _duration.ToString("D");
+            }
+            set
+            {
+                _duration = UnixTimeStampToDateTime(Convert.ToDouble(value));
+            }
+        }
         public float temperature { get => temperature1; set => temperature1 = value; }
         public float pressure { get; set; }
         private string _source;
@@ -36,7 +45,13 @@ namespace Google_sheetAndro.Class
         public float precipIntensity { get; set; }
         public float precipProbability { get; set; }
         public float visibility { get; set; }
-
+        private static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+            return dtDateTime;
+        }
         public Dictionary<string, string> getParams()
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();

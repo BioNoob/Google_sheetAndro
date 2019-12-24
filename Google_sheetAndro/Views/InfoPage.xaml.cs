@@ -12,10 +12,30 @@ namespace Google_sheetAndro.Views
         //https://www.instagram.com/blackorange.aero/channel/
         //https://www.facebook.com/BlackOrange.Aero.Pilot/
         //http://blackorange.aero/
+        //https://www.youtube.com/user/parakhin/videos
         public InfoPage()
         {
             InitializeComponent();
-            Date_actual.Text = DateTime.Now.ToString("dddd \tdd MMMM yyyy");
+            var tgr = new TapGestureRecognizer();
+            tgr.Tapped += (s, e) => TapGestureRecognizer_Tapped(s,e);
+            MailLbl.GestureRecognizers.Add(tgr);
+            var tgrs = new TapGestureRecognizer();
+            tgrs.Tapped += (s, e) => TapGestureRecognizer_Tapped_1(s,e);
+            GitLbl.GestureRecognizers.Add(tgrs);
+
+            var tgrs1 = new TapGestureRecognizer();
+            tgrs1.Tapped += (s, e) => GoYb();
+            YbBtn.GestureRecognizers.Add(tgrs1);
+            var tgrs2 = new TapGestureRecognizer();
+            tgrs2.Tapped += (s, e) => GoFb();
+            FbBtn.GestureRecognizers.Add(tgrs2);
+            var tgrs3 = new TapGestureRecognizer();
+            tgrs3.Tapped += (s, e) => GoInst();
+            InstaBtn.GestureRecognizers.Add(tgrs3);
+            var tgrs4 = new TapGestureRecognizer();
+            tgrs4.Tapped += (s, e) => GoSite();
+            SiteLbl.GestureRecognizers.Add(tgrs4);
+
             APlist = new List<ApiInfo>()
             {
                 new ApiInfo("Яндекс Геокодер API","ya.png","https://tech.yandex.ru/maps/geocoder/"),
@@ -27,6 +47,22 @@ namespace Google_sheetAndro.Views
             };
             BindingContext = this;
         }
+        private async void GoFb()
+        {
+            await Launcher.OpenAsync(new Uri("https://www.facebook.com/BlackOrange.Aero.Pilot/"));
+        }
+        private async void GoYb()
+        {
+            await Launcher.OpenAsync(new Uri("https://www.youtube.com/user/parakhin/videos"));
+        }
+        private async void GoInst()
+        {
+            await Launcher.OpenAsync(new Uri("https://www.instagram.com/blackorange.aero/channel/"));
+        }
+        private async void GoSite()
+        {
+            await Launcher.OpenAsync(new Uri("http://blackorange.aero/"));
+        }
         public List<ApiInfo> APlist { get; set; }
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
@@ -35,13 +71,6 @@ namespace Google_sheetAndro.Views
         }
 
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
-        {
-            TagLabel tagSpan = (TagLabel)sender;
-            await Launcher.OpenAsync(new Uri(tagSpan.Tag));
-            //Device.OpenUri(new Uri(tagSpan.Tag));
-        }
-
-        private async void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
         {
             TagLabel tagSpan = (TagLabel)sender;
             await Launcher.OpenAsync(new Uri(tagSpan.Tag));

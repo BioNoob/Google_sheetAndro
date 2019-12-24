@@ -129,7 +129,7 @@ namespace Google_sheetAndro.Views
         {
             InitializeComponent();
             Init();
-            if (fl_single)
+            if (!fl_single)
                 InitEvent();
             this.IsBusy = false;
             Date_pick.Format = "dd.MM.yyyy";
@@ -559,6 +559,8 @@ namespace Google_sheetAndro.Views
         TaskSelectPage Tsp = LoaderFunction.TaskSelectPage;
         private async void Task_txt_Clicked(object sender, EventArgs e)
         {
+            if (Tsp == null)
+                Tsp = new TaskSelectPage();
             if (!string.IsNullOrWhiteSpace(Task_txt.Text))
                 Tsp.SetSelected(Task_txt.Text);
             Tsp.tasksetsucs += Tsp_tasksetsucs;

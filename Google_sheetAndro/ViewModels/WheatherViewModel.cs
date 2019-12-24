@@ -20,9 +20,11 @@ using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
@@ -33,7 +35,7 @@ namespace RefreshSample.ViewModels
         //public ObservableCollection<string> Items { get; set; }
         public WheatherViewModel()
         {
-            Time = DateTime.Now.ToString("dd MMMM, HH:mm");
+            //Time = DateTime.Now.ToString("dd MMMM, HH:mm");
             LoaderFunction.DoWheatherLoad += LoaderFunction_DoWheatherLoad;
         }
 
@@ -41,13 +43,35 @@ namespace RefreshSample.ViewModels
         {
             gpp = StaticInfo.Wheather;
             Place = StaticInfo.Place;
+            LastReq = DateTime.Now;
             Val = gpp.getParams();
+            
+            Time = gpp.time;
             string key = Searcher(StaticInfo.Pos);
             lw = await kek(key);
             Airport = key;
-            ActualDate = lw.First().DateFormat;
-            ActualWind = lw.First().Wind;
+            if (lw != null)
+            {
+                ActualDate = lw.First().DateFormat;
+                ActualWind = lw.First().Wind;
+            }
+
             IsBusy = false;
+        }
+        public bool ErrorVisual { get; set; }
+        public string ErrorStatus
+        {
+            get => errorstatus;
+            set
+            {
+                errorstatus = value;
+                if (String.IsNullOrEmpty(value))
+                    ErrorVisual = false;
+                else
+                    ErrorVisual = true;
+                OnPropertyChanged("ErrorStatus");
+                OnPropertyChanged("ErrorVisual");
+            }
         }
         public string Airport { get => airport; set { airport = value; OnPropertyChanged("Airport"); } }
         public ResponsedData gpp { get => gpp1; set { gpp1 = value; OnPropertyChanged("gpp"); } }
@@ -64,10 +88,12 @@ namespace RefreshSample.ViewModels
             set
             {
                 isBusy = value;
+                Debug.WriteLine(value);
                 OnPropertyChanged("IsBusy");
             }
         }
         private List<windout> lw1;
+        private string errorstatus;
         private DateTime actualDate;
         private string time;
         private string place;
@@ -78,7 +104,19 @@ namespace RefreshSample.ViewModels
         public void ExecuteRefreshCommand()
         {
             IsBusy = true;
-            caller();
+            try
+            {
+                caller();
+            }
+            catch (Exception)
+            {
+                ErrorStatus = "Сервис погоды недоступен";
+            }
+            finally
+            {
+                //IsBusy = false;
+            }
+
         }
         private async void caller()
         {
@@ -98,7 +136,24 @@ namespace RefreshSample.ViewModels
             {
                 LastReq = DateTime.Now;
             }
-            await StaticInfo.GetWeatherReqAsync(StaticInfo.Pos);
+            CancellationTokenSource cts = new CancellationTokenSource();
+            cts.CancelAfter(5000);
+            try
+            {
+                await StaticInfo.GetWeatherReqAsync(StaticInfo.Pos, cts.Token);
+            }
+            catch (OperationCanceledException)
+            {
+                ErrorStatus = "Время запроса истекло. Сервис погоды недоступен";
+                //resultsTextBox.Text += "\r\nDownloads canceled.\r\n";
+            }
+            catch (Exception)
+            {
+                ErrorStatus = $"Сервис погоды недоступен";
+                //resultsTextBox.Text += "\r\nDownloads failed.\r\n";
+            }
+
+
             //gpp = StaticInfo.Wheather;
         }
         private DateTime LastReq = DateTime.MinValue;
@@ -112,16 +167,35 @@ namespace RefreshSample.ViewModels
             var url = $"http://meteocenter.asia/?m=gcc&p={key}";
             var web = new HtmlWeb();
             web.AutoDetectEncoding = false;
-            //Encoding.RegisterProvider()
-            // var t = Encoding.GetEncodings();
+            CancellationTokenSource cts = new CancellationTokenSource();
+            try
+            {
+                cts.CancelAfter(20000);
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                web.OverrideEncoding = Encoding.GetEncoding("windows-1251");
+                var doc = await web.LoadFromWebAsync(url, cts.Token);
+                List<windout> lw11 = ParseAllTables(doc);
+                lw11 = lw11.Where(t => t.DateFormat >= DateTime.Now && t.DateFormat <= DateTime.Now.AddDays(1)).ToList();
+                //Time = LastReq.ToString("dd MMMM, HH:mm");
+                ErrorStatus = null;
+                return lw11;
+            }
+            catch (OperationCanceledException)
+            {
+                ErrorStatus = "Время запроса истекло. Meteocenter.asia недостпуен";
+                return null;
+                //resultsTextBox.Text += "\r\nDownloads canceled.\r\n";
+            }
+            catch (Exception ex)
+            {
+                ErrorStatus = $"Ошибка. Неудалось расшифровать данные по аэродрому {key}";
+                Debug.WriteLine(ex.Message);
+                return null;
+                //resultsTextBox.Text += "\r\nDownloads failed.\r\n";
+            }
 
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            web.OverrideEncoding = Encoding.GetEncoding("windows-1251");
-            var doc = await web.LoadFromWebAsync(url);
-            List<windout> lw11 = ParseAllTables(doc);
-            lw11 = lw11.Where(t => t.DateFormat >= DateTime.Now && t.DateFormat <= DateTime.Now.AddDays(1)).ToList();
-            Time = LastReq.ToString("dd MMMM, HH:mm");
-            return lw11;
+
+
         }
         public List<windout> ParseAllTables(HtmlDocument doc)
         {

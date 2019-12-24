@@ -9,7 +9,7 @@
              x:Class="Google_sheetAndro.Views.InfoPage" BackgroundColor="#39b1fd">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <OnPlatform x:Key="FontFamilyName" x:TypeArguments="x:String" Android="Jura-Bold.ttf#Jura-Bold"/>
+            <!--<OnPlatform x:Key="FontFamilyName" x:TypeArguments="x:String" Android="Jura-Bold.ttf#Jura-Bold"/>-->
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="FontSize" Value="18" />
@@ -22,8 +22,7 @@
         <xfg:Gradient IsRotationTopToBottom="True">
             <xfg:Gradient.Steps>
                 <xfg:GradientStep StepColor="#2196F3" StepPercentage="0" />
-                <xfg:GradientStep StepColor="White" StepPercentage="0.5" />
-                <xfg:GradientStep StepColor="#2196F3" StepPercentage="1" />
+                <xfg:GradientStep StepColor="White" StepPercentage="1" />
             </xfg:Gradient.Steps>
         </xfg:Gradient>
     </xfg:ContentPageGloss.BackgroundGradient>
@@ -40,108 +39,138 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.5*" />
-                        <RowDefinition Height="0.5*" />
                     </Grid.RowDefinitions>
-                    <Label x:Name="Date_actual" Text="data" Grid.Row="0"
-                       HorizontalTextAlignment="End"/>
                     <Label Text="Небо для всех"
-                       Grid.Row="1" FontSize="25"
+                       Grid.Row="0" FontSize="28"
+                           TextColor="White"
                            HorizontalTextAlignment="Center"
                            FontAttributes="Bold"
                            Margin="0,20,0,0"/>
-                    <!--<Image Source="Y" Grid.Row="3" Grid.Column="1" Margin="20,20,20,0" WidthRequest="100"/>
-                    <lc:TagLabel Grid.Row="3" Grid.Column="0" BackgroundColor="AntiqueWhite"
-                           Tag="https://github.com/BioNoob/Google_sheetAndro"
-                       HorizontalTextAlignment="Center">
+                    <Label x:Name="SiteLbl" 
+                        Text="blackorange.aero"
+                           Grid.Row="1" FontSize="40"
+                           TextColor="Orange"
+                           HorizontalTextAlignment="Center"
+                           FontAttributes="Bold">
                         <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Yasma corp."
-                             TextColor="#FF9C0C"
-                                  
-                                TextDecorations="Underline">
-                                    <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
-                                    </Span.GestureRecognizers>
+                        <FormattedString>
+                                <Span Text="blackorange"
+                                      TextDecorations="Underline">
+                            </Span>
+                                <Span Text=".aero" TextColor="Black"
+                                      TextDecorations="Underline">
                                 </Span>
                             </FormattedString>
                         </Label.FormattedText>
-                    </lc:TagLabel>-->
+                        </Label>
+                    <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image x:Name="InstaBtn" Grid.Row="0" Grid.Column="0" Source="insta.png" WidthRequest="32" Margin="5" VerticalOptions="Center"/>
+                        <Image x:Name="FbBtn" Grid.Row="0" Grid.Column="1" Source="fb.png" WidthRequest="32" Margin="5" VerticalOptions="Center"/>
+                        <Image x:Name="YbBtn" Grid.Row="0" Grid.Column="2" Source="yb.png" WidthRequest="32" Margin="5" VerticalOptions="Center"/>
+                    </Grid>
                     <Label Grid.Row="5"
                        Text ="Создано с помощью:"
                        FontSize="25"
-                       HorizontalTextAlignment="Center" Margin="0,15,0,15"/>
-                    <ListView Grid.Row="6" HeightRequest="200"
+                                                      FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" Margin="0,0,0,15"/>
+                    <Frame Grid.Row="6"  HeightRequest="250" BackgroundColor="#70000000" CornerRadius="25" BorderColor="Orange">
+                        <ListView 
                               ItemsSource="{Binding APlist}" HasUnevenRows="True">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid Margin="20,0,20,0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Image  Grid.Column="0"  Source="{Binding Img}" />
-                                        <lc:TagLabel Tag="{Binding Tag}" Grid.Column="1"
-                                                     HorizontalTextAlignment="Center"  VerticalTextAlignment="Center">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="{Binding Name}"
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Margin="20,0,20,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image  Grid.Column="0"  Source="{Binding Img}" Margin="5" HeightRequest="48"/>
+                                            <lc:TagLabel Tag="{Binding Tag}" Grid.Column="1" Margin="10" Padding="5"
+                                                     HorizontalTextAlignment="Start"  VerticalTextAlignment="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Name}"
                                                           TextColor="#FF9C0C"
                                                           FontSize="18"
                                                           TextDecorations="Underline">
-                                                        <Span.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
-                                                        </Span.GestureRecognizers>
-                                                    </Span>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </lc:TagLabel>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                                                            <Span.GestureRecognizers>
+                                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                                            </Span.GestureRecognizers>
+                                                        </Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </lc:TagLabel>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Frame>
                     <Grid Grid.Row="7">
-                        <Label Grid.Row="0" Grid.ColumnSpan="2" 
-                       Text ="Адреса для связи:"
-                       FontSize="25"
-                       HorizontalTextAlignment="Center" Margin="0,15,0,15"/>
-                        <Label Grid.Row="2" Grid.Column ="0"
-                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.ColumnSpan="2" 
+                       Text ="Разработка"
+                       FontSize="25" FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" Margin="5"/>
+                        <Label Text="YASMA corp." Grid.Row="2" Grid.ColumnSpan="2"
+                               FontSize="25" HorizontalTextAlignment="Center" Margin="5">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="iOS" Value="MarkerFelt-Thin" />
+                                    <On Platform="Android" Value="Jura-Bold.ttf#Jura-Bold" />
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                        <Image Grid.Row="1" Source="Y.png" Grid.ColumnSpan="2" WidthRequest="60"/>
+                        <Label Grid.Row="4" Grid.Column ="0"
+                               x:Name="MailLbl"
+                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="5" LineBreakMode="MiddleTruncation">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="bigjarik@gmail.com"
                                       TextColor="#FF9C0C"
                                       FontSize="18"
                                       TextDecorations="Underline">
-                                        <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                                        </Span.GestureRecognizers>
                                     </Span>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <Label Text="gMail:"  
-                       Grid.Row="1" Grid.Column ="0" Margin="15,5,15,5"
-                       HorizontalTextAlignment="Center"></Label>
-                        <Label Text="Bug Tracking:" 
-                       Grid.Row="1" Grid.Column ="1" Margin="15,5,15,5"
-                       HorizontalTextAlignment="Center"></Label>
-                        <lc:TagLabel Grid.Row="2" Grid.Column ="1"
-                       Margin="15,0,15,0" Tag="https://github.com/BioNoob/Google_sheetAndro/issues"
+                        <Label Grid.Row="3" Grid.Column ="0"  
+                            Text="gMail:"  
+                       Margin="5"
+                       HorizontalTextAlignment="Center">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="iOS" Value="MarkerFelt-Thin" />
+                                    <On Platform="Android" Value="Jura-Bold.ttf#Jura-Bold" />
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                        <Label Grid.Row="3" Grid.Column ="1"  
+                            Text="Bug Tracking:" Margin="5"
+                       HorizontalTextAlignment="Center">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="iOS" Value="MarkerFelt-Thin" />
+                                    <On Platform="Android" Value="Jura-Bold.ttf#Jura-Bold" />
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                        <lc:TagLabel Grid.Row="4" Grid.Column ="1" 
+                       Margin="5" x:Name="GitLbl" Tag="https://github.com/BioNoob/Google_sheetAndro/issues"
                        HorizontalTextAlignment="Center"  VerticalTextAlignment="Center">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="github.com"
                                       TextColor="#FF9C0C"
-                                      FontSize="18"
+                                      FontSize="18" 
                                       TextDecorations="Underline">
-                                        <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
-                                        </Span.GestureRecognizers>
                                     </Span>
                                 </FormattedString>
                             </Label.FormattedText>

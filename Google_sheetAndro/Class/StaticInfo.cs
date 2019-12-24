@@ -1,4 +1,5 @@
 ﻿using Android.Hardware;
+using Android.Widget;
 using Google_sheetAndro.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -128,11 +130,40 @@ namespace Google_sheetAndro.Class
                 return 0;
         }
 
+        public static async Task GetWeatherReqAsync(Location coord, CancellationToken cts )
+        {
+            string api_key = "42b983a01370d4d851e3fccc2b3cfd4b";
+            HttpClient client = new HttpClient();
+            string lat = coord.Latitude.ToString(CultureInfo.InvariantCulture);
+            string lon = coord.Longitude.ToString(CultureInfo.InvariantCulture);
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync($"https://api.darksky.net/forecast/{api_key}/{lat},{lon}?&lang=ru&units=si&exclude=hourly,daily,minutely,flags", cts);
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    HttpContent responseContent = response.Content;
+                    var json = await responseContent.ReadAsStringAsync();
+                    JObject obj = JObject.Parse(json);
+                    var t = obj.SelectToken("currently");
+                    Wheather = t.ToObject<ResponsedData>();
+                    if (Wheather == null)
+                        throw new Exception("Ошибка погоды");
+                    BarWheather = Wheather.pressure;
+                    LoaderFunction.EndWheatherLoad();
+                }
+            }
+            catch (Exception)
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Toast.MakeText(Android.App.Application.Context, "Сервис погоды недоступен", ToastLength.Long).Show();
+                });
+            }
+        }
         public static async Task GetWeatherReqAsync(Location coord)
         {
             string api_key = "42b983a01370d4d851e3fccc2b3cfd4b";
             HttpClient client = new HttpClient();
-            //string req = $"?apikey={api_key}&q={coord.Latitude},{coord.Longitude}&language=ru-ru&details=true HTTP/1.1";
             string lat = coord.Latitude.ToString(CultureInfo.InvariantCulture);
             string lon = coord.Longitude.ToString(CultureInfo.InvariantCulture);
             HttpResponseMessage response = await client.GetAsync($"https://api.darksky.net/forecast/{api_key}/{lat},{lon}?&lang=ru&units=si&exclude=hourly,daily,minutely,flags");
@@ -140,23 +171,12 @@ namespace Google_sheetAndro.Class
             {
                 HttpContent responseContent = response.Content;
                 var json = await responseContent.ReadAsStringAsync();
-                //dynamic stuff = JsonConvert.DeserializeObject(json);
                 JObject obj = JObject.Parse(json);
                 var t = obj.SelectToken("currently");
-                //ResponsedData dd = new ResponsedData();
-                //dd = t.ToObject<ResponsedData>();
-                //Wheather = new ResponsedData();
-                //var q = t.SelectToken("temperature");
                 Wheather = t.ToObject<ResponsedData>();
                 if (Wheather == null)
                     throw new Exception("Ошибка погоды");
                 BarWheather = Wheather.pressure;
-                //Wheather = JsonConvert.DeserializeObject<ResponsedData>(json);
-                //string pressure = stuff.currently.pressure; // давление, для рассчета высоты
-                //string temperature = stuff.currently.temperature;//температура
-                //string windspeed = stuff.currently.windSpeed;//скорость ветра
-                //string cloud = stuff.currently.summary;//облачность
-                //string time = stuff.currently.time; //время формата UNIX
                 LoaderFunction.EndWheatherLoad();
             }
         }

@@ -18,9 +18,8 @@ namespace Google_sheetAndro.Droid
 {
     [Activity(Label = "Небо для всех", Theme = "@style/Theme.Splash", Icon = "@mipmap/icon",
         MainLauncher = true, NoHistory = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class SplashScreen : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IGoogleAuthenticationDelegate//Activity
+    public class SplashScreen : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity//Activity
     {
-        public static GoogleAuthenticator Auth;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -51,7 +50,6 @@ namespace Google_sheetAndro.Droid
             else
             {
                 LoaderFunction.fl_offline = false;
-                Auth = new GoogleAuthenticator(Configuration.ClientId, Configuration.Scope, Configuration.RedirectUrl, this);
                 StartActivity(typeof(MainActivity));
             }
         }
@@ -78,45 +76,5 @@ namespace Google_sheetAndro.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        public async void OnAuthenticationCompleted(GoogleOAuthToken token)
-        {
-            // Retrieve the user's email address
-            var googleService = new GoogleService();
-            var email = await googleService.GetEmailAsync(token.TokenType, token.AccessToken);
-            await Xamarin.Essentials.SecureStorage.SetAsync("token", email.email);
-            await Xamarin.Essentials.SecureStorage.SetAsync("picture", email.picture);
-            StaticInfo.AccountEmail = email.email;
-            StaticInfo.AccountPicture = email.picture;
-        }
-
-        public void OnAuthenticationCanceled()
-        {
-            Toast.MakeText(Android.App.Application.Context, "Вход отменен", ToastLength.Long).Show();
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                await Task.Delay(1000);
-                Toast.MakeText(Android.App.Application.Context, "Приложение будет закрыто", ToastLength.Long).Show();
-                await Task.Delay(1000);
-                Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
-            });
-            //var closer = DependencyService.Get<ICloseApplication>();
-            //closer?.closeApplication();
-        }
-
-        public void OnAuthenticationFailed(string message, Exception exception)
-        {
-            Toast.MakeText(Android.App.Application.Context, "Ошибка входа " + message, ToastLength.Long).Show();
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                await Task.Delay(1000);
-                Toast.MakeText(Android.App.Application.Context, "Приложение будет закрыто", ToastLength.Long).Show();
-                await Task.Delay(1000);
-                Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
-            });
-
-            //var closer = DependencyService.Get<ICloseApplication>();
-            //closer?.closeApplication();
-        }
     }
-
 }

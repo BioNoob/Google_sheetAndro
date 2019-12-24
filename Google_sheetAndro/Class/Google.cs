@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using Xamarin.Essentials;
 using static Google.Apis.Sheets.v4.SpreadsheetsResource;
 
 namespace TableAndro
@@ -283,25 +284,30 @@ namespace TableAndro
         }
         public static bool ReadEntriesAsync(TableItem ti/*Dictionary<string, object> dic*/)
         {
+            var network = Connectivity.NetworkAccess;
+            if (network == NetworkAccess.None)
+            {
+                return false;
+            }
             try
             {
-                //Dictionary<string, object> dic_copy = new Dictionary<string, object>();
-                //foreach (var item in dic.Keys)
-                //{
-                //    var obj = dic[item];
-                //    if (obj == null)
-                //        dic_copy.Add(item, "");
-                //    else
-                //        dic_copy.Add(item, dic[item]);
-                //}
-                //dic = dic_copy;
-                //int year = ((DateTime)dic["date"]).Year;
-                //int month = ((DateTime)dic["date"]).Month;
-                //dic["date"] = ((DateTime)dic["date"]).ToString("dd/MM/yyyy");
-                ////string mont_nm = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(((DateTime)dic["date"]).Month);
-                ////string mont_nm = ((DateTime)dic["date"]).Month.ToString("MMMM", new CultureInfo("ru-RU"));
+                    //Dictionary<string, object> dic_copy = new Dictionary<string, object>();
+                    //foreach (var item in dic.Keys)
+                    //{
+                    //    var obj = dic[item];
+                    //    if (obj == null)
+                    //        dic_copy.Add(item, "");
+                    //    else
+                    //        dic_copy.Add(item, dic[item]);
+                    //}
+                    //dic = dic_copy;
+                    //int year = ((DateTime)dic["date"]).Year;
+                    //int month = ((DateTime)dic["date"]).Month;
+                    //dic["date"] = ((DateTime)dic["date"]).ToString("dd/MM/yyyy");
+                    ////string mont_nm = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(((DateTime)dic["date"]).Month);
+                    ////string mont_nm = ((DateTime)dic["date"]).Month.ToString("MMMM", new CultureInfo("ru-RU"));
 
-                int month = ti.date.Month;
+                    int month = ti.date.Month;
                 string[] months = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
                 string mont_nm = months[month-1].ToLower();
                 int year = ti.year;
@@ -344,7 +350,16 @@ namespace TableAndro
                     IList<Request> LQReq = new List<Request>();
                     if (values[inp_row - 1].Count > 1)
                     {
-                        if (values[inp_row][0].ToString().Length > 1) //если в следующей строке в месяце что-то написано
+                        if(values.Count < inp_row+1)//проверка на последнюю строку. Если после нее ничего нет то... (декабрь ласт)
+                        {
+                            InsertRowAsync(ti, inp_row + 1);
+                            RB.fst_clm = 0;
+                            RB.sec_clm = 1;
+                            RB.fst_rw = inp_row - 1;
+                            RB.sec_rw = inp_row + 1;
+                            LQReq.Add(Merger(sh_ID));
+                        }
+                        else if (values[inp_row][0].ToString().Length > 1) //если в следующей строке в месяце что-то написано
                         {
                             InsertRowAsync(ti, inp_row + 1);
                             Debug.WriteLine("RETURN HOME");
@@ -360,6 +375,10 @@ namespace TableAndro
                             while (values[inp_row][0].ToString().Length == 0)
                             {
                                 inp_row++;
+                                if(values.Count < inp_row + 1)
+                                {
+                                    break;
+                                }
                             }
                             InsertRowAsync(ti, inp_row + 1);
                             Debug.WriteLine("RETURN HOME");

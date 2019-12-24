@@ -60,10 +60,15 @@ namespace Google_sheetAndro
         {
             ofl.SetTableData(new List<TableItem>() { ip.getter()});
             ofl.Navigation.PopAsync();
+            ofl.Saver();
         }
         private void Deleter()
         {
-
+            if(ofl.Items.Contains(ip.getter()))
+            {
+                ofl.Items.Remove(ip.getter());
+                ofl.Saver();
+            }
         }
         private async void add_item()
         {

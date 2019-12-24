@@ -11,55 +11,70 @@
             </xfg:Gradient.Steps>
         </xfg:Gradient>
     </xfg:ContentPageGloss.BackgroundGradient>
-    <StackLayout>
-        <Grid Margin="10,5,10,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Button Text="Сохранить" x:Name="SaveAllBtn" BackgroundColor="#98FFFFFF"
+    <Grid>
+        <StackLayout>
+            <Grid Margin="10,5,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Text="Сохранить" x:Name="SaveAllBtn" BackgroundColor="#98FFFFFF"
                     WidthRequest="110"
                     Grid.Column="0" Clicked="SaveAllBtn_Clicked" CornerRadius="20"/>
-            <Button Text="Удалить" x:Name="DellAllBtn" CornerRadius="20" 
+                <Button Text="Удалить" x:Name="DellAllBtn" CornerRadius="20" 
                     BackgroundColor="#98FFFFFF" WidthRequest="110"
-                    Grid.Column="2" Clicked="DellAllBtn_Clicked"/>   
-        </Grid>
-        <Label Text="При наличии интернет соединения и сохранения изменений, перезапустить программу"
+                    Grid.Column="2" Clicked="DellAllBtn_Clicked"/>
+            </Grid>
+            <Label x:Name="StatusLabel"  Text="При наличии интернет соединения и сохранения изменений, перезапустить программу"
                    LineBreakMode="WordWrap" TextColor="White" FontSize="16"
                Padding="10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center"
-               /> 
-        <ScrollView Margin="5,0,5,5">
-            <Frame IsClippedToBounds="True" CornerRadius="10" BackgroundColor="#40000000" BorderColor="Orange"
+               />
+            <ScrollView Margin="5,0,5,5">
+                <Frame IsClippedToBounds="True" CornerRadius="10" BackgroundColor="#40000000" BorderColor="Orange"
                    Padding="0" VerticalOptions="Start" HasShadow="True">
-                <ListView ItemsSource="{Binding Items}" x:Name="TableItems"
+                    <ListView ItemsSource="{Binding Items}" x:Name="TableItems"
                               HasUnevenRows="True"
                           SeparatorColor="Orange" SelectionMode="None">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <StackLayout Margin="10">
-                                        <Label Text="{Binding date, StringFormat='{0:dd.MM.yyyy}'}" TextColor="#96BFFF" FontSize="16"/>
-                                        <Label Text="{Binding plase}" TextColor="White" FontSize="12"/>
-                                        <Label Text="{Binding task}" TextColor="White" FontSize="12" />
-                                    </StackLayout>
-                                </Grid>
-                            </ViewCell>
-                            <!--<TextCell Text ="{Binding Out} " TextColor="#1976D2"/>-->
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Frame>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Margin="10">
+                                            <Label Text="{Binding date, StringFormat='{0:dd.MM.yyyy}'}" TextColor="#96BFFF" FontSize="16"/>
+                                            <Label Text="{Binding plase}" TextColor="White" FontSize="12"/>
+                                            <Label Text="{Binding task}" TextColor="White" FontSize="12" />
+                                        </StackLayout>
+                                    </Grid>
+                                </ViewCell>
+                                <!--<TextCell Text ="{Binding Out} " TextColor="#1976D2"/>-->
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Frame>
 
-        </ScrollView>
-    </StackLayout>
+            </ScrollView>
+        </StackLayout>
+        <RelativeLayout BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">
+            <ActivityIndicator IsRunning="{Binding IsBuser}"
+                         IsVisible="{Binding IsBuser}"
+                          HeightRequest="80"
+                           WidthRequest="80"
+                          VerticalOptions="CenterAndExpand"
+                           BackgroundColor="#50000000"
+                          HorizontalOptions="CenterAndExpand"
+                           Color="Orange">
+            </ActivityIndicator>
+        </RelativeLayout>
+    </Grid>
+    
+    
 </ContentPage>

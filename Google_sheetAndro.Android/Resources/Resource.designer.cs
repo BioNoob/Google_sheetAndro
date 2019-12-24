@@ -9022,6 +9022,9 @@ namespace Google_sheetAndro.Droid
 			// aapt resource value: 0x7F070185
 			public const int ya = 2131165573;
 			
+			// aapt resource value: 0x7F070186
+			public const int yb = 2131165574;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

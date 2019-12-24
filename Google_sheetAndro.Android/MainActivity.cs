@@ -2,69 +2,51 @@
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Widget;
+using Google_sheetAndro.Authentication;
 using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
+using Google_sheetAndro.Services;
+using System;
+using System.Threading.Tasks;
 using Xamarin.Auth;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Google_sheetAndro.Droid
 {
     [Activity(Label = "База полётов", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)] //MainLauncher = false, 
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IGoogleAuthenticationDelegate
     {
+        static bool fl_wait = false;
+        static App ap;
         //public static GoogleOauth Auth;
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            //TabLayoutResource = Resource.Layout.Tabbar;
-            //ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
-
-            //Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            //global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            //Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            //CrossCurrentActivity.Current.Init(this, savedInstanceState);
-            //Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
-            //PullToRefreshLayoutRenderer.Init();
-            //XFGloss.Droid.Library.Init(this, savedInstanceState);
-
-            //global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
-
-            //var network = Connectivity.NetworkAccess;
-            //if (network == NetworkAccess.None)
-            //{
-            //    Toast.MakeText(Android.App.Application.Context, "Отсутствует интернет соединение", ToastLength.Long).Show();
-            //    //Toast.MakeText(Android.App.Application.Context, "Приложение пока не поддерживает редактирование офлайн", ToastLength.Long).Show();
-            //    var closer = DependencyService.Get<ICloseApplication>();
-            //    closer?.closeApplication();
-            //}
-            //else
-            //{
-
-            //}
-            if(!LoaderFunction.fl_offline)
+            if(!fl_wait)
             {
-                LoadApplication(new App());
-                LoginDo();
+                if (!LoaderFunction.fl_offline)
+                {
+                    ap = new App();
+                    LoadApplication(ap);
+                    LoginDo();
+                }
+                else
+                {
+                    LoadOfflineVersion();
+                }
             }
             else
             {
-                LoadOfflineVersion();
+                LoadApplication(ap);
             }
         }
         private void LoadOfflineVersion()
         {
-            //var oathToken = await SecureStorage.GetAsync("token");
-            //if (oathToken != null)
-            //{
-            //    StaticInfo.AccountEmail = oathToken;
-            //}
-            //else
-            //{
-            //    StaticInfo.AccountEmail = "offline";
-            //    StaticInfo.AccountPicture = "disconnect.png";
-            //}
             LoadApplication(new AppOffline());
         }
+        public static GoogleAuthenticator Auth;
         public async void LoginDo()
         {
 
@@ -77,18 +59,68 @@ namespace Google_sheetAndro.Droid
             }
             else
             {
-                var authenticator = SplashScreen.Auth.GetAuthenticator();
+                Auth = new GoogleAuthenticator(Configuration.ClientId, Configuration.Scope, Configuration.RedirectUrl, this);
+                var authenticator = Auth.GetAuthenticator();
                 var intent = authenticator.GetUI(this);
                 intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
                 CustomTabsConfiguration.CustomTabsClosingMessage = null;
                 StartActivity(intent);
             }
         }
-        //public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
-        //{
-        //    Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        public async void OnAuthenticationCompleted(GoogleOAuthToken token)
+        {
+            // Retrieve the user's email address
+            var googleService = new GoogleService();
+            var email = await googleService.GetEmailAsync(token.TokenType, token.AccessToken);
+            await Xamarin.Essentials.SecureStorage.SetAsync("token", email.email);
+            await Xamarin.Essentials.SecureStorage.SetAsync("picture", email.picture);
+            StaticInfo.AccountEmail = email.email;
+            StaticInfo.AccountPicture = email.picture;
+        }
 
-        //    base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        //}
+        public void OnAuthenticationCanceled()
+        {
+            Toast.MakeText(Android.App.Application.Context, "Вход отменен", ToastLength.Long).Show();
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Task.Delay(1000);
+                Toast.MakeText(Android.App.Application.Context, "Приложение будет закрыто", ToastLength.Long).Show();
+                await Task.Delay(1000);
+                Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+            });
+            //var closer = DependencyService.Get<ICloseApplication>();
+            //closer?.closeApplication();
+        }
+
+        public void OnAuthenticationFailed(string message, Exception exception)
+        {
+            Toast.MakeText(Android.App.Application.Context, "Ошибка входа " + message, ToastLength.Long).Show();
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Task.Delay(1000);
+                Toast.MakeText(Android.App.Application.Context, "Приложение будет закрыто", ToastLength.Long).Show();
+                await Task.Delay(1000);
+                Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+            });
+            //public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+            //{
+            //    Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            //    base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            //}
+        }
+        protected override void OnPause()
+        {
+            fl_wait = true;
+            base.OnPause();
+        }
+        protected override void OnStop()
+        {
+            base.OnStop();
+        }
+        protected override void OnResume()
+        {
+            base.OnResume();
+        }
     }
 }

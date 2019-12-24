@@ -27,7 +27,8 @@ namespace Google_sheetAndro.Views
             Items = new ObservableCollection<TableItem>
             {
             };
-
+            if (is_load)
+                StatusLabel.Text = "Для сохранения в базу использовать кнопку сохранить";
             TableItems.ItemsSource = Items;
             TableItems.ItemTapped += Handle_ItemTapped;
         }
@@ -49,10 +50,10 @@ namespace Google_sheetAndro.Views
             ip.setter((TableItem)e.Item);
             NavigationPage np = new NavigationPage(ip);
             np.ToolbarItems.Clear();
-            if(Is_load)
+            if (Is_load)
                 np.ToolbarItems.Add(new ToolbarItem("Записать", "", Write));
             else
-            np.ToolbarItems.Add(new ToolbarItem("Изменить", "", edit));
+                np.ToolbarItems.Add(new ToolbarItem("Изменить", "", edit));
             np.ToolbarItems.Add(new ToolbarItem("Удалить", "", deletit));
             NavigationPage.SetHasNavigationBar(ip, true);
             //NavigationPage.SetHasNavigationBar(ip, true);
@@ -67,6 +68,8 @@ namespace Google_sheetAndro.Views
         private void deletit()
         {
             Items.Remove(buf);
+            Navigation.PopModalAsync();
+            Saver();
         }
         private void edit()
         {
@@ -87,16 +90,18 @@ namespace Google_sheetAndro.Views
                 Items.Remove(item);
             Saver();
         }
-        private void DellAllBtn_Clicked(object sender, EventArgs e)
+        private async void DellAllBtn_Clicked(object sender, EventArgs e)
         {
-            Items.Clear();
-            Navigation.PopModalAsync();
+            if (await DisplayAlert("Подтверждение", "Удалить все имеющиеся элементы в памяти", "Да", "Нет"))
+                Items.Clear();
+            //await Navigation.PopModalAsync();
             Saver();
         }
-        private void Saver()
+        public void Saver()
         {
             string seria = JsonConvert.SerializeObject(Items);
             Preferences.Set("Offline_data", seria);
+            Task.Delay(100);
             Device.BeginInvokeOnMainThread(() =>
             {
                 Toast.MakeText(Android.App.Application.Context, "Сохранено в память", ToastLength.Short).Show();
@@ -104,34 +109,58 @@ namespace Google_sheetAndro.Views
         }
         private void SaveAllBtn_Clicked(object sender, EventArgs e)
         {
-            if(Is_load)
+            if (Is_load)
             {
+                Dictionary<TableItem, bool> EndOper = new Dictionary<TableItem, bool>();
+                //СОХРАНЯЕТ ТОЛЬКО ОДНУ В БАЗУ
                 foreach (var item in Items)
                 {
                     if (SaveToBase(item))
-                        Items.Remove(item);
+                        EndOper.Add(item, true);
+                    else
+                        EndOper.Add(item, false);
+                }
+                foreach (var item in EndOper)
+                {
+                    if (item.Value)
+                    {
+                        Items.Remove(item.Key);
+                    }
                 }
                 Saver();
             }
             else
                 Saver();
         }
+        public bool IsBuser { get; set; }
         private bool SaveToBase(TableItem ti)
         {
+            IsBuser = true;
             try
             {
                 ti.author = StaticInfo.AccountEmail;
                 ti.route = "";//MapPageAlone.MapObj.SerializableLine;
                 ti.points = "";//LoaderFunction.MapPageAlone.MapObj.SerializablePins;
-                Googles.ReadEntriesAsync(ti);
+                if(Googles.ReadEntriesAsync(ti))
+                {
+                    Toast.MakeText(Android.App.Application.Context, "Запись успешна", ToastLength.Long).Show();
+                    return true;
+                }
+                else
+                {
+                    Toast.MakeText(Android.App.Application.Context, "Запись неудачна", ToastLength.Long).Show();
+                    return false;
+                }
                 //LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
-                Toast.MakeText(Android.App.Application.Context, "Запись успешна", ToastLength.Long).Show();
-                return true;
             }
             catch (Exception)
             {
                 Toast.MakeText(Android.App.Application.Context, "Обновление неудачно", ToastLength.Long).Show();
                 return false;
+            }
+            finally
+            {
+                IsBuser = false;
             }
         }
     }

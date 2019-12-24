@@ -39,7 +39,7 @@ namespace Google_sheetAndro.Droid
             Uri uri_netfx = new Uri(uri_android.ToString());
 
             // Send the URI to the Authenticator for continuation
-            SplashScreen.Auth?.OnPageLoading(uri_netfx);
+            MainActivity.Auth?.OnPageLoading(uri_netfx);
 
             var intent = new Intent(this, typeof(MainActivity));
             intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
