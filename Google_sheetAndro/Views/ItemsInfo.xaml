@@ -25,6 +25,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Picker x:Name="Year_pick" Grid.Row="0" Grid.Column="0"
                         Margin="10,5,5,5" FontSize="18"
@@ -43,6 +44,14 @@
                     SelectedIndexChanged="Mounth_pick_SelectedIndexChanged"
                     Title="Месяц">
                 </Picker>
+                <StackLayout  Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="10">
+                    <Label Text="Отображать только свои записи" FontSize="18" TextColor="White"
+                       Margin="10" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                    <Switch Margin="10,10,10,15" HorizontalOptions="Center" 
+                        VerticalOptions="Center" Scale="0.7" ThumbColor="Orange" OnColor="Blue"
+                            Toggled="Switch_Toggled"/>
+                </StackLayout>
+
             </Grid>
             <ScrollView>
                 <ListView x:Name="TableItems"

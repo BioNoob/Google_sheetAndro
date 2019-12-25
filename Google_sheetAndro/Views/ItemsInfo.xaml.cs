@@ -201,5 +201,12 @@ namespace Google_sheetAndro.Views
             }
         }
 
+        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        {
+            if(e.Value == true)
+            {
+                //фильтр только где email = свой
+            }
+        }
     }
 }

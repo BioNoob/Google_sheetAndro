@@ -5,10 +5,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:views="clr-namespace:Google_sheetAndro.Views"
                   mc:Ignorable="d"
-             x:Class="Google_sheetAndro.Views.MenuPage" IsPresented="True">
-    <MasterDetailPage.Master>
+             x:Class="Google_sheetAndro.Views.MenuPage" IsPresented="True"
+                               xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss">
 
+    <MasterDetailPage.Master>
         <ContentPage Title="Master" BackgroundColor="Beige">
+            <xfg:ContentPageGloss.BackgroundGradient>
+                <xfg:Gradient IsRotationTopToBottom="True">
+                    <xfg:Gradient.Steps>
+                        <xfg:GradientStep StepColor="#2196F3" StepPercentage="0" />
+                        <xfg:GradientStep StepColor="White" StepPercentage="1" />
+                    </xfg:Gradient.Steps>
+                </xfg:Gradient>
+            </xfg:ContentPageGloss.BackgroundGradient>
             <StackLayout Padding="5,5,5,5">
                 <Frame BackgroundColor="Aquamarine" HeightRequest="170" Padding="0"
                        Margin="0">
@@ -43,16 +52,25 @@
                         </RelativeLayout>
                     </Frame>
                 </Frame>
-                <Button x:Name="ItemsPg" Text="Просмотр записей"
-                            Clicked="ItemPageView_Clicked"/>
-                <Button x:Name="OutPg" Text="Граф Отчёт"
-                            Clicked="GetItems_Clicked"/>
-                <Button x:Name="MapPg" Text="Картография"
-                            Clicked="GetItems_Clicked_2"/>
-                <Button x:Name="WheatherPg" Text="Погода"
-                            Clicked="GetItems_Clicked_3"/>
-                <Button x:Name="InfoPg" Text="Инфо"
-                            Clicked="GetItems_Clicked_1"/>
+                <ListView ItemsSource="{Binding Items}" x:Name="TableItems"
+                              HasUnevenRows="True" Margin="10,0" ItemTapped="TableItems_ItemTapped"
+                          SeparatorColor="Orange" SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="10" Orientation="Horizontal">
+                                    <Image Source="{Binding IconSource}" WidthRequest="32"
+                                           VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding BtnLabel}" TextColor="White" FontSize="18"
+                                           FontAttributes="Bold" VerticalTextAlignment="Center" Margin="10,0,0,0" 
+                                            Padding="0"/>
+                                </StackLayout>
+                            </ViewCell>
+                            <!--<TextCell Text ="{Binding Out} " TextColor="#1976D2"/>-->
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
