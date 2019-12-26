@@ -22,8 +22,8 @@
     <ContentPage.Content>
         <StackLayout x:Name="Sl" HorizontalOptions="Center" VerticalOptions="Center">
             <!--x:DataType="views:ItemsInfoVM"-->
-            <Grid>
-                <Grid.RowDefinitions>
+            <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.RowDefinitions> 
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -31,7 +31,7 @@
                         Margin="10,5,5,5" FontSize="18"
                         VerticalOptions="Fill"
                         HorizontalOptions="Fill"
-                        
+                        SelectedItem="{Binding selectedyear}"
                          ItemsSource="{Binding years}"
                     SelectedIndexChanged="Graph_pick_date_SelectedIndexChanged"
                     Title="За период...">
@@ -44,13 +44,36 @@
                     SelectedIndexChanged="Mounth_pick_SelectedIndexChanged"
                     Title="Месяц">
                 </Picker>
-                <StackLayout  Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="10">
-                    <Label Text="Отображать только свои записи" FontSize="18" TextColor="White"
+                <StackLayout  Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center"
+                              Orientation="Horizontal">
+                    <Frame Margin="10" VerticalOptions="Center" 
+                       HorizontalOptions="Center" Padding="0" BackgroundColor="#60000000" BorderColor="Orange" 
+                       CornerRadius="20">
+                        <Grid HorizontalOptions="Center"
+                      VerticalOptions="Center" ColumnSpacing="0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.7*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Отображать только свои записи" FontSize="18" TextColor="White"
                        Margin="10" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
-                    <Switch Margin="10,10,10,15" HorizontalOptions="Center"  x:Name="EmailSync"
-                        VerticalOptions="Center" Scale="0.7" ThumbColor="Orange" OnColor="Blue"
+                            <Switch  Grid.Column="1" Margin="10" HorizontalOptions="Center"  x:Name="EmailSync"
+                        VerticalOptions="Center" Scale="1.4" ThumbColor="Orange" OnColor="#2196F3"
                             Toggled="Switch_Toggled" IsToggled="True"/>
+                        </Grid>
+                    </Frame>
+                    <Frame Margin="10" VerticalOptions="Center" 
+                       HorizontalOptions="Center" Padding="0" BackgroundColor="#60000000" BorderColor="Orange" 
+                       CornerRadius="20" HeightRequest="70" WidthRequest="70">
+                        <Image Source="refresh.png" 
+                              x:Name="ImgBtn" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Center" Aspect="Fill"/>
+                    </Frame>
                 </StackLayout>
+
+                
             </Grid>
             <ScrollView>
                 <ListView x:Name="TableItems"

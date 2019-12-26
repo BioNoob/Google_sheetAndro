@@ -3,6 +3,7 @@ using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
 using Google_sheetAndro.ViewModels;
 using System;
+using System.Linq;
 using TableAndro;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,13 +25,29 @@ namespace Google_sheetAndro.Views
             //item = new NavigationPage(new ItemsPage());
 
             vM = new ItemsInfoVM();
-            vM.DoSetSelect += VM_DoSetSelect;
+            StaticInfo.DoSetSelect += VM_DoSetSelect;
             LoaderFunction.DoClearMap += LoaderFunction_DoClearMap;
+            var tgr = new TapGestureRecognizer();
+            tgr.Tapped += (s, e) => imgbtnclick();
+            ImgBtn.GestureRecognizers.Add(tgr);
             //Year_pick.SelectedIndex = Year_pick.Items.Count - 1;
             Mounth_pick.SelectedIndex = 0;
             BindingContext = vM;
         }
-
+        private async void imgbtnclick()
+        {
+            if (ImgBtn.Rotation == 360)
+                await ImgBtn.RotateTo(0, 200);
+            else
+                await ImgBtn.RotateTo(360, 200);
+            if (Mounth_pick.Items.Count > 0)
+            {
+                if (Mounth_pick.SelectedIndex != 0)
+                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex, EmailSync.IsToggled);
+                else
+                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0, EmailSync.IsToggled);
+            }
+        }
         private void LoaderFunction_DoClearMap()
         {
             if (LoaderFunction.ExtItNavPage != null)
@@ -44,7 +61,14 @@ namespace Google_sheetAndro.Views
 
         private void VM_DoSetSelect()
         {
-            Year_pick.SelectedIndex = Year_pick.Items.Count - 1;
+            if (fl_init)
+            {
+                vM.years = LocalTable.GetYearsList();
+                vM.selectedyear = vM.years.Max(t => Convert.ToInt32(t)).ToString();
+                //if (Year_pick.Items.Count > 0)
+                //    Year_pick.SelectedItem = vM.years.Max(t => Convert.ToInt32(t));
+                fl_init = !fl_init;
+            }
         }
 
         private void Graph_pick_date_SelectedIndexChanged(object sender, EventArgs e)
@@ -68,7 +92,7 @@ namespace Google_sheetAndro.Views
             if (int.TryParse(Year_pick.SelectedItem.ToString(), out yy) && Mounth_pick.SelectedIndex != 0)
                 Options.opt.dateTime = new DateTime(yy, Mounth_pick.SelectedIndex, 1);
             //NavigationPage.SetHasBackButton(LoaderFunction.MAINNavPage, true);
-            if(LoaderFunction.MAINNavPage.ToolbarItems.Count < 1)
+            if (LoaderFunction.MAINNavPage.ToolbarItems.Count < 1)
             {
                 LoaderFunction.MAINNavPage.ToolbarItems.Add(new ToolbarItem("Сохранить", "", redirect));
                 LoaderFunction.MAINNavPage.ToolbarItems.Add(new ToolbarItem("Отмена", "", backbattonimit));
@@ -167,8 +191,8 @@ namespace Google_sheetAndro.Views
             ItemsPage tp = LoaderFunction.ItemsPageAlone;
             MapPage mp = LoaderFunction.MapPageAlone;
             tp.setter(Ti);
-            mp.AbsSetter(Ti.route,Ti.points);
-            
+            mp.AbsSetter(Ti.route, Ti.points);
+
             mp.SetDSetH(Ti.range, Ti.height);
 
             LoaderFunction.ItAlNavPage = new NavigationPage(tp) { Title = "Запись", IconImageSource = "new_one.png" };
@@ -192,21 +216,25 @@ namespace Google_sheetAndro.Views
         }
         private void ContentPage_Appearing(object sender, EventArgs e)
         {
-            if (fl_init)
-            {
-                vM.years = LocalTable.GetYearsList();
-                if (Year_pick.Items.Count > 0)
-                    Year_pick.SelectedIndex = 0;
-                fl_init = !fl_init;
-            }
+            //if (fl_init)
+            //{
+            //    vM.years = LocalTable.GetYearsList();
+            //    if (Year_pick.Items.Count > 0)
+            //        Year_pick.SelectedIndex = 0;
+            //    fl_init = !fl_init;
+            //}
         }
 
         private void Switch_Toggled(object sender, ToggledEventArgs e)
         {
-            if (Mounth_pick.SelectedIndex != 0)
-                vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex, EmailSync.IsToggled);
-            else
-                vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0, EmailSync.IsToggled);
+            if (Mounth_pick.Items.Count > 0)
+            {
+                if (Mounth_pick.SelectedIndex != 0)
+                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex, EmailSync.IsToggled);
+                else
+                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0, EmailSync.IsToggled);
+            }
+
         }
     }
 }

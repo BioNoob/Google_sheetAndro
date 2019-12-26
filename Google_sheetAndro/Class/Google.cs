@@ -249,6 +249,7 @@ namespace TableAndro
                     }
                 }
             }
+            StaticInfo.EndLoadForListItems();
         }
         public static void SheetExist(int year)
         {

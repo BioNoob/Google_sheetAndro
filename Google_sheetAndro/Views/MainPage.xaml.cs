@@ -1,4 +1,5 @@
-﻿using Google_sheetAndro.Class;
+﻿using Android.Widget;
+using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
 using System;
 using System.ComponentModel;
@@ -20,8 +21,18 @@ namespace Google_sheetAndro.Views
         }
         protected override bool OnBackButtonPressed()
         {
-            LoaderFunction.callClearMap();
-            Navigation.PopToRootAsync();
+            if (LoaderFunction.MapPage.fl_run)
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Toast.MakeText(Android.App.Application.Context, "Идет запись маршрута", ToastLength.Long).Show();
+                });
+            }
+            else
+            {
+                LoaderFunction.callClearMap();
+                Navigation.PopToRootAsync();
+            }
             return true;
         }
 

@@ -86,29 +86,42 @@ namespace Google_sheetAndro.Views
 "49\tТренировочное, зачетное, соревновательное комплексное упражнение по программе многодневного перелета согласно квалификационным нормам ФАИ.",
 "50\tТренировочное, зачетное упражнение по программе установления рекорда"
             };
-        
+
         public TaskSelectPage()
         {
             InitializeComponent();
             foreach (string item in Tasked)
             {
-                Taskk.Add(new Task_cls(item.Substring(0, 2), item.Substring(2).Replace("\t","")));
+                Taskk.Add(new Task_cls(item.Substring(0, 2), item.Substring(2).Replace("\t", "")));
             }
             lvTask.ItemsSource = Taskk;
         }
-
+        private void clearer()
+        {
+            OutTask = string.Empty;
+            foreach (var it in Taskk)
+            {
+                it.IsSelected = false;
+            }
+        }
         public void SetSelected(string inner)
         {
+            clearer();
             Task_txt.TextChanged -= Task_txt_TextChanged;
+            string buf = string.Empty;
             foreach (var item in inner.Split(','))
             {
+                if (item.Length < 2)
+                    buf = $"0{item}";
+                else
+                    buf = item;
                 foreach (var it in Taskk)
                 {
-                    if (it.Data.Num == item)
+                    if (it.Data.Num == buf)
                     {
                         it.IsSelected = true;
                         LvTask_ItemSelected(this, new SelectedItemChangedEventArgs(it));
-                    }       
+                    }
                 }
             }
             Task_txt.TextChanged += Task_txt_TextChanged;
@@ -117,7 +130,7 @@ namespace Google_sheetAndro.Views
         public event EventHandler tasksetsucs;
         private async void Confirm_btn_Clicked(object sender, EventArgs e)
         {
-            if(OutTask.Length > 0)
+            if (OutTask.Length > 0)
             {
                 if (OutTask[OutTask.Length - 1] == ',')
                     OutTask = OutTask.Remove(OutTask.Length, 1);
@@ -125,21 +138,21 @@ namespace Google_sheetAndro.Views
             }
             await Navigation.PopModalAsync();
         }
-        public ICommand DisplayNameCommand => new Command<Task_cls>( Taskk =>
-        {
-            //await 
+        public ICommand DisplayNameCommand => new Command<Task_cls>(Taskk =>
+       {
+           //await 
            // if(!fl_zamena)
            // {
-                if (OutTask != string.Empty)
-                {
-                    OutTask += ",";
-                }
-                OutTask += Taskk.Num;
-                OutNum.Text = OutTask;
+           if (OutTask != string.Empty)
+           {
+               OutTask += ",";
+           }
+           OutTask += Taskk.Num;
+           OutNum.Text = OutTask;
            // }
 
-            //Application.Current.MainPage.DisplayAlert("Selected Name", Task_cls.Name, "OK");
-        });
+           //Application.Current.MainPage.DisplayAlert("Selected Name", Task_cls.Name, "OK");
+       });
         //bool fl_zamena = false;
         private void Task_txt_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -168,7 +181,7 @@ namespace Google_sheetAndro.Views
         }
         private void LvTask_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if(e.SelectedItem != null)
+            if (e.SelectedItem != null)
             {
                 if (((SelectableItem<Task_cls>)e.SelectedItem).IsSelected)
                 {
@@ -193,7 +206,7 @@ namespace Google_sheetAndro.Views
             Label s = (Label)sender;
             foreach (var item in Taskk)
             {
-                if(item.Data.Outter == s.Text)
+                if (item.Data.Outter == s.Text)
                 {
                     if (item.IsSelected)
                         item.IsSelected = false;

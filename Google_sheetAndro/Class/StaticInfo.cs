@@ -43,6 +43,9 @@ namespace Google_sheetAndro.Class
         public delegate void MenuSetPage(Page pg);
         public static event MenuSetPage SetDetailPage;
 
+        public delegate void SetSelected();
+        public static event SetSelected DoSetSelect;
+
         public delegate void ParamSetterN(string nalet);
         public static event ParamSetterN DoSetNalet;
         public delegate void ParamSetterH(int height);
@@ -64,6 +67,10 @@ namespace Google_sheetAndro.Class
         public static string AccountPicture { get => accountPicture; set { accountPicture = value; } }
         public static Location Pos { get; set; }
         public static string Place { get; set; }
+        public static void EndLoadForListItems()
+        {
+            DoSetSelect?.Invoke();
+        }
         public static void SetPage(Page pg)
         {
             SetDetailPage?.Invoke(pg);

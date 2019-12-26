@@ -36,12 +36,11 @@ namespace Google_sheetAndro.ViewModels
         private List<string> _mounths;
         public List<string> years { get { return _years; } set { _years = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("years")); } }
         public List<string> months { get { return _mounths; } set { _mounths = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("months"));} }
-
+        string _selectedyear;
+        public string selectedyear { get => _selectedyear; set { _selectedyear = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("selectedyear")); } }
         #region INotifyPropertyChanged implementation
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public delegate void SetSelected();
-        public event SetSelected DoSetSelect;
         #endregion
 
     }

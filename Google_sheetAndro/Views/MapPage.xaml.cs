@@ -75,7 +75,7 @@ namespace Google_sheetAndro.Views
         private double _height;
         private double bar;
         bool isLoaded;
-        bool fl_run = false;
+        public bool fl_run = false;
         bool fl_USE_MAP_CLICK = true; // в настройки добавить чекбокс использовать маркеры в маршрутах
         bool fl_route = true;
         public string address = string.Empty;
@@ -489,14 +489,15 @@ namespace Google_sheetAndro.Views
             //Handle event here for errors
         }
 
-        async Task StopListening()
+        async Task<bool> StopListening()
         {
             if (!CrossGeolocator.Current.IsListening)
-                return;
+                return false;
             CrossDeviceSensors.Current.Barometer.StopReading();
-            await CrossGeolocator.Current.StopListeningAsync();
+            bool l = await CrossGeolocator.Current.StopListeningAsync();
             CrossGeolocator.Current.PositionChanged -= PositionChanged;
             CrossGeolocator.Current.PositionError -= PositionError;
+            return l;
         }
 
         void InitializeUiSettingsOnMap()
@@ -682,7 +683,6 @@ namespace Google_sheetAndro.Views
             History[History.Length - 1] = obj;
             chet_active_hist = 8;
         }
-
         private async void SwManual_Toggled(object sender, ToggledEventArgs e)
         {
             if (await DisplayAlert("Предупреждение", "Текущий маршрут будет стёрт", "ОК", "Отммена"))
@@ -705,7 +705,8 @@ namespace Google_sheetAndro.Views
             {
                 if (!string.IsNullOrWhiteSpace(StaticInfo.Nalet))
                 {
-                    if (await DisplayAlert("Предупреждение", "Новая запись?", "Да", "Нет"))
+                    bool kek = await DisplayAlert("Предупреждение", "Новая запись?", "Да", "Нет");
+                    if (kek)
                     {
                         t.Sec = 0;
                         StaticInfo.Nalet = string.Empty;
@@ -728,30 +729,51 @@ namespace Google_sheetAndro.Views
             }
             else
             {
-                await StopListening();
-                fl_run = false;
-                alife = false;
-                b1.Text = "Старт";
-                StaticInfo.Nalet = t.ToString();
-                Xamarin.Forms.GoogleMaps.Position pp = map.Polylines.First().Positions.Last();
-                map.Pins.Add(new Pin() { Label = "End", Position = pp, IsDraggable = true });
-                SaveToHist(new MapObjects(map.Pins.ToList(), map.Polylines.First()));
+                bool kek2 = await StopListening();
+                if(kek2)
+                {
+                    fl_run = false;
+                    alife = false;
+                    b1.Text = "Старт";
+                    StaticInfo.Nalet = t.ToString();
+                    if(map.Polylines.Count > 0)
+                    {
+                        Xamarin.Forms.GoogleMaps.Position pp = map.Polylines.First().Positions.Last();
+                        map.Pins.Add(new Pin() { Label = "End", Position = pp, IsDraggable = true });
+                        SaveToHist(new MapObjects(map.Pins.ToList(), map.Polylines.First()));
+                    }
+                }
             }
             //b2.IsEnabled = true;
             //b1.IsEnabled = false;
             //Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
         }
-        private async void Button_Clicked(object sender, EventArgs e)
+        protected override bool OnBackButtonPressed()
         {
-            await StopListening();
-            //b2.IsEnabled = false;
-            alife = false;
-            //b1.IsEnabled = true;
-            StaticInfo.Nalet = t.ToString();
-            //tt.Stop();
-            //TimeSt();
-            //StaticInfo.Nalet = t.ToString();
+            if(fl_run)
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Toast.MakeText(Android.App.Application.Context, "Идет запись маршрута", ToastLength.Long).Show();
+                });
+                return true;
+            }
+            else
+            {
+                return base.OnBackButtonPressed();
+            }
         }
+        //private async void Button_Clicked(object sender, EventArgs e)
+        //{
+        //    await StopListening();
+        //    //b2.IsEnabled = false;
+        //    alife = false;
+        //    //b1.IsEnabled = true;
+        //    StaticInfo.Nalet = t.ToString();
+        //    //tt.Stop();
+        //    //TimeSt();
+        //    //StaticInfo.Nalet = t.ToString();
+        //}
         private async void CancelBtn_Clicked(object sender, EventArgs e)
         {
             await CancelBtn.FadeTo(0, 100);

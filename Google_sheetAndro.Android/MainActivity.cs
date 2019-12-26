@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Views;
 using Android.Widget;
 using Google_sheetAndro.Authentication;
 using Google_sheetAndro.Class;
@@ -41,6 +42,7 @@ namespace Google_sheetAndro.Droid
             {
                 LoadApplication(ap);
             }
+            this.Window.AddFlags(WindowManagerFlags.KeepScreenOn);
         }
         private void LoadOfflineVersion()
         {
