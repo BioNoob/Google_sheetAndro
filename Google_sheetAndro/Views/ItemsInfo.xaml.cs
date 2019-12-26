@@ -51,15 +51,15 @@ namespace Google_sheetAndro.Views
         {
             //выбор года для показа записей
             Mounth_pick.SelectedIndex = 0;
-            vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0);
+            vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0, EmailSync.IsToggled);
         }
 
         private void Mounth_pick_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Mounth_pick.SelectedIndex != 0)
-                vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex);
+                vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex, EmailSync.IsToggled);
             else
-                vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0);
+                vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0, EmailSync.IsToggled);
         }
 
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
@@ -109,9 +109,9 @@ namespace Google_sheetAndro.Views
             finally
             {
                 if (Mounth_pick.SelectedIndex != 0)
-                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex);
+                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex, EmailSync.IsToggled);
                 else
-                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0);
+                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0, EmailSync.IsToggled);
                 Year_pick.SelectedIndexChanged -= Graph_pick_date_SelectedIndexChanged;
                 vM.years.Clear();
                 vM.years = LocalTable.GetYearsList();
@@ -143,9 +143,9 @@ namespace Google_sheetAndro.Views
             finally
             {
                 if (Mounth_pick.SelectedIndex != 0)
-                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex);
+                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex, EmailSync.IsToggled);
                 else
-                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0);
+                    vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0, EmailSync.IsToggled);
                 Year_pick.SelectedIndexChanged -= Graph_pick_date_SelectedIndexChanged;
                 vM.years.Clear();
                 vM.years = LocalTable.GetYearsList();
@@ -203,10 +203,10 @@ namespace Google_sheetAndro.Views
 
         private void Switch_Toggled(object sender, ToggledEventArgs e)
         {
-            if(e.Value == true)
-            {
-                //фильтр только где email = свой
-            }
+            if (Mounth_pick.SelectedIndex != 0)
+                vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex, EmailSync.IsToggled);
+            else
+                vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0, EmailSync.IsToggled);
         }
     }
 }

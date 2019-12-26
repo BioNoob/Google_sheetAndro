@@ -47,11 +47,10 @@
                 <StackLayout  Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="10">
                     <Label Text="Отображать только свои записи" FontSize="18" TextColor="White"
                        Margin="10" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
-                    <Switch Margin="10,10,10,15" HorizontalOptions="Center" 
+                    <Switch Margin="10,10,10,15" HorizontalOptions="Center"  x:Name="EmailSync"
                         VerticalOptions="Center" Scale="0.7" ThumbColor="Orange" OnColor="Blue"
-                            Toggled="Switch_Toggled"/>
+                            Toggled="Switch_Toggled" IsToggled="True"/>
                 </StackLayout>
-
             </Grid>
             <ScrollView>
                 <ListView x:Name="TableItems"

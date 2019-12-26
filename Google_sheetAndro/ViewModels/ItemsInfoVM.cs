@@ -35,7 +35,7 @@ namespace Google_sheetAndro.ViewModels
         private List<string> _years;
         private List<string> _mounths;
         public List<string> years { get { return _years; } set { _years = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("years")); } }
-        public List<string> months { get { return _mounths; } set { _mounths = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("months")); DoSetSelect?.Invoke(); } }
+        public List<string> months { get { return _mounths; } set { _mounths = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("months"));} }
 
         #region INotifyPropertyChanged implementation
 

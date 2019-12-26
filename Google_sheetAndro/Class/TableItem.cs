@@ -42,26 +42,46 @@ namespace Google_sheetAndro.Class
             tt.Sort();
             return tt;
         }
-        public static ObservableCollection<Grouping<string, TableItem>> SortItems(string Year, int mouth)
+        public static ObservableCollection<Grouping<string, TableItem>> SortItems(string Year, int mouth, bool owner_use)
         {
             //ObservableCollection<Grouping<string, TableItem>> groupedData = new ObservableCollection<Grouping<string, TableItem>>();
             List<Grouping<string, TableItem>> kk;
-            switch (mouth)
+            if(owner_use)
             {
-                case 0:
-                    kk = ListItems.Where(p => p.year.ToString() == Year)
-                    .GroupBy(p => p.mounth)
-                    .Select(g => new Grouping<string, TableItem>(g.Key, g))
-                    .ToList();
-                    break;
-                default:
-                    kk = ListItems.Where(p => p.year.ToString() == Year && p.date.Month == mouth)
-                    .GroupBy(p => p.mounth)
-                    .Select(g => new Grouping<string, TableItem>(g.Key, g))
-                    .ToList();
-                    break;
+                switch (mouth)
+                {
+                    case 0:
+                        kk = ListItems.Where(p => p.year.ToString() == Year && p.author == StaticInfo.AccountEmail)
+                        .GroupBy(p => p.mounth)
+                        .Select(g => new Grouping<string, TableItem>(g.Key, g))
+                        .ToList();
+                        break;
+                    default:
+                        kk = ListItems.Where(p => p.year.ToString() == Year && p.date.Month == mouth && p.author == StaticInfo.AccountEmail)
+                        .GroupBy(p => p.mounth)
+                        .Select(g => new Grouping<string, TableItem>(g.Key, g))
+                        .ToList();
+                        break;
+                }
             }
-            
+            else
+            {
+                switch (mouth)
+                {
+                    case 0:
+                        kk = ListItems.Where(p => p.year.ToString() == Year)
+                        .GroupBy(p => p.mounth)
+                        .Select(g => new Grouping<string, TableItem>(g.Key, g))
+                        .ToList();
+                        break;
+                    default:
+                        kk = ListItems.Where(p => p.year.ToString() == Year && p.date.Month == mouth)
+                        .GroupBy(p => p.mounth)
+                        .Select(g => new Grouping<string, TableItem>(g.Key, g))
+                        .ToList();
+                        break;
+                }
+            }
             return new ObservableCollection<Grouping<string, TableItem>>(kk);
         }
         public static List<TableItem> getitemsbyyear(int year)
