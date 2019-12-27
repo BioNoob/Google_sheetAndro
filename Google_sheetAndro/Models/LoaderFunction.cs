@@ -147,11 +147,14 @@ namespace Google_sheetAndro.Models
                     EndLoad();
                     string kk = Preferences.Get("Offline_data", "");
                     List<TableItem> ti = JsonConvert.DeserializeObject<List<TableItem>>(kk);
-                    if (ti.Count > 0)
+                    if(ti != null)
                     {
-                        OfflineList ofl = new OfflineList(true);
-                        ofl.SetTableData(ti);
-                        StaticInfo.SetPage(ofl);
+                        if (ti.Count > 0)
+                        {
+                            OfflineList ofl = new OfflineList(true);
+                            ofl.SetTableData(ti);
+                            StaticInfo.SetPage(ofl);
+                        }
                     }
                     break;
                 }

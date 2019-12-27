@@ -24,6 +24,7 @@ namespace Google_sheetAndro.Views
         {
             InitializeComponent();
             Is_load = is_load;
+            IsBuser = false;
             Items = new ObservableCollection<TableItem>
             {
             };

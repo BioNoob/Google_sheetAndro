@@ -884,5 +884,16 @@ namespace Google_sheetAndro.Views
             fl_USE_MAP_CLICK = e.Value;
             Preferences.Set("SwitchValue",e.Value);
         }
+        private void ColorSettings(object sender, EventArgs e)
+        {
+            PopUpDialog.ShowDialog();
+            PopUpDialog.IsVisible = true;
+            PopUpDialog.DialogClosed += PopUpDialog_DialogClosed;
+        }
+
+        private void PopUpDialog_DialogClosed(object sender, EventArgs e)
+        {
+            PopUpDialog.IsVisible = false;
+        }
     }
 }
