@@ -9,18 +9,24 @@
     <xfg:ContentPageGloss.BackgroundGradient>
         <xfg:Gradient IsRotationTopToBottom="True">
             <xfg:Gradient.Steps>
-                <xfg:GradientStep StepColor="#FF9900" StepPercentage="0" />
-                <xfg:GradientStep StepColor="#000000" StepPercentage="1" />
+                <xfg:GradientStep StepColor="#2196F3" StepPercentage="0" />
+                <xfg:GradientStep StepColor="#FFFFFF" StepPercentage="1" />
             </xfg:Gradient.Steps>
         </xfg:Gradient>
     </xfg:ContentPageGloss.BackgroundGradient>
     <ContentPage.Content>
-
-        <ActivityIndicator x:Name="AcInd" 
-                IsVisible="False"
-                               IsRunning="False"
+        <Grid>
+            <RelativeLayout IsClippedToBounds="True">
+                <Image Source="back_start.png" Aspect="Fill" 
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand" Scale="1"/>
+            </RelativeLayout>
+            <RelativeLayout BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">
+                <ActivityIndicator x:Name="AcInd"
+                IsVisible="True"
+                               IsRunning="True"
                                IsEnabled="False"
-                               Color="Black"
+                               Color="Orange"
                                VerticalOptions="CenterAndExpand"
                                HorizontalOptions="CenterAndExpand"
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
@@ -28,6 +34,8 @@
                                         Factor=0.33}"
                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                                         Property=Height,
-                                        Factor=0.33}" />
+                                        Factor=0.33}" Scale="2" />
+            </RelativeLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
