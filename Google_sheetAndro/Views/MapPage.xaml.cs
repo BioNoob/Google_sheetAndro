@@ -31,7 +31,8 @@ using Xamarin.Forms.Xaml;
 * 9. ПОЛУЧАЕМ ВЫСОТУ ПО РАЗНИЦЕ ДАВЛЕНИЯ С ПОГОДЫ И МАКСИМАЛЬНОЙ ИЗ ЛИСТА ДАВЛЕНИЙ
 * 9. НАЖИМАЕМ КНОПКУ *К ЗАПИСИ* ПЕРЕНОСИМ ПУЛ ДАННЫХ НА ИТЕМС ПЕЙДЖ ДЛЯ ЗАПИСИ
 */
-
+//По умолчанию всегда две линии. Пустые с тагом хэндл и листнер
+//сериализуем обе. Добавляем позиции в каждую линию сразу на карту. Привязка?
 namespace Google_sheetAndro.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -75,10 +76,66 @@ namespace Google_sheetAndro.Views
         private double _height;
         private double bar;
         bool isLoaded;
+        int chet_active_hist = 8;
         public bool fl_run = false;
         bool fl_USE_MAP_CLICK = true; // в настройки добавить чекбокс использовать маркеры в маршрутах
         bool fl_route = true;
         public string address = string.Empty;
+        Color Handle_line_color { get { return pl_handle.StrokeColor; } set { pl_handle.StrokeColor = value; } }
+        Color Listner_line_color { get { return pl_listner.StrokeColor; } set { pl_listner.StrokeColor = value; } }
+        int Handle_line_StrokeWidth { get { return (int)pl_handle.StrokeWidth; } set { pl_handle.StrokeWidth = value; } }
+        int Listner_line_StrokeWidth { get { return (int)pl_listner.StrokeWidth; } set { pl_listner.StrokeWidth = value; } }
+        public List<Polyline> MapLines
+        {
+            get
+            {
+                return map.Polylines.ToList();
+            }
+            set
+            {
+                foreach (var item in value)
+                {
+                    map.Polylines.Add(item);
+                }
+            }
+        }
+        private Polyline _pl_handle;
+        Polyline pl_handle {
+            get
+            {
+                return _pl_handle;
+            }
+            set
+            {
+                var poly = MapLines.First(i => i.Tag == value.Tag);
+                var index = MapLines.IndexOf(poly);
+                if (index != -1)
+                {
+                    MapLines[index] = poly;
+                    _pl_handle = poly;
+                }
+
+            }
+        }// = new Polyline() { Tag = "handle", StrokeColor = Color.Red, StrokeWidth = 8 };
+        private Polyline _pl_listner;
+        Polyline pl_listner
+        {
+            get
+            {
+                return _pl_listner;
+            }
+            set
+            {
+                var poly = MapLines.First(i => i.Tag == value.Tag);
+                var index = MapLines.IndexOf(poly);
+                if (index != -1)
+                {
+                    MapLines[index] = poly;
+                    _pl_listner = poly;
+                }
+
+            }
+        }//{ get; set; } = new Polyline() { Tag = "listner", StrokeColor = Color.Blue, StrokeWidth = 8 };
         Time_r t = new Time_r();
         private bool alife = false;
         public double height
@@ -113,7 +170,6 @@ namespace Google_sheetAndro.Views
 
             }
         }
-        //КНОПКА ПЕРЕРАСЧЕТ ПУТИ?
         public double dist
         {
             get
@@ -145,7 +201,7 @@ namespace Google_sheetAndro.Views
                     }
                 }
             }
-        }
+        } 
         public void ClearMap()
         {
             //if (Is_base)
@@ -157,8 +213,12 @@ namespace Google_sheetAndro.Views
                     mapObjects.Polyline = map.Polylines.First();
                 }
                 map.Pins.Clear();
-                map.Polylines.Clear();
-                pl = new Polyline() { Tag = "Line", StrokeWidth = 10, StrokeColor = Color.Blue };
+                //map.Polylines.Clear();
+                foreach (var item in MapLines)
+                {
+                    item.Positions.Clear();
+                }
+                //pl = new Polyline() { Tag = "Line", StrokeWidth = 10, StrokeColor = Color.Blue };
                 SetDSetH(0, 0);
                 History = new MapObjects[10];
                 ToinitPos = new Xamarin.Forms.GoogleMaps.Position();
@@ -187,6 +247,7 @@ namespace Google_sheetAndro.Views
                 MapTypePick.SelectedIndex = 0;
                 RouteTypePick.SelectedIndex = 0;
             }
+            MapLines = new List<Polyline>() { pl_handle, pl_listner };
             map.PinDragEnd += Map_PinDragEnd;
             map.PinDragStart += Map_PinDragStart;
             map.PinDragging += Map_PinDragging;
@@ -464,14 +525,17 @@ namespace Google_sheetAndro.Views
             {
                 var zoom = map.CameraPosition.Zoom;
                 Xamarin.Forms.GoogleMaps.Position pos = new Xamarin.Forms.GoogleMaps.Position(e.Position.Latitude, e.Position.Longitude);
-                if (pl.Positions.Count >= 1)
+
+
+                if (pl_listner.Positions.Count >= 1)
                 {
-                    Plugin.Geolocator.Abstractions.Position pss = new Plugin.Geolocator.Abstractions.Position(pl.Positions[pl.Positions.Count - 1].Latitude, pl.Positions[pl.Positions.Count - 1].Longitude);
+                    Plugin.Geolocator.Abstractions.Position pss = new Plugin.Geolocator.Abstractions.Position(pl_listner.Positions[pl_listner.Positions.Count - 1].Latitude,
+                        pl_listner.Positions[pl_listner.Positions.Count - 1].Longitude);
                     if (GeolocatorUtils.CalculateDistance(pss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) * 1000 > 10)
                         SetLine(pos);
 
                 }
-                else if (pl.Positions.Count == 0)
+                else if (pl_listner.Positions.Count == 0)
                 {
                     SetLine(pos);
                 }
@@ -479,8 +543,6 @@ namespace Google_sheetAndro.Views
                 string p = string.Format("{0:#0.#};{1:#0.#}", e.Position.Latitude, e.Position.Longitude, CultureInfo.InvariantCulture);
                 Preferences.Set("LastKnownPosition", p);
             }
-
-
             //map.InitialCameraUpdate = CameraUpdateFactory.NewPosition(new Xamarin.Forms.GoogleMaps.Position(position.Latitude, position.Longitude));
         }
 
@@ -568,7 +630,6 @@ namespace Google_sheetAndro.Views
                 }
             }
         }
-        Polyline pl = new Polyline();
 
         private void SetPoint(Xamarin.Forms.GoogleMaps.Position e)
         {
@@ -655,7 +716,7 @@ namespace Google_sheetAndro.Views
             }
 
         }
-        int chet_active_hist = 8;
+
         private MapObjects LoadFromHist()
         {
 
@@ -883,6 +944,17 @@ namespace Google_sheetAndro.Views
         {
             fl_USE_MAP_CLICK = e.Value;
             Preferences.Set("SwitchValue",e.Value);
+        }
+        private void ColorSettings(object sender, EventArgs e)
+        {
+            PopUpDialog.ShowDialog();
+            PopUpDialog.IsVisible = true;
+            PopUpDialog.DialogClosed += PopUpDialog_DialogClosed;
+        }
+
+        private void PopUpDialog_DialogClosed(object sender, EventArgs e)
+        {
+            PopUpDialog.IsVisible = false;
         }
     }
 }

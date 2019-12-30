@@ -7,7 +7,8 @@
              mc:Ignorable="d"
              x:Class="Google_sheetAndro.Views.ItemsInfo"
              Appearing="ContentPage_Appearing"
-             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss">
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             xmlns:views1="clr-namespace:Google_sheetAndro.Views">
     <xfg:ContentPageGloss.BackgroundGradient>
         <xfg:Gradient IsRotationTopToBottom="True">
             <xfg:Gradient.Steps>
@@ -20,14 +21,16 @@
         <ToolbarItem Text="Добавить" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout x:Name="Sl" HorizontalOptions="Center" VerticalOptions="Center">
-            <!--x:DataType="views:ItemsInfoVM"-->
-            <Grid VerticalOptions="Center" HorizontalOptions="Center">
-                <Grid.RowDefinitions> 
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Picker x:Name="Year_pick" Grid.Row="0" Grid.Column="0"
+        <Grid>
+
+            <StackLayout x:Name="Sl" HorizontalOptions="Center" VerticalOptions="Center">
+                <!--x:DataType="views:ItemsInfoVM"-->
+                <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Picker x:Name="Year_pick" Grid.Row="0" Grid.Column="0"
                         Margin="10,5,5,5" FontSize="18"
                         VerticalOptions="Fill"
                         HorizontalOptions="Fill"
@@ -35,75 +38,73 @@
                          ItemsSource="{Binding years}"
                     SelectedIndexChanged="Graph_pick_date_SelectedIndexChanged"
                     Title="За период...">
-                </Picker>
-                <Picker x:Name="Mounth_pick" Grid.Row="0" Grid.Column="1"
+                    </Picker>
+                    <Picker x:Name="Mounth_pick" Grid.Row="0" Grid.Column="1"
                         Margin="10,5,5,5" FontSize="18"
                         VerticalOptions="Fill"
                         HorizontalOptions="Fill"
                          ItemsSource="{Binding months}"
                     SelectedIndexChanged="Mounth_pick_SelectedIndexChanged"
                     Title="Месяц">
-                </Picker>
-                <StackLayout  Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center"
+                    </Picker>
+                    <StackLayout  Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center"
                               Orientation="Horizontal">
-                    <Frame Margin="10" VerticalOptions="Center" 
+                        <Frame Margin="10" VerticalOptions="Center" 
                        HorizontalOptions="Center" Padding="0" BackgroundColor="#60000000" BorderColor="Orange" 
                        CornerRadius="20">
-                        <Grid HorizontalOptions="Center"
+                            <Grid HorizontalOptions="Center"
                       VerticalOptions="Center" ColumnSpacing="0" >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="70"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.7*"/>
-                                <ColumnDefinition Width="0.3*"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Text="Отображать только свои записи" FontSize="18" TextColor="White"
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="70"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.7*"/>
+                                    <ColumnDefinition Width="0.3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="Отображать только свои записи" FontSize="18" TextColor="White"
                        Margin="10" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
-                            <Switch  Grid.Column="1" Margin="10" HorizontalOptions="Center"  x:Name="EmailSync"
+                                <Switch  Grid.Column="1" Margin="10" HorizontalOptions="Center"  x:Name="EmailSync"
                         VerticalOptions="Center" Scale="1.4" ThumbColor="Orange" OnColor="#2196F3"
                             Toggled="Switch_Toggled" IsToggled="True"/>
-                        </Grid>
-                    </Frame>
-                    <Frame Margin="10" VerticalOptions="Center" 
+                            </Grid>
+                        </Frame>
+                        <Frame Margin="10" VerticalOptions="Center" 
                        HorizontalOptions="Center" Padding="0" BackgroundColor="#60000000" BorderColor="Orange" 
                        CornerRadius="20" HeightRequest="70" WidthRequest="70">
-                        <Image Source="refresh.png" 
+                            <Image Source="refresh.png" 
                               x:Name="ImgBtn" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Center" Aspect="Fill"/>
-                    </Frame>
-                </StackLayout>
-
-                
-            </Grid>
-            <ScrollView>
-                <ListView x:Name="TableItems"
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+                <ScrollView>
+                    <ListView x:Name="TableItems"
                           HasUnevenRows="True"
                           ItemsSource="{Binding ItemGroups}"
                           ItemTapped="TableItems_ItemTapped"
                           IsGroupingEnabled="true" Margin="5">
-                    <ListView.GroupHeaderTemplate>
-                        <DataTemplate>
-                            <ViewCell Height="30">
-                                <StackLayout>
-                                    <Label Text="{Binding Name}" FontSize="Large" />
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.GroupHeaderTemplate>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Margin="10">
-                                    <Label Text="{Binding date, StringFormat='{0:dd.MM.yyyy}'}" />
-                                    <Label Text="{Binding task}" />
-                                    <Label Text="{Binding plase}" />
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </ScrollView>
-            <!--<AbsoluteLayout>
+                        <ListView.GroupHeaderTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="30">
+                                    <StackLayout>
+                                        <Label Text="{Binding Name}" FontSize="Large" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.GroupHeaderTemplate>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Margin="10">
+                                        <Label Text="{Binding date, StringFormat='{0:dd.MM.yyyy}'}" />
+                                        <Label Text="{Binding task}" />
+                                        <Label Text="{Binding plase}" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+                <!--<AbsoluteLayout>
                 <ActivityIndicator
                     x:Name="activity"  
                        IsRunning="False"  
@@ -112,6 +113,7 @@
                        Color="Blue"  
                        BackgroundColor="Transparent"/>
             </AbsoluteLayout>-->
-        </StackLayout>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

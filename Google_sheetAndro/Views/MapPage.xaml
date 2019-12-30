@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:mp="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:views1="clr-namespace:Google_sheetAndro.Views"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              x:Class="Google_sheetAndro.Views.MapPage"
@@ -65,5 +66,8 @@
                 <Label x:Name="StatusTime" Text="" Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
             </Grid>
         </StackLayout>
+        <views1:PopUpDialogView x:Name="PopUpDialog" HeaderTitle="Test Dialog" IsVisible="False" InputTransparent="False"
+                                        >
+        </views1:PopUpDialogView>
     </Grid>
 </ContentPage>
