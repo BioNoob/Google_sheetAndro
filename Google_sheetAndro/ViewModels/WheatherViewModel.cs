@@ -45,17 +45,19 @@ namespace RefreshSample.ViewModels
             Place = StaticInfo.Place;
             LastReq = DateTime.Now;
             Val = gpp.getParams();
-            
+
             Time = gpp.time;
             string key = Searcher(StaticInfo.Pos);
             lw = await kek(key);
-            Airport = key;
             if (lw != null)
             {
-                ActualDate = lw.First().DateFormat;
-                ActualWind = lw.First().Wind;
+                if (lw.Count != 0)
+                {
+                    Airport = key;
+                    ActualDate = lw.First().DateFormat;
+                    ActualWind = lw.First().Wind;
+                }
             }
-
             IsBusy = false;
         }
         public bool ErrorVisual { get; set; }
@@ -176,6 +178,11 @@ namespace RefreshSample.ViewModels
                 var doc = await web.LoadFromWebAsync(url, cts.Token);
                 List<windout> lw11 = ParseAllTables(doc);
                 lw11 = lw11.Where(t => t.DateFormat >= DateTime.Now && t.DateFormat <= DateTime.Now.AddDays(1)).ToList();
+                if(lw11.Count == 0)
+                {
+                    ErrorStatus = "Данные с Meteocenter.asia по ближайшему объкту на настоящее время отсутствуют";
+                    return null;
+                }
                 //Time = LastReq.ToString("dd MMMM, HH:mm");
                 ErrorStatus = null;
                 return lw11;

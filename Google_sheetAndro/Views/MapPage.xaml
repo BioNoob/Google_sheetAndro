@@ -54,16 +54,20 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="65"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Label x:Name="Status_D" Text="Дист:" Grid.Row="0" Grid.Column="0" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
-                <Label x:Name="StatusD" Text="" Grid.Row="0" Grid.Column="1" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
-                <Label x:Name="Status_H" Text="Выс:" Grid.Row="1" Grid.Column="0" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
-                <Label x:Name="StatusH" Text="" Grid.Row="1" Grid.Column="1" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
-                <Label x:Name="StatusTime" Text="" Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+                <Label x:Name="Status_D_handle" Text="Дист руч:" Grid.Row="0" Grid.Column="0" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+                <Label x:Name="StatusD_handle"  Padding="5" Text="" Grid.Row="0" Grid.Column="1" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+                <Label x:Name="Status_D" Text="Дист зап:" Grid.Row="1" Grid.Column="0" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+                <Label x:Name="StatusD" Text="" Padding="5" Grid.Row="1" Grid.Column="1" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+                <Label x:Name="Status_H" Text="Выс:" Grid.Row="2" Grid.Column="0" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+                <Label x:Name="StatusH" Text=""  Padding="5" Grid.Row="2" Grid.Column="1" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+                <Label x:Name="StatusTime" Text="" Padding="5" Grid.Row="3" Grid.ColumnSpan="2" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
             </Grid>
         </StackLayout>
         <views1:PopUpDialogView x:Name="PopUpDialog" HeaderTitle="Test Dialog" IsVisible="False" InputTransparent="False"
