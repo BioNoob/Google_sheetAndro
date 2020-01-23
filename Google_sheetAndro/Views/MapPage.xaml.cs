@@ -102,6 +102,46 @@ namespace Google_sheetAndro.Views
             LoaderFunction.DoSetView += SetInitVew;
             LoaderFunction.DoClearMap += ClearMap;
             //PopSettings.Clicked += PopSettings_Clicked;
+            var tgr = new TapGestureRecognizer();
+            tgr.Tapped += (s, e) => TapGestureRecognizer_Tapped(s, e);
+            StatusD.GestureRecognizers.Add(tgr);
+            Status_D.GestureRecognizers.Add(tgr);
+            Status_D_handle.GestureRecognizers.Add(tgr);
+            StatusD_handle.GestureRecognizers.Add(tgr);
+        }
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            //TagLabel tagSpan = (TagLabel)sender;
+            //switch (tagSpan.Tag.ToString())
+            //{
+            //    case "0":
+            //    case "1":
+            //        break;
+            //    case "10":
+            //    case "11":
+            //        break;
+            //}
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="flag"> 1= handle 0= listen</param>
+        private void SetActiveDistLbl(bool flag)
+        {
+            if (flag)
+            {
+                Status_D.FontAttributes = FontAttributes.Bold;
+                StatusD.FontAttributes = FontAttributes.Bold;
+                StatusD_handle.FontAttributes = FontAttributes.None;
+                Status_D_handle.FontAttributes = FontAttributes.None;
+            }
+            else
+            {
+                StatusD_handle.FontAttributes = FontAttributes.Bold;
+                Status_D_handle.FontAttributes = FontAttributes.Bold;
+                Status_D.FontAttributes = FontAttributes.None;
+                StatusD.FontAttributes = FontAttributes.None;
+            }
         }
         Xamarin.Forms.GoogleMaps.Position ToinitPos = new Xamarin.Forms.GoogleMaps.Position();
         bool fl = false;
@@ -269,7 +309,7 @@ namespace Google_sheetAndro.Views
                 }
                 //pl = new Polyline() { Tag = "Line", StrokeWidth = 10, StrokeColor = Color.Blue };
                 SetDSetH(0, 0);
-                History  = ShiftList.RepeatedDefault<string>(10);
+                History = ShiftList.RepeatedDefault<string>(10);
                 ToinitPos = new Xamarin.Forms.GoogleMaps.Position();
             }
         }
@@ -299,7 +339,7 @@ namespace Google_sheetAndro.Views
             pl_handle = new Polyline() { Tag = "Handle", StrokeColor = Color.Red, StrokeWidth = 7 };
             pl_listner = new Polyline() { Tag = "Listner", StrokeColor = Color.Blue, StrokeWidth = 7 };
             //MapLines = new List<Polyline>() {  },
-                
+
             map.PinDragEnd += Map_PinDragEnd;
             map.PinDragStart += Map_PinDragStart;
             map.PinDragging += Map_PinDragging;
@@ -690,7 +730,7 @@ namespace Google_sheetAndro.Views
                     else
                     {
                         pl_handle.Positions.Add(t);
-                        if(pl_handle.Positions.Count >= 1)
+                        if (pl_handle.Positions.Count >= 1)
                         {
                             SetLine(t, true);
                         }
@@ -755,11 +795,11 @@ namespace Google_sheetAndro.Views
                 pl.Positions.Add(e);
                 map.Pins.Add(new Pin() { Label = "Start", Position = e, IsDraggable = true });
             }
-            if(pl.Positions.Count >= 2)
+            if (pl.Positions.Count >= 2)
             {
-                if(map.Polylines.Any(t=>t.Tag.ToString() == pl.Tag.ToString()))
+                if (map.Polylines.Any(t => t.Tag.ToString() == pl.Tag.ToString()))
                 {
-                    map.Polylines.Remove(map.Polylines.Where(t=>t.Tag.ToString() == pl.Tag.ToString()).First());
+                    map.Polylines.Remove(map.Polylines.Where(t => t.Tag.ToString() == pl.Tag.ToString()).First());
                 }
                 map.Polylines.Add(pl);
             }
@@ -774,7 +814,7 @@ namespace Google_sheetAndro.Views
             {
                 SetLineInner(e, pl_listner);
             }
-            if(!fl_from_hist)
+            if (!fl_from_hist)
             {
                 MapObjects mo = new MapObjects();
                 if (MapLines.Count > 0)
@@ -863,7 +903,7 @@ namespace Google_sheetAndro.Views
                         t.Sec = 0;
                         StaticInfo.Nalet = string.Empty;
                         map.Pins.Clear();
-                        if(map.Polylines.Contains(pl_listner))
+                        if (map.Polylines.Contains(pl_listner))
                         {
                             map.Polylines.Remove(pl_listner);
                             pl_listner.Positions.Clear();
@@ -943,7 +983,7 @@ namespace Google_sheetAndro.Views
                 if (mi.Polylines != null)
                 {
                     //var t = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()).ToList();
-                    if (mi.Polylines.SingleOrDefault(qq=> qq.Tag.ToString() == pl_handle.Tag.ToString()) != null)
+                    if (mi.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()) != null)
                     {
                         Polyline pl = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()).First();
                         pl_handle.Positions.Clear();
@@ -960,7 +1000,7 @@ namespace Google_sheetAndro.Views
                         {
                             SetLine(item, false, true);
                         }
-                        
+
                     }
                 }
             }
@@ -1012,7 +1052,7 @@ namespace Google_sheetAndro.Views
 
         private void ReCalcDist_Clicked(object sender, EventArgs e)
         {
-                if (map.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()) != null)
+            if (map.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()) != null)
                 dist = CalcDistForLine(pl_handle);
             else
                 Toast.MakeText(Android.App.Application.Context, "Нет пути для рассчета", ToastLength.Long).Show();

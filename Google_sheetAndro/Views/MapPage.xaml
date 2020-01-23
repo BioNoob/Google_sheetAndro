@@ -51,20 +51,23 @@
                     />
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="75"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Label x:Name="Status_D_handle" Text="Дист руч:" Grid.Row="0" Grid.Column="0" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
-                <Label x:Name="StatusD_handle"  Padding="5" Text="" Grid.Row="0" Grid.Column="1" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
-                <Label x:Name="Status_D" Text="Дист зап:" Grid.Row="1" Grid.Column="0" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
-                <Label x:Name="StatusD" Text="" Padding="5" Grid.Row="1" Grid.Column="1" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+                <Label x:Name="Status_D_handle" Text="Дист руч:" Grid.Row="0" Grid.Column="0"
+                           BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+                <Label x:Name="StatusD_handle"  Padding="5" Text="9999.99" Grid.Row="0" Grid.Column="1" 
+                               BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+                <Label x:Name="Status_D" Text="Дист зап:" Grid.Row="1" 
+                        Grid.Column="0" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
+                <Label  x:Name="StatusD" Text="" 
+                        Padding="5" Grid.Row="1" Grid.Column="1" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
                 <Label x:Name="Status_H" Text="Выс:" Grid.Row="2" Grid.Column="0" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
                 <Label x:Name="StatusH" Text=""  Padding="5" Grid.Row="2" Grid.Column="1" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
                 <Label x:Name="StatusTime" Text="" Padding="5" Grid.Row="3" Grid.ColumnSpan="2" BackgroundColor="#77000000" TextColor="Orange" FontSize="12"/>
