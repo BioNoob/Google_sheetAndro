@@ -111,36 +111,46 @@ namespace Google_sheetAndro.Views
         }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            //TagLabel tagSpan = (TagLabel)sender;
-            //switch (tagSpan.Tag.ToString())
-            //{
-            //    case "0":
-            //    case "1":
-            //        break;
-            //    case "10":
-            //    case "11":
-            //        break;
-            //}
+            Label tagSpan = (Label)sender;
+            bool fl = false;
+            switch (tagSpan.AutomationId)
+            {
+                case "Listen":
+                    fl = false;
+                    Status_D.BackgroundColor = Color.FromHex("#900040ff");
+                    StatusD.BackgroundColor = Color.FromHex("#900040ff");
+                    StatusD_handle.BackgroundColor = Color.FromHex("#70000000");
+                    Status_D_handle.BackgroundColor = Color.FromHex("#70000000");
+                    break;
+                case "Handle":
+                    StatusD_handle.BackgroundColor = Color.FromHex("#900040ff");
+                    Status_D_handle.BackgroundColor = Color.FromHex("#900040ff");
+                    StatusD.BackgroundColor = Color.FromHex("#70000000");
+                    Status_D.BackgroundColor = Color.FromHex("#70000000");
+                    fl = true;
+                    break;
+            }
+            SetActiveDistLbl(fl);
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="flag"> 1= handle 0= listen</param>
-        private void SetActiveDistLbl(bool flag)
+        private async void SetActiveDistLbl(bool flag)
         {
             if (flag)
             {
-                Status_D.FontAttributes = FontAttributes.Bold;
-                StatusD.FontAttributes = FontAttributes.Bold;
-                StatusD_handle.FontAttributes = FontAttributes.None;
-                Status_D_handle.FontAttributes = FontAttributes.None;
+                Handle_imgbtn.IsVisible = true;
+                await Handle_imgbtn.FadeTo(1, 700, Easing.SinInOut);
+                await Handle_imgbtn.FadeTo(0, 700, Easing.SinInOut);
+                Handle_imgbtn.IsVisible = false;
             }
             else
             {
-                StatusD_handle.FontAttributes = FontAttributes.Bold;
-                Status_D_handle.FontAttributes = FontAttributes.Bold;
-                Status_D.FontAttributes = FontAttributes.None;
-                StatusD.FontAttributes = FontAttributes.None;
+                Listen_imgbtn.IsVisible = true;
+                await Listen_imgbtn.FadeTo(1, 700, Easing.SinInOut);
+                await Listen_imgbtn.FadeTo(0, 700, Easing.SinInOut);
+                Listen_imgbtn.IsVisible = false;
             }
         }
         Xamarin.Forms.GoogleMaps.Position ToinitPos = new Xamarin.Forms.GoogleMaps.Position();
