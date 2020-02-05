@@ -1038,6 +1038,9 @@ namespace Google_sheetAndro.Views
                 pl_handle.Positions.Clear();
                 pl_listner.Positions.Clear();
                 dist = 0;
+                dist_handle = 0;
+                height = 0;
+                StatusTime.Text = string.Empty;
             }
             await ClearBtn.FadeTo(1, 100);
         }

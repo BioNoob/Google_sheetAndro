@@ -46,13 +46,13 @@
         </RelativeLayout>
         <StackLayout VerticalOptions="End" Margin="10,0,0,20" HorizontalOptions="Start">
             <Button x:Name ="b1" Text="Старт" BackgroundColor="#77000000" BorderRadius="4" BorderColor="White" BorderWidth="2" 
-                    TextColor="White" Clicked="b1_Clicked"
+                    TextColor="White" Clicked="b1_Clicked" Padding="0"
                     HorizontalOptions="Start" VerticalOptions="End"
                     />
-            <Grid Margin="2">
+            <Grid Padding="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
                     <!--<RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>-->
                 </Grid.RowDefinitions>
@@ -77,10 +77,10 @@
                        BackgroundColor="#70000000" TextColor="Orange" FontSize="12" AutomationId=""/>
                 <ImageButton Grid.Row="0" Grid.Column="2" Source="select" Scale="0.8"
                              IsEnabled="False" x:Name="Handle_imgbtn"
-                             Opacity="0"/>
+                             Opacity="1000"/>
                 <ImageButton Grid.Row="1" Grid.Column="2" Source="select" Scale="0.8"
                              IsEnabled="False" x:Name="Listen_imgbtn"
-                             Opacity="0"/>
+                             Opacity="1000"/>
             </Grid>
         </StackLayout>
         <views1:PopUpDialogView x:Name="PopUpDialog" HeaderTitle="Test Dialog" IsVisible="False" InputTransparent="False">
