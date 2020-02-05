@@ -108,6 +108,7 @@ namespace Google_sheetAndro.Views
             Status_D.GestureRecognizers.Add(tgr);
             Status_D_handle.GestureRecognizers.Add(tgr);
             StatusD_handle.GestureRecognizers.Add(tgr);
+            TapGestureRecognizer_Tapped(StatusD, null);
         }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
@@ -121,6 +122,10 @@ namespace Google_sheetAndro.Views
                     StatusD.BackgroundColor = Color.FromHex("#900040ff");
                     StatusD_handle.BackgroundColor = Color.FromHex("#70000000");
                     Status_D_handle.BackgroundColor = Color.FromHex("#70000000");
+                    if (!Is_base)
+                        StaticInfo.Dist = _dist;
+                    else
+                        LoaderFunction.ItemsPageAlone.SetDist(_dist);
                     break;
                 case "Handle":
                     StatusD_handle.BackgroundColor = Color.FromHex("#900040ff");
@@ -128,9 +133,14 @@ namespace Google_sheetAndro.Views
                     StatusD.BackgroundColor = Color.FromHex("#70000000");
                     Status_D.BackgroundColor = Color.FromHex("#70000000");
                     fl = true;
+                    if (!Is_base)
+                        StaticInfo.Dist = _dist_handle;
+                    else
+                        LoaderFunction.ItemsPageAlone.SetDist(_dist_handle);
                     break;
             }
-            SetActiveDistLbl(fl);
+
+                SetActiveDistLbl(fl);
         }
         /// <summary>
         /// 
@@ -140,17 +150,17 @@ namespace Google_sheetAndro.Views
         {
             if (flag)
             {
-                Handle_imgbtn.IsVisible = true;
+                //Handle_imgbtn.IsVisible = true;
                 await Handle_imgbtn.FadeTo(1, 700, Easing.SinInOut);
                 await Handle_imgbtn.FadeTo(0, 700, Easing.SinInOut);
-                Handle_imgbtn.IsVisible = false;
+                //Handle_imgbtn.IsVisible = false;
             }
             else
             {
-                Listen_imgbtn.IsVisible = true;
+                //Listen_imgbtn.IsVisible = true;
                 await Listen_imgbtn.FadeTo(1, 700, Easing.SinInOut);
                 await Listen_imgbtn.FadeTo(0, 700, Easing.SinInOut);
-                Listen_imgbtn.IsVisible = false;
+                //Listen_imgbtn.IsVisible = false;
             }
         }
         Xamarin.Forms.GoogleMaps.Position ToinitPos = new Xamarin.Forms.GoogleMaps.Position();
