@@ -62,6 +62,7 @@
                     <ColumnDefinition Width="35"/>
                     <ColumnDefinition Width="35"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="76"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="Status_D_handle" Text="Дист руч:" Grid.Row="0" Grid.Column="0"
                            BackgroundColor="#70000000" TextColor="Orange" FontSize="12" AutomationId="Handle"/>
@@ -75,12 +76,16 @@
                 <Label x:Name="StatusH" Text=""  Padding="5" Grid.Row="0" Grid.Column="4" BackgroundColor="#70000000" TextColor="Orange" FontSize="12"/>
                 <Label x:Name="StatusTime" Text="" Padding="5" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="3"
                        BackgroundColor="#70000000" TextColor="Orange" FontSize="12" AutomationId=""/>
+                <Label x:Name="Status_S" Text="Скорость:"  Padding="5" Grid.Row="0" Grid.Column="5" 
+                       BackgroundColor="#70000000" TextColor="Orange" FontSize="12"/>
+                <Label x:Name="StatusS" Text="" Padding="5" Grid.Row="1" Grid.Column="5"
+                       BackgroundColor="#70000000" TextColor="Orange" FontSize="12"/>
                 <ImageButton Grid.Row="0" Grid.Column="2" Source="select" Scale="0.8"
                              IsEnabled="False" x:Name="Handle_imgbtn"
-                             Opacity="1000"/>
+                             Opacity="0"/>
                 <ImageButton Grid.Row="1" Grid.Column="2" Source="select" Scale="0.8"
                              IsEnabled="False" x:Name="Listen_imgbtn"
-                             Opacity="1000"/>
+                             Opacity="0"/>
             </Grid>
         </StackLayout>
         <views1:PopUpDialogView x:Name="PopUpDialog" HeaderTitle="Test Dialog" IsVisible="False" InputTransparent="False">

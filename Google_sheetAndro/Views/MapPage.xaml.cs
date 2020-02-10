@@ -109,6 +109,38 @@ namespace Google_sheetAndro.Views
             Status_D_handle.GestureRecognizers.Add(tgr);
             StatusD_handle.GestureRecognizers.Add(tgr);
             TapGestureRecognizer_Tapped(StatusD, null);
+            this.Appearing += MapPage_Appearing;
+        }
+        TimeSpan t_speed = new TimeSpan();
+        private void MapPage_Appearing(object sender, EventArgs e)
+        {
+            t_speed = new TimeSpan(0, 0, 0, 0, 0);
+            Device.StartTimer(TimeSpan.FromMilliseconds(1), () => OnTimerSpeedometr());
+        }
+        private bool OnTimerSpeedometr()
+        {
+            t_speed = t_speed.Add(TimeSpan.FromMilliseconds(1));
+            Debug.WriteLine(t_speed.ToString());
+            return true;
+        }
+        Plugin.Geolocator.Abstractions.Position bufferpos = new Plugin.Geolocator.Abstractions.Position();
+        private double _speed = 0;
+        public double speed { get { return _speed; } set { _speed = value; StatusS.Text = string.Format("{0:#0.0} км/ч", _speed); } }
+        private void RefreshSpeed(Plugin.Geolocator.Abstractions.Position e)
+        {
+            if(bufferpos.Latitude != 0)
+            {
+                double dist = GeolocatorUtils.CalculateDistance(bufferpos, e,GeolocatorUtils.DistanceUnits.Kilometers);
+                if(t_speed.TotalHours != 0)
+                {
+                    double _xspeed = dist / t_speed.TotalHours;
+                    if (_xspeed > 0)
+                        speed = _xspeed;
+                    t_speed = new TimeSpan(0, 0, 0, 0, 0);
+                }
+            }
+            else
+                bufferpos = e;
         }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
@@ -139,7 +171,6 @@ namespace Google_sheetAndro.Views
                         LoaderFunction.ItemsPageAlone.SetDist(_dist_handle);
                     break;
             }
-
                 SetActiveDistLbl(fl);
         }
         /// <summary>
@@ -619,8 +650,7 @@ namespace Google_sheetAndro.Views
                 DeferralTime = TimeSpan.FromSeconds(1),
                 ListenForSignificantChanges = true,
                 PauseLocationUpdatesAutomatically = false
-            });
-
+            }); 
             CrossGeolocator.Current.PositionChanged += PositionChanged;
             CrossGeolocator.Current.PositionError += PositionError;
         }
@@ -646,17 +676,15 @@ namespace Google_sheetAndro.Views
             Plugin.Geolocator.Abstractions.Position poss = new Plugin.Geolocator.Abstractions.Position(map.CameraPosition.Target.Latitude, map.CameraPosition.Target.Longitude);
             if (GeolocatorUtils.CalculateDistance(poss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) < 25)//was 5 set 25 to Lost GeoPos
             {
+                RefreshSpeed(poss);
                 var zoom = map.CameraPosition.Zoom;
                 Xamarin.Forms.GoogleMaps.Position pos = new Xamarin.Forms.GoogleMaps.Position(e.Position.Latitude, e.Position.Longitude);
-
-
                 if (pl_listner.Positions.Count >= 1)
                 {
                     Plugin.Geolocator.Abstractions.Position pss = new Plugin.Geolocator.Abstractions.Position(pl_listner.Positions[pl_listner.Positions.Count - 1].Latitude,
                         pl_listner.Positions[pl_listner.Positions.Count - 1].Longitude);
                     if (GeolocatorUtils.CalculateDistance(pss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) * 1000 > 10)
                         SetLine(pos, false);
-
                 }
                 else if (pl_listner.Positions.Count == 0)
                 {
