@@ -120,7 +120,7 @@ namespace Google_sheetAndro.Views
         private bool OnTimerSpeedometr()
         {
             t_speed = t_speed.Add(TimeSpan.FromMilliseconds(1));
-            Debug.WriteLine(t_speed.ToString());
+            //Debug.WriteLine(t_speed.ToString());
             return true;
         }
         Plugin.Geolocator.Abstractions.Position bufferpos = new Plugin.Geolocator.Abstractions.Position();
@@ -412,7 +412,10 @@ namespace Google_sheetAndro.Views
         private void Map_PinDragStart(object sender, PinDragEventArgs e)
         {
             //DragPin = e.Pin;
-
+            Debug.WriteLine("Pin drug");
+            var qq = map.CameraPosition.Zoom;
+            Debug.WriteLine("Zoom = " + qq.ToString());
+            Debug.WriteLine("PinPos = " + e.Pin.Position.Latitude.ToString() +" : "+ e.Pin.Position.Longitude.ToString());
             int m = map.Pins.IndexOf(e.Pin);
             //var l = map.Pins.Where(t => t.Label == e.Pin.Label).SingleOrDefault();
             //var p = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (OffsetCalc), e.Pin.Position.Longitude);
@@ -748,6 +751,10 @@ namespace Google_sheetAndro.Views
 
         private void map_MapLongClicked(object sender, MapLongClickedEventArgs e)
         {
+            Debug.WriteLine("Pin set");
+            var qq = map.CameraPosition.Zoom;
+            Debug.WriteLine("Zoom = " + qq.ToString());
+            Debug.WriteLine("PinPos = " + e.Point.Latitude.ToString() + " : " + e.Point.Longitude.ToString());
             if (fl_route)
             {
                 SetLine(e.Point, true);
@@ -760,6 +767,7 @@ namespace Google_sheetAndro.Views
 
         private void Map_PinClicked(object sender, PinClickedEventArgs e)
         {
+            Debug.WriteLine("Pin clicked");
             Xamarin.Forms.GoogleMaps.Position t;
             t = e.Pin.Position;
             if (fl_route)

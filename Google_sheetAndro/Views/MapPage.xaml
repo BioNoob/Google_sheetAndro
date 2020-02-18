@@ -45,48 +45,57 @@
                 />
         </RelativeLayout>
         <StackLayout VerticalOptions="End" Margin="10,0,0,20" HorizontalOptions="Start">
-            <Button x:Name ="b1" Text="Старт" BackgroundColor="#77000000" BorderRadius="4" BorderColor="White" BorderWidth="2" 
-                    TextColor="White" Clicked="b1_Clicked" Padding="0"
-                    HorizontalOptions="Start" VerticalOptions="End"
-                    />
-            <Grid Padding="0">
+            <Grid Padding="0" RowSpacing="1.8">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
                     <!--<RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>-->
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="75"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="35"/>
-                    <ColumnDefinition Width="35"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="76"/>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="75"/>
                 </Grid.ColumnDefinitions>
-                <Label x:Name="Status_D_handle" Text="Дист руч:" Grid.Row="0" Grid.Column="0"
-                           BackgroundColor="#70000000" TextColor="Orange" FontSize="12" AutomationId="Handle"/>
-                <Label x:Name="StatusD_handle"  Padding="5" Text="" Grid.Row="0" Grid.Column="1" 
-                               BackgroundColor="#70000000" TextColor="Orange" FontSize="12" AutomationId="Handle"/>
-                <Label x:Name="Status_D" Text="Дист зап:" Grid.Row="1" 
-                        Grid.Column="0" BackgroundColor="#70000000" TextColor="Orange" FontSize="12" AutomationId="Listen"/>
+                <Button x:Name ="b1" Text="Старт" BackgroundColor="#77000000" BorderRadius="4" BorderColor="White" 
+                        BorderWidth="2" TextColor="White" Clicked="b1_Clicked" Padding="0" 
+                        Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                        HorizontalOptions="Center" VerticalOptions="Center"
+                    />
+                <Label x:Name="Status_D_handle" Text="Дист руч:" Grid.Row="3" Grid.Column="1"
+                           BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Handle"/>
+                <Label x:Name="StatusD_handle"  Padding="5" Text="" Grid.Row="2" Grid.Column="1" 
+                               BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Handle"/>
+                <Label x:Name="Status_D" Text="Дист зап:" Grid.Row="3" 
+                        Grid.Column="0" BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Listen"/>
                 <Label  x:Name="StatusD" Text="" 
-                        Padding="5" Grid.Row="1" Grid.Column="1" BackgroundColor="#70000000" TextColor="Orange" FontSize="12" AutomationId="Listen"/>
-                <Label x:Name="Status_H" Text="Выс:" Grid.Row="0" Grid.Column="3" BackgroundColor="#70000000" TextColor="Orange" FontSize="12"/>
-                <Label x:Name="StatusH" Text=""  Padding="5" Grid.Row="0" Grid.Column="4" BackgroundColor="#70000000" TextColor="Orange" FontSize="12"/>
-                <Label x:Name="StatusTime" Text="" Padding="5" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="3"
-                       BackgroundColor="#70000000" TextColor="Orange" FontSize="12" AutomationId=""/>
-                <Label x:Name="Status_S" Text="Скорость:"  Padding="5" Grid.Row="0" Grid.Column="5" 
-                       BackgroundColor="#70000000" TextColor="Orange" FontSize="12"/>
-                <Label x:Name="StatusS" Text="" Padding="5" Grid.Row="1" Grid.Column="5"
-                       BackgroundColor="#70000000" TextColor="Orange" FontSize="12"/>
-                <ImageButton Grid.Row="0" Grid.Column="2" Source="select" Scale="0.8"
+                        Padding="5" Grid.Row="2" Grid.Column="0" BackgroundColor="#70000000" TextColor="Orange" FontSize="12" AutomationId="Listen"/>
+                <Label x:Name="Status_H" Text="Выс:" Grid.Row="3" Grid.Column="2" BackgroundColor="#70000000" 
+                       TextColor="Orange" FontSize="11" VerticalTextAlignment="Start"/>
+                <Label x:Name="StatusH" Text=""  Padding="5" Grid.Row="2" Grid.Column="2" BackgroundColor="#70000000" 
+                       TextColor="Orange" FontSize="11"/>
+                <Label x:Name="StatusTime" Text="" Padding="5" Grid.Row="0" Grid.Column="1"
+                       BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId=""/>
+                <Label x:Name="LblStatusTime" Text="Время зап." Padding="0" Grid.Row="1" Grid.Column="1"
+                       BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId=""
+                                              VerticalTextAlignment="Start"/>
+                <Label x:Name="Status_S" Text="Скорость:"  Padding="0" Grid.Row="3" Grid.Column="3" 
+                       BackgroundColor="#70000000" TextColor="Orange" FontSize="11"/>
+                <Label x:Name="StatusS" Text="" Padding="5" Grid.Row="2" Grid.Column="3"
+                       BackgroundColor="#70000000" TextColor="Orange" FontSize="11"/>
+                <ImageButton Grid.Row="2" Grid.Column="1" Source="select" Scale="0.7"
+                             Grid.RowSpan="2" BackgroundColor="Transparent"
                              IsEnabled="False" x:Name="Handle_imgbtn"
                              Opacity="0"/>
-                <ImageButton Grid.Row="1" Grid.Column="2" Source="select" Scale="0.8"
+                <ImageButton Grid.Row="2" Grid.Column="0" Source="select" Scale="0.7"
+                             Grid.RowSpan="2" BackgroundColor="Transparent"
                              IsEnabled="False" x:Name="Listen_imgbtn"
                              Opacity="0"/>
             </Grid>
+
         </StackLayout>
         <views1:PopUpDialogView x:Name="PopUpDialog" HeaderTitle="Test Dialog" IsVisible="False" InputTransparent="False">
         </views1:PopUpDialogView>
