@@ -400,42 +400,46 @@ namespace Google_sheetAndro.Views
         {
             //map.
 
-            int m = map.Pins.IndexOf(e.Pin);
-            map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (OffsetCalc), e.Pin.Position.Longitude);
+            //int m = map.Pins.IndexOf(e.Pin);
+            //map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (OffsetCalc), e.Pin.Position.Longitude);
             //if(map.Pins.Contains(DragPin))
             //{
             //    map.Pins.Remove(DragPin);
             //}
             //map.Pins.Add(pin);
         }
-
+        private string PinBuffLbl;
+        private Xamarin.Forms.GoogleMaps.Position PinDeffY;
         private void Map_PinDragStart(object sender, PinDragEventArgs e)
         {
-            //DragPin = e.Pin;
-            Debug.WriteLine("Pin drug");
-            var qq = map.CameraPosition.Zoom;
-            Debug.WriteLine("Zoom = " + qq.ToString());
-            Debug.WriteLine("PinPos = " + e.Pin.Position.Latitude.ToString() +" : "+ e.Pin.Position.Longitude.ToString());
-            int m = map.Pins.IndexOf(e.Pin);
-            //var l = map.Pins.Where(t => t.Label == e.Pin.Label).SingleOrDefault();
-            //var p = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (OffsetCalc), e.Pin.Position.Longitude);
-
-            //map.Pins.ElementAt(m).Position = p;
-
-            if (map.Polylines.Count > 0)
-            {
-                //int k = map.Polylines.First().Positions.IndexOf(DragPin.Position);
-                //if (k >= 0)
-                //{
-                //    map.Polylines.First().Positions.RemoveAt(k);
-                //    map.Polylines.First().Positions.Insert(k, e.Pin.Position);
-                //}
-            }
+            PinBuffLbl = e.Pin.Label;
         }
         private void Map_PinDragEnd(object sender, PinDragEventArgs e)
         {
-            int m = map.Pins.IndexOf(e.Pin);
-            map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - (OffsetCalc), e.Pin.Position.Longitude);
+            //int m = map.Pins.IndexOf(e.Pin);
+            var t = LoadFromHistActual();
+            var l = t.Pins.Find(q => q.Label == PinBuffLbl);
+            if(l!= null)
+            {
+                int buff = pl_handle.Positions.IndexOf(l.Position);
+                if (buff > 0)
+                {
+                    map.Polylines.Remove(pl_handle);
+                    pl_handle.Positions.RemoveAt(buff);
+                    pl_handle.Positions.Insert(buff, e.Pin.Position);
+                    map.Polylines.Add(pl_handle);
+                    MapObjects mo = new MapObjects();
+                    if (MapLines.Count > 0)
+                    {
+                        mo.Polylines = MapLines;
+                    }
+                    mo.Pins = map.Pins.ToList();
+                    SaveToHist(mo);
+                }
+            }
+            //Debug.WriteLine("PinPosEnd = " + e.Pin.Position.Latitude.ToString() + " : " + e.Pin.Position.Longitude.ToString());
+            //map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - PinDeffY.Latitude,
+            //    e.Pin.Position.Longitude);//e.Pin.Position.Latitude - (OffsetCalc), e.Pin.Position.Longitude);
             //map.Pins.Select(t => DragPin);
             //throw new NotImplementedException();
         }
@@ -797,22 +801,29 @@ namespace Google_sheetAndro.Views
             }
         }
 
-        private void SetPoint(Xamarin.Forms.GoogleMaps.Position e)
+        private void SetPoint(Xamarin.Forms.GoogleMaps.Position e, bool fl_transp = false)
         {
+            var _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.DeepSkyBlue);
             if (map.Pins.Count >= 1)
             {
-                map.Pins.Add(new Pin() { Label = $"{map.Pins.Count - 1}", Position = e, IsDraggable = true, Icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Blue) });
+                if(!fl_transp)
+                _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Blue);
+                map.Pins.Add(new Pin() { Label = $"{map.Pins.Count - 1}", Position = e, IsDraggable = true, Icon = _icon});
             }
             else
             {
-                map.Pins.Add(new Pin() { Label = $"Start", Position = e, IsDraggable = true });
+                _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Red);
+                map.Pins.Add(new Pin() { Label = $"Start", Position = e, IsDraggable = true, Icon= _icon });
             }
-            MapObjects mo = new MapObjects() { Pins = map.Pins.ToList() };
-            if (map.Polylines.Count > 0)
+            if (!fl_transp)
             {
-                mo.Polylines = MapLines;
+                MapObjects mo = new MapObjects() { Pins = map.Pins.ToList() };
+                if (map.Polylines.Count > 0)
+                {
+                    mo.Polylines = MapLines;
+                }
+                SaveToHist(mo);
             }
-            SaveToHist(mo);
         }
         private void SetLineInner(Xamarin.Forms.GoogleMaps.Position e, Polyline pl)
         {
@@ -830,8 +841,6 @@ namespace Google_sheetAndro.Views
                     dist += dist_buf;
                 }
                 pl.Positions.Add(e);
-                //map.Polylines.Clear();
-                //map.Polylines.Add(pl);
                 Pin pn;
                 if (map.Pins.Count >= 1)
                 {
@@ -839,6 +848,7 @@ namespace Google_sheetAndro.Views
                     {
                         pn = map.Pins.Where(i => i.Label == "End").First();
                         map.Pins.Remove(pn);
+                        SetPoint(pn.Position, true);
                         pn.Position = e;
                         map.Pins.Add(pn);
                     }
@@ -911,6 +921,12 @@ namespace Google_sheetAndro.Views
         {
             History = ShiftList.ShiftRight(History, 1);
             History[0] = null;
+            return JsonConvert.DeserializeObject<MapObjects>(History.Last());
+        }
+        private MapObjects LoadFromHistActual()
+        {
+            //History = ShiftList.ShiftRight(History, 1);
+            //History[0] = null;
             return JsonConvert.DeserializeObject<MapObjects>(History.Last());
         }
         private bool OnTimerTick()

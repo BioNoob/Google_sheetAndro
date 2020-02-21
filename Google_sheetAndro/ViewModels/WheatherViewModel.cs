@@ -113,6 +113,7 @@ namespace RefreshSample.ViewModels
             catch (Exception)
             {
                 ErrorStatus = "Сервис погоды недоступен";
+                IsBusy = false;
             }
             finally
             {

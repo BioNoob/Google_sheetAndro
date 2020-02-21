@@ -37,7 +37,7 @@ namespace Google_sheetAndro.Views
             Items = new List<MenuItems>()
             {
                 {new MenuItems("table_menu.png","Просмотр записей")},
-                {new MenuItems("chart_menu.png","Граф Отчёт")},
+                {new MenuItems("chart_menu.png","Граф отчёт")},
                 {new MenuItems("map_menu.png","Картография")},
                 {new MenuItems("whe_menu.png","Погода")},
                 {new MenuItems("info_menu.png","Информация")}
