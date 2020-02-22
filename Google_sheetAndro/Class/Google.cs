@@ -5,12 +5,14 @@ using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
 using Google_sheetAndro;
 using Google_sheetAndro.Class;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using Xamarin.Essentials;
 using static Google.Apis.Sheets.v4.SpreadsheetsResource;
 
@@ -48,18 +50,22 @@ namespace TableAndro
                 DestinationSpreadsheetId = SpreadsheetId
             };
             SpreadsheetsResource.SheetsResource.CopyToRequest request = service.Spreadsheets.Sheets.CopyTo(requestBody, SpreadsheetId, shID);
-            SheetProperties response = request.Execute();
+            CancellationTokenSource cts = new CancellationTokenSource();
+            cts.CancelAfter(15000);
+            var response = request.ExecuteAsync(cts.Token);
             
             BatchUpdateSpreadsheetRequest requestBodyBU = new BatchUpdateSpreadsheetRequest();
             IList<Request> LQReq = new List<Request>();
-            LQReq.Add(google_requests.RenamerSh(response.SheetId, title));
+            LQReq.Add(google_requests.RenamerSh(response.Result.SheetId, title));
             requestBodyBU.Requests = LQReq;
             BatchUpdateRequest BUrequest = service.Spreadsheets.BatchUpdate(requestBodyBU, SpreadsheetId);
-            var resp2 = BUrequest.Execute();
-            newSheetId = response.SheetId ?? 0;
+            var resp2 = BUrequest.ExecuteAsync(cts.Token);
+            newSheetId = response.Result.SheetId ?? 0;
         }
         public static void InitService(string year = "")
         {
+            CancellationTokenSource cts = new CancellationTokenSource();
+            cts.CancelAfter(15000);
             var assembly = Assembly.GetExecutingAssembly();
             GoogleCredential credential;
             using (var stream = assembly.GetManifestResourceStream("Google_sheetAndro.sicret_new.json"))
@@ -74,34 +80,10 @@ namespace TableAndro
                 HttpClientInitializer = credential,
                 ApplicationName = Googles.ApplicationName,
             });
-            Googles.sheetInfo = Googles.service.Spreadsheets.Get(Googles.SpreadsheetId).Execute();
+            var qq = Googles.service.Spreadsheets.Get(Googles.SpreadsheetId).ExecuteAsync(cts.Token);
+            Googles.sheetInfo = qq.Result;
             ShReader(year);
         }
-        //public static Dictionary<string, ValueRange> GetValueTabel()
-        //{
-        //    Dictionary<string, ValueRange> dic = new Dictionary<string, ValueRange>();
-        //    SpreadsheetsResource.ValuesResource.GetRequest request;
-        //    string range = string.Empty;
-        //    var sheets = sheetInfo.Sheets;
-        //    foreach (Sheet item in sheets)
-        //    {
-        //        range = string.Empty;
-        //        string sh_name = item.Properties.Title;
-        //        //if (sh_name == "Общий налет")
-        //        //    range = $"{sh_name}!A:G";
-        //        if (IsDigitsOnly(item.Properties.Title))
-        //            range = $"{sh_name}!A:K";
-        //        if (range != string.Empty)
-        //        {
-        //            request = service.Spreadsheets.Values.Get(SpreadsheetId, range);
-        //            request.ValueRenderOption = ValuesResource.GetRequest.ValueRenderOptionEnum.FORMULA;
-        //            //request.DateTimeRenderOption = ValuesResource.GetRequest.DateTimeRenderOptionEnum.FORMATTEDSTRING;
-        //            var response = request.Execute();
-        //            dic.Add(sh_name, response);
-        //        }
-        //    }
-        //    return dic;
-        //}
         private static bool IsDigitsOnly(string str)
         {
             foreach (char c in str)
@@ -116,14 +98,13 @@ namespace TableAndro
         public static int sheet_id = 0;
         public static ValueRange GetBaseData()
         {
-            //var sheets = sheetInfo.Sheets;
-            //var sheet = sheets.Where(t => t.Properties.Title == "ÄirportBase").ToList().First();
-            //var shId = sheet.Properties.SheetId;
             var range = $"AirportBase!A:C";
             SpreadsheetsResource.ValuesResource.GetRequest request =
         service.Spreadsheets.Values.Get(SpreadsheetId, range);
             request.ValueRenderOption = ValuesResource.GetRequest.ValueRenderOptionEnum.FORMULA;
-            return request.Execute();
+            CancellationTokenSource cts = new CancellationTokenSource();
+            cts.CancelAfter(15000);
+            return request.ExecuteAsync(cts.Token).Result;
         }
         public static void ShReader(string year_to = "")
         {
@@ -150,8 +131,10 @@ namespace TableAndro
                     SpreadsheetsResource.ValuesResource.GetRequest request =
         service.Spreadsheets.Values.Get(SpreadsheetId, range);
                     request.ValueRenderOption = ValuesResource.GetRequest.ValueRenderOptionEnum.FORMULA;
-                    var response = request.Execute();
-                    IList<IList<object>> values = response.Values;
+                    CancellationTokenSource cts = new CancellationTokenSource();
+                    cts.CancelAfter(15000);
+                    var response = request.ExecuteAsync(cts.Token);
+                    IList<IList<object>> values = response.Result.Values;
                     if (values != null && values.Count > 0)
                     {
                         LocalTable.SheetsVal.Add(year.ToString(), values);
@@ -251,6 +234,7 @@ namespace TableAndro
             }
             StaticInfo.EndLoadForListItems();
         }
+        private static bool fl_yearadd;
         public static void SheetExist(int year)
         {
             //узнаем есть ли интересующий шит
@@ -281,6 +265,9 @@ namespace TableAndro
                 ShablonDuplicater(Sh_shbalon, year.ToString());//createnewsheets и вернем его имя
                 sheet_id = Googles.newSheetId;
                 SheetName =  year.ToString();
+                InitService(SheetName);
+                fl_yearadd = true;
+
             }
         }
         public static bool ReadEntriesAsync(TableItem ti/*Dictionary<string, object> dic*/)
@@ -288,26 +275,10 @@ namespace TableAndro
             var network = Connectivity.NetworkAccess;
             if (network == NetworkAccess.None)
             {
-                return false;
+                throw new Exception("No connect");
             }
             try
             {
-                    //Dictionary<string, object> dic_copy = new Dictionary<string, object>();
-                    //foreach (var item in dic.Keys)
-                    //{
-                    //    var obj = dic[item];
-                    //    if (obj == null)
-                    //        dic_copy.Add(item, "");
-                    //    else
-                    //        dic_copy.Add(item, dic[item]);
-                    //}
-                    //dic = dic_copy;
-                    //int year = ((DateTime)dic["date"]).Year;
-                    //int month = ((DateTime)dic["date"]).Month;
-                    //dic["date"] = ((DateTime)dic["date"]).ToString("dd/MM/yyyy");
-                    ////string mont_nm = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(((DateTime)dic["date"]).Month);
-                    ////string mont_nm = ((DateTime)dic["date"]).Month.ToString("MMMM", new CultureInfo("ru-RU"));
-
                     int month = ti.date.Month;
                 string[] months = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
                 string mont_nm = months[month-1].ToLower();
@@ -317,21 +288,9 @@ namespace TableAndro
                 sh_ID = sheet_id;//ti.sh_id;//Googles.sheet_id;
                 sheet = SheetName;
                 //var range = $"{sheet}!A:K";
-                var range = $"{sheet}!A:N";
-                //находить пустые строки при месяце
-                //range A:A 
-                //IF row[0] == mont_nm то вставить строчку выше(если строчка выше пустая if предыдущий row[1] <> "", то получить ее номер, если нет новую)
-                //заность данные туда. Получить координаты этой строчки (A + row.number, K + row.number)
-                //ну и собстно поехали         
+                var range = $"{sheet}!A:N"; 
                 int inp_row = 0;
                 int inp_row_mount = 0;
-                //SpreadsheetsResource.ValuesResource.GetRequest request =
-                //        service.Spreadsheets.Values.Get(SpreadsheetId, range);
-                ////var lol = service.Spreadsheets.Get(SpreadsheetId).Execute();
-                //var response = request.Execute();
-                //IList<IList<object>> values = response.Values;
-                //if (values != null && values.Count > 0)
-                //{
                 var values = LocalTable.SheetsVal[year.ToString()];
                 foreach (var row in values)
                 {
@@ -397,7 +356,9 @@ namespace TableAndro
                         BatchUpdateSpreadsheetRequest requestBody = new BatchUpdateSpreadsheetRequest();
                         requestBody.Requests = LQReq;
                         BatchUpdateRequest BUrequest = service.Spreadsheets.BatchUpdate(requestBody, SpreadsheetId);
-                        var t = BUrequest.Execute();
+                        CancellationTokenSource cts = new CancellationTokenSource();
+                        cts.CancelAfter(15000);
+                        var t = BUrequest.ExecuteAsync(cts.Token).Result;
                     }
                     else
                     {
@@ -412,12 +373,37 @@ namespace TableAndro
                 }
                 //sheetInfo = service.Spreadsheets.Get(SpreadsheetId).Execute();
                 InitService(year.ToString());
+                if(fl_yearadd)
+                {
+                    StaticInfo.EndLoadForListItemsYear();
+                    fl_yearadd = false;
+                }
+                StaticInfo.EndSuccSend();
                 Toast.MakeText(Android.App.Application.Context, "Запись прошла успешно", ToastLength.Long).Show();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Toast.MakeText(Android.App.Application.Context, "Запись неудачна", ToastLength.Long).Show();
+                string buff = ex.Message;
+                string outas = "Запись неудачна";
+                if (network == NetworkAccess.None)
+                {
+                    string kk = Preferences.Get("Offline_data", "");
+                    var ti_list = JsonConvert.DeserializeObject<List<TableItem>>(kk);
+                    if (ti_list.Count > 0)
+                    {
+                        if (!ti_list.Contains(ti))
+                        {
+                            ti_list.Add(ti);
+                        }
+                    }
+                    else
+                        ti_list.Add(ti);
+                    string seria = JsonConvert.SerializeObject(ti_list);
+                    Preferences.Set("Offline_data", seria);
+                    outas += "\nЗапись сохранена для офлайн";
+                }
+                Toast.MakeText(Android.App.Application.Context, outas, ToastLength.Long).Show();
                 return false;
             }
         }
@@ -432,7 +418,9 @@ namespace TableAndro
             BatchUpdateSpreadsheetRequest requestBody = new BatchUpdateSpreadsheetRequest();
             requestBody.Requests = new List<Request>() { google_requests.InsRow(Googles.sheet_id, Row_after - 1) };
             BatchUpdateRequest BUrequest = service.Spreadsheets.BatchUpdate(requestBody, SpreadsheetId);
-            var resp = BUrequest.Execute();
+            CancellationTokenSource cts = new CancellationTokenSource();
+            cts.CancelAfter(15000);
+            var resp = BUrequest.ExecuteAsync(cts.Token).Result;
             ti.row_nb = Row_after;
             UpdateEntry(ti);
             Debug.WriteLine("EXIT RowIns");
@@ -463,11 +451,15 @@ namespace TableAndro
 
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreadsheetId, range);
             updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
-            var appendReponse = updateRequest.Execute();
+            CancellationTokenSource cts = new CancellationTokenSource();
+            cts.CancelAfter(15000);
+            var appendReponse = updateRequest.ExecuteAsync(cts.Token).Result;
         }
         public static void DeleteEntry(TableItem tbl)
         {
             var range = tbl.tabelplase;
+            CancellationTokenSource cts = new CancellationTokenSource();
+            cts.CancelAfter(15000);
             var requestBody = new ClearValuesRequest();
             range = range.Replace("A", "B");
             if (tbl.exect_mounth == "")//string.IsNullOrEmpty(tbl.exect_mounth))//)
@@ -475,12 +467,12 @@ namespace TableAndro
                 BatchUpdateSpreadsheetRequest rqBody = new BatchUpdateSpreadsheetRequest();
                 rqBody.Requests = new List<Request>() { google_requests.DeleteRow(tbl) };
                 BatchUpdateRequest BUrequest = service.Spreadsheets.BatchUpdate(rqBody, SpreadsheetId);
-                var t = BUrequest.Execute();
+                var t = BUrequest.ExecuteAsync(cts.Token).Result;
             }
             else
             {
                 var deleteRequest = service.Spreadsheets.Values.Clear(requestBody, SpreadsheetId, range);
-                var deleteReponse = deleteRequest.Execute();
+                var deleteReponse = deleteRequest.ExecuteAsync(cts.Token).Result;
             }
             InitService(tbl.year.ToString());
             //LocalTable.ListItems.Remove(tbl);

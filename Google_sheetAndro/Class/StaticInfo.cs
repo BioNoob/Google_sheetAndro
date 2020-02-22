@@ -45,6 +45,10 @@ namespace Google_sheetAndro.Class
 
         public delegate void SetSelected();
         public static event SetSelected DoSetSelect;
+        public delegate void SetSelectedYear();
+        public static event SetSelectedYear DonewYearAdd;
+        public delegate void SetSuccSend();
+        public static event SetSuccSend DoSuccSend;
 
         public delegate void ParamSetterN(string nalet);
         public static event ParamSetterN DoSetNalet;
@@ -70,6 +74,14 @@ namespace Google_sheetAndro.Class
         public static void EndLoadForListItems()
         {
             DoSetSelect?.Invoke();
+        }
+        public static void EndLoadForListItemsYear()
+        {
+            DonewYearAdd?.Invoke();
+        }
+        public static void EndSuccSend()
+        {
+            DoSuccSend?.Invoke();
         }
         public static void SetPage(Page pg)
         {

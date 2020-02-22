@@ -26,6 +26,8 @@ namespace Google_sheetAndro.Views
 
             vM = new ItemsInfoVM();
             StaticInfo.DoSetSelect += VM_DoSetSelect;
+            StaticInfo.DonewYearAdd += VM_newYearAdd;
+            StaticInfo.DoSuccSend += SuccSend;
             LoaderFunction.DoClearMap += LoaderFunction_DoClearMap;
             var tgr = new TapGestureRecognizer();
             tgr.Tapped += (s, e) => imgbtnclick();
@@ -58,7 +60,16 @@ namespace Google_sheetAndro.Views
                 Navigation.PopModalAsync();
             TableItems.SelectedItem = null;
         }
-
+        private void VM_newYearAdd()
+        {
+            vM.years = LocalTable.GetYearsList();
+            Navigation.PopModalAsync();
+            //vM.selectedyear = vM.years.Max(t => Convert.ToInt32(t)).ToString();
+        }
+        private void SuccSend()
+        {
+            Navigation.PopModalAsync();
+        }
         private void VM_DoSetSelect()
         {
             if (fl_init)
@@ -85,7 +96,7 @@ namespace Google_sheetAndro.Views
             else
                 vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0, EmailSync.IsToggled);
         }
-
+        bool loading = false;
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             int yy = 0;
@@ -97,7 +108,12 @@ namespace Google_sheetAndro.Views
                 LoaderFunction.MAINNavPage.ToolbarItems.Add(new ToolbarItem("Сохранить", "", redirect));
                 LoaderFunction.MAINNavPage.ToolbarItems.Add(new ToolbarItem("Отмена", "", backbattonimit));
             }
-            await Navigation.PushModalAsync(LoaderFunction.MAINNavPage);//main);
+            if(!loading)
+            {
+                loading = true;
+                await Navigation.PushModalAsync(LoaderFunction.MAINNavPage);//main);
+                loading = false;
+            }
         }
         void backbattonimit()
         {
@@ -106,7 +122,7 @@ namespace Google_sheetAndro.Views
         void redirect()
         {
             LoaderFunction.CreRow();
-            Navigation.PopModalAsync();
+            //Navigation.PopModalAsync();
         }
         private void update()
         {

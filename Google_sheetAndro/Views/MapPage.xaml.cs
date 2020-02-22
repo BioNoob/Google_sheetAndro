@@ -146,6 +146,7 @@ namespace Google_sheetAndro.Views
         {
             Label tagSpan = (Label)sender;
             bool fl = false;
+            ActiveDistanse = tagSpan.AutomationId;
             switch (tagSpan.AutomationId)
             {
                 case "Listen":
@@ -173,6 +174,7 @@ namespace Google_sheetAndro.Views
             }
                 SetActiveDistLbl(fl);
         }
+        string ActiveDistanse = "";
         /// <summary>
         /// 
         /// </summary>
@@ -209,6 +211,9 @@ namespace Google_sheetAndro.Views
         bool fl_USE_MAP_CLICK = true; // в настройки добавить чекбокс использовать маркеры в маршрутах
         bool fl_route = true;
         public string address = string.Empty;
+        Color Pin_color_start_stop { get; set; }
+        Color Pin_color_element { get; set; }
+        Color Pin_color_handle { get; set; }
         Color Handle_line_color { get { return pl_handle.StrokeColor; } set { pl_handle.StrokeColor = value; } }
         Color Listner_line_color { get { return pl_listner.StrokeColor; } set { pl_listner.StrokeColor = value; } }
         int Handle_line_StrokeWidth { get { return (int)pl_handle.StrokeWidth; } set { pl_handle.StrokeWidth = value; } }
@@ -395,7 +400,6 @@ namespace Google_sheetAndro.Views
             map.PinDragStart += Map_PinDragStart;
             map.PinDragging += Map_PinDragging;
         }
-
         private void Map_PinDragging(object sender, PinDragEventArgs e)
         {
             //map.
@@ -428,6 +432,7 @@ namespace Google_sheetAndro.Views
                     pl_handle.Positions.RemoveAt(buff);
                     pl_handle.Positions.Insert(buff, e.Pin.Position);
                     map.Polylines.Add(pl_handle);
+                    CalcDistForLine(pl_handle);
                     MapObjects mo = new MapObjects();
                     if (MapLines.Count > 0)
                     {
@@ -443,10 +448,8 @@ namespace Google_sheetAndro.Views
             //map.Pins.Select(t => DragPin);
             //throw new NotImplementedException();
         }
-        //проверка на нулли
         private void SerToJsonMapData()
         {
-            //mapObjects = new MapObjects();
             if (map.Polylines.Count > 0)
             {
                 mapObjects.Polylines = MapLines;
@@ -465,7 +468,7 @@ namespace Google_sheetAndro.Views
                 pl_handle.Positions.Clear();
                 pl_listner.Positions.Clear();
                 fl_handle_ok_to_edit = true;
-                foreach (var item in MapObj.Polylines)
+                foreach (var item in mapObjects.Polylines)
                 {
                     foreach (var pos in item.Positions)
                     {
@@ -516,20 +519,21 @@ namespace Google_sheetAndro.Views
         }
         private double CalcDistForLine(Polyline ple)
         {
-            for (int i = 0; i < ple.Positions.Count; i++)
+            double buff = 0;
+            int chet = 0;
+            for (int i = 0; i < ple.Positions.Count -1; i++)
             {
-                var q = ple.Positions[i];
-                var tt = ple.Positions[i++];
-                dist += GeolocatorUtils.CalculateDistance(q.Latitude, q.Longitude, tt.Latitude, tt.Longitude, GeolocatorUtils.DistanceUnits.Kilometers);
+                var q = ple.Positions[chet];
+                chet++;
+                var tt = ple.Positions[chet];
+                buff += GeolocatorUtils.CalculateDistance(q.Latitude, q.Longitude, tt.Latitude, tt.Longitude, GeolocatorUtils.DistanceUnits.Kilometers);
             }
-            return dist;
+            return buff;
         }
-
-
         public void SetDSetH(double D, double H)
         {
-            _dist = D;
-            StatusD.Text = string.Format("{0:#0.0} км", _dist);
+            //_dist = D;
+            //StatusD.Text = string.Format("{0:#0.0} км", _dist);
             _height = H;
             StatusH.Text = string.Format("{0:#0.0 м}", _height);
         }
@@ -555,7 +559,6 @@ namespace Google_sheetAndro.Views
             }
             );
         }
-        //АНИМИРУЕТ ПО ШИРИНЕ
         private async void AnimateIn()
         {
             var animate = new Animation(d => r1.WidthRequest = d, r1.Width, SL.Width / 2, Easing.SinInOut);
@@ -595,7 +598,6 @@ namespace Google_sheetAndro.Views
             //Title.TranslateTo(-Title.Width, 0, 1200, Easing.SpringOut);
             //ExpandBar.FadeTo(1, 250, Easing.SinInOut);
         }
-        //void PopSettings_Clicked(object sender, EventArgs e) => Popup?.ShowPopup(sender as View);
         private void PopSettings_Clicked(object sender, EventArgs e)
         {
             if (fl)
@@ -768,31 +770,33 @@ namespace Google_sheetAndro.Views
                 SetPoint(e.Point);
             }
         }
-
         private void Map_PinClicked(object sender, PinClickedEventArgs e)
         {
-            Debug.WriteLine("Pin clicked");
-            Xamarin.Forms.GoogleMaps.Position t;
-            t = e.Pin.Position;
+            //Debug.WriteLine("Pin clicked");
+            //Xamarin.Forms.GoogleMaps.Position t;
+
             if (fl_route)
             {
                 if (fl_USE_MAP_CLICK)
                 {
+                    var t = e.Pin;
+                    int buff = map.Pins.IndexOf(e.Pin);
+                    map.Pins.RemoveAt(buff);
                     if (pl_handle.Positions.Count >= 1)
                     {
                         dist_handle += GeolocatorUtils.CalculateDistance(new
                             Plugin.Geolocator.Abstractions.Position(pl_handle.Positions[pl_handle.Positions.Count - 1].Latitude,
                             pl_handle.Positions[pl_handle.Positions.Count - 1].Longitude),
-                       new Plugin.Geolocator.Abstractions.Position(t.Latitude, t.Longitude), GeolocatorUtils.DistanceUnits.Kilometers);
-                        SetLine(t, true);
+                       new Plugin.Geolocator.Abstractions.Position(t.Position.Latitude, t.Position.Longitude), GeolocatorUtils.DistanceUnits.Kilometers);
+                        SetLine(t.Position, true);
                         //pl_handle.Positions.Add(t);
                     }
                     else
                     {
-                        pl_handle.Positions.Add(t);
+                        pl_handle.Positions.Add(t.Position);
                         if (pl_handle.Positions.Count >= 1)
                         {
-                            SetLine(t, true);
+                            SetLine(t.Position, true);
                         }
                     }
                     //map.Polylines.Remove(pl_handle);
@@ -800,7 +804,6 @@ namespace Google_sheetAndro.Views
                 }
             }
         }
-
         private void SetPoint(Xamarin.Forms.GoogleMaps.Position e, bool fl_transp = false)
         {
             var _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.DeepSkyBlue);
@@ -916,7 +919,6 @@ namespace Google_sheetAndro.Views
             }
 
         }
-
         private MapObjects LoadFromHist()
         {
             History = ShiftList.ShiftRight(History, 1);
@@ -1075,6 +1077,13 @@ namespace Google_sheetAndro.Views
 
                     }
                 }
+                if(mi.Pins != null)
+                {
+                    foreach (var item in mi.Pins)
+                    {
+                        map.Pins.Add(item);
+                    }
+                }
             }
 
             await CancelBtn.FadeTo(1, 100);
@@ -1125,12 +1134,31 @@ namespace Google_sheetAndro.Views
             }
         }
 
-        private void ReCalcDist_Clicked(object sender, EventArgs e)
+        private async void ReCalcDist_Clicked(object sender, EventArgs e)
         {
-            if (map.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()) != null)
-                dist = CalcDistForLine(pl_handle);
-            else
-                Toast.MakeText(Android.App.Application.Context, "Нет пути для рассчета", ToastLength.Long).Show();
+            string buff = "";
+            var q = pl_handle;
+            switch (ActiveDistanse)
+            {
+                case "Listen":
+                    buff = "записанного";
+                    q = pl_listner;
+                    break;
+                case "Handle":
+                    buff = "ручного";
+                    break;
+            }
+            if (await DisplayAlert("Предупреждение", $"Пересчитать дистанцию для {buff} маршрута", "Да", "Нет"))
+            {
+                if (q == pl_listner)
+                    dist = CalcDistForLine(q);
+                else
+                    dist_handle = CalcDistForLine(q);
+            }
+            //if (map.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()) != null)
+            //    dist = CalcDistForLine(pl_handle);
+            //else
+                //Toast.MakeText(Android.App.Application.Context, "Нет пути для рассчета", ToastLength.Long).Show();
         }
 
         private void SetToPinRoute_Toggled(object sender, ToggledEventArgs e)

@@ -403,6 +403,10 @@ namespace Google_sheetAndro.Views
             ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
             if (Googles.ReadEntriesAsync(ti))
             {
+                
+            }
+            else
+            {
 
             }
             IsBusy = false;

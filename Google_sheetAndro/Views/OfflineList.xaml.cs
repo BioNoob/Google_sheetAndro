@@ -136,6 +136,7 @@ namespace Google_sheetAndro.Views
         public bool IsBuser { get; set; }
         private bool SaveToBase(TableItem ti)
         {
+            AD.Opacity = 1;
             IsBuser = true;
             try
             {
@@ -162,6 +163,7 @@ namespace Google_sheetAndro.Views
             finally
             {
                 IsBuser = false;
+                AD.Opacity = 0;
             }
         }
     }
