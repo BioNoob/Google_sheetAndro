@@ -35,10 +35,10 @@ namespace Google_sheetAndro.Class
                 _wind = t;
             }
         }
-        public string WindForm { get { return $"{Wind} км/ч ({ ConvWindMs()})";}}
+        public string WindForm { get { return $"{Wind} км/ч ({ ConvWindMs()})"; } }
         private string ConvWindMs()
         {
-            return String.Format(CultureInfo.InvariantCulture, "{0:#0.#}м/с", _wind * 5/18);
+            return String.Format(CultureInfo.InvariantCulture, "{0:#0.#}м/с", _wind * 5 / 18);
         }
         public string Asim
         {

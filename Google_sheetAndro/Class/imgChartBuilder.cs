@@ -107,13 +107,13 @@ namespace Google_sheetAndro.Class
                 {
                     foreach (var ite in Num_Mounth_count.Keys)
                     {
-                        if(Num_Mounth_count[ite].Where(t => t.Keys.Contains(item)).ToList().Count < 1)
+                        if (Num_Mounth_count[ite].Where(t => t.Keys.Contains(item)).ToList().Count < 1)
                         {
                             Dictionary<string, int> kk = new Dictionary<string, int>();
                             kk.Add(item, 0);
-                            Num_Mounth_count[ite].Insert(ind,kk);
+                            Num_Mounth_count[ite].Insert(ind, kk);
                         }
-                        if(!namer.Contains(ite))
+                        if (!namer.Contains(ite))
                             namer += ite + "|";
                     }
                     ind++;
@@ -128,7 +128,7 @@ namespace Google_sheetAndro.Class
                         {
                             if (it > max) max = it;
                             if (it < min) min = it;
-                            value += string.Format("{0:0.#}",it) + ",";
+                            value += string.Format("{0:0.#}", it) + ",";
                         }
                     }
                     value = value.TrimEnd(',');
@@ -159,7 +159,7 @@ namespace Google_sheetAndro.Class
                 return $"https://image-charts.com/chart?cht=bvg&chs={Options.opt.Width}x{Options.opt.Height}&chds=a&chg=1,1,0,0&chd=t:{value}&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chof=.png&chco={color}";
         }
         public static string FormerPost(List<ValueDate> vl, List<string> years)
-            //EVERY EDIT 25.09!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //EVERY EDIT 25.09!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             string label = "";
             List<string> mounthList = new List<string>();
@@ -229,7 +229,7 @@ namespace Google_sheetAndro.Class
                     {
                         valueList.Add(0);
                     }
-                    
+
                 }
                 //switch (Options.opt.SortNum)
                 //{
@@ -274,7 +274,7 @@ namespace Google_sheetAndro.Class
                 }
                 m_cnt++;
             }
-            if(Options.opt.SortNum != OptionsBuild.SortingEnum.AllYearCount)
+            if (Options.opt.SortNum != OptionsBuild.SortingEnum.AllYearCount)
             {
                 for (int i = 0; i < mounth_form_val.First().Value.Count; i++)
                 {
@@ -292,7 +292,7 @@ namespace Google_sheetAndro.Class
             if (min == double.MaxValue)
                 min = 0;
             var colr = namer.Split('|');
-            if(namer.Length < 1)
+            if (namer.Length < 1)
             {
                 var random1 = new Random();
                 color += String.Format("{0:X6}", random1.Next(0x1000000)) + ",";

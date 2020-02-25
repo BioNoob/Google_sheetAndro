@@ -6,7 +6,7 @@ namespace Google_sheetAndro.Class
     public static class EveryBuilder
     {
         private static Dictionary<string, List<string>> _group = new Dictionary<string, List<string>>();
-        private static int _max_val = 0; 
+        private static int _max_val = 0;
         public static Dictionary<string, List<string>> Getgroup()
         {
             return _group;

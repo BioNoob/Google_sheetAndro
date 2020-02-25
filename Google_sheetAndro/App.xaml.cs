@@ -11,7 +11,7 @@ namespace Google_sheetAndro
         public App()
         {
             InitializeComponent();
-            if(!fl_wait)
+            if (!fl_wait)
             {
                 //MainPage = new NavigationPage(new MainPage());
                 LoaderFunction.WheatherPage = new WheatherView();

@@ -179,7 +179,7 @@ namespace RefreshSample.ViewModels
                 var doc = await web.LoadFromWebAsync(url, cts.Token);
                 List<windout> lw11 = ParseAllTables(doc);
                 lw11 = lw11.Where(t => t.DateFormat >= DateTime.Now && t.DateFormat <= DateTime.Now.AddDays(1)).ToList();
-                if(lw11.Count == 0)
+                if (lw11.Count == 0)
                 {
                     ErrorStatus = "Данные с Meteocenter.asia по ближайшему объкту на настоящее время отсутствуют";
                     return null;

@@ -17,10 +17,10 @@ namespace Google_sheetAndro.Views
         {
             InitializeComponent();
             var tgr = new TapGestureRecognizer();
-            tgr.Tapped += (s, e) => TapGestureRecognizer_Tapped(s,e);
+            tgr.Tapped += (s, e) => TapGestureRecognizer_Tapped(s, e);
             MailLbl.GestureRecognizers.Add(tgr);
             var tgrs = new TapGestureRecognizer();
-            tgrs.Tapped += (s, e) => TapGestureRecognizer_Tapped_1(s,e);
+            tgrs.Tapped += (s, e) => TapGestureRecognizer_Tapped_1(s, e);
             GitLbl.GestureRecognizers.Add(tgrs);
 
             var tgrs1 = new TapGestureRecognizer();
@@ -83,7 +83,7 @@ namespace Google_sheetAndro.Views
         private string img;
         private string tag;
 
-        public ApiInfo(string n,string i,string t)
+        public ApiInfo(string n, string i, string t)
         {
             Name = n;
             Img = i;

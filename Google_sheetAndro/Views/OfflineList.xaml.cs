@@ -4,8 +4,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using TableAndro;
 using Xamarin.Essentials;
@@ -143,7 +141,7 @@ namespace Google_sheetAndro.Views
                 ti.author = StaticInfo.AccountEmail;
                 ti.route = "";//MapPageAlone.MapObj.SerializableLine;
                 ti.points = "";//LoaderFunction.MapPageAlone.MapObj.SerializablePins;
-                if(Googles.ReadEntriesAsync(ti))
+                if (Googles.ReadEntriesAsync(ti))
                 {
                     Toast.MakeText(Android.App.Application.Context, "Запись успешна", ToastLength.Long).Show();
                     return true;

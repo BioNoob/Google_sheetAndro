@@ -1,5 +1,4 @@
 ﻿using Google_sheetAndro.Models;
-using Google_sheetAndro.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -46,7 +45,7 @@ namespace Google_sheetAndro.Class
         {
             //ObservableCollection<Grouping<string, TableItem>> groupedData = new ObservableCollection<Grouping<string, TableItem>>();
             List<Grouping<string, TableItem>> kk;
-            if(owner_use)
+            if (owner_use)
             {
                 switch (mouth)
                 {
@@ -132,7 +131,7 @@ namespace Google_sheetAndro.Class
         public List<object> GetListForEntry()
         {
             List<object> lst = new List<object>();
-            lst.AddRange(new List<object>() { this.date.ToString("dd/MM/yyyy"), this.time, this.wind, this.cloud, this.temp, this.task, this.height, this.range, this.plase, this.comment,this.author,this.points,this.route });
+            lst.AddRange(new List<object>() { this.date.ToString("dd/MM/yyyy"), this.time, this.wind, this.cloud, this.temp, this.task, this.height, this.range, this.plase, this.comment, this.author, this.points, this.route });
             return lst;
         }
     }

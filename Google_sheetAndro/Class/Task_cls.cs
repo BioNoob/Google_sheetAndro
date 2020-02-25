@@ -11,7 +11,7 @@
                 return Num + "\t" + Opicanie;
             }
         }
-        public Task_cls(string numer,string chto)
+        public Task_cls(string numer, string chto)
         {
             Num = numer;
             Opicanie = chto;

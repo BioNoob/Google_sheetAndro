@@ -135,7 +135,7 @@ namespace Google_sheetAndro.Class
         {
             if (bardata != 0)
             {
-                if(!fl)
+                if (!fl)
                 {
                     Height = Math.Abs(SensorManager.GetAltitude(BarWheather, (float)bardata));
                 }
@@ -149,7 +149,7 @@ namespace Google_sheetAndro.Class
                 return 0;
         }
 
-        public static async Task GetWeatherReqAsync(Location coord, CancellationToken cts )
+        public static async Task GetWeatherReqAsync(Location coord, CancellationToken cts)
         {
             string api_key = "42b983a01370d4d851e3fccc2b3cfd4b";
             HttpClient client = new HttpClient();

@@ -128,10 +128,10 @@ namespace Google_sheetAndro.Views
         public double speed { get { return _speed; } set { _speed = value; StatusS.Text = string.Format("{0:#0.0} км/ч", _speed); } }
         private void RefreshSpeed(Plugin.Geolocator.Abstractions.Position e)
         {
-            if(bufferpos.Latitude != 0)
+            if (bufferpos.Latitude != 0)
             {
-                double dist = GeolocatorUtils.CalculateDistance(bufferpos, e,GeolocatorUtils.DistanceUnits.Kilometers);
-                if(t_speed.TotalHours != 0)
+                double dist = GeolocatorUtils.CalculateDistance(bufferpos, e, GeolocatorUtils.DistanceUnits.Kilometers);
+                if (t_speed.TotalHours != 0)
                 {
                     double _xspeed = dist / t_speed.TotalHours;
                     if (_xspeed > 0)
@@ -172,7 +172,7 @@ namespace Google_sheetAndro.Views
                         LoaderFunction.ItemsPageAlone.SetDist(_dist_handle);
                     break;
             }
-                SetActiveDistLbl(fl);
+            SetActiveDistLbl(fl);
         }
         string ActiveDistanse = "";
         /// <summary>
@@ -423,7 +423,7 @@ namespace Google_sheetAndro.Views
             //int m = map.Pins.IndexOf(e.Pin);
             var t = LoadFromHistActual();
             var l = t.Pins.Find(q => q.Label == PinBuffLbl);
-            if(l!= null)
+            if (l != null)
             {
                 int buff = pl_handle.Positions.IndexOf(l.Position);
                 if (buff > 0)
@@ -521,7 +521,7 @@ namespace Google_sheetAndro.Views
         {
             double buff = 0;
             int chet = 0;
-            for (int i = 0; i < ple.Positions.Count -1; i++)
+            for (int i = 0; i < ple.Positions.Count - 1; i++)
             {
                 var q = ple.Positions[chet];
                 chet++;
@@ -659,7 +659,7 @@ namespace Google_sheetAndro.Views
                 DeferralTime = TimeSpan.FromSeconds(1),
                 ListenForSignificantChanges = true,
                 PauseLocationUpdatesAutomatically = false
-            }); 
+            });
             CrossGeolocator.Current.PositionChanged += PositionChanged;
             CrossGeolocator.Current.PositionError += PositionError;
         }
@@ -742,7 +742,7 @@ namespace Google_sheetAndro.Views
             {
                 string buf = Preferences.Get("LastKnownPosition", "55.751316;37.620915");
                 var op = buf.Split(';');
-                pos = new Xamarin.Forms.GoogleMaps.Position(Convert.ToDouble(op[0]), Convert.ToDouble(op[1]));
+                pos = new Xamarin.Forms.GoogleMaps.Position(Convert.ToDouble(op[0],CultureInfo.InvariantCulture), Convert.ToDouble(op[1], CultureInfo.InvariantCulture));
             }
             Debug.WriteLine($"before go to new point");
             Debug.WriteLine($"{pos.Latitude};{pos.Longitude}");
@@ -809,14 +809,14 @@ namespace Google_sheetAndro.Views
             var _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.DeepSkyBlue);
             if (map.Pins.Count >= 1)
             {
-                if(!fl_transp)
-                _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Blue);
-                map.Pins.Add(new Pin() { Label = $"{map.Pins.Count - 1}", Position = e, IsDraggable = true, Icon = _icon});
+                if (!fl_transp)
+                    _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Blue);
+                map.Pins.Add(new Pin() { Label = $"{map.Pins.Count - 1}", Position = e, IsDraggable = true, Icon = _icon });
             }
             else
             {
                 _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Red);
-                map.Pins.Add(new Pin() { Label = $"Start", Position = e, IsDraggable = true, Icon= _icon });
+                map.Pins.Add(new Pin() { Label = $"Start", Position = e, IsDraggable = true, Icon = _icon });
             }
             if (!fl_transp)
             {
@@ -1077,7 +1077,7 @@ namespace Google_sheetAndro.Views
 
                     }
                 }
-                if(mi.Pins != null)
+                if (mi.Pins != null)
                 {
                     foreach (var item in mi.Pins)
                     {
@@ -1158,7 +1158,7 @@ namespace Google_sheetAndro.Views
             //if (map.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()) != null)
             //    dist = CalcDistForLine(pl_handle);
             //else
-                //Toast.MakeText(Android.App.Application.Context, "Нет пути для рассчета", ToastLength.Long).Show();
+            //Toast.MakeText(Android.App.Application.Context, "Нет пути для рассчета", ToastLength.Long).Show();
         }
 
         private void SetToPinRoute_Toggled(object sender, ToggledEventArgs e)

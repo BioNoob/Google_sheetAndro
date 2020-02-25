@@ -13,12 +13,7 @@
  * limitations under the License.
  */
 
-using Google_sheetAndro.Views;
-using System;
 using System.ComponentModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace RefreshSample.ViewModels
 {

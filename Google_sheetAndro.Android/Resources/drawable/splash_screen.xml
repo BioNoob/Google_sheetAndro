@@ -11,7 +11,7 @@
   </item>
   <item>
     <bitmap
-  android:src="@drawable/black_orange_emblem"
+  android:src="@drawable/back_helper"
     android:tileMode="disabled"
     android:gravity="center"/>
   </item>

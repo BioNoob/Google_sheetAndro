@@ -108,7 +108,7 @@ namespace Google_sheetAndro.Views
                 LoaderFunction.MAINNavPage.ToolbarItems.Add(new ToolbarItem("Сохранить", "", redirect));
                 LoaderFunction.MAINNavPage.ToolbarItems.Add(new ToolbarItem("Отмена", "", backbattonimit));
             }
-            if(!loading)
+            if (!loading)
             {
                 loading = true;
                 await Navigation.PushModalAsync(LoaderFunction.MAINNavPage);//main);

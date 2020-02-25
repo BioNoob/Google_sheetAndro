@@ -25,7 +25,7 @@ namespace Google_sheetAndro.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            if(!fl_wait)
+            if (!fl_wait)
             {
                 if (!LoaderFunction.fl_offline)
                 {

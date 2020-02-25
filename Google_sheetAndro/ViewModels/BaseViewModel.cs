@@ -1,9 +1,7 @@
-﻿using Google_sheetAndro.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Xamarin.Forms;
 
 namespace Google_sheetAndro.ViewModels
 {

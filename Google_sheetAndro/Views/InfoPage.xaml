@@ -46,12 +46,12 @@
                            HorizontalTextAlignment="Center"
                            FontAttributes="Bold"
                            Margin="0,20,0,0"/>
-                    <Label x:Name="SiteLbl" 
-                        Text="blackorange.aero"
-                           Grid.Row="1" FontSize="40"
+                    <Label x:Name="SiteLbl"
+                           Grid.Row="1" FontSize="37"
                            TextColor="Orange"
                            HorizontalTextAlignment="Center"
-                           FontAttributes="Bold">
+                           FontAttributes="Bold"
+                           FontFamily="Jura-Bold.ttf#Jura-Bold" Margin="0,0,0,10">
                         <Label.FormattedText>
                         <FormattedString>
                                 <Span Text="blackorange"
@@ -59,6 +59,7 @@
                             </Span>
                                 <Span Text=".aero" TextColor="Black"
                                       TextDecorations="Underline">
+                                      
                                 </Span>
                             </FormattedString>
                         </Label.FormattedText>

@@ -23,7 +23,7 @@ namespace Google_sheetAndro.Views
         public event EventHandler<PageOrientationEventArgs> OnOrientationChanged = (e, a) => { };
         public void setter(TableItem ti)
         {
-            if(ti.date == new DateTime())
+            if (ti.date == new DateTime())
             {
                 Date_pick.Date = DateTime.Now;
                 Time_pick.Text = "00:00:00";
@@ -115,12 +115,12 @@ namespace Google_sheetAndro.Views
             var offset = TimeZoneInfo.Local.GetUtcOffset(Date_pick.Date.ToUniversalTime());
             ti_local.date = Date_pick.Date.ToUniversalTime() + offset;
             ti_local.time = Time_pick.Text;
-            ti_local.wind = Convert.ToDouble(Wind_Num.Text);
+            ti_local.wind = Convert.ToDouble(Wind_Num.Text, CultureInfo.InvariantCulture);
             ti_local.cloud = CloudPicker.SelectedItem.ToString();
-            ti_local.temp = Convert.ToDouble(Temp_Num.Text);
+            ti_local.temp = Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture);
             ti_local.task = Task_txt.Text;
-            ti_local.height = Convert.ToDouble(Hight_txt_num.Text);
-            ti_local.range = Convert.ToDouble(Range_txt.Text);
+            ti_local.height = Convert.ToDouble(Hight_txt_num.Text, CultureInfo.InvariantCulture);
+            ti_local.range = Convert.ToDouble(Range_txt.Text, CultureInfo.InvariantCulture);
             ti_local.plase = Place_txt.SelectedItem.ToString();
             ti_local.comment = Comment_txt.Text;
             return ti_local;
@@ -317,7 +317,7 @@ namespace Google_sheetAndro.Views
             Match match = rg.Match(Temp_Num.Text);
             if (rg.Match(Temp_Num.Text).Success)
             {
-                double val = Convert.ToDouble(match.Groups["value"].Value);
+                double val = Convert.ToDouble(match.Groups["value"].Value, CultureInfo.InvariantCulture);
                 //string dob = "";
                 switch (match.Groups["sign"].Value)
                 {
@@ -403,7 +403,7 @@ namespace Google_sheetAndro.Views
             ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
             if (Googles.ReadEntriesAsync(ti))
             {
-                
+
             }
             else
             {
@@ -416,9 +416,9 @@ namespace Google_sheetAndro.Views
         {
             string val = Time_pick.Text;
             double[] form_val = new double[3];
-            form_val[0] = Convert.ToDouble(val.Split(':')[0]);
-            form_val[1] = Convert.ToDouble(val.Split(':')[1]);
-            form_val[2] = Convert.ToDouble(val.Split(':')[2]);
+            form_val[0] = Convert.ToDouble(val.Split(':')[0], CultureInfo.InvariantCulture);
+            form_val[1] = Convert.ToDouble(val.Split(':')[1], CultureInfo.InvariantCulture);
+            form_val[2] = Convert.ToDouble(val.Split(':')[2], CultureInfo.InvariantCulture);
             Time_r tm = new Time_r(form_val[0], form_val[1], form_val[2]);
             if (tm.Sec >= 359999)
                 tm.Sec = 359999;
@@ -442,9 +442,9 @@ namespace Google_sheetAndro.Views
                 Time_pick.Text = "00:00:00";
             string val = Time_pick.Text;
             double[] form_val = new double[3];
-            form_val[0] = Convert.ToDouble(val.Split(':')[0]);
-            form_val[1] = Convert.ToDouble(val.Split(':')[1]);
-            form_val[2] = Convert.ToDouble(val.Split(':')[2]);
+            form_val[0] = Convert.ToDouble(val.Split(':')[0], CultureInfo.InvariantCulture);
+            form_val[1] = Convert.ToDouble(val.Split(':')[1], CultureInfo.InvariantCulture);
+            form_val[2] = Convert.ToDouble(val.Split(':')[2], CultureInfo.InvariantCulture);
             Time_r tm = new Time_r(form_val[0], form_val[1], form_val[2]);
             switch (tb.Tag)
             {

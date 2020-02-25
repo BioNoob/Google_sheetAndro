@@ -21,14 +21,15 @@ namespace Google_sheetAndro.Class
     public class ResponsedData
     {
         private DateTime _duration;
-        public string time {
+        public string time
+        {
             get
             {
                 return _duration.ToString("D");
             }
             set
             {
-                _duration = UnixTimeStampToDateTime(Convert.ToDouble(value));
+                _duration = UnixTimeStampToDateTime(Convert.ToDouble(value, CultureInfo.InvariantCulture));
             }
         }
         public float temperature { get => temperature1; set => temperature1 = value; }

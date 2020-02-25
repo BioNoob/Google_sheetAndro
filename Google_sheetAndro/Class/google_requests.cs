@@ -6,7 +6,7 @@ namespace TableAndro
 {
     public class Range_border
     {
-        public int fst_rw{ get; set; }
+        public int fst_rw { get; set; }
         public int sec_rw { get; set; }
         public int fst_clm { get; set; }
         public int sec_clm { get; set; }

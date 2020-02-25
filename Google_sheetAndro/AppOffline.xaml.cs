@@ -25,7 +25,7 @@ namespace Google_sheetAndro
             np = new NavigationPage(ofl);
             np.ToolbarItems.Add(new ToolbarItem("Добавить", "", add_item));
             //np.ToolbarItems.Add(new ToolbarItem("Удалить все", "", delete_all));
-            if(ti != null)
+            if (ti != null)
             {
                 ofl.SetTableData(ti);
             }
@@ -58,13 +58,13 @@ namespace Google_sheetAndro
         }
         private void Saver()
         {
-            ofl.SetTableData(new List<TableItem>() { ip.getter()});
+            ofl.SetTableData(new List<TableItem>() { ip.getter() });
             ofl.Navigation.PopAsync();
             ofl.Saver();
         }
         private void Deleter()
         {
-            if(ofl.Items.Contains(ip.getter()))
+            if (ofl.Items.Contains(ip.getter()))
             {
                 ofl.Items.Remove(ip.getter());
                 ofl.Saver();

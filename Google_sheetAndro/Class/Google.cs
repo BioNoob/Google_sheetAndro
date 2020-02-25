@@ -42,8 +42,8 @@ namespace TableAndro
         public static readonly string SpreadsheetId = "1O8AeG_B45kAyG3cuClJigZhfKUtjV-0eQRZq8XzUutk";
         public static SheetsService service;
         public static int newSheetId = 0;
-        public static Range_border RB = new Range_border(0,0,0,0);
-        public static void ShablonDuplicater(int shID,string title)
+        public static Range_border RB = new Range_border(0, 0, 0, 0);
+        public static void ShablonDuplicater(int shID, string title)
         {
             CopySheetToAnotherSpreadsheetRequest requestBody = new CopySheetToAnotherSpreadsheetRequest
             {
@@ -53,7 +53,7 @@ namespace TableAndro
             CancellationTokenSource cts = new CancellationTokenSource();
             cts.CancelAfter(15000);
             var response = request.ExecuteAsync(cts.Token);
-            
+
             BatchUpdateSpreadsheetRequest requestBodyBU = new BatchUpdateSpreadsheetRequest();
             IList<Request> LQReq = new List<Request>();
             LQReq.Add(google_requests.RenamerSh(response.Result.SheetId, title));
@@ -113,7 +113,7 @@ namespace TableAndro
             string sh_name;
             int year = 0;
             int row_indx = -1;
-            if(year_to != "")
+            if (year_to != "")
             {
                 sheets = sheets.Where(t => t.Properties.Title == year_to).ToList();
                 LocalTable.ListItems.RemoveAll(t => t.year.ToString() == year_to);
@@ -122,7 +122,7 @@ namespace TableAndro
             foreach (var item in sheets)
             {
                 row_indx = -1;
-                if (int.TryParse(item.Properties.Title,out year))
+                if (int.TryParse(item.Properties.Title, out year))
                 {
                     sh_name = item.Properties.Title;
                     shid = (int)item.Properties.SheetId;
@@ -150,15 +150,15 @@ namespace TableAndro
                                 dtt = dtt.AddDays(daybuf);
                                 //string dt = dtt.ToString("D", CultureInfo.GetCultureInfo("ru-RU"));
                                 ti.date = dtt;
-                                double val = Convert.ToDouble(row[2]);
+                                double val = Convert.ToDouble(row[2], CultureInfo.InvariantCulture);
                                 ti.time = new Time_r(val * 24 * 60 * 60).ToString();
                                 if (row[3].ToString() == "")
                                 {
                                     r = "0";
-                                    ti.wind = Convert.ToDouble(r);
+                                    ti.wind = Convert.ToDouble(r, CultureInfo.InvariantCulture);
                                 }
                                 else
-                                    ti.wind = Convert.ToDouble(row[3]);
+                                    ti.wind = Convert.ToDouble(row[3], CultureInfo.InvariantCulture);
                                 if (row[4].ToString() == "")
                                 {
                                     r = "нет";
@@ -170,26 +170,26 @@ namespace TableAndro
                                 if (row[5].ToString() == "")
                                 {
                                     r = "0";
-                                    ti.temp = Convert.ToDouble(r);
+                                    ti.temp = Convert.ToDouble(r, CultureInfo.InvariantCulture);
                                 }
                                 else
-                                    ti.temp = Convert.ToDouble(row[5]);
+                                    ti.temp = Convert.ToDouble(row[5], CultureInfo.InvariantCulture);
                                 ti.task = row[6].ToString();
                                 if (row[7].ToString() == "")
                                 {
                                     r = "0";
-                                    ti.height = Convert.ToDouble(r);
+                                    ti.height = Convert.ToDouble(r, CultureInfo.InvariantCulture);
                                 }
                                 else
-                                    ti.height = Convert.ToDouble(row[7]);
+                                    ti.height = Convert.ToDouble(row[7], CultureInfo.InvariantCulture);
 
                                 if (row[8].ToString() == "")
                                 {
                                     r = "0";
-                                    ti.range = Convert.ToDouble(r);
+                                    ti.range = Convert.ToDouble(r, CultureInfo.InvariantCulture);
                                 }
                                 else
-                                    ti.range = Convert.ToDouble(row[8]);
+                                    ti.range = Convert.ToDouble(row[8], CultureInfo.InvariantCulture);
 
                                 ti.plase = row[9].ToString();
                                 if (row.Count > 10)
@@ -197,7 +197,7 @@ namespace TableAndro
                                 else
                                     ti.comment = "";
 
-                                if(row.Count > 11)
+                                if (row.Count > 11)
                                 {
                                     if (row[11].ToString() == "")
                                         ti.author = "Oparakhin@gmail.com";
@@ -228,7 +228,7 @@ namespace TableAndro
                                 LocalTable.ListItems.Add(ti);
                             }
                         }
-                            
+
                     }
                 }
             }
@@ -264,7 +264,7 @@ namespace TableAndro
             {
                 ShablonDuplicater(Sh_shbalon, year.ToString());//createnewsheets и вернем его имя
                 sheet_id = Googles.newSheetId;
-                SheetName =  year.ToString();
+                SheetName = year.ToString();
                 InitService(SheetName);
                 fl_yearadd = true;
 
@@ -279,16 +279,16 @@ namespace TableAndro
             }
             try
             {
-                    int month = ti.date.Month;
+                int month = ti.date.Month;
                 string[] months = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
-                string mont_nm = months[month-1].ToLower();
+                string mont_nm = months[month - 1].ToLower();
                 int year = ti.year;
                 int sh_ID = 0;
                 SheetExist(year);
                 sh_ID = sheet_id;//ti.sh_id;//Googles.sheet_id;
                 sheet = SheetName;
                 //var range = $"{sheet}!A:K";
-                var range = $"{sheet}!A:N"; 
+                var range = $"{sheet}!A:N";
                 int inp_row = 0;
                 int inp_row_mount = 0;
                 var values = LocalTable.SheetsVal[year.ToString()];
@@ -305,12 +305,12 @@ namespace TableAndro
                 //нашли строку, смотрим пустая она
                 //если да пишем в нее
 
-                if(ti.exect_mounth != "")//!string.IsNullOrEmpty(ti.exect_mounth))//ti.exect_mounth != "")
-                { 
+                if (ti.exect_mounth != "")//!string.IsNullOrEmpty(ti.exect_mounth))//ti.exect_mounth != "")
+                {
                     IList<Request> LQReq = new List<Request>();
                     if (values[inp_row - 1].Count > 1)
                     {
-                        if(values.Count < inp_row+1)//проверка на последнюю строку. Если после нее ничего нет то... (декабрь ласт)
+                        if (values.Count < inp_row + 1)//проверка на последнюю строку. Если после нее ничего нет то... (декабрь ласт)
                         {
                             InsertRowAsync(ti, inp_row + 1);
                             RB.fst_clm = 0;
@@ -335,7 +335,7 @@ namespace TableAndro
                             while (values[inp_row][0].ToString().Length == 0)
                             {
                                 inp_row++;
-                                if(values.Count < inp_row + 1)
+                                if (values.Count < inp_row + 1)
                                 {
                                     break;
                                 }
@@ -373,7 +373,7 @@ namespace TableAndro
                 }
                 //sheetInfo = service.Spreadsheets.Get(SpreadsheetId).Execute();
                 InitService(year.ToString());
-                if(fl_yearadd)
+                if (fl_yearadd)
                 {
                     StaticInfo.EndLoadForListItemsYear();
                     fl_yearadd = false;
@@ -413,7 +413,7 @@ namespace TableAndro
         /// </summary>
         /// <param name="sheet_ID"></param>
         /// <param name="Row_after"></param>
-        static bool InsertRowAsync(TableItem ti,int Row_after/*Dictionary<string, object> dic, int Row_after*/)
+        static bool InsertRowAsync(TableItem ti, int Row_after/*Dictionary<string, object> dic, int Row_after*/)
         {
             BatchUpdateSpreadsheetRequest requestBody = new BatchUpdateSpreadsheetRequest();
             requestBody.Requests = new List<Request>() { google_requests.InsRow(Googles.sheet_id, Row_after - 1) };

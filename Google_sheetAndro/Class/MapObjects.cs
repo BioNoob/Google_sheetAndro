@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms.GoogleMaps;
 
 namespace Google_sheetAndro.Class
@@ -16,7 +14,7 @@ namespace Google_sheetAndro.Class
         public List<Pin> Pins { get => pins; set => pins = value; }
         public List<Polyline> Polylines { get => polyline; set => polyline = value; }
 
-        public MapObjects(){ }
+        public MapObjects() { }
         public MapObjects(List<Pin> pn, List<Polyline> pl)
         {
             Polylines = pl;

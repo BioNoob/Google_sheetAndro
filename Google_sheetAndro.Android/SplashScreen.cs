@@ -3,16 +3,10 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Widget;
-using Google_sheetAndro.Authentication;
-using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
-using Google_sheetAndro.Services;
 using Plugin.CurrentActivity;
 using Refractored.XamForms.PullToRefresh.Droid;
-using System;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace Google_sheetAndro.Droid
 {

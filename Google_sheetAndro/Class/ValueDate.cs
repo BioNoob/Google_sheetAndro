@@ -11,9 +11,10 @@ namespace Google_sheetAndro.Class
         public string Year { get => date.Year.ToString(); }
         static string[] months = { "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь" };
         public string Mounth
-        { get
+        {
+            get
             {
-                return months[date.Month-1];
+                return months[date.Month - 1];
             }
         }
         public int Day { get => date.Day; }
@@ -24,13 +25,13 @@ namespace Google_sheetAndro.Class
         }
         public static ValueDate Default(int Year, string Mounth)
         {
-            int mont = Array.IndexOf(months, Mounth)+1;
+            int mont = Array.IndexOf(months, Mounth) + 1;
             double val = 0;
             return new ValueDate(new DateTime(Year, mont, 1), val);
         }
-        public ValueDate(int Year,int Mounth, int Day, object _val)
+        public ValueDate(int Year, int Mounth, int Day, object _val)
         {
-            date = new DateTime(Year,Mounth,Day);
+            date = new DateTime(Year, Mounth, Day);
             Value = _val;
         }
     }

@@ -202,7 +202,7 @@ namespace Google_sheetAndro
                             }
                             else if (Options.opt.ActiveType == 6)
                             {
-                                db = cell[Options.opt.ActiveType].ToString().Replace('.',',');
+                                db = cell[Options.opt.ActiveType].ToString().Replace('.', ',');
                             }
                             valueDates.Add(new ValueDate(dtt, db));
                         }

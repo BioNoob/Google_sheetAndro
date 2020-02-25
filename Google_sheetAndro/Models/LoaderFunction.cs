@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Net;
-using System.Reflection;
 using System.Threading.Tasks;
 using TableAndro;
 using Xamarin.Essentials;
@@ -97,9 +96,9 @@ namespace Google_sheetAndro.Models
             ItemsInfoPage.Title = "Записи";
             LoaderFunction.MenuPage.sett(LoaderFunction.ItemsInfoPage);
             //DoWheatherLoad?.Invoke();
-            if(MenuPage != null && StaticInfo.AccountEmail != null)
+            if (MenuPage != null && StaticInfo.AccountEmail != null)
             {
-                MenuPage.setImg(StaticInfo.AccountPicture,StaticInfo.AccountEmail);
+                MenuPage.setImg(StaticInfo.AccountPicture, StaticInfo.AccountEmail);
             }
         }
         public static InfoPage InfoPage;
@@ -142,12 +141,12 @@ namespace Google_sheetAndro.Models
             var qq = await init();
             while (true)
             {
-                if(q == true && qq == true)
+                if (q == true && qq == true)
                 {
                     EndLoad();
                     string kk = Preferences.Get("Offline_data", "");
                     List<TableItem> ti = JsonConvert.DeserializeObject<List<TableItem>>(kk);
-                    if(ti != null)
+                    if (ti != null)
                     {
                         if (ti.Count > 0)
                         {
