@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:views="clr-namespace:Google_sheetAndro.Views"
                   mc:Ignorable="d"
-             x:Class="Google_sheetAndro.Views.MenuPage" IsPresented="False"
+             x:Class="Google_sheetAndro.Views.MenuPage" IsPresented="True"
                                xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss">
 
     <MasterDetailPage.Master>
@@ -23,8 +23,9 @@
                        Margin="0">
                     <Frame BackgroundColor="Yellow" IsClippedToBounds="True" Padding="0" Margin="0">
                         <RelativeLayout>
-                            <Image Source="backMenu.png" Aspect="Fill"
-                                   x:Name="abv"
+                            <Image Source="back_book.png" Aspect="Fill"
+                                   x:Name="abv" HorizontalOptions="FillAndExpand" 
+                                   VerticalOptions="FillAndExpand" Rotation="0"
                                />
                             <RelativeLayout IsClippedToBounds="True"
                                                     RelativeLayout.XConstraint= "{ConstraintExpression Type=RelativeToParent, 

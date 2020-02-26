@@ -78,6 +78,7 @@ namespace Google_sheetAndro.Droid
             await Xamarin.Essentials.SecureStorage.SetAsync("picture", email.picture);
             StaticInfo.AccountEmail = email.email;
             StaticInfo.AccountPicture = email.picture;
+            Finish();
         }
 
         public void OnAuthenticationCanceled()
