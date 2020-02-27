@@ -976,7 +976,7 @@ namespace Google_sheetAndro.Views
                     if (kek)
                     {
                         t.Sec = 0;
-                        StaticInfo.Nalet = string.Empty;
+                        StaticInfo.Nalet = t.ToString();
                         map.Pins.Clear();
                         if (map.Polylines.Contains(pl_listner))
                         {
