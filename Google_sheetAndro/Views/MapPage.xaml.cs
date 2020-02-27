@@ -649,13 +649,13 @@ namespace Google_sheetAndro.Views
             }
             if (CrossGeolocator.Current.IsListening)
                 return;
-            CrossGeolocator.Current.DesiredAccuracy = 25;
-            await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(1), 10, true, new ListenerSettings
+            CrossGeolocator.Current.DesiredAccuracy = 5;
+            await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(5), 10, true, new ListenerSettings
             {
                 ActivityType = ActivityType.OtherNavigation,
                 AllowBackgroundUpdates = true,
                 DeferLocationUpdates = true,
-                DeferralDistanceMeters = 10,
+                DeferralDistanceMeters = 1,
                 DeferralTime = TimeSpan.FromSeconds(1),
                 ListenForSignificantChanges = true,
                 PauseLocationUpdatesAutomatically = false
@@ -851,7 +851,8 @@ namespace Google_sheetAndro.Views
                     {
                         pn = map.Pins.Where(i => i.Label == "End").First();
                         map.Pins.Remove(pn);
-                        SetPoint(pn.Position, true);
+                        if(pl.Tag.ToString() == "Handle")
+                            SetPoint(pn.Position, true);
                         pn.Position = e;
                         map.Pins.Add(pn);
                     }
