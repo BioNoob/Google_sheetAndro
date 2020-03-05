@@ -109,12 +109,30 @@ namespace Google_sheetAndro.Views
             Status_D_handle.GestureRecognizers.Add(tgr);
             StatusD_handle.GestureRecognizers.Add(tgr);
             TapGestureRecognizer_Tapped(StatusD, null);
+            bufferpos = new Plugin.Geolocator.Abstractions.Position();
             this.Appearing += MapPage_Appearing;
+            this.Disappearing += MapPage_Disappearing;
         }
+
+        private void MapPage_Disappearing(object sender, EventArgs e)
+        {
+            //if(CrossDeviceSensors.Current.Barometer.IsActive)
+            CrossDeviceSensors.Current.Barometer.StopReading();
+        }
+
         TimeSpan t_speed = new TimeSpan();
         private void MapPage_Appearing(object sender, EventArgs e)
         {
             t_speed = new TimeSpan(0, 0, 0, 0, 0);
+            if (CrossDeviceSensors.Current.Barometer.IsSupported)
+            {
+                CrossDeviceSensors.Current.Barometer.OnReadingChanged += Barometer_OnReadingChanged;
+                CrossDeviceSensors.Current.Barometer.StartReading();
+            }
+            else
+            {
+                StatusH.Text = "Нет барометра";
+            }
             Device.StartTimer(TimeSpan.FromMilliseconds(1), () => OnTimerSpeedometr());
         }
         private bool OnTimerSpeedometr()
@@ -123,7 +141,7 @@ namespace Google_sheetAndro.Views
             //Debug.WriteLine(t_speed.ToString());
             return true;
         }
-        Plugin.Geolocator.Abstractions.Position bufferpos = new Plugin.Geolocator.Abstractions.Position();
+        private Plugin.Geolocator.Abstractions.Position bufferpos { get; set; }
         private double _speed = 0;
         public double speed { get { return _speed; } set { _speed = value; StatusS.Text = string.Format("{0:#0.0} км/ч", _speed); } }
         private void RefreshSpeed(Plugin.Geolocator.Abstractions.Position e)
@@ -133,8 +151,10 @@ namespace Google_sheetAndro.Views
                 double dist = GeolocatorUtils.CalculateDistance(bufferpos, e, GeolocatorUtils.DistanceUnits.Kilometers);
                 if (t_speed.TotalHours != 0)
                 {
-                    double _xspeed = dist / t_speed.TotalHours;
-                    if (_xspeed > 0)
+                    double _xspeed = dist / t_speed.TotalSeconds;
+                    _xspeed = _xspeed / 3600;
+                    Debug.WriteLine(t_speed.TotalSeconds.ToString());
+                    if (_xspeed > 0 && _xspeed < 1000)
                         speed = _xspeed;
                     t_speed = new TimeSpan(0, 0, 0, 0, 0);
                 }
@@ -635,30 +655,18 @@ namespace Google_sheetAndro.Views
         }
         async Task StartListening()
         {
-            if (CrossDeviceSensors.Current.Barometer.IsSupported)
-            {
-                CrossDeviceSensors.Current.Barometer.OnReadingChanged += Barometer_OnReadingChanged;
-                //CrossDeviceSensors.Current.Barometer.OnReadingChanged += (s, a) => {
-
-                //};
-                CrossDeviceSensors.Current.Barometer.StartReading();
-            }
-            else
-            {
-                StatusH.Text = "Нет барометра";
-            }
             if (CrossGeolocator.Current.IsListening)
                 return;
             CrossGeolocator.Current.DesiredAccuracy = 5;
-            await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(5), 10, true, new ListenerSettings
+            await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(5), 50, true, new ListenerSettings
             {
                 ActivityType = ActivityType.OtherNavigation,
                 AllowBackgroundUpdates = true,
-                DeferLocationUpdates = true,
-                DeferralDistanceMeters = 1,
+                DeferLocationUpdates = false,
+                DeferralDistanceMeters = 50,
                 DeferralTime = TimeSpan.FromSeconds(1),
-                ListenForSignificantChanges = true,
-                PauseLocationUpdatesAutomatically = false
+                ListenForSignificantChanges = false,
+                PauseLocationUpdatesAutomatically = true
             });
             CrossGeolocator.Current.PositionChanged += PositionChanged;
             CrossGeolocator.Current.PositionError += PositionError;
@@ -685,15 +693,15 @@ namespace Google_sheetAndro.Views
             Plugin.Geolocator.Abstractions.Position poss = new Plugin.Geolocator.Abstractions.Position(map.CameraPosition.Target.Latitude, map.CameraPosition.Target.Longitude);
             if (GeolocatorUtils.CalculateDistance(poss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) < 25)//was 5 set 25 to Lost GeoPos
             {
-                RefreshSpeed(poss);
                 var zoom = map.CameraPosition.Zoom;
                 Xamarin.Forms.GoogleMaps.Position pos = new Xamarin.Forms.GoogleMaps.Position(e.Position.Latitude, e.Position.Longitude);
                 if (pl_listner.Positions.Count >= 1)
                 {
-                    Plugin.Geolocator.Abstractions.Position pss = new Plugin.Geolocator.Abstractions.Position(pl_listner.Positions[pl_listner.Positions.Count - 1].Latitude,
-                        pl_listner.Positions[pl_listner.Positions.Count - 1].Longitude);
-                    if (GeolocatorUtils.CalculateDistance(pss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) * 1000 > 10)
-                        SetLine(pos, false);
+                    //Plugin.Geolocator.Abstractions.Position pss = new Plugin.Geolocator.Abstractions.Position(pl_listner.Positions[pl_listner.Positions.Count - 1].Latitude,
+                    //    pl_listner.Positions[pl_listner.Positions.Count - 1].Longitude);
+                    //if (GeolocatorUtils.CalculateDistance(pss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) > 10) //* 1000 > 10)
+                    SetLine(pos, false);
+                    RefreshSpeed(poss);
                 }
                 else if (pl_listner.Positions.Count == 0)
                 {
@@ -715,7 +723,6 @@ namespace Google_sheetAndro.Views
         {
             if (!CrossGeolocator.Current.IsListening)
                 return false;
-            CrossDeviceSensors.Current.Barometer.StopReading();
             bool l = await CrossGeolocator.Current.StopListeningAsync();
             CrossGeolocator.Current.PositionChanged -= PositionChanged;
             CrossGeolocator.Current.PositionError -= PositionError;
@@ -742,7 +749,7 @@ namespace Google_sheetAndro.Views
             {
                 string buf = Preferences.Get("LastKnownPosition", "55.751316;37.620915");
                 var op = buf.Split(';');
-                pos = new Xamarin.Forms.GoogleMaps.Position(Convert.ToDouble(op[0],CultureInfo.InvariantCulture), Convert.ToDouble(op[1], CultureInfo.InvariantCulture));
+                pos = new Xamarin.Forms.GoogleMaps.Position(Convert.ToDouble(op[0], CultureInfo.InvariantCulture), Convert.ToDouble(op[1], CultureInfo.InvariantCulture));
             }
             Debug.WriteLine($"before go to new point");
             Debug.WriteLine($"{pos.Latitude};{pos.Longitude}");
@@ -757,52 +764,58 @@ namespace Google_sheetAndro.Views
 
         private void map_MapLongClicked(object sender, MapLongClickedEventArgs e)
         {
-            Debug.WriteLine("Pin set");
-            var qq = map.CameraPosition.Zoom;
-            Debug.WriteLine("Zoom = " + qq.ToString());
-            Debug.WriteLine("PinPos = " + e.Point.Latitude.ToString() + " : " + e.Point.Longitude.ToString());
-            if (fl_route)
+            if (!fl_run)
             {
-                SetLine(e.Point, true);
-            }
-            else
-            {
-                SetPoint(e.Point);
+                Debug.WriteLine("Pin set");
+                var qq = map.CameraPosition.Zoom;
+                Debug.WriteLine("Zoom = " + qq.ToString());
+                Debug.WriteLine("PinPos = " + e.Point.Latitude.ToString() + " : " + e.Point.Longitude.ToString());
+                if (fl_route)
+                {
+                    SetLine(e.Point, true);
+                }
+                else
+                {
+                    SetPoint(e.Point);
+                }
             }
         }
         private void Map_PinClicked(object sender, PinClickedEventArgs e)
         {
             //Debug.WriteLine("Pin clicked");
             //Xamarin.Forms.GoogleMaps.Position t;
-
-            if (fl_route)
+            if (!fl_run)
             {
-                if (fl_USE_MAP_CLICK)
+                if (fl_route)
                 {
-                    var t = e.Pin;
-                    int buff = map.Pins.IndexOf(e.Pin);
-                    map.Pins.RemoveAt(buff);
-                    if (pl_handle.Positions.Count >= 1)
+                    if (fl_USE_MAP_CLICK)
                     {
-                        dist_handle += GeolocatorUtils.CalculateDistance(new
-                            Plugin.Geolocator.Abstractions.Position(pl_handle.Positions[pl_handle.Positions.Count - 1].Latitude,
-                            pl_handle.Positions[pl_handle.Positions.Count - 1].Longitude),
-                       new Plugin.Geolocator.Abstractions.Position(t.Position.Latitude, t.Position.Longitude), GeolocatorUtils.DistanceUnits.Kilometers);
-                        SetLine(t.Position, true);
-                        //pl_handle.Positions.Add(t);
-                    }
-                    else
-                    {
-                        pl_handle.Positions.Add(t.Position);
+                        var t = e.Pin;
+                        int buff = map.Pins.IndexOf(e.Pin);
+                        map.Pins.RemoveAt(buff);
                         if (pl_handle.Positions.Count >= 1)
                         {
+                            dist_handle += GeolocatorUtils.CalculateDistance(new
+                                Plugin.Geolocator.Abstractions.Position(pl_handle.Positions[pl_handle.Positions.Count - 1].Latitude,
+                                pl_handle.Positions[pl_handle.Positions.Count - 1].Longitude),
+                           new Plugin.Geolocator.Abstractions.Position(t.Position.Latitude, t.Position.Longitude), GeolocatorUtils.DistanceUnits.Kilometers);
                             SetLine(t.Position, true);
+                            //pl_handle.Positions.Add(t);
                         }
+                        else
+                        {
+                            pl_handle.Positions.Add(t.Position);
+                            if (pl_handle.Positions.Count >= 1)
+                            {
+                                SetLine(t.Position, true);
+                            }
+                        }
+                        //map.Polylines.Remove(pl_handle);
+                        //map.Polylines.Add(pl_handle);
                     }
-                    //map.Polylines.Remove(pl_handle);
-                    //map.Polylines.Add(pl_handle);
                 }
             }
+
         }
         private void SetPoint(Xamarin.Forms.GoogleMaps.Position e, bool fl_transp = false)
         {
@@ -851,7 +864,7 @@ namespace Google_sheetAndro.Views
                     {
                         pn = map.Pins.Where(i => i.Label == "End").First();
                         map.Pins.Remove(pn);
-                        if(pl.Tag.ToString() == "Handle")
+                        if (pl.Tag.ToString() == "Handle")
                             SetPoint(pn.Position, true);
                         pn.Position = e;
                         map.Pins.Add(pn);
