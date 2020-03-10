@@ -42,17 +42,18 @@ namespace Google_sheetAndro.Views
                 ti_local = ti;
                 Date_pick.Date = ti.date;
                 Time_pick.Text = ti.time;
-                Wind_Num.Text = ti.wind.ToString();
+                SetWind(ti.wind);
+                //Wind_Num.Text = string.Format("{0:F0}", ti.wind); //ti.wind.ToString();
                 if (!cloud_list.Contains(ti.cloud))
                     cloud_list.Add(ti.cloud);
                 CloudPicker.SelectedItem = ti.cloud;
                 if (ti.temp > 0)
-                    Temp_Num.Text = "+" + ti.temp.ToString();
+                    Temp_Num.Text = string.Format("+{0:F1}", ti.temp);//.ToString();
                 else
-                    Temp_Num.Text = ti.temp.ToString();
+                    Temp_Num.Text = string.Format("{0:F1}",ti.temp);//.ToString();
                 Task_txt.Text = ti.task;
-                Hight_txt_num.Text = ti.height.ToString();
-                Range_txt.Text = ti.range.ToString();
+                Hight_txt_num.Text = string.Format("{0:F0}", ti.height);
+                Range_txt.Text = string.Format("{0:F1}", ti.range); ;
                 if (!place_list.Contains(ti.plase))
                     place_list.Add(ti.plase);
                 Place_txt.SelectedItem = ti.plase;
@@ -73,17 +74,18 @@ namespace Google_sheetAndro.Views
 
         private void SetTemp(string temp)
         {
-            Temp_Num.Text = temp;
+            Temp_Num.Text = String.Format("{0:F1}",temp);
         }
         private void SetCloud(string cloud)
         {
             CloudPicker.SelectedItem = cloud;
         }
-        private void SetWind(int wind)
+        private void SetWind(double wind)
         {
             if (WindSlider.Maximum < wind)
                 WindSlider.Maximum = wind + 1;
             WindSlider.Value = wind;
+            WindSlider_ValueChanged(this, null);
         }
         private void SetNal(string nal)
         {
@@ -91,11 +93,11 @@ namespace Google_sheetAndro.Views
         }
         public void SetDist(double dist)
         {
-            Range_txt.Text = string.Format(CultureInfo.InvariantCulture, "{0:#0.#}", dist);
+            Range_txt.Text = string.Format("{0:F1}", dist);//CultureInfo.InvariantCulture, "{0:#0.#}", dist);
         }
         public void SetHeight(int height)
         {
-            Hight_txt_num.Text = height.ToString();
+            Hight_txt_num.Text = string.Format("{0:F0}",height);
         }
         public TableItem getter()
         {
@@ -105,14 +107,24 @@ namespace Google_sheetAndro.Views
                 ti_local = new TableItem();
             }
             var offset = TimeZoneInfo.Local.GetUtcOffset(Date_pick.Date.ToUniversalTime());
+
             ti_local.date = Date_pick.Date.ToUniversalTime() + offset;
             ti_local.time = Time_pick.Text;
-            ti_local.wind = Convert.ToDouble(Wind_Num.Text, CultureInfo.InvariantCulture);
+            double helpers = 0;
+            double.TryParse(Wind_Num.Text, out helpers);
+            ti_local.wind = helpers;
+            //ti_local.wind = Convert.ToDouble(Wind_Num.Text, CultureInfo.InvariantCulture);
             ti_local.cloud = CloudPicker.SelectedItem.ToString();
-            ti_local.temp = Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture);
+            double.TryParse(Temp_Num.Text, out helpers);
+            ti_local.temp = helpers;
+            //ti_local.temp = Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture);
             ti_local.task = Task_txt.Text;
-            ti_local.height = Convert.ToDouble(Hight_txt_num.Text, CultureInfo.InvariantCulture);
-            ti_local.range = Convert.ToDouble(Range_txt.Text, CultureInfo.InvariantCulture);
+            double.TryParse(Hight_txt_num.Text, out helpers);
+            ti_local.height = helpers;
+            //ti_local.height = Convert.ToDouble(Hight_txt_num.Text, CultureInfo.InvariantCulture);
+            double.TryParse(Range_txt.Text, out helpers);
+            ti_local.range = helpers;
+            //ti_local.range = Convert.ToDouble(Range_txt.Text, CultureInfo.InvariantCulture);
             ti_local.plase = Place_txt.SelectedItem.ToString();
             ti_local.comment = Comment_txt.Text;
             return ti_local;
@@ -305,11 +317,12 @@ namespace Google_sheetAndro.Views
         private void Temp_Num_TextChanged(object sender, TextChangedEventArgs e)
         {
             TempSlider.ValueChanged -= TempSlider_ValueChanged;
-            Regex rg = new Regex(@"^(?<sign>(\+|\-)?)(?<value>\d+(\.\d+)?)$");
+            Regex rg = new Regex(@"^(?<sign>(\+|\-)?)(?<value>\d+((\.|\,)\d+)?)$");
             Match match = rg.Match(Temp_Num.Text);
             if (rg.Match(Temp_Num.Text).Success)
             {
-                double val = Convert.ToDouble(match.Groups["value"].Value, CultureInfo.InvariantCulture);
+                double val = 0;// Convert.ToDouble(match.Groups["value"].Value, CultureInfo.InvariantCulture);
+                double.TryParse(match.Groups["value"].Value, out val);
                 //string dob = "";
                 switch (match.Groups["sign"].Value)
                 {
@@ -346,10 +359,10 @@ namespace Google_sheetAndro.Views
             }
             else if (val < 50)
             {
-                dob = "-";
+                dob = "";
                 val = 50.0 - val;
             }
-            Temp_Num.Text = dob + string.Format("{0:#0.#}", val);
+            Temp_Num.Text = dob + string.Format("{0:F1}", val);
             Temp_Num.TextChanged += Temp_Num_TextChanged;
         }
 
@@ -421,7 +434,7 @@ namespace Google_sheetAndro.Views
         }
         private void WindSlider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
-            Wind_Num.Text = string.Format("{0:0}", WindSlider.Value);
+            Wind_Num.Text = string.Format("{0:F0}", WindSlider.Value);
         }
 
         private async void Btn_plus_time_Clicked(object sender, EventArgs e)
@@ -470,48 +483,65 @@ namespace Google_sheetAndro.Views
         {
             TagButton tb = (TagButton)sender;
             await tb.FadeTo(0, 100);
-
+            double helpers = 0;
+            int dop = 0;
             if (Hight_txt_num.Text == "")
                 Hight_txt_num.Text = "0";
+
             switch (tb.Tag)
             {
                 case "++":
-                    Hight_txt_num.Text = string.Format("{0:000}", Convert.ToDouble(Hight_txt_num.Text, CultureInfo.InvariantCulture) + 100);
+                    dop = 100;
+                    //Hight_txt_num.Text = string.Format("{0:000}", Convert.ToDouble(Hight_txt_num.Text, CultureInfo.InvariantCulture) + 100);
                     break;
                 case "--":
-                    Hight_txt_num.Text = string.Format("{0:000}", Convert.ToDouble(Hight_txt_num.Text, CultureInfo.InvariantCulture) - 100);
+                    dop = -100;
+                    //Hight_txt_num.Text = string.Format("{0:000}", Convert.ToDouble(Hight_txt_num.Text, CultureInfo.InvariantCulture) - 100);
                     break;
                 case "+":
-                    Hight_txt_num.Text = string.Format("{0:000}", Convert.ToDouble(Hight_txt_num.Text, CultureInfo.InvariantCulture) + 50);
+                    dop = 50;
+                    //Hight_txt_num.Text = string.Format("{0:000}", Convert.ToDouble(Hight_txt_num.Text, CultureInfo.InvariantCulture) + 50);
                     break;
                 case "-":
-                    Hight_txt_num.Text = string.Format("{0:000}", Convert.ToDouble(Hight_txt_num.Text, CultureInfo.InvariantCulture) - 50);
+                    dop = -50;
+                    //Hight_txt_num.Text = string.Format("{0:000}", Convert.ToDouble(Hight_txt_num.Text, CultureInfo.InvariantCulture) - 50);
                     break;
             }
+            double.TryParse(Hight_txt_num.Text, out helpers);
+            helpers += dop;
+            Hight_txt_num.Text = string.Format("{0:F0}",helpers);
             await tb.FadeTo(1, 100);
         }
         private async void Btn_plus_len_Clicked(object sender, EventArgs e)
         {
             TagButton tb = (TagButton)sender;
             await tb.FadeTo(0, 100);
-
+            double helpers = 0;
+            int dop = 0;
             if (Range_txt.Text == "")
                 Range_txt.Text = "0";
             switch (tb.Tag)
             {
                 case "++":
-                    Range_txt.Text = string.Format("{0:#0.#}", Convert.ToDouble(Range_txt.Text, CultureInfo.InvariantCulture) + 10);
+                    dop = 10;
+                    //Range_txt.Text = string.Format("{0:#0.#}", Convert.ToDouble(Range_txt.Text, CultureInfo.InvariantCulture) + 10);
                     break;
                 case "--":
-                    Range_txt.Text = string.Format("{0:#0.#}", Convert.ToDouble(Range_txt.Text, CultureInfo.InvariantCulture) - 10);
+                    dop = -10;
+                    //Range_txt.Text = string.Format("{0:#0.#}", Convert.ToDouble(Range_txt.Text, CultureInfo.InvariantCulture) - 10);
                     break;
                 case "+":
-                    Range_txt.Text = string.Format("{0:#0.#}", Convert.ToDouble(Range_txt.Text, CultureInfo.InvariantCulture) + 5);
+                    dop = 5;
+                    //Range_txt.Text = string.Format("{0:#0.#}", Convert.ToDouble(Range_txt.Text, CultureInfo.InvariantCulture) + 5);
                     break;
                 case "-":
-                    Range_txt.Text = string.Format("{0:#0.#}", Convert.ToDouble(Range_txt.Text, CultureInfo.InvariantCulture) - 5);
+                    dop = -5;
+                    //Range_txt.Text = string.Format("{0:#0.#}", Convert.ToDouble(Range_txt.Text, CultureInfo.InvariantCulture) - 5);
                     break;
             }
+            double.TryParse(Range_txt.Text, out helpers);
+            helpers += dop;
+            Range_txt.Text = string.Format("{0:F1}", helpers);
             await tb.FadeTo(1, 100);
         }
 
@@ -525,30 +555,45 @@ namespace Google_sheetAndro.Views
                 Temp_Num.Text = "0";
             double val = 0;
             string dob = "";
-
+            int dob_val = 0;
             switch (tb.Tag)
             {
                 case "++":
-                    Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) + 10);
+                    dob_val = 10;
+                    //Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) + 10);
                     break;
                 case "--":
-                    Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) - 10);
+                    dob_val = -10;
+                    //Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) - 10);
                     break;
                 case "+":
-                    Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) + 5);
+                    dob_val = 5;
+                    //Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) + 5);
                     break;
                 case "-":
-                    Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) - 5);
+                    dob_val = -5;
+                    //Temp_Num.Text = string.Format("{0:#0.#}", Convert.ToDouble(Temp_Num.Text, CultureInfo.InvariantCulture) - 5);
                     break;
             }
             if (double.TryParse(Temp_Num.Text, out val))
             {
+                val += dob_val;
                 if (val > 0)
                     dob = "+";
+                Temp_Num.Text = string.Format("{0:F1}", val);
                 Temp_Num.Text = Temp_Num.Text.Insert(0, dob);
             }
             else
                 Temp_Num.Text = "0";
+            if (val > 50.0)
+            {
+                val = 50.0;
+            }
+            if (val < 50)
+            {
+                val = -50.0;
+            }
+            TempSlider.Value = 50 + val;
             await tb.FadeTo(1, 100);
             Temp_Num.TextChanged += Temp_Num_TextChanged;
         }

@@ -64,7 +64,7 @@ namespace Google_sheetAndro.Droid
                 Auth = new GoogleAuthenticator(Configuration.ClientId, Configuration.Scope, Configuration.RedirectUrl, this);
                 var authenticator = Auth.GetAuthenticator();
                 var intent = authenticator.GetUI(this);
-                intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
+                intent.SetFlags(ActivityFlags.ReorderToFront | ActivityFlags.SingleTop | ActivityFlags.NewTask);
                 CustomTabsConfiguration.CustomTabsClosingMessage = null;
                 StartActivity(intent);
             }
@@ -78,6 +78,7 @@ namespace Google_sheetAndro.Droid
             await Xamarin.Essentials.SecureStorage.SetAsync("picture", email.picture);
             StaticInfo.AccountEmail = email.email;
             StaticInfo.AccountPicture = email.picture;
+            Finish();
         }
 
         public void OnAuthenticationCanceled()

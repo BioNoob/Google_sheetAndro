@@ -59,7 +59,7 @@ namespace Google_sheetAndro.Class
 
         public delegate void ParamSetterC(string cloud_s);
         public static event ParamSetterC DoSetCloud;
-        public delegate void ParamSetterW(int wind);
+        public delegate void ParamSetterW(double wind);
         public static event ParamSetterW DoSetWind;
         public delegate void ParamSetterT(string temp);
         public static event ParamSetterT DoSetTemp;
