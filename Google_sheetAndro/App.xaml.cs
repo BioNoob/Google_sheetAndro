@@ -64,20 +64,17 @@ namespace Google_sheetAndro
         }
         static bool fl_wait = false;
 
-
         protected override async void OnStart()
         {
 
             if (!fl_wait)
             {
                 Debug.WriteLine("RunStart");
-                await LoaderFunction.InitialiserPage().ConfigureAwait(true);
+                bool asd = await LoaderFunction.InitialiserPage();//.ConfigureAwait(true);
                 Debug.WriteLine("EndStart");
             }
-
-            // Handle when your app starts
-
         }
+
         protected override void OnSleep()
         {
             fl_wait = true;

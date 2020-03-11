@@ -28,6 +28,7 @@ namespace Google_sheetAndro.Views
             StaticInfo.DoSetSelect += VM_DoSetSelect;
             StaticInfo.DonewYearAdd += VM_newYearAdd;
             StaticInfo.DoSuccSend += SuccSend;
+            StaticInfo.SetMenuUser += StaticInfo_SetMenuUser;
             LoaderFunction.DoClearMap += LoaderFunction_DoClearMap;
             var tgr = new TapGestureRecognizer();
             tgr.Tapped += (s, e) => imgbtnclick();
@@ -36,6 +37,12 @@ namespace Google_sheetAndro.Views
             Mounth_pick.SelectedIndex = 0;
             BindingContext = vM;
         }
+
+        private void StaticInfo_SetMenuUser()
+        {
+            imgbtnclick();
+        }
+
         private async void imgbtnclick()
         {
             if (ImgBtn.Rotation == 360)

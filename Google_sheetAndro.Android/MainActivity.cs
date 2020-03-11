@@ -8,6 +8,7 @@ using Google_sheetAndro.Authentication;
 using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
 using Google_sheetAndro.Services;
+using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Auth;
@@ -24,6 +25,7 @@ namespace Google_sheetAndro.Droid
         //public static GoogleOauth Auth;
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            this.Window.AddFlags(WindowManagerFlags.KeepScreenOn);
             base.OnCreate(savedInstanceState);
             if (!fl_wait)
             {
@@ -42,7 +44,6 @@ namespace Google_sheetAndro.Droid
             {
                 LoadApplication(ap);
             }
-            this.Window.AddFlags(WindowManagerFlags.KeepScreenOn);
         }
         private void LoadOfflineVersion()
         {
@@ -54,19 +55,34 @@ namespace Google_sheetAndro.Droid
 
             var oathToken = await SecureStorage.GetAsync("token");
             var tt = await SecureStorage.GetAsync("picture");
+            var name = await SecureStorage.GetAsync("name");
             if (oathToken != null && tt != null)
             {
                 StaticInfo.AccountEmail = oathToken;
                 StaticInfo.AccountPicture = tt;
+                StaticInfo.AccountFullName = name;
+                while (true)
+                {
+                    if (LoaderFunction.is_Loaded)
+                    {
+                        LoaderFunction.EndLoad();
+                        break;
+                    }
+                    else
+                    {
+                        await Task.Delay(1000);
+                    }
+                }
             }
             else
             {
                 Auth = new GoogleAuthenticator(Configuration.ClientId, Configuration.Scope, Configuration.RedirectUrl, this);
                 var authenticator = Auth.GetAuthenticator();
                 var intent = authenticator.GetUI(this);
-                intent.SetFlags(ActivityFlags.ReorderToFront | ActivityFlags.SingleTop | ActivityFlags.NewTask);
+                intent.SetFlags(ActivityFlags.NewTask);//ActivityFlags.ReorderToFront | ActivityFlags.SingleTop
                 CustomTabsConfiguration.CustomTabsClosingMessage = null;
                 StartActivity(intent);
+                //Finish();
             }
         }
         public async void OnAuthenticationCompleted(GoogleOAuthToken token)
@@ -76,9 +92,24 @@ namespace Google_sheetAndro.Droid
             var email = await googleService.GetEmailAsync(token.TokenType, token.AccessToken);
             await Xamarin.Essentials.SecureStorage.SetAsync("token", email.email);
             await Xamarin.Essentials.SecureStorage.SetAsync("picture", email.picture);
+            await Xamarin.Essentials.SecureStorage.SetAsync("name", email.name);
             StaticInfo.AccountEmail = email.email;
             StaticInfo.AccountPicture = email.picture;
-            Finish();
+            StaticInfo.AccountFullName = email.name;
+            while (true)
+            {
+                if(LoaderFunction.is_Loaded)
+                {
+                    LoaderFunction.EndLoad();
+                    break;
+                }
+                else
+                {
+                    await Task.Delay(1000);
+                }
+            }
+            //StaticInfo.SetMenuUserAct();
+            //Finish();
         }
 
         public void OnAuthenticationCanceled()

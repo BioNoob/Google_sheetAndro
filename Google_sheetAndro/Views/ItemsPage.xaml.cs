@@ -311,61 +311,6 @@ namespace Google_sheetAndro.Views
             //innerGrid.Children.Add(gr_7, 0, 6);
             //Grid.SetColumnSpan(gr_7, 1);
         }
-
-
-
-        private void Temp_Num_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TempSlider.ValueChanged -= TempSlider_ValueChanged;
-            Regex rg = new Regex(@"^(?<sign>(\+|\-)?)(?<value>\d+((\.|\,)\d+)?)$");
-            Match match = rg.Match(Temp_Num.Text);
-            if (rg.Match(Temp_Num.Text).Success)
-            {
-                double val = 0;// Convert.ToDouble(match.Groups["value"].Value, CultureInfo.InvariantCulture);
-                double.TryParse(match.Groups["value"].Value, out val);
-                //string dob = "";
-                switch (match.Groups["sign"].Value)
-                {
-                    case "+":
-                    case "":
-                        if (val > 50.0)
-                        {
-                            val = 50.0;
-                        }
-                        TempSlider.Value = 50 + val;
-                        //dob = "+";
-                        break;
-                    case "-":
-                        if (val > 50.0)
-                        {
-                            val = 50.0;
-                        }
-                        TempSlider.Value = 50 - val;
-                        //dob = "-";
-                        break;
-                }
-            }
-            TempSlider.ValueChanged += TempSlider_ValueChanged;
-        }
-        private void TempSlider_ValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            Temp_Num.TextChanged -= Temp_Num_TextChanged;
-            string dob = "";
-            double val = TempSlider.Value;
-            if (val > 50)
-            {
-                dob = "+";
-                val -= 50.0;
-            }
-            else if (val < 50)
-            {
-                dob = "";
-                val = 50.0 - val;
-            }
-            Temp_Num.Text = dob + string.Format("{0:F1}", val);
-            Temp_Num.TextChanged += Temp_Num_TextChanged;
-        }
-
         private void Confirm_btn_Clicked(object sender, EventArgs e)
         {
             CreateRow();
@@ -416,7 +361,6 @@ namespace Google_sheetAndro.Views
             }
             IsBusy = false;
         }
-
         private void Time_pick_TextChanged(object sender, TextChangedEventArgs e)
         {
             string val = Time_pick.Text;
@@ -436,7 +380,6 @@ namespace Google_sheetAndro.Views
         {
             Wind_Num.Text = string.Format("{0:F0}", WindSlider.Value);
         }
-
         private async void Btn_plus_time_Clicked(object sender, EventArgs e)
         {
             Time_pick.TextChanged -= Time_pick_TextChanged;
@@ -476,9 +419,6 @@ namespace Google_sheetAndro.Views
             Time_pick.TextChanged += Time_pick_TextChanged;
             await btn.FadeTo(1, 100);
         }
-
-
-
         private async void Btn_plus_hi_Clicked(object sender, EventArgs e)
         {
             TagButton tb = (TagButton)sender;
@@ -545,10 +485,70 @@ namespace Google_sheetAndro.Views
             await tb.FadeTo(1, 100);
         }
 
+        private void Temp_Num_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //TempSlider.ValueChanged -= TempSlider_ValueChanged;
+            if (!active_change)
+            {
+                active_change = true;
+                Regex rg = new Regex(@"^(?<sign>(\+|\-)?)(?<value>\d+((\.|\,)\d+)?)$");
+                Match match = rg.Match(Temp_Num.Text);
+                if (rg.Match(Temp_Num.Text).Success)
+                {
+                    double val = 0;// Convert.ToDouble(match.Groups["value"].Value, CultureInfo.InvariantCulture);
+                    double.TryParse(match.Groups["value"].Value, out val);
+                    //string dob = "";
+                    if (val > 50.0)
+                    {
+                        val = 50.0;
+                    }
+                    switch (match.Groups["sign"].Value)
+                    {
+                        case "+":
+                        case "":
+                            TempSlider.Value = 50 + val;
+                            //dob = "+";
+                            break;
+                        case "-":
+                            TempSlider.Value = 50 - val;
+                            //dob = "-";
+                            break;
+                    }
+                }
+                active_change = false;
+            }
 
+            //TempSlider.ValueChanged += TempSlider_ValueChanged;
+        }
+        private void TempSlider_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            //Temp_Num.TextChanged -= Temp_Num_TextChanged;
+            if(!active_change)
+            {
+                active_change = true;
+                string dob = "";
+                double val = TempSlider.Value;
+                if (val > 50)
+                {
+                    dob = "+";
+                    val -= 50.0;
+                }
+                else if (val < 50)
+                {
+                    dob = "";
+                    val = 50.0 - val;
+                }
+                Temp_Num.Text = dob + string.Format("{0:F1}", val);
+                active_change = false;
+            }
+            //Temp_Num.TextChanged += Temp_Num_TextChanged;
+        }
+        bool active_change = false;
         private async void Btn_temp_plus_Clicked(object sender, EventArgs e)
         {
-            Temp_Num.TextChanged -= Temp_Num_TextChanged;
+            //Temp_Num.TextChanged -= Temp_Num_TextChanged;
+            //TempSlider.ValueChanged -= TempSlider_ValueChanged;
+            active_change = true;
             TagButton tb = (TagButton)sender;
             await tb.FadeTo(0, 100);
             if (Temp_Num.Text == "")
@@ -585,17 +585,13 @@ namespace Google_sheetAndro.Views
             }
             else
                 Temp_Num.Text = "0";
-            if (val > 50.0)
-            {
-                val = 50.0;
-            }
-            if (val < 50)
-            {
-                val = -50.0;
-            }
+            if (val > 50) val = 50;
+            if (val < -50) val = -50;
             TempSlider.Value = 50 + val;
             await tb.FadeTo(1, 100);
-            Temp_Num.TextChanged += Temp_Num_TextChanged;
+            active_change = false;
+            //Temp_Num.TextChanged += Temp_Num_TextChanged;
+            //TempSlider.ValueChanged += TempSlider_ValueChanged;
         }
         TaskSelectPage Tsp = LoaderFunction.TaskSelectPage;
         private async void Task_txt_Clicked(object sender, EventArgs e)

@@ -42,7 +42,8 @@ namespace Google_sheetAndro.Authentication
                 var token = new GoogleOAuthToken
                 {
                     TokenType = e.Account.Properties["token_type"],
-                    AccessToken = e.Account.Properties["access_token"]
+                    AccessToken = e.Account.Properties["access_token"],
+                    TokenAccount = e.Account
                 };
                 _authenticationDelegate.OnAuthenticationCompleted(token);
             }

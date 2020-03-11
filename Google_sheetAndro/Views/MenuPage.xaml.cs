@@ -42,8 +42,15 @@ namespace Google_sheetAndro.Views
                 {new MenuItems("info_menu.png","Информация")}
             };
             StaticInfo.SetDetailPage += sett;
+            //StaticInfo.SetMenuUser += StaticInfo_SetMenuUser;
             BindingContext = this;
         }
+
+        private void StaticInfo_SetMenuUser()
+        {
+            setImg(StaticInfo.AccountPicture, StaticInfo.AccountEmail);
+        }
+
         private async void ItemPageView_Clicked()
         {
             LoaderFunction.ItemsInfoPage.Title = "Записи";

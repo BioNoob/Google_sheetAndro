@@ -13,6 +13,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using static Google.Apis.Sheets.v4.SpreadsheetsResource;
 
@@ -62,7 +63,7 @@ namespace TableAndro
             var resp2 = BUrequest.ExecuteAsync(cts.Token);
             newSheetId = response.Result.SheetId ?? 0;
         }
-        public static void InitService(string year = "")
+        public async static Task<bool> InitService(string year = "")
         {
             CancellationTokenSource cts = new CancellationTokenSource();
             cts.CancelAfter(15000);
@@ -81,8 +82,9 @@ namespace TableAndro
                 ApplicationName = Googles.ApplicationName,
             });
             var qq = Googles.service.Spreadsheets.Get(Googles.SpreadsheetId).ExecuteAsync(cts.Token);
-            Googles.sheetInfo = qq.Result;
+            Googles.sheetInfo = await qq;//.Result;
             ShReader(year);
+            return true;
         }
         private static bool IsDigitsOnly(string str)
         {

@@ -4,5 +4,6 @@
     {
         public string TokenType { get; set; }
         public string AccessToken { get; set; }
+        public Xamarin.Auth.Account TokenAccount { get; set; }
     }
 }

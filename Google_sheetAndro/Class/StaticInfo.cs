@@ -39,9 +39,11 @@ namespace Google_sheetAndro.Class
         private static double dist;
         private static ResponsedData wheather = null;
         private static string accountEmail;
-
+        private static string accountFullName;
         public delegate void MenuSetPage(Page pg);
         public static event MenuSetPage SetDetailPage;
+        public delegate void MenuSetUser();
+        public static event MenuSetUser SetMenuUser;
 
         public delegate void SetSelected();
         public static event SetSelected DoSetSelect;
@@ -66,6 +68,7 @@ namespace Google_sheetAndro.Class
         public delegate void ActivityEnabler(bool status);
         public static event ActivityEnabler DoActiveAI;
         public static string AccountEmail { get => accountEmail; set => accountEmail = value; }
+        public static string AccountFullName { get => accountFullName; set => accountFullName = value; }
         private static string accountPicture;
         public static float BarWheather { get; set; } = 0;
         public static string AccountPicture { get => accountPicture; set { accountPicture = value; } }
@@ -86,6 +89,10 @@ namespace Google_sheetAndro.Class
         public static void SetPage(Page pg)
         {
             SetDetailPage?.Invoke(pg);
+        }
+        public static void SetMenuUserAct()
+        {
+            SetMenuUser?.Invoke();
         }
         public static ResponsedData Wheather
         {

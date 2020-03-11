@@ -1,7 +1,9 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Android.Views;
 using Android.Widget;
 using Google_sheetAndro.Models;
 using Plugin.CurrentActivity;
@@ -16,6 +18,7 @@ namespace Google_sheetAndro.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            this.Window.AddFlags(WindowManagerFlags.KeepScreenOn);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
@@ -28,24 +31,25 @@ namespace Google_sheetAndro.Droid
             PullToRefreshLayoutRenderer.Init();
             XFGloss.Droid.Library.Init(this, savedInstanceState);
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
+            global::Xamarin.Auth.CustomTabsConfiguration.CustomTabsClosingMessage = null;
             var network = Connectivity.NetworkAccess;
             if (network == NetworkAccess.None)
             {
                 Toast.MakeText(Android.App.Application.Context, "Отсутствует интернет соединение", ToastLength.Long).Show();
-                //Toast.MakeText(Android.App.Application.Context, "Приложение пока не поддерживает редактирование офлайн", ToastLength.Long).Show();
-                //Device.BeginInvokeOnMainThread(async () =>
-                //{
-                //    await Task.Delay(1000);
-                //    Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
-                //});
                 LoaderFunction.fl_offline = true;
-                StartActivity(typeof(MainActivity));
+                //StartActivity(typeof(MainActivity));
             }
             else
             {
                 LoaderFunction.fl_offline = false;
-                StartActivity(typeof(MainActivity));
+                //StartActivity(typeof(MainActivity));
             }
+            var intent = new Intent(this, typeof(MainActivity));
+            //intent.AddFlags(ActivityFlags.ClearTop);
+            intent.AddFlags(ActivityFlags.SingleTop);
+            intent.AddFlags(ActivityFlags.NewTask);
+            StartActivity(intent);
+            Finish();
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

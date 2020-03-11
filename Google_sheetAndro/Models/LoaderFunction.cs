@@ -99,6 +99,7 @@ namespace Google_sheetAndro.Models
             if (MenuPage != null && StaticInfo.AccountEmail != null)
             {
                 MenuPage.setImg(StaticInfo.AccountPicture, StaticInfo.AccountEmail);
+                StaticInfo.SetMenuUserAct();
             }
         }
         public static InfoPage InfoPage;
@@ -130,20 +131,17 @@ namespace Google_sheetAndro.Models
         {
             DoWheatherLoad?.Invoke();
         }
-        //NavigationPage outpg;
-        private static async Task Loader()
+        public static bool is_Loaded;
+        public static async Task<bool> InitialiserPage()
         {
-        }
-        public static async Task InitialiserPage()
-        {
-            Googles.InitService();
+            var qzi = await Googles.InitService();
             var q = await GetGEOAsync();
             var qq = await init();
             while (true)
             {
                 if (q == true && qq == true)
                 {
-                    EndLoad();
+                    //EndLoad();
                     string kk = Preferences.Get("Offline_data", "");
                     List<TableItem> ti = JsonConvert.DeserializeObject<List<TableItem>>(kk);
                     if (ti != null)
@@ -155,25 +153,11 @@ namespace Google_sheetAndro.Models
                             StaticInfo.SetPage(ofl);
                         }
                     }
+                    is_Loaded = true;
                     break;
                 }
             }
-
-            //Task.Run(async () => await Loader()).Wait();
-
-            //Task t1 = GetGEOAsync();
-
-            //Task t2 = t1.ContinueWith(ct => init());
-            //Task tWload = new Task(() => { WheatherPage = new WheatherView(); });
-            //Task t = Task.WhenAll(new List<Task>() { t2, tWload }).ContinueWith(ct => EndLoad());
-            //Task BackGround = tWload.ContinueWith(ct =>
-            //{
-            //    //not ok out items info
-            //});
-            //await Task.WhenAll(new[] { t, BackGround });
-
-            //return true;
-            //then load all info wheather and map and etc/
+            return true;
         }
         static public Dictionary<string, Location> GetCSV()
         {
