@@ -21,21 +21,28 @@
                        HorizontalOptions="CenterAndExpand"
                        VerticalOptions="CenterAndExpand" Scale="1"/>
             </RelativeLayout>
-            <RelativeLayout BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">
+            <Grid VerticalOptions="CenterAndExpand"
+                  RowSpacing="40"
+                  HorizontalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 <ActivityIndicator x:Name="AcInd"
-                IsVisible="True"
+                               IsVisible="True"
                                IsRunning="True"
                                IsEnabled="False"
                                Color="Orange"
                                VerticalOptions="CenterAndExpand"
                                HorizontalOptions="CenterAndExpand"
-                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                                        Property=Width,
-                                        Factor=0.33}"
-                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                                        Property=Height,
-                                        Factor=0.33}" Scale="2" />
-            </RelativeLayout>
+                               Scale="2" Grid.Row="0"/>
+                <Frame BackgroundColor="#40000000" Grid.Row="1" Padding="15"
+                       BorderColor="Orange" CornerRadius="10" >
+                    <Label Text="{Binding Status}" VerticalOptions="CenterAndExpand" FontSize="20"
+                           FontAttributes="Bold" TextColor="Orange"
+                   HorizontalOptions="CenterAndExpand"/>
+                </Frame>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

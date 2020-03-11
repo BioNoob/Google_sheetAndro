@@ -100,12 +100,13 @@ namespace Google_sheetAndro.Droid
             {
                 if(LoaderFunction.is_Loaded)
                 {
+                    LoaderFunction.SetterStatus("Завершаем загрузку...");
                     LoaderFunction.EndLoad();
                     break;
                 }
                 else
                 {
-                    await Task.Delay(1000);
+                    await Task.Delay(500);
                 }
             }
             //StaticInfo.SetMenuUserAct();

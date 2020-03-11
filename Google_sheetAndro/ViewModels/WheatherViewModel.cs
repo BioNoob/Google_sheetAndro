@@ -47,7 +47,9 @@ namespace RefreshSample.ViewModels
             Val = gpp.getParams();
 
             Time = gpp.time;
+            LoaderFunction.SetterStatus("Ищем ближайшую летную площаку");
             string key = Searcher(StaticInfo.Pos);
+            LoaderFunction.SetterStatus("Получаем погодные данные летной площадки");
             lw = await kek(key);
             if (lw != null)
             {
@@ -191,12 +193,14 @@ namespace RefreshSample.ViewModels
             catch (OperationCanceledException)
             {
                 ErrorStatus = "Время запроса истекло. Meteocenter.asia недостпуен";
+                LoaderFunction.SetterStatus(ErrorStatus);
                 return null;
                 //resultsTextBox.Text += "\r\nDownloads canceled.\r\n";
             }
             catch (Exception ex)
             {
                 ErrorStatus = $"Ошибка. Неудалось расшифровать данные по аэродрому {key}";
+                LoaderFunction.SetterStatus(ErrorStatus);
                 Debug.WriteLine(ex.Message);
                 return null;
                 //resultsTextBox.Text += "\r\nDownloads failed.\r\n";

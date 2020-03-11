@@ -21,6 +21,8 @@ namespace Google_sheetAndro.Models
         public static event CreateRow DoCreateRow;
         public delegate void WheatherLoad();
         public static event WheatherLoad DoWheatherLoad;
+        public delegate void SetStatus(string s);
+        public static event SetStatus DoSetStatus;
         public delegate void ClearMap();
         public static event ClearMap DoClearMap;
         public static bool fl_offline { get; set; }
@@ -33,6 +35,7 @@ namespace Google_sheetAndro.Models
             try
             {
                 var request = new GeolocationRequest(GeolocationAccuracy.Best);
+                SetterStatus("Получение текущих координат...");
                 var s = await Geolocation.GetLocationAsync(request);
                 StaticInfo.Pos = s;
             }
@@ -40,24 +43,24 @@ namespace Google_sheetAndro.Models
             catch (FeatureNotSupportedException)
             {
                 // Handle not supported on device exception
-
+                SetterStatus("Ошибка в получении координат...");
                 //return fnsEx.Message;
             }
             catch (FeatureNotEnabledException)
             {
                 // Handle not enabled on device exception
-
+                SetterStatus("Ошибка в получении координат...");
                 //return fneEx.Message;
             }
             catch (PermissionException)
             {
                 // Handle permission exception
-
+                SetterStatus("Ошибка в получении координат...");
                 //return pEx.Message;
             }
             catch (Exception)
             {
-
+                SetterStatus("Ошибка в получении координат...");
                 // Unable to get location
                 //return ex.Message;
             }
@@ -66,12 +69,15 @@ namespace Google_sheetAndro.Models
         }
         public static async Task<bool> init()
         {
+            bool qqw;
             try
             {
+                SetterStatus("Получение информации о текущей локации...");
                 if (string.IsNullOrEmpty(StaticInfo.Place))
-                    await StaticInfo.GetPlace(StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude);
+                    qqw = await StaticInfo.GetPlace(StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude);
+                SetterStatus("Грузим погоду...");
                 if (StaticInfo.Wheather == null)
-                    await StaticInfo.GetWeatherReqAsync(StaticInfo.Pos);
+                    qqw = await StaticInfo.GetWeatherReqAsync(StaticInfo.Pos);
                 return true;
             }
             catch (Exception)
@@ -86,6 +92,10 @@ namespace Google_sheetAndro.Models
         public static void RunSetter(Location pos)
         {
             DoSetView?.Invoke(pos);
+        }
+        public static void SetterStatus(string st)
+        {
+            DoSetStatus?.Invoke(st);
         }
         public static void CreRow()
         {
@@ -134,7 +144,9 @@ namespace Google_sheetAndro.Models
         public static bool is_Loaded;
         public static async Task<bool> InitialiserPage()
         {
+            SetterStatus("Загрузка базы данных...");
             var qzi = await Googles.InitService();
+            SetterStatus("База загружена...");
             var q = await GetGEOAsync();
             var qq = await init();
             while (true)
@@ -142,6 +154,7 @@ namespace Google_sheetAndro.Models
                 if (q == true && qq == true)
                 {
                     //EndLoad();
+                    SetterStatus("Проверяем наличие неотправленного...");
                     string kk = Preferences.Get("Offline_data", "");
                     List<TableItem> ti = JsonConvert.DeserializeObject<List<TableItem>>(kk);
                     if (ti != null)

@@ -186,7 +186,7 @@ namespace Google_sheetAndro.Class
                 });
             }
         }
-        public static async Task GetWeatherReqAsync(Location coord)
+        public static async Task<bool> GetWeatherReqAsync(Location coord)
         {
             string api_key = "42b983a01370d4d851e3fccc2b3cfd4b";
             HttpClient client = new HttpClient();
@@ -205,8 +205,9 @@ namespace Google_sheetAndro.Class
                 BarWheather = Wheather.pressure;
                 LoaderFunction.EndWheatherLoad();
             }
+            return true;
         }
-        public static async Task GetPlace(double lat, double lon)
+        public static async Task<bool> GetPlace(double lat, double lon)
         {
 
             string api_key = "29ed5507-cb7a-4652-8163-813f6637f991";
@@ -228,8 +229,8 @@ namespace Google_sheetAndro.Class
                 {
                     System.Diagnostics.Debug.WriteLine(e.Message);
                 }
-
             }
+            return true;
         }
         public static void EnableAI(bool status)
         {
