@@ -19,7 +19,7 @@
                 </xfg:Gradient>
             </xfg:ContentPageGloss.BackgroundGradient>
             <StackLayout Padding="5,5,5,5">
-                <Frame BackgroundColor="Aquamarine" HeightRequest="170" Padding="0"
+                <Frame BackgroundColor="Aquamarine" HeightRequest="180" Padding="0"
                        Margin="0">
                     <Frame BackgroundColor="Yellow" IsClippedToBounds="True" Padding="0" Margin="0">
                         <RelativeLayout>
@@ -31,25 +31,35 @@
                                                     RelativeLayout.XConstraint= "{ConstraintExpression Type=RelativeToParent, 
                 Property=Width, Factor=0.5, Constant=-50}" 
            RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToParent,
-                Property=Height, Factor=0.4, Constant=-50}"   >
-                                <Frame BorderColor="Black"
-                                    CornerRadius="50"  
-                                       OutlineColor ="Black"
-           HeightRequest="100"
-           WidthRequest="100"
-           HorizontalOptions="Center"
-           Padding="0"
-           IsClippedToBounds="False" HasShadow="False">
-                                    <Image x:Name="profileImg"  Source="settings" Aspect="AspectFit"/>
-                                </Frame>
+                Property=Height, Factor=0.4, Constant=-60}"   >
+                                <StackLayout>
+                                    <Frame
+                                    CornerRadius="100"
+                                    HeightRequest="100"
+                                    WidthRequest="100"
+                                    HorizontalOptions="Center"
+                                    Padding="0"
+                                    IsClippedToBounds="True">
+                                        <Image x:Name="profileImg"  Source="back_book.png"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                    </Frame>
+                                </StackLayout>
                             </RelativeLayout>
-                            <Label x:Name="profileEmail" Text="yasma_corp@gmail.com" TextColor="Black" VerticalTextAlignment="Center"
+                            <Label x:Name="profileName" Text="Вася Пупкин" TextColor="Black" VerticalTextAlignment="Center"
                                    WidthRequest="250"    
-                                   HorizontalTextAlignment="Center" FontSize="21" FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center" FontSize="18" FontAttributes="Bold"
                                         RelativeLayout.XConstraint= "{ConstraintExpression Type=RelativeToParent, 
                 Property=Width, Factor=0.5, Constant=-125}" 
            RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToParent,
-                Property=Height, Factor=0.7, Constant=10}" />
+                Property=Height, Factor=0.6, Constant=10}" />
+                            <Label x:Name="profileEmail" Text="yasma_corp@gmail.com" TextColor="Black" VerticalTextAlignment="Center"
+                                   WidthRequest="250"    
+                                   HorizontalTextAlignment="Center" FontSize="14" FontAttributes="Bold"
+                                        RelativeLayout.XConstraint= "{ConstraintExpression Type=RelativeToParent, 
+                Property=Width, Factor=0.5, Constant=-125}" 
+           RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToParent,
+                Property=Height, Factor=0.75, Constant=10}" />
                         </RelativeLayout>
                     </Frame>
                 </Frame>

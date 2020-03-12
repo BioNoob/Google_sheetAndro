@@ -8,7 +8,11 @@ using Android.Widget;
 using Google_sheetAndro.Models;
 using Plugin.CurrentActivity;
 using Refractored.XamForms.PullToRefresh.Droid;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Google_sheetAndro.Droid
 {
@@ -16,7 +20,7 @@ namespace Google_sheetAndro.Droid
         MainLauncher = true, NoHistory = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class SplashScreen : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity//Activity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             this.Window.AddFlags(WindowManagerFlags.KeepScreenOn);
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -25,14 +29,60 @@ namespace Google_sheetAndro.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
             PullToRefreshLayoutRenderer.Init();
             XFGloss.Droid.Library.Init(this, savedInstanceState);
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
             global::Xamarin.Auth.CustomTabsConfiguration.CustomTabsClosingMessage = null;
-            var network = Connectivity.NetworkAccess;
+            List<PermissionStatus> ListPerm = new List<PermissionStatus>();
+            var stsatus = await Permissions.CheckStatusAsync<Permissions.Media>();
+            var status = await Permissions.CheckStatusAsync<Permissions.LocationAlways>();
+            if(status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.LocationAlways>();
+            }
+            ListPerm.Add(status);
+            status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+            if (status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+            }
+            ListPerm.Add(status);
+            status = await Permissions.CheckStatusAsync<Permissions.NetworkState>();
+            if (status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.NetworkState>();
+            }
+            ListPerm.Add(status);
+            status = await Permissions.CheckStatusAsync<Permissions.Maps>();
+            if (status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.Maps>();
+            }
+            ListPerm.Add(status);
+            if (ListPerm.Any(o => o != PermissionStatus.Granted))
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    Toast.MakeText(Android.App.Application.Context, "Не получены разрешения", ToastLength.Long).Show();
+                    await Task.Delay(1000);
+                    Toast.MakeText(Android.App.Application.Context, "Приложение будет закрыто", ToastLength.Long).Show();
+                    await Task.Delay(1000);
+                    Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+                });
+            }
+                //status = await Permissions.CheckStatusAsync<Permissions.Sensors>();
+                //if (status != PermissionStatus.Granted)
+                //{
+                //    status = await Permissions.RequestAsync<Permissions.Sensors>();
+                //}
+                //ListPerm.Add(status);
+
+
+
+
+                var network = Connectivity.NetworkAccess;
             if (network == NetworkAccess.None)
             {
                 Toast.MakeText(Android.App.Application.Context, "Отсутствует интернет соединение", ToastLength.Long).Show();

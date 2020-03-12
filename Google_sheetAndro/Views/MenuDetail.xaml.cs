@@ -10,17 +10,29 @@ namespace Google_sheetAndro.Views
     {
         public MenuDetail()
         {
-            Status = "Запуск";
             InitializeComponent();
-            BindingContext = this;
+            StTxt.Text = "Запуск...";
             LoaderFunction.DoSetStatus += LoaderFunction_DoSetStatus;
         }
+        private void LoaderFunction_DoSetStatus(string s)
+        {
+            StTxt.Text = s;
+        }
 
+//get=>_st; set { _st = value; } }
+    }
+    public class MDvm
+    {
+        public MDvm()
+        {
+            LoaderFunction.DoSetStatus += LoaderFunction_DoSetStatus;
+            Status = "Запуск...";
+        }
+        public string Status { get; set; }
         private void LoaderFunction_DoSetStatus(string s)
         {
             Status = s;
         }
-        private string _st;
-        public string Status { get; set; }//get=>_st; set { _st = value; } }
     }
+
 }

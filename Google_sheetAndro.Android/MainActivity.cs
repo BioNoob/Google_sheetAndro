@@ -56,7 +56,7 @@ namespace Google_sheetAndro.Droid
             var oathToken = await SecureStorage.GetAsync("token");
             var tt = await SecureStorage.GetAsync("picture");
             var name = await SecureStorage.GetAsync("name");
-            if (oathToken != null && tt != null)
+            if (oathToken != null && tt != null && name != null)
             {
                 StaticInfo.AccountEmail = oathToken;
                 StaticInfo.AccountPicture = tt;
@@ -65,6 +65,7 @@ namespace Google_sheetAndro.Droid
                 {
                     if (LoaderFunction.is_Loaded)
                     {
+                        LoaderFunction.SetterStatus("Завершаем загрузку...");
                         LoaderFunction.EndLoad();
                         break;
                     }

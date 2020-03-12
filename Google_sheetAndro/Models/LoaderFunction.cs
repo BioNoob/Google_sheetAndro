@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using TableAndro;
 using Xamarin.Essentials;
@@ -34,9 +35,12 @@ namespace Google_sheetAndro.Models
         {
             try
             {
+                CancellationTokenSource cts = new CancellationTokenSource();
+                cts.CancelAfter(1000);
                 var request = new GeolocationRequest(GeolocationAccuracy.Best);
                 SetterStatus("Получение текущих координат...");
-                var s = await Geolocation.GetLocationAsync(request);
+                var s = await Geolocation.GetLocationAsync(request,cts.Token);
+                var ssd = await Geolocation.GetLastKnownLocationAsync();
                 StaticInfo.Pos = s;
             }
             #region catch
@@ -108,7 +112,7 @@ namespace Google_sheetAndro.Models
             //DoWheatherLoad?.Invoke();
             if (MenuPage != null && StaticInfo.AccountEmail != null)
             {
-                MenuPage.setImg(StaticInfo.AccountPicture, StaticInfo.AccountEmail);
+                MenuPage.setImg(StaticInfo.AccountPicture, StaticInfo.AccountEmail, StaticInfo.AccountFullName);
                 StaticInfo.SetMenuUserAct();
             }
         }

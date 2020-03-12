@@ -32,7 +32,7 @@ namespace Google_sheetAndro.Views
         {
             InitializeComponent();
             if (StaticInfo.AccountEmail != null && StaticInfo.AccountPicture != null)
-                setImg(StaticInfo.AccountPicture, StaticInfo.AccountEmail);
+                setImg(StaticInfo.AccountPicture, StaticInfo.AccountEmail, StaticInfo.AccountFullName);
             Items = new List<MenuItems>()
             {
                 {new MenuItems("table_menu.png","Просмотр записей")},
@@ -48,7 +48,7 @@ namespace Google_sheetAndro.Views
 
         private void StaticInfo_SetMenuUser()
         {
-            setImg(StaticInfo.AccountPicture, StaticInfo.AccountEmail);
+            setImg(StaticInfo.AccountPicture, StaticInfo.AccountEmail, StaticInfo.AccountFullName);
         }
 
         private async void ItemPageView_Clicked()
@@ -80,10 +80,11 @@ namespace Google_sheetAndro.Views
             await Task.Run(() => StaticInfo.SetPage(LoaderFunction.WheatherPage));//_mp.sett(LoaderFunction.WheatherPage));
         }
         public bool mailIsSet = false;
-        public void setImg(string source, string email)
+        public void setImg(string source, string email, string name)
         {
             profileImg.Source = source;
             profileEmail.Text = email;
+            profileName.Text = name;
             mailIsSet = true;
         }
         public void sett(Page pg)
