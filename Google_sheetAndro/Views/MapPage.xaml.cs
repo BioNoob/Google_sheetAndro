@@ -120,10 +120,8 @@ namespace Google_sheetAndro.Views
             CrossDeviceSensors.Current.Barometer.StopReading();
         }
 
-        TimeSpan t_speed = new TimeSpan();
         private void MapPage_Appearing(object sender, EventArgs e)
         {
-            t_speed = new TimeSpan(0, 0, 0, 0, 0);
             if (CrossDeviceSensors.Current.Barometer.IsSupported)
             {
                 CrossDeviceSensors.Current.Barometer.OnReadingChanged += Barometer_OnReadingChanged;
@@ -133,35 +131,10 @@ namespace Google_sheetAndro.Views
             {
                 StatusH.Text = "Нет барометра";
             }
-            Device.StartTimer(TimeSpan.FromMilliseconds(1), () => OnTimerSpeedometr());
-        }
-        private bool OnTimerSpeedometr()
-        {
-            t_speed = t_speed.Add(TimeSpan.FromMilliseconds(1));
-            //Debug.WriteLine(t_speed.ToString());
-            return true;
         }
         private Plugin.Geolocator.Abstractions.Position bufferpos { get; set; }
         private double _speed = 0;
         public double speed { get { return _speed; } set { _speed = value; StatusS.Text = string.Format("{0:#0.0} км/ч", _speed); } }
-        private void RefreshSpeed(Plugin.Geolocator.Abstractions.Position e)
-        {
-            if (bufferpos.Latitude != 0)
-            {
-                double dist = GeolocatorUtils.CalculateDistance(bufferpos, e, GeolocatorUtils.DistanceUnits.Kilometers);
-                if (t_speed.TotalHours != 0)
-                {
-                    double _xspeed = dist / t_speed.TotalSeconds;
-                    _xspeed = _xspeed / 3600;
-                    Debug.WriteLine(t_speed.TotalSeconds.ToString());
-                    if (_xspeed > 0 && _xspeed < 1000)
-                        speed = _xspeed;
-                    t_speed = new TimeSpan(0, 0, 0, 0, 0);
-                }
-            }
-            else
-                bufferpos = e;
-        }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             Label tagSpan = (Label)sender;
@@ -688,7 +661,7 @@ namespace Google_sheetAndro.Views
             //System.Diagnostics.Debug.WriteLine(e.Reading);
         }
 
-        private void PositionChanged(object sender, PositionEventArgs e)
+        private async void PositionChanged(object sender, PositionEventArgs e)
         {
             Plugin.Geolocator.Abstractions.Position poss = new Plugin.Geolocator.Abstractions.Position(map.CameraPosition.Target.Latitude, map.CameraPosition.Target.Longitude);
             if (GeolocatorUtils.CalculateDistance(poss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) < 25)//was 5 set 25 to Lost GeoPos
@@ -701,13 +674,19 @@ namespace Google_sheetAndro.Views
                     //    pl_listner.Positions[pl_listner.Positions.Count - 1].Longitude);
                     //if (GeolocatorUtils.CalculateDistance(pss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) > 10) //* 1000 > 10)
                     SetLine(pos, false);
-                    RefreshSpeed(poss);
+                    //RefreshSpeed(poss);
                 }
                 else if (pl_listner.Positions.Count == 0)
                 {
                     SetLine(pos, false);
                 }
-                map.MoveCamera(CameraUpdateFactory.NewPositionZoom(new Xamarin.Forms.GoogleMaps.Position(e.Position.Latitude, e.Position.Longitude), zoom));
+                //map.MoveCamera(CameraUpdateFactory.NewPositionZoom(new Xamarin.Forms.GoogleMaps.Position(e.Position.Latitude, e.Position.Longitude), zoom));
+                var animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
+                   new CameraPosition(
+                       pos,//StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude), // Tokyo
+                       zoom, // zoom
+                       0)),
+                       TimeSpan.FromSeconds(1));
                 string p = string.Format("{0:#0.#};{1:#0.#}", e.Position.Latitude, e.Position.Longitude, CultureInfo.InvariantCulture);
                 Preferences.Set("LastKnownPosition", p);
             }
