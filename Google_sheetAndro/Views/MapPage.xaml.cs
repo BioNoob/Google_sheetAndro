@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -135,6 +136,12 @@ namespace Google_sheetAndro.Views
         private Plugin.Geolocator.Abstractions.Position bufferpos { get; set; }
         private double _speed = 0;
         public double speed { get { return _speed; } set { _speed = value; StatusS.Text = string.Format("{0:#0.0} км/ч", _speed); } }
+        private enum TypeInput
+        {
+            HANDLE = 0,
+            LISTEN
+        }
+        private TypeInput TypeLine { get; set; }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             Label tagSpan = (Label)sender;
@@ -143,6 +150,7 @@ namespace Google_sheetAndro.Views
             switch (tagSpan.AutomationId)
             {
                 case "Listen":
+                    TypeLine = TypeInput.LISTEN;
                     fl = false;
                     Status_D.BackgroundColor = Color.FromHex("#900040ff");
                     StatusD.BackgroundColor = Color.FromHex("#900040ff");
@@ -154,6 +162,7 @@ namespace Google_sheetAndro.Views
                         LoaderFunction.ItemsPageAlone.SetDist(_dist);
                     break;
                 case "Handle":
+                    TypeLine = TypeInput.HANDLE;
                     StatusD_handle.BackgroundColor = Color.FromHex("#900040ff");
                     Status_D_handle.BackgroundColor = Color.FromHex("#900040ff");
                     StatusD.BackgroundColor = Color.FromHex("#70000000");
@@ -626,24 +635,7 @@ namespace Google_sheetAndro.Views
                 //map.MoveCamera(CameraUpdateFactory.NewPositionZoom(new Xamarin.Forms.GoogleMaps.Position(StaticInfo.Pos.Latitude,StaticInfo.Pos.Longitude), map.CameraPosition.Zoom));
             }
         }
-        async Task StartListening()
-        {
-            if (CrossGeolocator.Current.IsListening)
-                return;
-            CrossGeolocator.Current.DesiredAccuracy = 5;
-            await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(5), 50, true, new ListenerSettings
-            {
-                ActivityType = ActivityType.OtherNavigation,
-                AllowBackgroundUpdates = true,
-                DeferLocationUpdates = false,
-                DeferralDistanceMeters = 50,
-                DeferralTime = TimeSpan.FromSeconds(1),
-                ListenForSignificantChanges = false,
-                PauseLocationUpdatesAutomatically = true
-            });
-            CrossGeolocator.Current.PositionChanged += PositionChanged;
-            CrossGeolocator.Current.PositionError += PositionError;
-        }
+
         private void Barometer_OnReadingChanged(object sender, Plugin.DeviceSensors.Shared.DeviceSensorReadingEventArgs<double> e)
         {
             //hig = SensorManager.GetAltitude(,);
@@ -661,6 +653,88 @@ namespace Google_sheetAndro.Views
             //System.Diagnostics.Debug.WriteLine(e.Reading);
         }
 
+        private async void HelpMap()
+        {
+            CancellationTokenSource cts = new CancellationTokenSource();
+            Location location = new Location();
+            cts.CancelAfter(900);
+            try
+            {
+                if (!ps_listner)
+                    throw new TaskCanceledException();
+                var request = new GeolocationRequest(GeolocationAccuracy.Best);
+                location = await Geolocation.GetLocationAsync(request, cts.Token);
+            }
+            catch (TaskCanceledException)       // if the operation is cancelled, do nothing
+            {
+                ps_listner = false;
+                var request = new GeolocationRequest(GeolocationAccuracy.High);
+                location = await Geolocation.GetLocationAsync(request);
+                ps_listner = true;
+                Device.StartTimer(TimeSpan.FromSeconds(1), () => PositionChanged_timer());
+            }
+            finally
+            {
+                var zoom = map.CameraPosition.Zoom;
+                Xamarin.Forms.GoogleMaps.Position pos = new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude);
+                if (pl_listner.Positions.Count >= 1)
+                {
+                    //Plugin.Geolocator.Abstractions.Position pss = new Plugin.Geolocator.Abstractions.Position(pl_listner.Positions[pl_listner.Positions.Count - 1].Latitude,
+                    //    pl_listner.Positions[pl_listner.Positions.Count - 1].Longitude);
+                    //if (GeolocatorUtils.CalculateDistance(pss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) > 10) //* 1000 > 10)
+                    var buf = pl_listner.Positions.Last();
+                    if (Location.CalculateDistance(buf.Latitude, buf.Longitude, location, DistanceUnits.Kilometers) / 1000 > 50)
+                    {
+                        SetLine(pos, false);
+                    }
+                    //RefreshSpeed(poss);
+                }
+                else if (pl_listner.Positions.Count == 0)
+                {
+                    SetLine(pos, false);
+                }
+                if (location.Speed.HasValue)
+                {
+                    speed = (location.Speed.Value * 3600 / 1000);
+                }
+                //map.MoveCamera(CameraUpdateFactory.NewPositionZoom(new Xamarin.Forms.GoogleMaps.Position(e.Position.Latitude, e.Position.Longitude), zoom));
+                var animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
+                   new CameraPosition(
+                       pos,//StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude), // Tokyo
+                       zoom, // zoom
+                       0)),
+                       TimeSpan.FromSeconds(1));
+                string p = string.Format("{0:#0.#};{1:#0.#}", location.Latitude, location.Longitude, CultureInfo.InvariantCulture);
+                Preferences.Set("LastKnownPosition", p);
+            }
+
+        }
+        bool ps_listner = true;
+        private void StartListening()
+        {
+            Device.StartTimer(TimeSpan.FromSeconds(1), () => PositionChanged_timer());
+            //if (CrossGeolocator.Current.IsListening)
+            //    return;
+            //CrossGeolocator.Current.DesiredAccuracy = 5;
+            //await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(5), 50, true, new ListenerSettings
+            //{
+            //    ActivityType = ActivityType.OtherNavigation,
+            //    AllowBackgroundUpdates = true,`
+            //    DeferLocationUpdates = false,
+            //    DeferralDistanceMeters = 50,
+            //    DeferralTime = TimeSpan.FromSeconds(1),
+            //    ListenForSignificantChanges = false,
+            //    PauseLocationUpdatesAutomatically = true
+            //});
+            //CrossGeolocator.Current.PositionChanged += PositionChanged;
+            //CrossGeolocator.Current.PositionError += PositionError;
+        }
+
+        private bool PositionChanged_timer()
+        {
+            HelpMap();
+            return ps_listner;
+        }
         private async void PositionChanged(object sender, PositionEventArgs e)
         {
             Plugin.Geolocator.Abstractions.Position poss = new Plugin.Geolocator.Abstractions.Position(map.CameraPosition.Target.Latitude, map.CameraPosition.Target.Longitude);
@@ -698,14 +772,15 @@ namespace Google_sheetAndro.Views
             //Handle event here for errors
         }
 
-        async Task<bool> StopListening()
+        void StopListening()
         {
-            if (!CrossGeolocator.Current.IsListening)
-                return false;
-            bool l = await CrossGeolocator.Current.StopListeningAsync();
-            CrossGeolocator.Current.PositionChanged -= PositionChanged;
-            CrossGeolocator.Current.PositionError -= PositionError;
-            return l;
+            ps_listner = false;
+            //if (!CrossGeolocator.Current.IsListening)
+            //    return false;
+            //bool l = await CrossGeolocator.Current.StopListeningAsync();
+            //CrossGeolocator.Current.PositionChanged -= PositionChanged;
+            //CrossGeolocator.Current.PositionError -= PositionError;
+            //return l;
         }
 
         void InitializeUiSettingsOnMap()
@@ -717,9 +792,6 @@ namespace Google_sheetAndro.Views
             map.UiSettings.ZoomGesturesEnabled = true;
             map.UiSettings.MapToolbarEnabled = true;
             var pos = new Xamarin.Forms.GoogleMaps.Position();
-            Debug.WriteLine($"Start pos init");
-            Debug.WriteLine($"new point");
-            Debug.WriteLine($"{pos.Latitude};{pos.Longitude}");
             if (ToinitPos != new Xamarin.Forms.GoogleMaps.Position())
             {
                 pos = ToinitPos;
@@ -745,10 +817,7 @@ namespace Google_sheetAndro.Views
         {
             if (!fl_run)
             {
-                Debug.WriteLine("Pin set");
                 var qq = map.CameraPosition.Zoom;
-                Debug.WriteLine("Zoom = " + qq.ToString());
-                Debug.WriteLine("PinPos = " + e.Point.Latitude.ToString() + " : " + e.Point.Longitude.ToString());
                 if (fl_route)
                 {
                     SetLine(e.Point, true);
@@ -916,7 +985,12 @@ namespace Google_sheetAndro.Views
         {
             History = ShiftList.ShiftRight(History, 1);
             History[0] = null;
-            return JsonConvert.DeserializeObject<MapObjects>(History.Last());
+            if (History.Last() != null)
+            {
+                return JsonConvert.DeserializeObject<MapObjects>(History.Last());
+            }
+            else
+                return null;
         }
         private MapObjects LoadFromHistActual()
         {
@@ -964,17 +1038,39 @@ namespace Google_sheetAndro.Views
             {
                 if (!string.IsNullOrWhiteSpace(StaticInfo.Nalet))
                 {
-                    bool kek = await DisplayAlert("Предупреждение", "Новая запись?", "Да", "Нет");
+                    bool kek = await DisplayAlert("Предупреждение", "Новая запись? Записанное будет стёрто", "Да", "Нет");
                     if (kek)
                     {
                         t.Sec = 0;
                         StaticInfo.Nalet = t.ToString();
-                        map.Pins.Clear();
+
+                        var asdf = new List<Pin>(map.Pins.Where(t => t.Label == "Start"));
+                        if (asdf.Count() > 0)
+                        {
+                            foreach (var item in asdf)
+                            {
+                                if (pl_listner.Positions.Contains(item.Position))
+                                {
+                                    map.Pins.Remove(item);
+                                }
+                            }
+                        }
+                        asdf = new List<Pin>(map.Pins.Where(t => t.Label == "End"));
+                        if (asdf.Count() > 0)
+                        {
+                            foreach (var item in asdf)
+                            {
+                                if (pl_listner.Positions.Contains(item.Position))
+                                {
+                                    map.Pins.Remove(item);
+                                }
+                            }
+                        }
                         if (map.Polylines.Contains(pl_listner))
                         {
                             map.Polylines.Remove(pl_listner);
-                            pl_listner.Positions.Clear();
                         }
+                        pl_listner.Positions.Clear();
                     }
                 }
                 b1.Text = "Стоп";
@@ -988,12 +1084,14 @@ namespace Google_sheetAndro.Views
                 mo.Pins = map.Pins.ToList();
                 SaveToHist(mo);
                 Device.StartTimer(TimeSpan.FromSeconds(1), () => OnTimerTick());
-                await StartListening();
+                StartListening();
+                //await StartListening();
             }
             else
             {
-                bool kek2 = await StopListening();
-                if (kek2)
+                //bool kek2 = await StopListening();
+                //if (kek2)
+                StopListening();
                 {
                     fl_run = false;
                     alife = false;
@@ -1041,44 +1139,48 @@ namespace Google_sheetAndro.Views
         {
             await CancelBtn.FadeTo(0, 100);
             MapObjects mi = LoadFromHist();
-            if (mi == null)
-                Toast.MakeText(Android.App.Application.Context, "Нет сохранений в буфере", ToastLength.Long).Show();
-            else
+            if(mi != null)
             {
-                map.Pins.Clear();
-                map.Polylines.Clear();
-                if (mi.Polylines != null)
+                if (mi.Pins == null && mi.Polylines == null)
+                    Toast.MakeText(Android.App.Application.Context, "Нет сохранений в буфере", ToastLength.Long).Show();
+                else
                 {
-                    //var t = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()).ToList();
-                    if (mi.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()) != null)
+                    map.Pins.Clear();
+                    map.Polylines.Clear();
+                    if (mi.Polylines != null)
                     {
-                        Polyline pl = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()).First();
-                        pl_handle.Positions.Clear();
-                        foreach (var item in pl.Positions)
+                        //var t = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()).ToList();
+                        if (mi.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()) != null)
                         {
-                            SetLine(item, true, true);
+                            Polyline pl = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()).First();
+                            pl_handle.Positions.Clear();
+                            foreach (var item in pl.Positions)
+                            {
+                                SetLine(item, true, true);
+                            }
                         }
-                    }
-                    if (mi.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_listner.Tag.ToString()) != null)
-                    {
-                        Polyline pl = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_listner.Tag.ToString()).First();
-                        pl_listner.Positions.Clear();
-                        foreach (var item in pl.Positions)
+                        if (mi.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_listner.Tag.ToString()) != null)
                         {
-                            SetLine(item, false, true);
-                        }
+                            Polyline pl = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_listner.Tag.ToString()).First();
+                            pl_listner.Positions.Clear();
+                            foreach (var item in pl.Positions)
+                            {
+                                SetLine(item, false, true);
+                            }
 
+                        }
                     }
-                }
-                if (mi.Pins != null)
-                {
-                    foreach (var item in mi.Pins)
+                    if (mi.Pins != null && mi.Pins.Count > 0)
                     {
-                        map.Pins.Add(item);
+                        foreach (var item in mi.Pins)
+                        {
+                            map.Pins.Add(item);
+                        }
                     }
                 }
             }
-
+            else
+                Toast.MakeText(Android.App.Application.Context, "Нет сохранений в буфере", ToastLength.Long).Show();
             await CancelBtn.FadeTo(1, 100);
         }
 
