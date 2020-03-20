@@ -683,7 +683,8 @@ namespace Google_sheetAndro.Views
                     //    pl_listner.Positions[pl_listner.Positions.Count - 1].Longitude);
                     //if (GeolocatorUtils.CalculateDistance(pss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) > 10) //* 1000 > 10)
                     var buf = pl_listner.Positions.Last();
-                    if (Location.CalculateDistance(buf.Latitude, buf.Longitude, location, DistanceUnits.Kilometers) / 1000 > 50)
+                    var tt = Location.CalculateDistance(buf.Latitude, buf.Longitude, location, DistanceUnits.Kilometers) * 1000;
+                    if ( tt > 50)
                     {
                         SetLine(pos, false);
                     }
