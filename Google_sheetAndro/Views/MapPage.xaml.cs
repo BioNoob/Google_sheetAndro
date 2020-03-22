@@ -662,13 +662,13 @@ namespace Google_sheetAndro.Views
             {
                 if (!ps_listner)
                     throw new TaskCanceledException();
-                var request = new GeolocationRequest(GeolocationAccuracy.Best);
+                var request = new GeolocationRequest(GeolocationAccuracy.High);
                 location = await Geolocation.GetLocationAsync(request, cts.Token);
             }
             catch (TaskCanceledException)       // if the operation is cancelled, do nothing
             {
                 ps_listner = false;
-                var request = new GeolocationRequest(GeolocationAccuracy.High);
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
                 location = await Geolocation.GetLocationAsync(request);
                 ps_listner = true;
                 Device.StartTimer(TimeSpan.FromSeconds(1), () => PositionChanged_timer());
@@ -684,9 +684,10 @@ namespace Google_sheetAndro.Views
                     //if (GeolocatorUtils.CalculateDistance(pss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) > 10) //* 1000 > 10)
                     var buf = pl_listner.Positions.Last();
                     var tt = Location.CalculateDistance(buf.Latitude, buf.Longitude, location, DistanceUnits.Kilometers) * 1000;
-                    if ( tt > 50)
+                    if ( tt >= 10 &&  tt < 100)
                     {
-                        SetLine(pos, false);
+                        if(!pl_listner.Positions.Contains(pos))
+                            SetLine(pos, false);
                     }
                     //RefreshSpeed(poss);
                 }
