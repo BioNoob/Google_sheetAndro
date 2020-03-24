@@ -212,7 +212,7 @@ namespace Google_sheetAndro.Class
 
             string api_key = "29ed5507-cb7a-4652-8163-813f6637f991";
             HttpClient client = new HttpClient();
-            string req = $"?apikey={api_key}&geocode={lat.ToString().Replace(',', '.')},{lon.ToString().Replace(',', '.')}&sco=latlong&kind=locality&results=1&format=json";
+            string req = $"?apikey={api_key}&geocode={lat.ToString().Replace(',', '.')},{lon.ToString().Replace(',', '.')}&sco=latlong&results=1&format=json";
             HttpResponseMessage response = await client.GetAsync($"https://geocode-maps.yandex.ru/1.x/{req}");
             if (response.StatusCode == HttpStatusCode.OK)
             {

@@ -44,24 +44,26 @@ namespace TableAndro
         public static SheetsService service;
         public static int newSheetId = 0;
         public static Range_border RB = new Range_border(0, 0, 0, 0);
-        public static void ShablonDuplicater(int shID, string title)
+        public static void ShablonDuplicater(int shID, string title, int last_index_pg)
         {
-            CopySheetToAnotherSpreadsheetRequest requestBody = new CopySheetToAnotherSpreadsheetRequest
-            {
-                DestinationSpreadsheetId = SpreadsheetId
-            };
-            SpreadsheetsResource.SheetsResource.CopyToRequest request = service.Spreadsheets.Sheets.CopyTo(requestBody, SpreadsheetId, shID);
+            //CopySheetToAnotherSpreadsheetRequest requestBody = new CopySheetToAnotherSpreadsheetRequest
+            //{
+            //    DestinationSpreadsheetId = SpreadsheetId
+            //};
+            //SpreadsheetsResource.SheetsResource.CopyToRequest request = service.Spreadsheets.Sheets.CopyTo(requestBody, SpreadsheetId, shID);
             CancellationTokenSource cts = new CancellationTokenSource();
             cts.CancelAfter(15000);
-            var response = request.ExecuteAsync(cts.Token);
+            //var response = request.ExecuteAsync(cts.Token);
 
             BatchUpdateSpreadsheetRequest requestBodyBU = new BatchUpdateSpreadsheetRequest();
             IList<Request> LQReq = new List<Request>();
-            LQReq.Add(google_requests.RenamerSh(response.Result.SheetId, title));
+            LQReq.Add(google_requests.DuplicateSh(shID, title, last_index_pg + 1));
+            //LQReq.Add(google_requests.RenamerSh(response.Result.SheetId, title));
             requestBodyBU.Requests = LQReq;
             BatchUpdateRequest BUrequest = service.Spreadsheets.BatchUpdate(requestBodyBU, SpreadsheetId);
             var resp2 = BUrequest.ExecuteAsync(cts.Token);
-            newSheetId = response.Result.SheetId ?? 0;
+            var t = resp2.Result;
+            newSheetId = t.Replies[0].DuplicateSheet.Properties.SheetId.Value;
         }
         public async static Task<bool> InitService(string year = "")
         {
@@ -82,7 +84,7 @@ namespace TableAndro
                 ApplicationName = Googles.ApplicationName,
             });
             var qq = Googles.service.Spreadsheets.Get(Googles.SpreadsheetId).ExecuteAsync(cts.Token);
-            Googles.sheetInfo = await qq;//.Result;
+            Googles.sheetInfo = qq.Result;//await qq;//.Result;
             ShReader(year);
             return true;
         }
@@ -244,6 +246,7 @@ namespace TableAndro
             var sheets = sheetInfo.Sheets; // массив листов. тут можно проверить.
             string sh_name = "";
             int shID = 0;
+            int indx_last = int.MinValue;
             int Sh_shbalon = 0;
             foreach (var item in sheets)
             {
@@ -256,6 +259,7 @@ namespace TableAndro
                 {
                     Sh_shbalon = (int)item.Properties.SheetId;
                 }
+                if (item.Properties.Index > indx_last) indx_last = item.Properties.Index.Value;
             }
             sheet_id = shID;
             if (sh_name != "")
@@ -264,7 +268,7 @@ namespace TableAndro
             }
             else
             {
-                ShablonDuplicater(Sh_shbalon, year.ToString());//createnewsheets и вернем его имя
+                ShablonDuplicater(Sh_shbalon, year.ToString(), indx_last);//createnewsheets и вернем его имя
                 sheet_id = Googles.newSheetId;
                 SheetName = year.ToString();
                 InitService(SheetName);
@@ -275,12 +279,12 @@ namespace TableAndro
         public static bool ReadEntriesAsync(TableItem ti/*Dictionary<string, object> dic*/)
         {
             var network = Connectivity.NetworkAccess;
-            if (network == NetworkAccess.None)
-            {
-                throw new Exception("No connect");
-            }
             try
             {
+                if (network == NetworkAccess.None)
+                {
+                    throw new Exception("No connect");
+                }
                 int month = ti.date.Month;
                 string[] months = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
                 string mont_nm = months[month - 1].ToLower();

@@ -120,11 +120,12 @@ namespace Google_sheetAndro.Views
             //if(CrossDeviceSensors.Current.Barometer.IsActive)
             CrossDeviceSensors.Current.Barometer.StopReading();
         }
-
+        private bool has_barometr = false;
         private void MapPage_Appearing(object sender, EventArgs e)
         {
             if (CrossDeviceSensors.Current.Barometer.IsSupported)
             {
+                has_barometr = true;
                 CrossDeviceSensors.Current.Barometer.OnReadingChanged += Barometer_OnReadingChanged;
                 CrossDeviceSensors.Current.Barometer.StartReading();
             }
@@ -253,6 +254,7 @@ namespace Google_sheetAndro.Views
         }
         Time_r t = new Time_r();
         private bool alife = false;
+        private bool height_coord = false;
         public double height
         {
             get
@@ -261,7 +263,10 @@ namespace Google_sheetAndro.Views
             }
             set
             {
-                _height = StaticInfo.GetHeight(value, Is_base);
+                if (!height_coord)
+                    _height = StaticInfo.GetHeight(value, Is_base);
+                else
+                    _height = value;
                 if (Is_base)
                 {
                     switch (fl_handle_ok_to_edit)
@@ -285,6 +290,7 @@ namespace Google_sheetAndro.Views
 
             }
         }
+
         public double dist
         {
             get
@@ -718,7 +724,7 @@ namespace Google_sheetAndro.Views
             if (CrossGeolocator.Current.IsListening)
                 return;
             //CrossGeolocator.Current.DesiredAccuracy = 100;
-            await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(1), 10, true, new ListenerSettings
+            await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromMilliseconds(500), 10, true, new ListenerSettings
             {
                 ActivityType = ActivityType.OtherNavigation,
                 AllowBackgroundUpdates = true,
@@ -726,7 +732,7 @@ namespace Google_sheetAndro.Views
                 DeferralDistanceMeters = 1,
                 DeferralTime = TimeSpan.FromSeconds(1),
                 ListenForSignificantChanges = true,
-                PauseLocationUpdatesAutomatically = false
+                PauseLocationUpdatesAutomatically = true//false
             });
             CrossGeolocator.Current.PositionChanged += PositionChanged;
             CrossGeolocator.Current.PositionError += PositionError;
@@ -739,44 +745,47 @@ namespace Google_sheetAndro.Views
         }
         private async void PositionChanged(object sender, PositionEventArgs e)
         {
-            //Plugin.Geolocator.Abstractions.Position poss = new Plugin.Geolocator.Abstractions.Position(map.CameraPosition.Target.Latitude, map.CameraPosition.Target.Longitude);
-            //if (GeolocatorUtils.CalculateDistance(poss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) * 1000 < 25)
-            //{
-            var spd = e.Position.Speed * 3600 / 1000;
-            Debug.WriteLine("Accuracy = " + e.Position.AltitudeAccuracy);
-            if (spd <= 1000 && spd > 0.01)
-            {
-                speed = spd;
-                Debug.WriteLine("Speed = " + spd);
-            }
+            AnimationStatus animState;
             var zoom = map.CameraPosition.Zoom;
             Xamarin.Forms.GoogleMaps.Position pos = new Xamarin.Forms.GoogleMaps.Position(e.Position.Latitude, e.Position.Longitude);
             if (pl_listner.Positions.Count >= 1)
             {
-                //Plugin.Geolocator.Abstractions.Position pss = new Plugin.Geolocator.Abstractions.Position(pl_listner.Positions[pl_listner.Positions.Count - 1].Latitude,
-                //    pl_listner.Positions[pl_listner.Positions.Count - 1].Longitude);
-                //if (GeolocatorUtils.CalculateDistance(pss, e.Position, GeolocatorUtils.DistanceUnits.Kilometers) > 10) //* 1000 > 10)
+                var spd = e.Position.Speed * 3600 / 1000;
+                if (spd <= 500)
+                {
+                    speed = spd;
+                    Debug.WriteLine("Speed = " + spd);
+                }
                 var buf = pl_listner.Positions.Last();
                 var tt = Location.CalculateDistance(buf.Latitude, buf.Longitude, e.Position.Latitude, e.Position.Longitude, DistanceUnits.Kilometers) * 1000;
-                if (tt > 5 && tt < 110)
+                if (tt > 5 && tt < 110 && spd != 0)
                     SetLine(pos, false);
+                animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
+                    new CameraPosition(
+                        pos,
+                        zoom,
+                        0)),
+                        TimeSpan.FromSeconds(1));
                 //RefreshSpeed(poss);
             }
             else if (pl_listner.Positions.Count == 0)
             {
                 SetLine(pos, false);
+                animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
+                    new CameraPosition(
+                        pos,
+                        zoom,
+                        0)),
+                        TimeSpan.FromSeconds(1));
             }
-            //map.MoveCamera(CameraUpdateFactory.NewPositionZoom(new Xamarin.Forms.GoogleMaps.Position(e.Position.Latitude, e.Position.Longitude), zoom));
-            var animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
-               new CameraPosition(
-                   pos,//StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude), // Tokyo
-                   zoom, // zoom
-                   0)),
-                   TimeSpan.FromSeconds(1));
+            if(e.Position.Altitude != 0 && !has_barometr)
+            {
+                height_coord = true;
+                height = e.Position.Altitude;
+                height_coord = false;
+            }
             string p = string.Format("{0:#0.#};{1:#0.#}", e.Position.Latitude, e.Position.Longitude, CultureInfo.InvariantCulture);
             Preferences.Set("LastKnownPosition", p);
-            //}
-            //map.InitialCameraUpdate = CameraUpdateFactory.NewPosition(new Xamarin.Forms.GoogleMaps.Position(position.Latitude, position.Longitude));
         }
 
         private void PositionError(object sender, PositionErrorEventArgs e)

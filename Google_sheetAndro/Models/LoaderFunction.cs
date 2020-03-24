@@ -79,7 +79,7 @@ namespace Google_sheetAndro.Models
                 SetterStatus("Получение информации о текущей локации...");
                 if (string.IsNullOrEmpty(StaticInfo.Place))
                     qqw = await StaticInfo.GetPlace(StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude);
-                SetterStatus("Грузим погоду...");
+                SetterStatus("Загрузка погоды...");
                 if (StaticInfo.Wheather == null)
                     qqw = await StaticInfo.GetWeatherReqAsync(StaticInfo.Pos);
                 return true;
@@ -158,7 +158,7 @@ namespace Google_sheetAndro.Models
                 if (q == true && qq == true)
                 {
                     //EndLoad();
-                    SetterStatus("Проверяем наличие неотправленного...");
+                    SetterStatus("Проверка наличия неотправленного...");
                     string kk = Preferences.Get("Offline_data", "");
                     List<TableItem> ti = JsonConvert.DeserializeObject<List<TableItem>>(kk);
                     if (ti != null)

@@ -69,6 +69,7 @@ namespace Google_sheetAndro.Views
         }
         private void VM_newYearAdd()
         {
+            //vM.years.Clear();
             vM.years = LocalTable.GetYearsList();
             Navigation.PopModalAsync();
             //vM.selectedyear = vM.years.Max(t => Convert.ToInt32(t)).ToString();
@@ -81,6 +82,7 @@ namespace Google_sheetAndro.Views
         {
             if (fl_init)
             {
+                //vM.years.Clear();
                 vM.years = LocalTable.GetYearsList();
                 vM.selectedyear = vM.years.Max(t => Convert.ToInt32(t)).ToString();
                 //if (Year_pick.Items.Count > 0)

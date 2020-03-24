@@ -75,6 +75,18 @@ namespace TableAndro
             RQ.UpdateSheetProperties.Fields = "title";
             return RQ;
         }
+        public static Request DuplicateSh(int? shid, string new_name, int last_indx)
+        {
+            Request RQ = new Request();
+            RQ.DuplicateSheet = new DuplicateSheetRequest
+            {
+                SourceSheetId = shid,
+                NewSheetName = new_name,
+                InsertSheetIndex = last_indx
+            };
+            var t = RQ.DuplicateSheet.NewSheetId;
+            return RQ;
+        }
         public static List<Request> FormateRq(int shid, int row)
         {
             List<Request> BUF = new List<Request>();
