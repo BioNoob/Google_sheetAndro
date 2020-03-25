@@ -1,4 +1,5 @@
-﻿using Google_sheetAndro.Class;
+﻿using Android.Widget;
+using Google_sheetAndro.Class;
 using Google_sheetAndro.Views;
 using Newtonsoft.Json;
 using System;
@@ -40,7 +41,7 @@ namespace Google_sheetAndro.Models
                 var request = new GeolocationRequest(GeolocationAccuracy.Best);
                 SetterStatus("Получение текущих координат...");
                 var s = await Geolocation.GetLocationAsync(request,cts.Token);
-                var ssd = await Geolocation.GetLastKnownLocationAsync();
+                //var ssd = await Geolocation.GetLastKnownLocationAsync();
                 StaticInfo.Pos = s;
             }
             #region catch
@@ -54,6 +55,10 @@ namespace Google_sheetAndro.Models
             {
                 // Handle not enabled on device exception
                 SetterStatus("Ошибка в получении координат...");
+                //await Task.Delay(1000);
+                //Toast.MakeText(Android.App.Application.Context, "Геолокация выключена, пожалуйста включите!", ToastLength.Long).Show();
+                //await Task.Delay(1000);
+                //Android.App.Application.Context.StartActivity(new Android.Content.Intent(Android.Provider.Settings.ActionLocat‌​ionSourceSettings));
                 //return fneEx.Message;
             }
             catch (PermissionException)

@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Gms.Common.Apis;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -10,6 +11,7 @@ using Plugin.CurrentActivity;
 using Refractored.XamForms.PullToRefresh.Droid;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -38,7 +40,7 @@ namespace Google_sheetAndro.Droid
             List<PermissionStatus> ListPerm = new List<PermissionStatus>();
             var stsatus = await Permissions.CheckStatusAsync<Permissions.Media>();
             var status = await Permissions.CheckStatusAsync<Permissions.LocationAlways>();
-            if(status != PermissionStatus.Granted)
+            if (status != PermissionStatus.Granted)
             {
                 status = await Permissions.RequestAsync<Permissions.LocationAlways>();
             }
@@ -72,17 +74,25 @@ namespace Google_sheetAndro.Droid
                     Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
                 });
             }
-                //status = await Permissions.CheckStatusAsync<Permissions.Sensors>();
-                //if (status != PermissionStatus.Granted)
-                //{
-                //    status = await Permissions.RequestAsync<Permissions.Sensors>();
-                //}
-                //ListPerm.Add(status);
+            try
+            {
+                CancellationTokenSource cts = new CancellationTokenSource();
+                cts.CancelAfter(1000);
+                var request = new GeolocationRequest(GeolocationAccuracy.Lowest);
+                var s = await Geolocation.GetLocationAsync(request, cts.Token);
+            }
+            catch (FeatureNotEnabledException)
+            {
+                Toast.MakeText(Android.App.Application.Context, "Геолокация выключена, пожалуйста включите!", ToastLength.Long).Show();
+                await Task.Delay(1000);
+                Toast.MakeText(Android.App.Application.Context, "И перезапустите приложение", ToastLength.Long).Show();
+                await Task.Delay(1000);
+                StartActivity(new Android.Content.Intent(Android.Provider.Settings.ActionLocat‌​ionSourceSettings));
+                Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+                //StartActivityForResult(new Android.Content.Intent(Android.Provider.Settings.ActionLocat‌​ionSourceSettings), 0);
+            }
 
-
-
-
-                var network = Connectivity.NetworkAccess;
+            var network = Connectivity.NetworkAccess;
             if (network == NetworkAccess.None)
             {
                 Toast.MakeText(Android.App.Application.Context, "Отсутствует интернет соединение", ToastLength.Long).Show();
@@ -104,24 +114,6 @@ namespace Google_sheetAndro.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            //if (requestCode == RequestLocationId)
-            //{
-            //    if ((grantResults.Length == 1) && (grantResults[0] == (int)Permission.Granted))
-            //    {
-
-            //    }
-            //// Permissions granted - display a message.
-            //        else
-            //    {
-
-            //    }
-            //// Permissions denied - display a message.
-            //}
-            //else
-            //{
-            //    base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            //}
-
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
