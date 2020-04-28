@@ -276,7 +276,7 @@ namespace TableAndro
 
             }
         }
-        public static bool ReadEntriesAsync(TableItem ti/*Dictionary<string, object> dic*/)
+        public static async Task<bool> ReadEntriesAsync(TableItem ti/*Dictionary<string, object> dic*/)
         {
             var network = Connectivity.NetworkAccess;
             try

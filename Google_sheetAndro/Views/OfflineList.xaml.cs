@@ -78,14 +78,14 @@ namespace Google_sheetAndro.Views
             Navigation.PopModalAsync();
             Saver();
         }
-        private void Write()
+        private async void Write()
         {
             int ind = Items.IndexOf(buf);
             Items.Remove(buf);
             var item = ip.getter();
             Items.Insert(ind, item);
             Navigation.PopModalAsync();
-            if (SaveToBase(item))
+            if (await SaveToBase(item))
                 Items.Remove(item);
             Saver();
         }
@@ -106,7 +106,7 @@ namespace Google_sheetAndro.Views
                 Toast.MakeText(Android.App.Application.Context, "Сохранено в память", ToastLength.Short).Show();
             });
         }
-        private void SaveAllBtn_Clicked(object sender, EventArgs e)
+        private async void SaveAllBtn_Clicked(object sender, EventArgs e)
         {
             if (Is_load)
             {
@@ -114,7 +114,7 @@ namespace Google_sheetAndro.Views
                 //СОХРАНЯЕТ ТОЛЬКО ОДНУ В БАЗУ
                 foreach (var item in Items)
                 {
-                    if (SaveToBase(item))
+                    if (await SaveToBase(item))
                         EndOper.Add(item, true);
                     else
                         EndOper.Add(item, false);
@@ -132,7 +132,7 @@ namespace Google_sheetAndro.Views
                 Saver();
         }
         public bool IsBuser { get; set; }
-        private bool SaveToBase(TableItem ti)
+        private async Task<bool> SaveToBase(TableItem ti)
         {
             AD.Opacity = 1;
             IsBuser = true;
@@ -141,7 +141,7 @@ namespace Google_sheetAndro.Views
                 ti.author = StaticInfo.AccountEmail;
                 ti.route = "";//MapPageAlone.MapObj.SerializableLine;
                 ti.points = "";//LoaderFunction.MapPageAlone.MapObj.SerializablePins;
-                if (Googles.ReadEntriesAsync(ti))
+                if (await Googles.ReadEntriesAsync(ti))
                 {
                     Toast.MakeText(Android.App.Application.Context, "Запись успешна", ToastLength.Long).Show();
                     return true;

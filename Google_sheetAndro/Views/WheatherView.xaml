@@ -242,12 +242,11 @@
                     HeightRequest="40" Clicked="PopSettings_Clicked"
                 />
         </RelativeLayout>
-        <RelativeLayout BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">
+        <RelativeLayout BackgroundColor="Transparent" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">
             <ActivityIndicator IsRunning="{Binding IsBusy}"
                          IsVisible="{Binding IsBusy}"
                           HeightRequest="80"
                            WidthRequest="80"
-                           PropertyChanged="ActivityIndicator_PropertyChanged"
                           VerticalOptions="CenterAndExpand"
                            BackgroundColor="#50000000"
                           HorizontalOptions="CenterAndExpand"

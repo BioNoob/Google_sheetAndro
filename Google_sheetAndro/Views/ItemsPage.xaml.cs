@@ -344,14 +344,14 @@ namespace Google_sheetAndro.Views
         //    return list;
 
         //}
-        public void CreateRow()
+        public async void CreateRow()
         {
             IsBusy = true;
             TableItem ti = getter();
             ti.author = StaticInfo.AccountEmail;
             ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
             ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
-            if (Googles.ReadEntriesAsync(ti))
+            if (await Googles.ReadEntriesAsync(ti))
             {
 
             }

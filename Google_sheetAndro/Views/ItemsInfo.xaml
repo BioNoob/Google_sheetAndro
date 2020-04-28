@@ -104,15 +104,6 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </ScrollView>
-                <!--<AbsoluteLayout>
-                <ActivityIndicator
-                    x:Name="activity"  
-                       IsRunning="False"  
-                       IsEnabled="False"  
-                       IsVisible="False"  
-                       Color="Blue"  
-                       BackgroundColor="Transparent"/>
-            </AbsoluteLayout>-->
             </StackLayout>
         </Grid>
     </ContentPage.Content>

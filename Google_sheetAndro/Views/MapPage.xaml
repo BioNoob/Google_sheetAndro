@@ -97,6 +97,17 @@
             </Grid>
 
         </StackLayout>
+        <RelativeLayout BackgroundColor="Transparent" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                         IsVisible="{Binding IsBusy}"
+                          HeightRequest="80"
+                           WidthRequest="80"
+                          VerticalOptions="CenterAndExpand"
+                           BackgroundColor="#50000000"
+                          HorizontalOptions="CenterAndExpand"
+                           Color="Orange">
+            </ActivityIndicator>
+        </RelativeLayout>
         <views1:PopUpDialogView x:Name="PopUpDialog" HeaderTitle="Test Dialog" IsVisible="False" InputTransparent="False">
         </views1:PopUpDialogView>
     </Grid>
