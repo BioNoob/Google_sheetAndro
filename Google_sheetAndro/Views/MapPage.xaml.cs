@@ -167,6 +167,9 @@ namespace Google_sheetAndro.Views
                         StaticInfo.Dist = _dist;
                     else
                         LoaderFunction.ItemsPageAlone.SetDist(_dist);
+                    map.PinDragEnd -= Map_PinDragEnd;
+                    map.PinDragStart -= Map_PinDragStart;
+                    map.PinDragging -= Map_PinDragging;
                     break;
                 case "Handle":
                     TypeLine = TypeInput.HANDLE;
@@ -179,6 +182,9 @@ namespace Google_sheetAndro.Views
                         StaticInfo.Dist = _dist_handle;
                     else
                         LoaderFunction.ItemsPageAlone.SetDist(_dist_handle);
+                    map.PinDragEnd += Map_PinDragEnd;
+                    map.PinDragStart += Map_PinDragStart;
+                    map.PinDragging += Map_PinDragging;
                     break;
             }
             SetActiveDistLbl(fl);
@@ -1266,6 +1272,7 @@ namespace Google_sheetAndro.Views
                 dist_handle = 0;
                 height = 0;
                 StatusTime.Text = string.Empty;
+                mapObjects = new MapObjects();
             }
             await ClearBtn.FadeTo(1, 100);
         }
