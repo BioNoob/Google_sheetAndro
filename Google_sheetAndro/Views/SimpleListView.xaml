@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Google_sheetAndro.Views.SimpleListView"
+             x:Class="Google_sheetAndro.Views.SimpleListView" Title="Ветер по высотам"
                           xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss">
     <xfg:ContentPageGloss.BackgroundGradient>
         <xfg:Gradient IsRotationTopToBottom="True">
@@ -11,32 +11,33 @@
             </xfg:Gradient.Steps>
         </xfg:Gradient>
     </xfg:ContentPageGloss.BackgroundGradient>
-    <StackLayout Margin="10">
-        <ListView ItemsSource="{Binding ActualWind}"
-                              HasUnevenRows="True" BackgroundColor="#40FFFFFF"
+    <StackLayout Margin="10" >
+        <Frame BorderColor="Orange" BackgroundColor="#40FFFFFF" Padding="10" CornerRadius="20">
+            <ListView ItemsSource="{Binding ActualWind}"
+                              HasUnevenRows="True"
                               SeparatorColor="#008CFF" SelectionMode="None">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Text="Высота" TextColor="#2F2F2F" FontSize="12"/>
-                            <Label Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2" Text="{Binding hi}"  TextColor="#0064FF" FontSize="12"/>
-                            <Label Grid.Row="1" Grid.Column="0" Text="Ветер" TextColor="#2F2F2F" FontSize="12"/>
-                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Asim}" TextColor="#0064FF" FontSize="12"/>
-                            <Label Grid.Row="1" Grid.Column="2" Text="{Binding WindForm}" TextColor="#0064FF" FontSize="12"/>
-                            <Label Grid.Row="2" Grid.Column="0" Text="Температура" TextColor="#2F2F2F" FontSize="12"/>
-                            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Temp}" TextColor="#0064FF" FontSize="12"/>
-                        </Grid>
-                    </ViewCell>
-                    <!--<TextCell Text ="{Binding Out} " TextColor="#1976D2"/>-->
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="0,5" ColumnSpacing ="15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="Высота" TextColor="#2F2F2F" FontSize="12" FontAttributes="Bold"/>
+                                <Label Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2" Text="{Binding hi}"  TextColor="#0064FF" FontSize="12"/>
+                                <Label Grid.Row="1" Grid.Column="0" Text="Ветер" TextColor="#2F2F2F" FontSize="12" FontAttributes="Bold"/>
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Asim}" TextColor="#0064FF" FontSize="12"/>
+                                <Label Grid.Row="1" Grid.Column="2" Text="{Binding WindForm}" TextColor="#0064FF" FontSize="12"/>
+                                <Label Grid.Row="2" Grid.Column="0" Text="Температура" TextColor="#2F2F2F" FontSize="12" FontAttributes="Bold"/>
+                                <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Temp}" TextColor="#0064FF" FontSize="12"/>
+                            </Grid>
+                        </ViewCell>
+                        <!--<TextCell Text ="{Binding Out} " TextColor="#1976D2"/>-->
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Frame>
     </StackLayout>
 
 </ContentPage>

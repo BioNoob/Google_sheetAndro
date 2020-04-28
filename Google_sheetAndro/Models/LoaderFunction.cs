@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using TableAndro;
@@ -25,8 +26,18 @@ namespace Google_sheetAndro.Models
         public static event WheatherLoad DoWheatherLoad;
         public delegate void SetStatus(string s);
         public static event SetStatus DoSetStatus;
+        public delegate void StatusPush(string status);
+        public static event StatusPush DoStatusPush;
         public delegate void ClearMap();
         public static event ClearMap DoClearMap;
+        public delegate void BackToUpload();
+        public static event BackToUpload DoBackToUpload;
+
+        public static void DoBack()
+        {
+            DoBackToUpload?.Invoke();
+        }
+
         public static bool fl_offline { get; set; }
         public static void callClearMap()
         {
@@ -105,6 +116,31 @@ namespace Google_sheetAndro.Models
         public static void SetterStatus(string st)
         {
             DoSetStatus?.Invoke(st);
+        }
+        public static void DostatPush(string tat)
+        {
+            //var assembly = Assembly.GetExecutingAssembly();
+            //var resourceName = "Google_sheetAndro.LogFile.txt";
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var filename = Path.Combine(path, "LogFile.txt");
+            using (var reader = new StreamWriter(filename, false, System.Text.Encoding.UTF8))
+            {
+                {
+                    reader.WriteLine(tat);
+                    reader.Close();
+                }
+            }
+
+            //string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LogFile.txt");
+            //File.WriteAllText(fileName,tat + "\n");
+            //using (var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Write))
+            //{
+            //    fileStream.
+            //    File.WriteAllText()
+            //    image.CopyTo(fileStream);
+            //}
+            //Device.BeginInvokeOnMainThread(() => Toast.MakeText(Android.App.Application.Context, tat, ToastLength.Long).Show());
+            // Device.InvokeOnMainThreadAsync(()=>DoStatusPush?.Invoke(tat));
         }
         public static void CreRow()
         {

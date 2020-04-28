@@ -27,7 +27,8 @@ namespace Google_sheetAndro.Views
             vM = new ItemsInfoVM();
             StaticInfo.DoSetSelect += VM_DoSetSelect;
             StaticInfo.DonewYearAdd += VM_newYearAdd;
-            StaticInfo.DoSuccSend += SuccSend;
+            LoaderFunction.DoBackToUpload += LoaderFunction_DoBackToUpload;
+            //StaticInfo.DoSuccSend += SuccSend;
             StaticInfo.SetMenuUser += StaticInfo_SetMenuUser;
             LoaderFunction.DoClearMap += LoaderFunction_DoClearMap;
             var tgr = new TapGestureRecognizer();
@@ -36,6 +37,11 @@ namespace Google_sheetAndro.Views
             //Year_pick.SelectedIndex = Year_pick.Items.Count - 1;
             Mounth_pick.SelectedIndex = 0;
             BindingContext = vM;
+        }
+
+        private void LoaderFunction_DoBackToUpload()
+        {
+            backbattonimit();
         }
 
         private void StaticInfo_SetMenuUser()
@@ -71,6 +77,7 @@ namespace Google_sheetAndro.Views
         {
             //vM.years.Clear();
             vM.years = LocalTable.GetYearsList();
+            vM.selectedyear = vM.years.Max(t => Convert.ToInt32(t)).ToString();
             Navigation.PopModalAsync();
             //vM.selectedyear = vM.years.Max(t => Convert.ToInt32(t)).ToString();
         }
@@ -133,17 +140,21 @@ namespace Google_sheetAndro.Views
             LoaderFunction.CreRow();
             //Navigation.PopModalAsync();
         }
-        private void update()
+        private async void update()
         {
             //ItemsPage tp = (ItemsPage)item.CurrentPage;
+            await Navigation.PushModalAsync(new ScreenSaver("Обновление записи...."));
             ItemsPage tp = LoaderFunction.ItemsPageAlone;
+            LoaderFunction.DostatPush("Запуск процедуры обновления");
             int last = Year_pick.SelectedIndex;
             try
             {
+                LoaderFunction.DostatPush("Сбор данных для обновления");
                 TableItem ti = tp.getter();
                 ti.author = StaticInfo.AccountEmail;
                 ti.route = LoaderFunction.MapPageAlone.MapObj.SerializableLine;
                 ti.points = LoaderFunction.MapPageAlone.MapObj.SerializablePins;
+                LoaderFunction.DostatPush("Отправка данных для обновления");
                 Googles.UpdateEntry(ti);
                 if (LoaderFunction.ExtItNavPage != null)
                 {
@@ -154,9 +165,11 @@ namespace Google_sheetAndro.Views
             catch (Exception)
             {
                 Toast.MakeText(Android.App.Application.Context, "Обновление неудачно", ToastLength.Long).Show();
+                //await Navigation.PopModalAsync();
             }
             finally
             {
+                LoaderFunction.DostatPush("Завершение операции");
                 if (Mounth_pick.SelectedIndex != 0)
                     vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex, EmailSync.IsToggled);
                 else
@@ -168,15 +181,18 @@ namespace Google_sheetAndro.Views
                 Year_pick.SelectedIndex = last;
                 TableItems.SelectedItem = null;
             }
-
+            await Navigation.PopModalAsync();
         }
-        private void delete()
+        private async void delete()
         {
+            await Navigation.PushModalAsync(new ScreenSaver("Удаление записи...."));
+            LoaderFunction.DostatPush("Запуск процедуры удаления");
             ItemsPage tp = LoaderFunction.ItemsPageAlone;
             //ItemsPage tp = (ItemsPage)item.CurrentPage;
             int last = Year_pick.SelectedIndex;
             try
             {
+                LoaderFunction.DostatPush("Сбор данных");
                 TableItem ti = tp.getter();
                 ti.author = StaticInfo.AccountEmail;
                 ti.route = LoaderFunction.MapPageAlone.MapObj.SerializableLine;
@@ -195,13 +211,16 @@ namespace Google_sheetAndro.Views
                     vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), Mounth_pick.SelectedIndex, EmailSync.IsToggled);
                 else
                     vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0, EmailSync.IsToggled);
+                LoaderFunction.DostatPush("Сортировка элементов по годам");
                 Year_pick.SelectedIndexChanged -= Graph_pick_date_SelectedIndexChanged;
                 vM.years.Clear();
                 vM.years = LocalTable.GetYearsList();
+                LoaderFunction.DostatPush("Завершение операции");
                 Year_pick.SelectedIndexChanged += Graph_pick_date_SelectedIndexChanged;
                 Year_pick.SelectedIndex = last;
                 TableItems.SelectedItem = null;
             }
+            await Navigation.PopModalAsync();
 
         }
         private async void TableItems_ItemTapped(object sender, ItemTappedEventArgs e)

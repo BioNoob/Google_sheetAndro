@@ -511,7 +511,7 @@
                 </StackLayout>
 
             </ScrollView>
-            <RelativeLayout BackgroundColor="Transparent" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">
+            <!--<RelativeLayout BackgroundColor="Transparent" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">
                 <ActivityIndicator IsRunning="{Binding IsBusy}"
                          IsVisible="{Binding IsBusy}"
                           HeightRequest="80"
@@ -521,7 +521,7 @@
                           HorizontalOptions="CenterAndExpand"
                            Color="Orange">
                 </ActivityIndicator>
-            </RelativeLayout>
+            </RelativeLayout>-->
         </Grid>
         
 

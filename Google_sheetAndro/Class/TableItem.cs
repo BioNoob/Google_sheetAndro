@@ -38,6 +38,7 @@ namespace Google_sheetAndro.Class
         public static List<string> GetYearsList()
         {
             var tt = new HashSet<string>(ListItems.Select(t => t.year.ToString()).ToList()).ToList();
+            //tt.OrderByDescending(t => t);
             tt.Sort();
             return tt;
         }

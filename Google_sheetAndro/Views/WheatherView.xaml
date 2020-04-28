@@ -42,7 +42,7 @@
                             <ColumnDefinition Width=".8*"/>
                             <ColumnDefinition Width=".2*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Place}" FontSize="13"
+                        <Label Text="{Binding Place}" FontSize="17"
                            VerticalOptions="Start" TextColor="White" HorizontalOptions="Start" Grid.Column="0"
                           />
                     </Grid>
@@ -61,8 +61,8 @@
                             <Label Text="{Binding Time}" TextColor="White" FontSize="12" HorizontalOptions="Center"/>
                         </StackLayout>
                     </Frame>
-                    <Frame  CornerRadius="10" BackgroundColor="#40000000" BorderColor="Orange"
-                   Padding="0" HeightRequest="180" VerticalOptions="Start" HasShadow="True">
+                    <Frame  CornerRadius="10" BackgroundColor="#40000000" BorderColor="Orange" 
+                   Padding="5" HeightRequest="180" VerticalOptions="Start" HasShadow="True">
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -175,11 +175,11 @@
                         <ListView ItemsSource="{Binding ActualWind}"
                                   x:Name="AAP1A"
                               HasUnevenRows="True" HeightRequest="150"
-                          SeparatorColor="#008CFF" SelectionMode="None">
+                          SeparatorColor="White" SelectionMode="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Grid>
+                                        <Grid ColumnSpacing="15" Margin="0,5">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="Auto"/>
@@ -198,15 +198,16 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
+                        <BoxView BackgroundColor="Orange" HeightRequest="0.5"/>
                         <ListView HasUnevenRows="True" x:Name="AAPA"
                               ItemsSource="{Binding lw}" 
                       ItemSelected="ListView_ItemSelected"
-                      SeparatorColor="#008CFF" SelectionMode="Single" HeightRequest="150"
+                      SeparatorColor="White" SelectionMode="Single" HeightRequest="150"
                           >
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Grid>
+                                        <Grid Margin="5" ColumnSpacing="15">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="Auto"/>
@@ -221,7 +222,9 @@
                         </ListView>
                     </StackLayout>
                 </Frame>
+                <BoxView BackgroundColor="Transparent" HeightRequest="1" Grid.Row="2"/>
             </Grid>
+            
         </ScrollView>
         <RelativeLayout BackgroundColor="Transparent" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,100">
             <Frame BackgroundColor="#90005AFF" VerticalOptions="Center" HorizontalOptions="Center" Padding="5" Margin="10" 

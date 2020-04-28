@@ -5,6 +5,7 @@ using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
 using Google_sheetAndro;
 using Google_sheetAndro.Class;
+using Google_sheetAndro.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -248,6 +249,7 @@ namespace TableAndro
             int shID = 0;
             int indx_last = int.MinValue;
             int Sh_shbalon = 0;
+            LoaderFunction.DostatPush("Проверка существования года в базе");
             foreach (var item in sheets)
             {
                 if (item.Properties.Title == year.ToString())
@@ -268,9 +270,11 @@ namespace TableAndro
             }
             else
             {
+                LoaderFunction.DostatPush("Год не найден. Создание вкладки");
                 ShablonDuplicater(Sh_shbalon, year.ToString(), indx_last);//createnewsheets и вернем его имя
                 sheet_id = Googles.newSheetId;
                 SheetName = year.ToString();
+                LoaderFunction.DostatPush("Обновление локальной базы");
                 InitService(SheetName);
                 fl_yearadd = true;
 
@@ -279,6 +283,7 @@ namespace TableAndro
         public static async Task<bool> ReadEntriesAsync(TableItem ti/*Dictionary<string, object> dic*/)
         {
             var network = Connectivity.NetworkAccess;
+            LoaderFunction.DostatPush("Инициализация отправки");
             try
             {
                 if (network == NetworkAccess.None)
@@ -291,6 +296,7 @@ namespace TableAndro
                 int year = ti.year;
                 int sh_ID = 0;
                 SheetExist(year);
+                LoaderFunction.DostatPush("Год проверен, продолжаем");
                 sh_ID = sheet_id;//ti.sh_id;//Googles.sheet_id;
                 sheet = SheetName;
                 //var range = $"{sheet}!A:K";
@@ -302,12 +308,12 @@ namespace TableAndro
                 {
                     if (row[0].ToString() == mont_nm.ToLower())
                     {
-
                         inp_row = inp_row_mount = values.IndexOf(row) + 1;
                         ti.row_nb = inp_row;
                         break;
                     }
                 }
+                LoaderFunction.DostatPush("Строка локальной таблицы найдена");
                 //нашли строку, смотрим пустая она
                 //если да пишем в нее
 
@@ -318,15 +324,18 @@ namespace TableAndro
                     {
                         if (values.Count < inp_row + 1)//проверка на последнюю строку. Если после нее ничего нет то... (декабрь ласт)
                         {
+                            LoaderFunction.DostatPush("Вставка строки в базу");
                             InsertRowAsync(ti, inp_row + 1);
                             RB.fst_clm = 0;
                             RB.sec_clm = 1;
                             RB.fst_rw = inp_row - 1;
                             RB.sec_rw = inp_row + 1;
+                            LoaderFunction.DostatPush("Форматирование строки");
                             LQReq.Add(Merger(sh_ID));
                         }
                         else if (values[inp_row][0].ToString().Length > 1) //если в следующей строке в месяце что-то написано
                         {
+                            LoaderFunction.DostatPush("Вставка строки в базу");
                             InsertRowAsync(ti, inp_row + 1);
                             Debug.WriteLine("RETURN HOME");
                             RB.fst_clm = 0;
@@ -334,6 +343,7 @@ namespace TableAndro
                             RB.fst_rw = inp_row - 1;
                             RB.sec_rw = inp_row + 1;
                             LQReq.Add(Merger(sh_ID));
+                            LoaderFunction.DostatPush("Форматирование строки");
                             Debug.WriteLine("MERGER");
                         }
                         else
@@ -346,12 +356,14 @@ namespace TableAndro
                                     break;
                                 }
                             }
+                            LoaderFunction.DostatPush("Вставка строки в базу");
                             InsertRowAsync(ti, inp_row + 1);
                             Debug.WriteLine("RETURN HOME");
                             RB.fst_clm = 0;
                             RB.sec_clm = 1;
                             RB.fst_rw = inp_row_mount - 1;
                             RB.sec_rw = inp_row + 1;
+                            LoaderFunction.DostatPush("Форматирование строки");
                             LQReq.Add(Merger(sh_ID));
                             Debug.WriteLine("MERGER");
                         }
@@ -361,6 +373,7 @@ namespace TableAndro
                         //}
                         BatchUpdateSpreadsheetRequest requestBody = new BatchUpdateSpreadsheetRequest();
                         requestBody.Requests = LQReq;
+                        LoaderFunction.DostatPush("Отправка данных о строках в базу");
                         BatchUpdateRequest BUrequest = service.Spreadsheets.BatchUpdate(requestBody, SpreadsheetId);
                         CancellationTokenSource cts = new CancellationTokenSource();
                         cts.CancelAfter(15000);
@@ -369,6 +382,7 @@ namespace TableAndro
                     else
                     {
                         //пустая, использовать существующий номер
+                        LoaderFunction.DostatPush("Отправка данных в базу");
                         UpdateEntry(ti);
                     }
                 }
@@ -378,6 +392,7 @@ namespace TableAndro
                     return false;
                 }
                 //sheetInfo = service.Spreadsheets.Get(SpreadsheetId).Execute();
+                LoaderFunction.DostatPush("Повторная загрузка базы в локальное хранилище");
                 InitService(year.ToString());
                 if (fl_yearadd)
                 {
@@ -385,6 +400,7 @@ namespace TableAndro
                     fl_yearadd = false;
                 }
                 StaticInfo.EndSuccSend();
+                LoaderFunction.DostatPush("Завершение отправки");
                 Toast.MakeText(Android.App.Application.Context, "Запись прошла успешно", ToastLength.Long).Show();
                 return true;
             }
@@ -392,6 +408,7 @@ namespace TableAndro
             {
                 string buff = ex.Message;
                 string outas = "Запись неудачна";
+                LoaderFunction.DostatPush("Запись неудачна");
                 if (network == NetworkAccess.None)
                 {
                     string kk = Preferences.Get("Offline_data", "");
@@ -408,6 +425,7 @@ namespace TableAndro
                     string seria = JsonConvert.SerializeObject(ti_list);
                     Preferences.Set("Offline_data", seria);
                     outas += "\nЗапись сохранена для офлайн";
+                    LoaderFunction.DostatPush("Запись сохранена для офлайн");
                 }
                 Toast.MakeText(Android.App.Application.Context, outas, ToastLength.Long).Show();
                 return false;
@@ -468,6 +486,7 @@ namespace TableAndro
             cts.CancelAfter(15000);
             var requestBody = new ClearValuesRequest();
             range = range.Replace("A", "B");
+            LoaderFunction.DostatPush("Запрос на удаление данных");
             if (tbl.exect_mounth == "")//string.IsNullOrEmpty(tbl.exect_mounth))//)
             {
                 BatchUpdateSpreadsheetRequest rqBody = new BatchUpdateSpreadsheetRequest();
@@ -480,6 +499,8 @@ namespace TableAndro
                 var deleteRequest = service.Spreadsheets.Values.Clear(requestBody, SpreadsheetId, range);
                 var deleteReponse = deleteRequest.ExecuteAsync(cts.Token).Result;
             }
+            LoaderFunction.DostatPush("Удаление завершено");
+            LoaderFunction.DostatPush("Повторная загрузка базы в локальное хранилище");
             InitService(tbl.year.ToString());
             //LocalTable.ListItems.Remove(tbl);
         }

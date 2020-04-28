@@ -113,6 +113,12 @@ namespace Google_sheetAndro.Views
             bufferpos = new Plugin.Geolocator.Abstractions.Position();
             this.Appearing += MapPage_Appearing;
             this.Disappearing += MapPage_Disappearing;
+            StaticInfo.DoActiveAI += StaticInfo_DoActiveAI;
+        }
+
+        private void StaticInfo_DoActiveAI(bool status)
+        {
+            IsBusy = status;
         }
 
         private void MapPage_Disappearing(object sender, EventArgs e)

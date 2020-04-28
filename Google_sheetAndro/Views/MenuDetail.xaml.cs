@@ -21,18 +21,5 @@ namespace Google_sheetAndro.Views
 
 //get=>_st; set { _st = value; } }
     }
-    public class MDvm
-    {
-        public MDvm()
-        {
-            LoaderFunction.DoSetStatus += LoaderFunction_DoSetStatus;
-            Status = "Запуск...";
-        }
-        public string Status { get; set; }
-        private void LoaderFunction_DoSetStatus(string s)
-        {
-            Status = s;
-        }
-    }
 
 }

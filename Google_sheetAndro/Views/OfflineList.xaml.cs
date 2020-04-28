@@ -134,6 +134,7 @@ namespace Google_sheetAndro.Views
         public bool IsBuser { get; set; }
         private async Task<bool> SaveToBase(TableItem ti)
         {
+            await Navigation.PushModalAsync(new ScreenSaver("Сохранение записи..."));
             AD.Opacity = 1;
             IsBuser = true;
             try
@@ -144,11 +145,13 @@ namespace Google_sheetAndro.Views
                 if (await Googles.ReadEntriesAsync(ti))
                 {
                     Toast.MakeText(Android.App.Application.Context, "Запись успешна", ToastLength.Long).Show();
+                    await Navigation.PopModalAsync();
                     return true;
                 }
                 else
                 {
                     Toast.MakeText(Android.App.Application.Context, "Запись неудачна", ToastLength.Long).Show();
+                    await Navigation.PopModalAsync();
                     return false;
                 }
                 //LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
@@ -156,6 +159,7 @@ namespace Google_sheetAndro.Views
             catch (Exception)
             {
                 Toast.MakeText(Android.App.Application.Context, "Обновление неудачно", ToastLength.Long).Show();
+                await Navigation.PopModalAsync();
                 return false;
             }
             finally

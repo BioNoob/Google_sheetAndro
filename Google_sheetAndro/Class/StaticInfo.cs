@@ -74,6 +74,7 @@ namespace Google_sheetAndro.Class
         public static string AccountPicture { get => accountPicture; set { accountPicture = value; } }
         public static Location Pos { get; set; }
         public static string Place { get; set; }
+
         public static void EndLoadForListItems()
         {
             DoSetSelect?.Invoke();
@@ -107,6 +108,10 @@ namespace Google_sheetAndro.Class
                     DoSetTemp?.Invoke(wheather.temperature.ToString());
                 }
             }
+        }
+        public static void Busier(bool stat)
+        {
+            DoActiveAI?.Invoke(stat);
         }
         private static string CloudConverter()
         {

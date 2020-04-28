@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             mc:Ignorable="d" NavigationPage.HasNavigationBar="False"
+             x:Class="Google_sheetAndro.Views.ScreenSaver">
+    <xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient IsRotationTopToBottom="True">
+            <xfg:Gradient.Steps>
+                <xfg:GradientStep StepColor="#2196F3" StepPercentage="0" />
+                <xfg:GradientStep StepColor="White" StepPercentage="1" />
+            </xfg:Gradient.Steps>
+        </xfg:Gradient>
+    </xfg:ContentPageGloss.BackgroundGradient>
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Frame VerticalOptions="CenterAndExpand" BorderColor="Orange" CornerRadius="20"
+                HorizontalOptions="CenterAndExpand" BackgroundColor="#40000000">
+                <ActivityIndicator IsRunning="True"
+                         IsVisible="True"
+                          HeightRequest="100"
+                           WidthRequest="100"
+                          VerticalOptions="CenterAndExpand"
+                           BackgroundColor="Transparent"
+                          HorizontalOptions="Center"
+                           Color="Orange">
+                </ActivityIndicator>
+            </Frame>
+            <Frame VerticalOptions="StartAndExpand" BorderColor="Orange" CornerRadius="50"
+                HorizontalOptions="CenterAndExpand" BackgroundColor="#40000000">
+            <Label Text="{Binding HelloWorld}" x:Name="StatusLoading" TextColor="White" FontAttributes="Bold"
+                   FontSize="20"/>
+            </Frame>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

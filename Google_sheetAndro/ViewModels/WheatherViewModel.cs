@@ -37,6 +37,12 @@ namespace RefreshSample.ViewModels
         {
             //Time = DateTime.Now.ToString("dd MMMM, HH:mm");
             LoaderFunction.DoWheatherLoad += LoaderFunction_DoWheatherLoad;
+            StaticInfo.DoActiveAI += StaticInfo_DoActiveAI;
+        }
+
+        private void StaticInfo_DoActiveAI(bool status)
+        {
+            IsBusy = status;
         }
 
         private async void LoaderFunction_DoWheatherLoad()

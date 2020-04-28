@@ -69,7 +69,12 @@ namespace Google_sheetAndro.Views
             StaticInfo.DoSetWind += SetWind;
             StaticInfo.DoSetCloud += SetCloud;
             LoaderFunction.DoCreateRow += CreateRow;
-            //StaticInfo.DoActiveAI += StaticInfo_DoActiveAI;
+            StaticInfo.DoActiveAI += StaticInfo_DoActiveAI;
+        }
+
+        private void StaticInfo_DoActiveAI(bool status)
+        {
+            IsBusy = status;
         }
 
         private void SetTemp(string temp)
@@ -347,6 +352,9 @@ namespace Google_sheetAndro.Views
         public async void CreateRow()
         {
             IsBusy = true;
+            //Device.BeginInvokeOnMainThread(() =>
+            //{ StaticInfo.Busier(true); });
+            await Navigation.PushModalAsync(new ScreenSaver("Добавление записи...."));
             TableItem ti = getter();
             ti.author = StaticInfo.AccountEmail;
             ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
@@ -359,6 +367,9 @@ namespace Google_sheetAndro.Views
             {
 
             }
+            await Navigation.PopModalAsync();
+            //StaticInfo.Busier(false);
+            LoaderFunction.DoBack();
             IsBusy = false;
         }
         private void Time_pick_TextChanged(object sender, TextChangedEventArgs e)
