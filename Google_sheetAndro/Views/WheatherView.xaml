@@ -226,6 +226,9 @@
         <RelativeLayout BackgroundColor="Transparent" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,100">
             <Frame BackgroundColor="#90005AFF" VerticalOptions="Center" HorizontalOptions="Center" Padding="5" Margin="10" 
                    CornerRadius="20" BorderColor="Orange" IsVisible="{Binding ErrorVisual}">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Frame.GestureRecognizers>
                 <Label x:Name="StatusError"  Text="{Binding ErrorStatus}" VerticalOptions="FillAndExpand" Margin="0" Padding="0"
                        HorizontalOptions="Center"
                                TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"

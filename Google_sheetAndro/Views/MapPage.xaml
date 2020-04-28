@@ -20,7 +20,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <!--<RowDefinition Height="Auto"/>-->
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".75*"/>
@@ -30,13 +30,13 @@
                         SelectedIndexChanged="MapTypePick_SelectedIndexChanged"/>
                 <Picker x:Name="RouteTypePick" Grid.Row="1" Grid.Column="0" FontSize="14" TextColor="White"
                         SelectedIndexChanged="RouteTypePick_SelectedIndexChanged"/>
-                <ImageButton  Source="CancelLast" Grid.Row="0" Grid.Column="1" WidthRequest="40" x:Name="CancelBtn"
-                              Clicked="CancelBtn_Clicked" BackgroundColor="Transparent"/>
+                <!--<ImageButton  Source="CancelLast" Grid.Row="0" Grid.Column="1" WidthRequest="40" x:Name="CancelBtn"
+                              Clicked="CancelBtn_Clicked" BackgroundColor="Transparent"/>-->
                 <ImageButton  Source="ClearAll" Grid.Row="1" Grid.Column="1" WidthRequest="40" x:Name="ClearBtn"
                               Clicked="ClearBtn_Clicked" BackgroundColor="Transparent"/>
                 <Button x:Name="ReCalcDist" Grid.Row="2" Grid.ColumnSpan="2" Clicked="ReCalcDist_Clicked" Text="Пересчет дистанции"/>
-                <Label  Grid.Row="3" Grid.Column="0" Text="Привязка линии к маркерам" TextColor="White" Margin="10,0,0,0"/>
-                <Switch Grid.Row="3" Grid.Column="1" IsToggled="false" x:Name="SetToPinRoute"  Toggled="SetToPinRoute_Toggled"/>
+                <!--<Label  Grid.Row="3" Grid.Column="0" Text="Привязка линии к маркерам" TextColor="White" Margin="10,0,0,0"/>-->
+                <!--<Switch Grid.Row="3" Grid.Column="1" IsToggled="false" x:Name="SetToPinRoute"  Toggled="SetToPinRoute_Toggled"/>-->
             </Grid>
             <ImageButton x:Name="PopSettings" VerticalOptions="CenterAndExpand"
                          BackgroundColor="Transparent"

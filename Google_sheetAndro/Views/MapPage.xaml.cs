@@ -211,7 +211,7 @@ namespace Google_sheetAndro.Views
         bool isLoaded;
         //int chet_active_hist = 8;
         public bool fl_run = false;
-        bool fl_USE_MAP_CLICK = true; // в настройки добавить чекбокс использовать маркеры в маршрутах
+        bool fl_USE_MAP_CLICK = false; // в настройки добавить чекбокс использовать маркеры в маршрутах
         bool fl_route = true;
         public string address = string.Empty;
         Color Pin_color_start_stop { get; set; }
@@ -382,8 +382,8 @@ namespace Google_sheetAndro.Views
             var route_type = await SecureStorage.GetAsync("route");
             var map_type = await SecureStorage.GetAsync("map");
             var switch_s = await SecureStorage.GetAsync("switch");
-            bool kk = Preferences.Get("SwitchValue", false);
-            SetToPinRoute.IsToggled = kk;
+            //bool kk = Preferences.Get("SwitchValue", false);
+            //SetToPinRoute.IsToggled = kk;
             MapTypePick.Items.Add("Гибридная");
             MapTypePick.Items.Add("Схема");
             RouteTypePick.Items.Add("Маршрут");
@@ -434,7 +434,7 @@ namespace Google_sheetAndro.Views
             if (l != null)
             {
                 int buff = pl_handle.Positions.IndexOf(l.Position);
-                if (buff > 0)
+                if (buff >= 0)
                 {
                     map.Polylines.Remove(pl_handle);
                     pl_handle.Positions.RemoveAt(buff);
@@ -502,7 +502,7 @@ namespace Google_sheetAndro.Views
         public void AbsSetter(string Route, string Points)
         {
             MapObjects mo;
-            setter_point(Points);
+            setter_point(Points, Route);
             if (setter_route(Route))
             {
                 mo = new MapObjects(map.Pins.ToList(), MapLines);
@@ -512,16 +512,47 @@ namespace Google_sheetAndro.Views
             SaveToHist(mo);
 
         }
-        private bool setter_point(string Point)
+        private bool setter_point(string Point, string Route)
         {
             mapObjects.Pins = JsonConvert.DeserializeObject<List<Pin>>(Point);
+            List<Polyline> asdf = JsonConvert.DeserializeObject<List<Polyline>>(Route);
+
             if (mapObjects.Pins != null)
             {
                 foreach (var item in mapObjects.Pins)
                 {
-                    map.Pins.Add(item);
+                    if (asdf != null)
+                    {
+                        if (asdf.Count >= 2)
+                        {
+                            if (!asdf[0].Positions.Contains(item.Position) && !asdf[1].Positions.Contains(item.Position))
+                            {
+                                map.Pins.Add(item);
+                            }
+                        }
+                        else if (asdf.Count == 1)
+                        {
+                            if (!asdf[0].Positions.Contains(item.Position))
+                            {
+                                map.Pins.Add(item);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        map.Pins.Add(item);
+                    }
+                    //if(!asdf[0].Positions.Contains(item.Position) && !asdf[1].Positions.Contains(item.Position))
                 }
-                ToinitPos = map.Pins.Last().Position;
+                if (map.Pins.Count < 1)
+                {
+                    if (asdf != null)
+                    {
+                        ToinitPos = asdf[0].Positions.Last();
+                    }
+                }
+                else
+                    ToinitPos = map.Pins.Last().Position;
             }
             return true;
         }
@@ -778,7 +809,7 @@ namespace Google_sheetAndro.Views
                         0)),
                         TimeSpan.FromSeconds(1));
             }
-            if(e.Position.Altitude != 0 && !has_barometr)
+            if (e.Position.Altitude != 0 && !has_barometr)
             {
                 height_coord = true;
                 height = e.Position.Altitude;
@@ -839,13 +870,24 @@ namespace Google_sheetAndro.Views
             if (!fl_run)
             {
                 var qq = map.CameraPosition.Zoom;
-                if (fl_route)
+                if (TypeLine == TypeInput.HANDLE)
                 {
-                    SetLine(e.Point, true);
+                    if (fl_route)
+                    {
+                        SetLine(e.Point, true);
+                    }
+                    else
+                    {
+                        SetPoint(e.Point);
+                    }
                 }
                 else
                 {
-                    SetPoint(e.Point);
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        Toast.MakeText(Android.App.Application.Context, "Для редактирования карты, выберите ручной режим. (дист. руч.)", ToastLength.Long).Show();
+                    }
+                    );
                 }
             }
         }
@@ -1158,51 +1200,51 @@ namespace Google_sheetAndro.Views
         //}
         private async void CancelBtn_Clicked(object sender, EventArgs e)
         {
-            await CancelBtn.FadeTo(0, 100);
-            MapObjects mi = LoadFromHist();
-            if (mi != null)
-            {
-                if (mi.Pins == null && mi.Polylines == null)
-                    Toast.MakeText(Android.App.Application.Context, "Нет сохранений в буфере", ToastLength.Long).Show();
-                else
-                {
-                    map.Pins.Clear();
-                    map.Polylines.Clear();
-                    if (mi.Polylines != null)
-                    {
-                        //var t = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()).ToList();
-                        if (mi.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()) != null)
-                        {
-                            Polyline pl = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()).First();
-                            pl_handle.Positions.Clear();
-                            foreach (var item in pl.Positions)
-                            {
-                                SetLine(item, true, true);
-                            }
-                        }
-                        if (mi.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_listner.Tag.ToString()) != null)
-                        {
-                            Polyline pl = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_listner.Tag.ToString()).First();
-                            pl_listner.Positions.Clear();
-                            foreach (var item in pl.Positions)
-                            {
-                                SetLine(item, false, true);
-                            }
+            //await CancelBtn.FadeTo(0, 100);
+            //MapObjects mi = LoadFromHist();
+            //if (mi != null)
+            //{
+            //    if (mi.Pins == null && mi.Polylines == null)
+            //        Toast.MakeText(Android.App.Application.Context, "Нет сохранений в буфере", ToastLength.Long).Show();
+            //    else
+            //    {
+            //        map.Pins.Clear();
+            //        map.Polylines.Clear();
+            //        if (mi.Polylines != null)
+            //        {
+            //            //var t = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()).ToList();
+            //            if (mi.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()) != null)
+            //            {
+            //                Polyline pl = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_handle.Tag.ToString()).First();
+            //                pl_handle.Positions.Clear();
+            //                foreach (var item in pl.Positions)
+            //                {
+            //                    SetLine(item, true, true);
+            //                }
+            //            }
+            //            if (mi.Polylines.SingleOrDefault(qq => qq.Tag.ToString() == pl_listner.Tag.ToString()) != null)
+            //            {
+            //                Polyline pl = mi.Polylines.Where(qq => qq.Tag.ToString() == pl_listner.Tag.ToString()).First();
+            //                pl_listner.Positions.Clear();
+            //                foreach (var item in pl.Positions)
+            //                {
+            //                    SetLine(item, false, true);
+            //                }
 
-                        }
-                    }
-                    if (mi.Pins != null && mi.Pins.Count > 0)
-                    {
-                        foreach (var item in mi.Pins)
-                        {
-                            map.Pins.Add(item);
-                        }
-                    }
-                }
-            }
-            else
-                Toast.MakeText(Android.App.Application.Context, "Нет сохранений в буфере", ToastLength.Long).Show();
-            await CancelBtn.FadeTo(1, 100);
+            //            }
+            //        }
+            //        if (mi.Pins != null && mi.Pins.Count > 0)
+            //        {
+            //            foreach (var item in mi.Pins)
+            //            {
+            //                map.Pins.Add(item);
+            //            }
+            //        }
+            //    }
+            //}
+            //else
+            //    Toast.MakeText(Android.App.Application.Context, "Нет сохранений в буфере", ToastLength.Long).Show();
+            //await CancelBtn.FadeTo(1, 100);
         }
 
         private async void ClearBtn_Clicked(object sender, EventArgs e)

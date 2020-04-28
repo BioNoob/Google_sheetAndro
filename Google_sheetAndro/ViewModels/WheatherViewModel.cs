@@ -62,7 +62,8 @@ namespace RefreshSample.ViewModels
             }
             IsBusy = false;
         }
-        public bool ErrorVisual { get; set; }
+        private bool errorvisual;
+        public bool ErrorVisual { get { return errorvisual; } set { errorvisual = value; OnPropertyChanged("ErrorVisual"); } }
         public string ErrorStatus
         {
             get => errorstatus;
@@ -74,7 +75,7 @@ namespace RefreshSample.ViewModels
                 else
                     ErrorVisual = true;
                 OnPropertyChanged("ErrorStatus");
-                OnPropertyChanged("ErrorVisual");
+
             }
         }
         public string Airport { get => airport; set { airport = value; OnPropertyChanged("Airport"); } }

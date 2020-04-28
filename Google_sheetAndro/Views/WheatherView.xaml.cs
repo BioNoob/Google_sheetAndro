@@ -45,5 +45,10 @@ namespace Google_sheetAndro.Views
         {
 
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
+        {
+            ((WheatherViewModel)this.BindingContext).ErrorVisual = false;
+        }
     }
 }

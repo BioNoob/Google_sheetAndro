@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Google_sheetAndro.Class
 {
@@ -148,8 +149,10 @@ namespace Google_sheetAndro.Class
             var colr = namer.Split('|');
             for (int i = 0; i < colr.Length; i++)
             {
-                var random = new Random();
-                color += String.Format("{0:X6}", random.Next(0x1000000)) + ",";
+
+                var t = random.Next(0x1000000);
+                color += String.Format("{0:X6}", t) + ",";
+                
             }
             color = color.TrimEnd(',');
             //додумать функцию градиента? (посмотреть), параметр для отображения размера? зависит от размера итема отображения (или статик?)
@@ -158,6 +161,7 @@ namespace Google_sheetAndro.Class
             else
                 return $"https://image-charts.com/chart?cht=bvg&chs={Options.opt.Width}x{Options.opt.Height}&chds=a&chg=1,1,0,0&chd=t:{value}&chxt=x,y&chxr=1,{min.ToString()},{max.ToString()}&chxl=0:|{label}&chof=.png&chco={color}";
         }
+        public static Random random = new Random();
         public static string FormerPost(List<ValueDate> vl, List<string> years)
         //EVERY EDIT 25.09!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
@@ -294,13 +298,13 @@ namespace Google_sheetAndro.Class
             var colr = namer.Split('|');
             if (namer.Length < 1)
             {
-                var random1 = new Random();
-                color += String.Format("{0:X6}", random1.Next(0x1000000)) + ",";
+                //var random1 = new Random();
+                color += String.Format("{0:X6}", random.Next(0x1000000)) + ",";
             }
             for (int i = 0; i < colr.Length; i++)
             {
-                var random2 = new Random();
-                color += String.Format("{0:X6}", random2.Next(0x1000000)) + ",";
+                //var random2 = new Random();
+                color += String.Format("{0:X6}", random.Next(0x1000000)) + ",";
                 //color += /*SkiaSharp.Views.Forms.Extensions.ToFormsColor(dicColor[i]).ToHex()*/ + ",";
             }
             color = color.TrimEnd(',');
