@@ -336,7 +336,7 @@ namespace TableAndro
                     {
                         inp_row = inp_row_mount = values.IndexOf(row) + 1;
                         ti.row_nb = inp_row;
-                        ti.row_mounth_firs = inp_row_mount;
+                        ti.row_mounth_firs = inp_row_mount - 1;
                         break;
                     }
                 }
