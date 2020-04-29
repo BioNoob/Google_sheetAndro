@@ -217,5 +217,12 @@ namespace Google_sheetAndro.Views
                 }
             }
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            clearer();
+            Task_txt.Text = "";
+            OutNum.Text = string.Empty;
+        }
     }
 }

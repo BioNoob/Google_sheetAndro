@@ -29,8 +29,9 @@
         </xfg:Gradient>
     </xfg:ContentPageGloss.BackgroundGradient>
     <ContentPage.Content>
-        <StackLayout  Orientation="Vertical" Margin="10,20,10,20">
-            <Entry Placeholder="Введите номер для пойска"
+        <Grid>
+            <StackLayout  Orientation="Vertical" Margin="10,20,10,20">
+                <Entry Placeholder="Введите номер для пойска"
                                        x:Name="Task_txt"
                                        Margin="10,10,10,0" TextColor="#000000" 
                                        HorizontalOptions="Fill" VerticalOptions="Center"
@@ -38,9 +39,9 @@
                                        FontSize="18"
                    TextChanged="Task_txt_TextChanged"
                                        />
-            <Frame CornerRadius="20" BackgroundColor="#30FFFFFF" Padding="1" BorderColor="Black" Margin="0,10,0,0"
+                <Frame CornerRadius="20" BackgroundColor="#30FFFFFF" Padding="1" BorderColor="Black" Margin="0,10,0,0"
                    >
-                <Label x:Name="OutNum"  Style="{StaticResource lblstyle}"
+                    <Label x:Name="OutNum"  Style="{StaticResource lblstyle}"
                 Text=""
                    TextColor="#000000" 
                                        HorizontalOptions="Fill" VerticalOptions="Center"
@@ -49,42 +50,42 @@
                    
                    FontAttributes="Bold"
                    Margin="0" MinimumHeightRequest="30" HeightRequest="45"/>
-            </Frame>
+                </Frame>
 
-            <ListView x:Name = "lvTask" 
+                <ListView x:Name = "lvTask" 
              HasUnevenRows = "true"
              SeparatorVisibility = "Default"
                       SeparatorColor="#1976D2"
              lv:MultiSelect.Enable = "true"
                       ItemSelected="LvTask_ItemSelected"
                       >
-                <ListView.Behaviors>
-                    <lv:SelectedItemBehavior Command="{Binding DisplayNameCommand}"/>
-                </ListView.Behaviors>
-                <ListView.ItemTemplate >
-                    <DataTemplate>
-                        <lv:SelectableCell x:Name="SelectableCell">
-                            <lv:SelectableCell.CheckView>
-                                <Image Source="select.png" WidthRequest="30" HeightRequest="30"></Image>
-                            </lv:SelectableCell.CheckView>
-                            <lv:SelectableCell.DataView>
-                                <ScrollView>
-                                    <StackLayout Orientation="Vertical" Padding="20,0,20,0">
-                                        <Label x:Name="TEST" Text="{Binding Outter}" FontSize="17"  Style="{StaticResource lblstyle}">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                                            </Label.GestureRecognizers>
-                                        </Label>
-                                    </StackLayout>
-                                </ScrollView>
-                            </lv:SelectableCell.DataView>
-                        </lv:SelectableCell>
+                    <ListView.Behaviors>
+                        <lv:SelectedItemBehavior Command="{Binding DisplayNameCommand}"/>
+                    </ListView.Behaviors>
+                    <ListView.ItemTemplate >
+                        <DataTemplate>
+                            <lv:SelectableCell x:Name="SelectableCell">
+                                <lv:SelectableCell.CheckView>
+                                    <Image Source="select.png" WidthRequest="30" HeightRequest="30"></Image>
+                                </lv:SelectableCell.CheckView>
+                                <lv:SelectableCell.DataView>
+                                    <ScrollView>
+                                        <StackLayout Orientation="Vertical" Padding="20,0,20,0">
+                                            <Label x:Name="TEST" Text="{Binding Outter}" FontSize="17"  Style="{StaticResource lblstyle}">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                        </StackLayout>
+                                    </ScrollView>
+                                </lv:SelectableCell.DataView>
+                            </lv:SelectableCell>
 
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
 
-            </ListView >
-            <Button
+                </ListView >
+                <Button
                 x:Name="Confirm_btn"
                 Clicked="Confirm_btn_Clicked"
                                                     HorizontalOptions="Fill"
@@ -96,6 +97,12 @@
                 
                                     CornerRadius="5"
                 Text="Подтвердить" Margin="10"/>
-        </StackLayout>
+            </StackLayout>
+            <RelativeLayout Margin="10,33,20,10" HorizontalOptions="End" VerticalOptions="Start">
+                <Button Text="X" FontAttributes="Bold" FontSize="15" WidthRequest="40" HeightRequest="40" Clicked="Button_Clicked"
+                        BackgroundColor="Transparent"/>
+            </RelativeLayout>
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>

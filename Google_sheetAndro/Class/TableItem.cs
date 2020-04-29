@@ -129,11 +129,71 @@ namespace Google_sheetAndro.Class
         public string author { get; set; }
         public string points { get; set; }
         public string route { get; set; }
+        //public int Col_vo_zapr()
+        //{
+        //    double answ = this.lenght_point_row() / 45000;
+        //    if (answ > 1)
+        //    {
+        //        return (int)Math.Ceiling(answ);
+        //    }
+        //    else
+        //        return 1;
+        //}
         public List<object> GetListForEntry()
         {
             List<object> lst = new List<object>();
             lst.AddRange(new List<object>() { this.date.ToString("dd/MM/yyyy"), this.time, this.wind, this.cloud, this.temp, this.task, this.height, this.range, this.plase, this.comment, this.author, this.points, this.route });
             return lst;
+        }
+        public List<object> GetListForEntry_ex_points_route()
+        {
+            List<object> lst = new List<object>();
+            lst.AddRange(new List<object>() { this.date.ToString("dd/MM/yyyy"), this.time, this.wind, this.cloud, this.temp, this.task, this.height, this.range, this.plase, this.comment, this.author });
+            return lst;
+        }
+        public int GetMaxRowFor_ro_po()
+        {
+            var tt = this.points.Length;
+            int q1 = (int)Math.Ceiling(tt / 49000.0);
+            tt = this.route.Length;
+            int q2 = (int)Math.Ceiling(tt / 49000.0);
+            if (q1 > q2) return q1;
+            else return q2;
+
+        }
+        public List<IList<object>> GetVal_points_route()
+        {
+            List<IList<object>> val = new List<IList<object>>();
+            int chet = 0;
+            int iter = 49000;
+            var tt = this.points.Length;
+            int q = (int)Math.Ceiling(tt/ 49000.0);
+            for (int i = 0; i < q; i++)
+            {
+                List<object> lst = new List<object>();
+                if (i + 1 == q)
+                {
+                    iter = tt - chet;
+                }
+                var tm1 = this.points.Substring(chet, iter);
+                lst.Add(tm1);
+                chet += iter;
+                val.Add(lst);
+            }
+            tt = this.route.Length;
+            q = (int)Math.Ceiling(tt / 49000.0);
+            for (int i = 0; i < q; i++)
+            {
+                List<object> lst = new List<object>();
+                if (i + 1 == q)
+                {
+                    iter = tt - chet;
+                }
+                var tm1 = this.route.Substring(chet, iter);
+                chet += iter;
+                val[i].Add(tm1);
+            }
+            return val;
         }
     }
 

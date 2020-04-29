@@ -407,7 +407,7 @@ namespace TableAndro
             catch (Exception ex)
             {
                 string buff = ex.Message;
-                string outas = "Запись неудачна";
+                string outas = "Запись неудачна" + buff;
                 LoaderFunction.DostatPush("Запись неудачна");
                 if (network == NetworkAccess.None)
                 {
@@ -463,21 +463,40 @@ namespace TableAndro
         {
             var sheet = tbi.year.ToString();
             //var range = $"{sheet}!B{tbi.row_nb}:K{tbi.row_nb}";
-            var range = $"{sheet}!B{tbi.row_nb}:N{tbi.row_nb}";
+            string range = string.Empty;
+            int num_roh = 0;
+            List<object> oblist;
+            if (tbi.route.Length > 49000 | tbi.points.Length > 49000)
+            {
+                range = $"{sheet}!B{tbi.row_nb}:L{tbi.row_nb}";
+                oblist = tbi.GetListForEntry_ex_points_route();
+                num_roh = tbi.GetMaxRowFor_ro_po();
+                //num_roh = tbi.Col_vo_zapr();
+            }
+            else
+            {
+                range = $"{sheet}!B{tbi.row_nb}:N{tbi.row_nb}";
+                oblist = tbi.GetListForEntry();
+            }
             var valueRange = new ValueRange();
-            //var oblist = new List<object>();
-            //foreach (string item in dic.Keys)
-            //{
-            //    oblist.Add(dic[item]);
-            //}
-            var oblist = tbi.GetListForEntry();
             valueRange.Values = new List<IList<object>> { oblist };
-
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreadsheetId, range);
-            updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
+            updateRequest.ValueInputOption = ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
             CancellationTokenSource cts = new CancellationTokenSource();
             cts.CancelAfter(15000);
             var appendReponse = updateRequest.ExecuteAsync(cts.Token).Result;
+
+            if(num_roh >= 1)
+            {
+                valueRange = new ValueRange();
+                valueRange.Values = tbi.GetVal_points_route();
+                var doprange = $"{sheet}!M{tbi.row_nb}:N{tbi.row_nb + num_roh - 1}";
+                var qqqreq = service.Spreadsheets.Values.Update(valueRange, SpreadsheetId, doprange);
+                qqqreq.ValueInputOption = ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
+                cts = new CancellationTokenSource();
+                cts.CancelAfter(15000);
+                appendReponse = qqqreq.ExecuteAsync(cts.Token).Result;
+            }
         }
         public static void DeleteEntry(TableItem tbl)
         {
