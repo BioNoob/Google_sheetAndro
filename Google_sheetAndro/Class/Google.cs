@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -118,6 +119,7 @@ namespace TableAndro
             string sh_name;
             int year = 0;
             int row_indx = -1;
+            int row_mnth = -1;
             if (year_to != "")
             {
                 sheets = sheets.Where(t => t.Properties.Title == year_to).ToList();
@@ -127,6 +129,7 @@ namespace TableAndro
             foreach (var item in sheets)
             {
                 row_indx = -1;
+                row_mnth = -1;
                 if (int.TryParse(item.Properties.Title, out year))
                 {
                     sh_name = item.Properties.Title;
@@ -149,7 +152,30 @@ namespace TableAndro
                             if (row[0].ToString() != "Мес" && row.Count > 1)
                             {
                                 string r = "";
+                                if (row.Count > 12)
+                                {
+                                    if (row[3].ToString() == "" && row[4].ToString() == "" && row[5].ToString() == "" && row[6].ToString() == ""
+                                        && row[7].ToString() == "" && row[8].ToString() == "" && row[9].ToString() == "" && row[10].ToString() == ""
+                                        && row[11].ToString() == "")
+                                    {
+                                        if (row[12].ToString() != "")
+                                        {
+                                            if (row.Count > 13)
+                                                LocalTable.ListItems.Last().route += row[13].ToString();
+                                            LocalTable.ListItems.Last().points += row[12].ToString();
+                                            LocalTable.ListItems.Last().tabelplase = Regex.Replace(LocalTable.ListItems.Last().tabelplase, @":N\d+$", $":N{row_indx + 1}");
+                                            LocalTable.ListItems.Last().row_nb_end = row_indx + 1;
+                                            continue;
+                                        }
+
+                                    }
+                                }
                                 TableItem ti = new TableItem();
+                                if(row[0].ToString() != "")
+                                {
+                                    row_mnth = row_indx;
+                                }
+                                ti.row_mounth_firs = row_mnth;
                                 DateTime dtt = new DateTime(1899, 12, 30, new GregorianCalendar());
                                 int daybuf = Convert.ToInt32(row[1].ToString());
                                 dtt = dtt.AddDays(daybuf);
@@ -383,6 +409,7 @@ namespace TableAndro
                     {
                         //пустая, использовать существующий номер
                         LoaderFunction.DostatPush("Отправка данных в базу");
+                        ti.row_nb_end = ti.row_nb;
                         UpdateEntry(ti);
                     }
                 }
@@ -446,6 +473,7 @@ namespace TableAndro
             cts.CancelAfter(15000);
             var resp = BUrequest.ExecuteAsync(cts.Token).Result;
             ti.row_nb = Row_after;
+            ti.row_nb_end = ti.row_nb;
             UpdateEntry(ti);
             Debug.WriteLine("EXIT RowIns");
             return true;
@@ -462,7 +490,17 @@ namespace TableAndro
         public static void UpdateEntry(TableItem tbi/*int num_inp, Dictionary<string, object> dic*/)
         {
             var sheet = tbi.year.ToString();
+            CancellationTokenSource cts = new CancellationTokenSource();
+            cts.CancelAfter(15000);
             //var range = $"{sheet}!B{tbi.row_nb}:K{tbi.row_nb}";
+            //DeleteEntry(tbi, true);
+            if (tbi.row_nb_end > tbi.row_nb)
+            {//удаление лишних строк
+                BatchUpdateSpreadsheetRequest rqBody = new BatchUpdateSpreadsheetRequest();
+                rqBody.Requests = new List<Request>() { google_requests.DeleteRow(tbi, true) };
+                BatchUpdateRequest BUrequest = service.Spreadsheets.BatchUpdate(rqBody, SpreadsheetId);
+                var t = BUrequest.ExecuteAsync(cts.Token).Result;
+            }
             string range = string.Empty;
             int num_roh = 0;
             List<object> oblist;
@@ -482,15 +520,33 @@ namespace TableAndro
             valueRange.Values = new List<IList<object>> { oblist };
             var updateRequest = service.Spreadsheets.Values.Update(valueRange, SpreadsheetId, range);
             updateRequest.ValueInputOption = ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
-            CancellationTokenSource cts = new CancellationTokenSource();
+            cts = new CancellationTokenSource();
             cts.CancelAfter(15000);
             var appendReponse = updateRequest.ExecuteAsync(cts.Token).Result;
 
-            if(num_roh >= 1)
+            if (num_roh >= 1)
             {
+                if (tbi.sh_id == 0)
+                {
+                    tbi.sh_id = sheet_id;
+                }
+                BatchUpdateSpreadsheetRequest requestBody = new BatchUpdateSpreadsheetRequest();
+                requestBody.Requests = new List<Request>() { google_requests.InsRow(tbi.sh_id, tbi.row_nb, num_roh - 1) };
+                BatchUpdateRequest BUrequest = service.Spreadsheets.BatchUpdate(requestBody, SpreadsheetId);
+                cts = new CancellationTokenSource();
+                cts.CancelAfter(15000);
+                var resp = BUrequest.ExecuteAsync(cts.Token).Result;
+                requestBody = new BatchUpdateSpreadsheetRequest();
+                requestBody.Requests = new List<Request>();
+                requestBody.Requests.Add(google_requests.MergeRq(tbi.sh_id, new Range_border(tbi.row_mounth_firs, num_roh + tbi.row_nb-1 , 0, 1)));
+                cts = new CancellationTokenSource();
+                cts.CancelAfter(15000);
+                BUrequest = service.Spreadsheets.BatchUpdate(requestBody, SpreadsheetId);
+                resp = BUrequest.ExecuteAsync(cts.Token).Result;
+                tbi.row_nb_end = tbi.row_nb + num_roh - 1;
                 valueRange = new ValueRange();
                 valueRange.Values = tbi.GetVal_points_route();
-                var doprange = $"{sheet}!M{tbi.row_nb}:N{tbi.row_nb + num_roh - 1}";
+                var doprange = $"{sheet}!M{tbi.row_nb}:N{tbi.row_nb_end}";
                 var qqqreq = service.Spreadsheets.Values.Update(valueRange, SpreadsheetId, doprange);
                 qqqreq.ValueInputOption = ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
                 cts = new CancellationTokenSource();
@@ -498,7 +554,7 @@ namespace TableAndro
                 appendReponse = qqqreq.ExecuteAsync(cts.Token).Result;
             }
         }
-        public static void DeleteEntry(TableItem tbl)
+        public static void DeleteEntry(TableItem tbl, bool fl_spec = false)
         {
             var range = tbl.tabelplase;
             CancellationTokenSource cts = new CancellationTokenSource();
@@ -517,10 +573,22 @@ namespace TableAndro
             {
                 var deleteRequest = service.Spreadsheets.Values.Clear(requestBody, SpreadsheetId, range);
                 var deleteReponse = deleteRequest.ExecuteAsync(cts.Token).Result;
+                //очистили месячную, если следующая тоже принадлжеит записи, то удаляем
+                if (tbl.row_nb_end > tbl.row_nb)
+                {
+                    tbl.row_nb++;
+                    cts = new CancellationTokenSource();
+                    cts.CancelAfter(15000);
+                    BatchUpdateSpreadsheetRequest rqBody = new BatchUpdateSpreadsheetRequest();
+                    rqBody.Requests = new List<Request>() { google_requests.DeleteRow(tbl) };
+                    BatchUpdateRequest BUrequest = service.Spreadsheets.BatchUpdate(rqBody, SpreadsheetId);
+                    var t = BUrequest.ExecuteAsync(cts.Token).Result;
+                }
             }
             LoaderFunction.DostatPush("Удаление завершено");
             LoaderFunction.DostatPush("Повторная загрузка базы в локальное хранилище");
-            InitService(tbl.year.ToString());
+            if (!fl_spec)
+                InitService(tbl.year.ToString());
             //LocalTable.ListItems.Remove(tbl);
         }
     }

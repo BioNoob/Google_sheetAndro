@@ -10,6 +10,13 @@ namespace TableAndro
         public int sec_rw { get; set; }
         public int fst_clm { get; set; }
         public int sec_clm { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sri">first row</param>
+        /// <param name="eri">end row</param>
+        /// <param name="sci">first column</param>
+        /// <param name="eci">end column</param>
         public Range_border(int sri, int eri, int sci, int eci)
         {
             fst_rw = sri;
@@ -40,26 +47,33 @@ namespace TableAndro
         /// <param name="shid"></param>
         /// <param name="row_after">после строки (натуральная цифра, не индекс)</param>
         /// <returns></returns>
-        public static Request InsRow(int shid, int row_after)
+        public static Request InsRow(int shid, int row_after, int col_row = 1)
         {
             Request RQ = new Request();
             RQ.InsertDimension = new InsertDimensionRequest();
             RQ.InsertDimension.Range = new DimensionRange();
             RQ.InsertDimension.Range.SheetId = shid;
             RQ.InsertDimension.Range.StartIndex = row_after;
-            RQ.InsertDimension.Range.EndIndex = row_after + 1;
+            RQ.InsertDimension.Range.EndIndex = row_after + col_row;
             RQ.InsertDimension.Range.Dimension = "ROWS";
             RQ.InsertDimension.InheritFromBefore = true;
             return RQ;
         }
-        public static Request DeleteRow(TableItem ti)
+        public static Request DeleteRow(TableItem ti, bool fl_except_first = false)
         {
             Request RQ = new Request();
             RQ.DeleteDimension = new DeleteDimensionRequest();
             RQ.DeleteDimension.Range = new DimensionRange();
             RQ.DeleteDimension.Range.SheetId = ti.sh_id;
-            RQ.DeleteDimension.Range.StartIndex = ti.row_nb - 1;
-            RQ.DeleteDimension.Range.EndIndex = ti.row_nb;
+            if(fl_except_first)
+            {
+                RQ.DeleteDimension.Range.StartIndex = ti.row_nb;
+            }
+            else
+            {
+                RQ.DeleteDimension.Range.StartIndex = ti.row_nb - 1;
+            }
+            RQ.DeleteDimension.Range.EndIndex = ti.row_nb_end;//ti.row_nb;
             RQ.DeleteDimension.Range.Dimension = "ROWS";
             return RQ;
         }

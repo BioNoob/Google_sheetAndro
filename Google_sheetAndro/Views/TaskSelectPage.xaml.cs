@@ -134,8 +134,8 @@ namespace Google_sheetAndro.Views
             {
                 if (OutTask[OutTask.Length - 1] == ',')
                     OutTask = OutTask.Remove(OutTask.Length, 1);
-                tasksetsucs(this, EventArgs.Empty);
             }
+            tasksetsucs(this, EventArgs.Empty);
             await Navigation.PopModalAsync();
         }
         public ICommand DisplayNameCommand => new Command<Task_cls>(Taskk =>
@@ -223,6 +223,7 @@ namespace Google_sheetAndro.Views
             clearer();
             Task_txt.Text = "";
             OutNum.Text = string.Empty;
+            OutTask = string.Empty;
         }
     }
 }

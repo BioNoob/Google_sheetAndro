@@ -156,15 +156,16 @@ namespace Google_sheetAndro.Views
                 ti.points = LoaderFunction.MapPageAlone.MapObj.SerializablePins;
                 LoaderFunction.DostatPush("Отправка данных для обновления");
                 Googles.UpdateEntry(ti);
+                Googles.InitService(ti.year.ToString());
                 if (LoaderFunction.ExtItNavPage != null)
                 {
                     LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
                 }
                 Toast.MakeText(Android.App.Application.Context, "Обновление прошло успешно", ToastLength.Long).Show();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Toast.MakeText(Android.App.Application.Context, "Обновление неудачно", ToastLength.Long).Show();
+                Toast.MakeText(Android.App.Application.Context, "Обновление неудачно" + ex.Message, ToastLength.Long).Show();
                 //await Navigation.PopModalAsync();
             }
             finally

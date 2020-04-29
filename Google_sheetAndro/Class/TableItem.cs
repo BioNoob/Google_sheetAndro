@@ -124,6 +124,8 @@ namespace Google_sheetAndro.Class
         public string exect_mounth { get; set; }
         public int sh_id { get; set; }
         public int row_nb { get; set; }
+        public int row_nb_end { get; set; }
+        public int row_mounth_firs { get; set; }
 
 
         public string author { get; set; }
@@ -180,6 +182,8 @@ namespace Google_sheetAndro.Class
                 chet += iter;
                 val.Add(lst);
             }
+            chet = 0;
+            iter = 49000;
             tt = this.route.Length;
             q = (int)Math.Ceiling(tt / 49000.0);
             for (int i = 0; i < q; i++)
