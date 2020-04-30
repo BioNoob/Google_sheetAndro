@@ -152,6 +152,11 @@ namespace RefreshSample.ViewModels
             cts.CancelAfter(5000);
             try
             {
+                var request = new GeolocationRequest(GeolocationAccuracy.High);
+                var location = await Geolocation.GetLocationAsync(request, cts.Token);
+                StaticInfo.Pos = location;
+                cts = new CancellationTokenSource();
+                cts.CancelAfter(5000);
                 await StaticInfo.GetWeatherReqAsync(StaticInfo.Pos, cts.Token);
             }
             catch (OperationCanceledException)

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Google_sheetAndro.Class
 {
@@ -42,7 +43,10 @@ namespace Google_sheetAndro.Class
             {
                 foreach (string item in _group.Keys)
                 {
-                    outer.Add(_group[item][i]);
+                    var t = _group[item][i];
+                    t = t.Replace(",", ".");
+                    outer.Add(t);
+                    
                 }
                 outs += string.Join(",", outer) + "|";
                 outer.Clear();

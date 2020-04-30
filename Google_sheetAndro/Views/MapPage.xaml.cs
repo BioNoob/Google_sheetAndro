@@ -226,13 +226,6 @@ namespace Google_sheetAndro.Views
         bool fl_USE_MAP_CLICK = false; // в настройки добавить чекбокс использовать маркеры в маршрутах
         bool fl_route = true;
         public string address = string.Empty;
-        Color Pin_color_start_stop { get; set; }
-        Color Pin_color_element { get; set; }
-        Color Pin_color_handle { get; set; }
-        Color Handle_line_color { get { return pl_handle.StrokeColor; } set { pl_handle.StrokeColor = value; } }
-        Color Listner_line_color { get { return pl_listner.StrokeColor; } set { pl_listner.StrokeColor = value; } }
-        int Handle_line_StrokeWidth { get { return (int)pl_handle.StrokeWidth; } set { pl_handle.StrokeWidth = value; } }
-        int Listner_line_StrokeWidth { get { return (int)pl_listner.StrokeWidth; } set { pl_listner.StrokeWidth = value; } }
         public List<Polyline> MapLines
         {
             get
@@ -297,6 +290,7 @@ namespace Google_sheetAndro.Views
                 }
                 else
                 {
+                    StaticInfo.Height = _height;
                     StatusH.Text = string.Format("{0:#0.0 м}", _height);
                 }
 
@@ -592,7 +586,7 @@ namespace Google_sheetAndro.Views
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
-                fl_handle_ok_to_edit = await DisplayAlert("Предупреждение", "Сохранять имеющиеся данные о дистанции/высоте?", "Да", "Нет");
+                fl_handle_ok_to_edit = DisplayAlert("Предупреждение", "Сохранять имеющиеся данные о дистанции/высоте?", "Да", "Нет").Result;
                 if (fl_handle_ok_to_edit == false)
                 {
                     if (fl_dist)
@@ -1146,6 +1140,14 @@ namespace Google_sheetAndro.Views
                             map.Polylines.Remove(pl_listner);
                         }
                         pl_listner.Positions.Clear();
+                    }
+                    else
+                    {
+                        var request = new GeolocationRequest(GeolocationAccuracy.High);
+                        CancellationTokenSource cts = new CancellationTokenSource();
+                        cts.CancelAfter(5000);
+                        var location = await Geolocation.GetLocationAsync(request, cts.Token);
+                        pl_listner.Positions.Add(new Xamarin.Forms.GoogleMaps.Position(location.Latitude,location.Longitude));
                     }
                 }
                 b1.Text = "Стоп";

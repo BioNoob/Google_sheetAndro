@@ -35,7 +35,7 @@ namespace Google_sheetAndro.Class
 
 
         private static string nalet;
-        private static float height;
+        private static double height;
         private static double dist;
         private static ResponsedData wheather = null;
         private static string accountEmail;
@@ -131,7 +131,7 @@ namespace Google_sheetAndro.Class
                 nalet = value;
             }
         }
-        public static float Height
+        public static double Height
         {
             get { return height; }
             set { DoSetHeight?.Invoke((int)Math.Round(value)); height = value; }
@@ -143,7 +143,7 @@ namespace Google_sheetAndro.Class
         }
 
 
-        public static float GetHeight(double bardata, bool fl = false)
+        public static double GetHeight(double bardata, bool fl = false)
         {
             if (bardata != 0)
             {

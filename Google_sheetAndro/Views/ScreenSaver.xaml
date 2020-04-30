@@ -14,25 +14,28 @@
         </xfg:Gradient>
     </xfg:ContentPageGloss.BackgroundGradient>
     <ContentPage.Content>
-        <StackLayout Margin="10">
-            <Frame VerticalOptions="CenterAndExpand" BorderColor="Orange" CornerRadius="20"
-                HorizontalOptions="CenterAndExpand" BackgroundColor="#40000000">
-                <ActivityIndicator IsRunning="True"
-                         IsVisible="True"
-                          HeightRequest="100"
-                           WidthRequest="100"
-                          VerticalOptions="CenterAndExpand"
-                           BackgroundColor="Transparent"
-                          HorizontalOptions="Center"
-                           Color="Orange">
-                </ActivityIndicator>
-            </Frame>
-            <Frame VerticalOptions="StartAndExpand" BorderColor="Orange" CornerRadius="50"
-                HorizontalOptions="CenterAndExpand" BackgroundColor="#40000000">
-            <Label Text="{Binding HelloWorld}" x:Name="StatusLoading" TextColor="White" FontAttributes="Bold"
-                   FontSize="20"/>
-            </Frame>
+        <Grid>
+            <RelativeLayout IsClippedToBounds="False" VerticalOptions="Center" 
+                            HorizontalOptions="CenterAndExpand">
+                <ActivityIndicator x:Name="AcInd"
+                               IsVisible="True"
+                               IsRunning="True"
+                               IsEnabled="False"
+                               Color="Orange"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"
+                               Scale="2"/>
+            </RelativeLayout>
+            <StackLayout VerticalOptions="EndAndExpand"
+                  HorizontalOptions="Fill" Margin="0,0,0,50">
+                <Frame BackgroundColor="#90000000" Grid.Row="1" Padding="15"
+                       BorderColor="Orange" CornerRadius="10" Margin="10">
+                    <Label x:Name="StatusLoading" Text="{Binding HelloWorld}" VerticalOptions="Center" FontSize="18"
+                           FontAttributes="Bold" TextColor="Orange"
+                   HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                </Frame>
+            </StackLayout>
 
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

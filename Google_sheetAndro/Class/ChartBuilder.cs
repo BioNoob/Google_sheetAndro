@@ -168,43 +168,48 @@ namespace Google_sheetAndro
                     {
                         if (cell.Count > 1)
                         {
-                            DateTime dtt = new DateTime(1899, 12, 30, new GregorianCalendar());
-                            int daybuf = Convert.ToInt32(cell[1].ToString());
-                            dtt = dtt.AddDays(daybuf);
-                            string dt = dtt.ToString("D", CultureInfo.GetCultureInfo("ru-RU"));
-                            //DateTime dt = Convert.ToDateTime(cell[1].ToString());
-                            object db = new object();
-                            double dbd = 0;
-                            if (Options.opt.ActiveType == 2)
+                            if (cell[1].ToString() != "")
                             {
-                                double val = Convert.ToDouble(cell[Options.opt.ActiveType]);
-                                // *24*60
-                                //Time_r tm = new Time_r(form_val[0], form_val[1], form_val[2]);
-                                db = new Time_r(val * 24 * 60 * 60).Min;
+                                DateTime dtt = new DateTime(1899, 12, 30, new GregorianCalendar());
+                                int daybuf = 0;
+                                int.TryParse(cell[1].ToString(), out daybuf);
+                                //int daybuf = Convert.ToInt32(cell[1].ToString());
+                                dtt = dtt.AddDays(daybuf);
+                                string dt = dtt.ToString("D", CultureInfo.GetCultureInfo("ru-RU"));
+                                //DateTime dt = Convert.ToDateTime(cell[1].ToString());
+                                object db = new object();
+                                double dbd = 0;
+                                if (Options.opt.ActiveType == 2)
+                                {
+                                    double val = Convert.ToDouble(cell[Options.opt.ActiveType]);
+                                    // *24*60
+                                    //Time_r tm = new Time_r(form_val[0], form_val[1], form_val[2]);
+                                    db = new Time_r(val * 24 * 60 * 60).Min;
+                                }
+                                else if (Options.opt.ActiveType == 5)
+                                {
+                                    db = GetIntFromVal(cell[Options.opt.ActiveType].ToString());
+                                }
+                                else if (Options.opt.ActiveType != 6 && Options.opt.ActiveType != 10)
+                                {
+                                    if (!double.TryParse(cell[Options.opt.ActiveType].ToString(), out dbd))
+                                        db = 0;
+                                    else
+                                        db = dbd;
+                                }
+                                else if (Options.opt.ActiveType == 10)
+                                {
+                                    if (cell.Count < 11)
+                                        db = "";
+                                    else
+                                        db = cell[Options.opt.ActiveType].ToString();
+                                }
+                                else if (Options.opt.ActiveType == 6)
+                                {
+                                    db = cell[Options.opt.ActiveType].ToString().Replace('.', ',');
+                                }
+                                valueDates.Add(new ValueDate(dtt, db));
                             }
-                            else if (Options.opt.ActiveType == 5)
-                            {
-                                db = GetIntFromVal(cell[Options.opt.ActiveType].ToString());
-                            }
-                            else if (Options.opt.ActiveType != 6 && Options.opt.ActiveType != 10)
-                            {
-                                if (!double.TryParse(cell[Options.opt.ActiveType].ToString(), out dbd))
-                                    db = 0;
-                                else
-                                    db = dbd;
-                            }
-                            else if (Options.opt.ActiveType == 10)
-                            {
-                                if (cell.Count < 11)
-                                    db = "";
-                                else
-                                    db = cell[Options.opt.ActiveType].ToString();
-                            }
-                            else if (Options.opt.ActiveType == 6)
-                            {
-                                db = cell[Options.opt.ActiveType].ToString().Replace('.', ',');
-                            }
-                            valueDates.Add(new ValueDate(dtt, db));
                         }
                     }
                 }

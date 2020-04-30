@@ -284,7 +284,8 @@ namespace Google_sheetAndro.Class
                 {
                     foreach (int item in mounth_form_val.Keys)
                     {
-                        value += string.Format("{0:0.#}", mounth_form_val[item][i]) + ",";
+                        var t = mounth_form_val[item][i].Replace(",", ".");
+                        value += string.Format("{0:0.#}", t) + ",";
                     }
                     value = value.TrimEnd('|', ',') + "|";
                 }

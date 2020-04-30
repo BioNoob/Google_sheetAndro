@@ -43,7 +43,8 @@ namespace Google_sheetAndro.Views
                 new ApiInfo("Google Maps API","gogMap.png","https://developers.google.com/maps/documentation/android-sdk/intro"),
                 new ApiInfo("DarkSky API","darksky.png","https://darksky.net/dev"),
                 new ApiInfo("АОПА Росиия","AOPA.png","https://aopa.ru/"),
-                new ApiInfo("Meteocenter.asia","wh.png","http://meteocenter.asia/")
+                new ApiInfo("Meteocenter.asia","wh.png","http://meteocenter.asia/"),
+                new ApiInfo("Image-Charts","img_charts.png","https://www.image-charts.com/")
             };
             BindingContext = this;
         }
