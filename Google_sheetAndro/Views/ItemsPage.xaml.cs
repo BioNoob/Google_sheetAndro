@@ -92,7 +92,7 @@ namespace Google_sheetAndro.Views
             WindSlider.Value = wind;
             WindSlider_ValueChanged(this, null);
         }
-        private void SetNal(string nal)
+        public void SetNal(string nal)
         {
             Time_pick.Text = nal;
         }
@@ -385,6 +385,7 @@ namespace Google_sheetAndro.Views
             val = tm.ToString();
             Time_pick.TextChanged -= Time_pick_TextChanged;
             Time_pick.Text = val;
+            LoaderFunction.MapPageAlone.TimeSet(val);
             Time_pick.TextChanged += Time_pick_TextChanged;
         }
         private void WindSlider_ValueChanged(object sender, ValueChangedEventArgs e)
@@ -427,6 +428,7 @@ namespace Google_sheetAndro.Views
             if (tm.Sec >= 359999)
                 tm.Sec = 359999;
             Time_pick.Text = tm.ToString();
+            LoaderFunction.MapPageAlone.TimeSet(tm.ToString());
             Time_pick.TextChanged += Time_pick_TextChanged;
             await btn.FadeTo(1, 100);
         }

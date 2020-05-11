@@ -72,7 +72,7 @@
                                 <StackLayout Margin="10" Orientation="Horizontal">
                                     <Image Source="{Binding IconSource}" WidthRequest="32"
                                            VerticalOptions="Center" HorizontalOptions="Center"/>
-                                    <Label Text="{Binding BtnLabel}" TextColor="White" FontSize="18"
+                                    <Label Text="{Binding BtnLabel}" TextColor="White" FontSize="18" 
                                            FontAttributes="Bold" VerticalTextAlignment="Center" Margin="10,0,0,0" 
                                             Padding="0"/>
                                 </StackLayout>

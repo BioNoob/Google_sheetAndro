@@ -157,6 +157,7 @@ namespace RefreshSample.ViewModels
                 StaticInfo.Pos = location;
                 cts = new CancellationTokenSource();
                 cts.CancelAfter(5000);
+                bool q = await StaticInfo.GetPlace(StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude);
                 await StaticInfo.GetWeatherReqAsync(StaticInfo.Pos, cts.Token);
             }
             catch (OperationCanceledException)

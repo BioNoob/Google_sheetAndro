@@ -89,10 +89,12 @@ namespace Google_sheetAndro.Views
         public bool Is_base { get; set; }
         public MapObjects MapObj { get { if (mapObjects == null) ClearMap(); SerToJsonMapData(); return mapObjects; } }
         private List<string> History { get; set; }
-        bool? fl_handle_ok_to_edit { get; set; }
+        bool? _fl_handle_ok_to_edit;
+        bool? fl_handle_ok_to_edit { get => _fl_handle_ok_to_edit; set { _fl_handle_ok_to_edit = value; if (value != null) { savevalswitsh.IsToggled = (bool)value; } } }
         public MapPage(bool single = false)
         {
             InitializeComponent();
+            this.BindingContext = this;
             Is_base = single;
             map.PinClicked += Map_PinClicked;
             init();
@@ -109,7 +111,14 @@ namespace Google_sheetAndro.Views
             Status_D.GestureRecognizers.Add(tgr);
             Status_D_handle.GestureRecognizers.Add(tgr);
             StatusD_handle.GestureRecognizers.Add(tgr);
+            StatusH_av.GestureRecognizers.Add(tgr);
+            Status_H_av.GestureRecognizers.Add(tgr);
+            StatusH_m.GestureRecognizers.Add(tgr);
+            Status_H_m.GestureRecognizers.Add(tgr);
+            StatusH.GestureRecognizers.Add(tgr);
+            Status_H.GestureRecognizers.Add(tgr);
             TapGestureRecognizer_Tapped(StatusD, null);
+            TapGestureRecognizer_Tapped(StatusH, null);
             bufferpos = new Plugin.Geolocator.Abstractions.Position();
             this.Appearing += MapPage_Appearing;
             this.Disappearing += MapPage_Disappearing;
@@ -153,7 +162,6 @@ namespace Google_sheetAndro.Views
         {
             Label tagSpan = (Label)sender;
             bool fl = false;
-            ActiveDistanse = tagSpan.AutomationId;
             switch (tagSpan.AutomationId)
             {
                 case "Listen":
@@ -163,13 +171,15 @@ namespace Google_sheetAndro.Views
                     StatusD.BackgroundColor = Color.FromHex("#900040ff");
                     StatusD_handle.BackgroundColor = Color.FromHex("#70000000");
                     Status_D_handle.BackgroundColor = Color.FromHex("#70000000");
-                    if (!Is_base)
-                        StaticInfo.Dist = _dist;
-                    else
-                        LoaderFunction.ItemsPageAlone.SetDist(_dist);
-                    map.PinDragEnd -= Map_PinDragEnd;
-                    map.PinDragStart -= Map_PinDragStart;
-                    map.PinDragging -= Map_PinDragging;
+                    //if (!Is_base)
+                    //    StaticInfo.Dist = _dist;
+                    //else
+                    //    LoaderFunction.ItemsPageAlone.SetDist(_dist);
+                    //map.PinDragEnd -= Map_PinDragEnd;
+                    //map.PinDragStart -= Map_PinDragStart;
+                    //map.PinDragging -= Map_PinDragging;
+                    ActiveDistanse = tagSpan.AutomationId;
+                    SetActiveDistLbl(fl);
                     break;
                 case "Handle":
                     TypeLine = TypeInput.HANDLE;
@@ -178,16 +188,45 @@ namespace Google_sheetAndro.Views
                     StatusD.BackgroundColor = Color.FromHex("#70000000");
                     Status_D.BackgroundColor = Color.FromHex("#70000000");
                     fl = true;
-                    if (!Is_base)
-                        StaticInfo.Dist = _dist_handle;
-                    else
-                        LoaderFunction.ItemsPageAlone.SetDist(_dist_handle);
-                    map.PinDragEnd += Map_PinDragEnd;
-                    map.PinDragStart += Map_PinDragStart;
-                    map.PinDragging += Map_PinDragging;
+                    //if (!Is_base)
+                    //    StaticInfo.Dist = _dist_handle;
+                    //else
+                    //    LoaderFunction.ItemsPageAlone.SetDist(_dist_handle);
+                    //map.PinDragEnd += Map_PinDragEnd;
+                    //map.PinDragStart += Map_PinDragStart;
+                    //map.PinDragging += Map_PinDragging;
+                    ActiveDistanse = tagSpan.AutomationId;
+                    SetActiveDistLbl(fl);
+                    break;
+                case "Nor_H":
+                    Status_H.BackgroundColor = Color.FromHex("#900040ff");
+                    StatusH.BackgroundColor = Color.FromHex("#900040ff");
+                    StatusH_av.BackgroundColor = Color.FromHex("#70000000");
+                    Status_H_av.BackgroundColor = Color.FromHex("#70000000");
+                    Status_H_m.BackgroundColor = Color.FromHex("#70000000");
+                    StatusH_m.BackgroundColor = Color.FromHex("#70000000");
+                    SetActiveHightLbl(1);
+                    break;
+                case "Max_H":
+                    Status_H.BackgroundColor = Color.FromHex("#70000000");
+                    StatusH.BackgroundColor = Color.FromHex("#70000000");
+                    StatusH_av.BackgroundColor = Color.FromHex("#70000000");
+                    Status_H_av.BackgroundColor = Color.FromHex("#70000000");
+                    Status_H_m.BackgroundColor = Color.FromHex("#900040ff");
+                    StatusH_m.BackgroundColor = Color.FromHex("#900040ff");
+                    SetActiveHightLbl(3);
+                    break;
+                case "Av_H":
+                    Status_H.BackgroundColor = Color.FromHex("#70000000");
+                    StatusH.BackgroundColor = Color.FromHex("#70000000");
+                    StatusH_av.BackgroundColor = Color.FromHex("#900040ff");
+                    Status_H_av.BackgroundColor = Color.FromHex("#900040ff");
+                    Status_H_m.BackgroundColor = Color.FromHex("#70000000");
+                    StatusH_m.BackgroundColor = Color.FromHex("#70000000");
+                    SetActiveHightLbl(2);
                     break;
             }
-            SetActiveDistLbl(fl);
+
         }
         string ActiveDistanse = "";
         /// <summary>
@@ -198,19 +237,135 @@ namespace Google_sheetAndro.Views
         {
             if (flag)
             {
+                setactiveDist(2);
                 //Handle_imgbtn.IsVisible = true;
                 await Handle_imgbtn.FadeTo(1, 700, Easing.SinInOut);
                 await Handle_imgbtn.FadeTo(0, 700, Easing.SinInOut);
+
                 //Handle_imgbtn.IsVisible = false;
             }
             else
             {
+                setactiveDist(1);
                 //Listen_imgbtn.IsVisible = true;
                 await Listen_imgbtn.FadeTo(1, 700, Easing.SinInOut);
                 await Listen_imgbtn.FadeTo(0, 700, Easing.SinInOut);
+
                 //Listen_imgbtn.IsVisible = false;
             }
         }
+        private async void SetActiveHightLbl(int flag)
+        {
+            setactiveHeight(flag);
+            switch (flag)
+            {
+                case 1:
+                    await Height_curr_imgbtn.FadeTo(1, 700, Easing.SinInOut);
+                    await Height_curr_imgbtn.FadeTo(0, 700, Easing.SinInOut);
+                    break;
+                case 2:
+                    await Height_av_imgbtn.FadeTo(1, 700, Easing.SinInOut);
+                    await Height_av_imgbtn.FadeTo(0, 700, Easing.SinInOut);
+                    break;
+                case 3:
+                    await Height_max_imgbtn.FadeTo(1, 700, Easing.SinInOut);
+                    await Height_max_imgbtn.FadeTo(0, 700, Easing.SinInOut);
+                    break;
+            }
+
+
+        }
+        bool fl_already_shown_2 = false;
+        private void setactiveDist(int _flag)
+        {
+            double act_d = 0;
+            switch (_flag)
+            {
+                case 1:
+                    act_d = dist;
+                    break;
+                case 2:
+                    act_d = dist_handle;
+                    break;
+            }
+            if (Is_base)
+            {
+                switch (fl_handle_ok_to_edit)
+                {
+                    case false:
+                        LoaderFunction.ItemsPageAlone.SetDist(act_d);
+                        break;
+                    case true:
+                        if (!fl_already_shown_2)
+                        {
+                            fl_already_shown_2 = true;
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                var t = await DisplayAlert("Предупреждение", "Включено сохранение дистанции\nВыставить всё равно?", "Да", "Нет");
+                                if (t)
+                                {
+                                    LoaderFunction.ItemsPageAlone.SetDist(act_d);
+                                }
+                                fl_already_shown_2 = false;
+                            }
+                            );
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                StaticInfo.Dist = act_d;
+                //StatusH.Text = string.Format("{0:#0.0 м}", _height);
+            }
+        }
+        private void setactiveHeight(int _flag)
+        {
+            double act_h = 0;
+            switch (_flag)
+            {
+                case 1:
+                    act_h = height;
+                    break;
+                case 2:
+                    act_h = height_middle;
+                    break;
+                case 3:
+                    act_h = height_max;
+                    break;
+            }
+            if (Is_base)
+            {
+                switch (fl_handle_ok_to_edit)
+                {
+                    case false:
+                        LoaderFunction.ItemsPageAlone.SetHeight((int)act_h);
+                        break;
+                    case true:
+                        if (!fl_already_shown_2)
+                        {
+                            fl_already_shown_2 = true;
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                var t = await DisplayAlert("Предупреждение", "Включено сохранение высоты\nВыставить всё равно?", "Да", "Нет");
+                                if (t)
+                                {
+                                    LoaderFunction.ItemsPageAlone.SetHeight((int)act_h);
+                                }
+                                fl_already_shown_2 = false;
+                            }
+                            );
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                StaticInfo.Height = act_h;
+                //StatusH.Text = string.Format("{0:#0.0 м}", _height);
+            }
+        }
+
         Xamarin.Forms.GoogleMaps.Position ToinitPos = new Xamarin.Forms.GoogleMaps.Position();
         bool fl = false;
         double cur_pos_w1;
@@ -257,7 +412,7 @@ namespace Google_sheetAndro.Views
                 _pl_listner = value;
             }
         }
-        Time_r t = new Time_r();
+        Time_r times = new Time_r();
         private bool alife = false;
         private bool height_coord = false;
         public double height
@@ -277,7 +432,10 @@ namespace Google_sheetAndro.Views
                     switch (fl_handle_ok_to_edit)
                     {
                         case null:
-                            DispMes(false);
+                            if (!fl_already_shown)
+                            {
+                                DispMes(false);
+                            }
                             break;
                         case false:
                             LoaderFunction.ItemsPageAlone.SetHeight((int)_height);
@@ -292,11 +450,39 @@ namespace Google_sheetAndro.Views
                 {
                     StaticInfo.Height = _height;
                     StatusH.Text = string.Format("{0:#0.0 м}", _height);
+                    height_list.Add(_height);
                 }
+                height_list.Add(_height);
+                var a = height_middle;
+                var b = height_max;
+            }
+        }
+        List<double> height_list = new List<double>();
+        public double height_middle
+        {
+            get
+            {
+                if (height_list.Count > 0)
+                {
+                    StatusH_av.Text = string.Format("{0:#0.0 м}", height_list.Average());
+                    return height_list.Average();
+                }
+                else return height;
+            }
+        }
+        public double height_max
+        {
+            get
+            {
+                if (height_list.Count > 0)
+                {
+                    StatusH_m.Text = string.Format("{0:#0.0 м}", height_list.Max());
+                    return height_list.Max();
+                }
+                else return _height;
 
             }
         }
-
         public double dist
         {
             get
@@ -316,7 +502,10 @@ namespace Google_sheetAndro.Views
                     switch (fl_handle_ok_to_edit)
                     {
                         case null:
-                            DispMes(true);
+                            if (!fl_already_shown)
+                            {
+                                DispMes(true);
+                            }
                             break;
                         case false:
                             LoaderFunction.ItemsPageAlone.SetDist(_dist);
@@ -348,7 +537,10 @@ namespace Google_sheetAndro.Views
                     switch (fl_handle_ok_to_edit)
                     {
                         case null:
-                            DispMes(true);
+                            if (!fl_already_shown)
+                            {
+                                DispMes(true);
+                            }
                             break;
                         case false:
                             LoaderFunction.ItemsPageAlone.SetDist(_dist_handle);
@@ -381,6 +573,12 @@ namespace Google_sheetAndro.Views
                 SetDSetH(0, 0);
                 History = ShiftList.RepeatedDefault<string>(10);
                 ToinitPos = new Xamarin.Forms.GoogleMaps.Position();
+                times = new Time_r();
+                StatusTime.Text = times.ToString();
+                height_list.Clear();
+                _dist = 0;
+                _dist_handle = 0;
+                fl_handle_ok_to_edit = null;
             }
         }
         private async void init()
@@ -505,6 +703,11 @@ namespace Google_sheetAndro.Views
                 return false;
             return true;
         }
+        public void TimeSet(string val)
+        {
+            times = new Time_r(val);
+            StatusTime.Text = times.ToString();
+        }
         public void AbsSetter(string Route, string Points)
         {
             MapObjects mo;
@@ -580,13 +783,16 @@ namespace Google_sheetAndro.Views
             //_dist = D;
             //StatusD.Text = string.Format("{0:#0.0} км", _dist);
             _height = H;
+            height_list.Add(H);
             StatusH.Text = string.Format("{0:#0.0 м}", _height);
         }
-        private void DispMes(bool fl_dist)
+        private bool fl_already_shown = false;
+        private async void DispMes(bool fl_dist)
         {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                fl_handle_ok_to_edit = DisplayAlert("Предупреждение", "Сохранять имеющиеся данные о дистанции/высоте?", "Да", "Нет").Result;
+            fl_already_shown = true;
+            //Device.BeginInvokeOnMainThread(async () =>
+            //{
+                fl_handle_ok_to_edit = await DisplayAlert("Предупреждение", "Сохранять имеющиеся данные о дистанции/высоте?", "Да", "Нет");
                 if (fl_handle_ok_to_edit == false)
                 {
                     if (fl_dist)
@@ -601,8 +807,9 @@ namespace Google_sheetAndro.Views
                     }
 
                 }
-            }
-            );
+            //}
+            //);
+            fl_already_shown = false;
         }
         private async void AnimateIn()
         {
@@ -796,13 +1003,16 @@ namespace Google_sheetAndro.Views
                 var buf = pl_listner.Positions.Last();
                 var tt = Location.CalculateDistance(buf.Latitude, buf.Longitude, e.Position.Latitude, e.Position.Longitude, DistanceUnits.Kilometers) * 1000;
                 if (tt > 5 && tt < 110 && spd != 0)
+                {
                     SetLine(pos, false);
-                animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
-                    new CameraPosition(
-                        pos,
-                        zoom,
-                        0)),
-                        TimeSpan.FromSeconds(1));
+                    animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
+                        new CameraPosition(
+                            pos,
+                            zoom,
+                            0)),
+                            TimeSpan.FromSeconds(1));
+                    ToinitPos = pos;
+                }
                 //RefreshSpeed(poss);
             }
             else if (pl_listner.Positions.Count == 0)
@@ -901,6 +1111,8 @@ namespace Google_sheetAndro.Views
         {
             //Debug.WriteLine("Pin clicked");
             //Xamarin.Forms.GoogleMaps.Position t;
+            ActivePin = e.Pin;
+            InfoPanelPin.IsVisible = true;
             if (!fl_run)
             {
                 if (fl_route)
@@ -934,19 +1146,19 @@ namespace Google_sheetAndro.Views
             }
 
         }
-        private void SetPoint(Xamarin.Forms.GoogleMaps.Position e, bool fl_transp = false)
+        private void SetPoint(Xamarin.Forms.GoogleMaps.Position e, string Tag_line = "", bool fl_transp = false)
         {
             var _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.DeepSkyBlue);
             if (map.Pins.Count >= 1)
             {
                 if (!fl_transp)
                     _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Blue);
-                map.Pins.Add(new Pin() { Label = $"{map.Pins.Count - 1}", Position = e, IsDraggable = true, Icon = _icon });
+                map.Pins.Add(new Pin() { Label = $"{map.Pins.Count - 1}", Position = e, IsDraggable = true, Icon = _icon, Tag = "" });
             }
             else
             {
                 _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Red);
-                map.Pins.Add(new Pin() { Label = $"Start", Position = e, IsDraggable = true, Icon = _icon });
+                map.Pins.Add(new Pin() { Label = $"Start", Position = e, IsDraggable = true, Icon = _icon, Tag = "Start_" + Tag_line });
             }
             if (!fl_transp)
             {
@@ -960,6 +1172,7 @@ namespace Google_sheetAndro.Views
         }
         private void SetLineInner(Xamarin.Forms.GoogleMaps.Position e, Polyline pl)
         {
+            string dop = pl.Tag.ToString();
             if (pl.Positions.Count >= 1)
             {
                 double dist_buf;
@@ -977,23 +1190,23 @@ namespace Google_sheetAndro.Views
                 Pin pn;
                 if (map.Pins.Count >= 1)
                 {
-                    if (map.Pins.Any(q => q.Label == "End"))
+                    if (map.Pins.Any(q => q.Tag.ToString() == "End_" + dop))//q.Label == "End"))
                     {
-                        pn = map.Pins.Where(i => i.Label == "End").First();
+                        pn = map.Pins.Where(i => i.Tag.ToString() == "End_" + dop).First();//i.Label == "End").First();
                         map.Pins.Remove(pn);
                         if (pl.Tag.ToString() == "Handle")
-                            SetPoint(pn.Position, true);
+                            SetPoint(pn.Position, dop, true);
                         pn.Position = e;
                         map.Pins.Add(pn);
                     }
                     else
-                        map.Pins.Add(new Pin() { Label = "End", Position = e, IsDraggable = true });
+                        map.Pins.Add(new Pin() { Label = "End", Position = e, IsDraggable = true, Tag = "End_" + dop });
                 }
             }
             else
             {
                 pl.Positions.Add(e);
-                map.Pins.Add(new Pin() { Label = "Start", Position = e, IsDraggable = true });
+                map.Pins.Add(new Pin() { Label = "Start", Position = e, IsDraggable = true, Tag = "Start_" + dop });
             }
             if (pl.Positions.Count >= 2)
             {
@@ -1069,8 +1282,8 @@ namespace Google_sheetAndro.Views
         }
         private bool OnTimerTick()
         {
-            t.Sec++;
-            StatusTime.Text = t.ToString();
+            times.Sec++;
+            StatusTime.Text = times.ToString();
             //StaticInfo.Nalet = t.ToString();
             return alife;
         }
@@ -1105,15 +1318,14 @@ namespace Google_sheetAndro.Views
             //start();
             if (fl_run == false)
             {
-                if (!string.IsNullOrWhiteSpace(StaticInfo.Nalet))
+                if (pl_listner.Positions.Count > 0)//!string.IsNullOrWhiteSpace(StaticInfo.Nalet))
                 {
                     bool kek = await DisplayAlert("Предупреждение", "Новая запись? Записанное будет стёрто", "Да", "Нет");
                     if (kek)
                     {
-                        t.Sec = 0;
-                        StaticInfo.Nalet = t.ToString();
-
-                        var asdf = new List<Pin>(map.Pins.Where(t => t.Label == "Start"));
+                        //times.Sec = 0;
+                        //StaticInfo.Nalet = times.ToString();
+                        var asdf = new List<Pin>(map.Pins.Where(t => t.Tag.ToString() == "Start_"+ "Listner")); //t.Label == "Start"
                         if (asdf.Count() > 0)
                         {
                             foreach (var item in asdf)
@@ -1124,7 +1336,7 @@ namespace Google_sheetAndro.Views
                                 }
                             }
                         }
-                        asdf = new List<Pin>(map.Pins.Where(t => t.Label == "End"));
+                        asdf = new List<Pin>(map.Pins.Where(t => t.Tag.ToString() == "End_"+ "Listner"));//t.Label == "End"));
                         if (asdf.Count() > 0)
                         {
                             foreach (var item in asdf)
@@ -1140,6 +1352,7 @@ namespace Google_sheetAndro.Views
                             map.Polylines.Remove(pl_listner);
                         }
                         pl_listner.Positions.Clear();
+                        times = new Time_r();
                     }
                     else
                     {
@@ -1147,7 +1360,9 @@ namespace Google_sheetAndro.Views
                         CancellationTokenSource cts = new CancellationTokenSource();
                         cts.CancelAfter(5000);
                         var location = await Geolocation.GetLocationAsync(request, cts.Token);
-                        pl_listner.Positions.Add(new Xamarin.Forms.GoogleMaps.Position(location.Latitude,location.Longitude));
+                        SetLine(new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude), false);
+
+                        //pl_listner.Positions.Add(new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude));
                     }
                 }
                 b1.Text = "Стоп";
@@ -1168,16 +1383,23 @@ namespace Google_sheetAndro.Views
             {
                 //bool kek2 = await StopListening();
                 //if (kek2)
-                StopListening();
+                await StopListening();
                 {
                     fl_run = false;
                     alife = false;
                     b1.Text = "Старт";
-                    StaticInfo.Nalet = t.ToString();
+                    if (!Is_base)
+                    {
+                        StaticInfo.Nalet = times.ToString();
+                    }
+                    else
+                    {
+                        LoaderFunction.ItemsPageAlone.SetNal(times.ToString());
+                    }
                     if (map.Polylines.Count > 0)
                     {
-                        Xamarin.Forms.GoogleMaps.Position pp = map.Polylines.First().Positions.Last();
-                        map.Pins.Add(new Pin() { Label = "End", Position = pp, IsDraggable = true });
+                        Xamarin.Forms.GoogleMaps.Position pp = pl_listner.Positions.Last();//map.Polylines.First().Positions.Last();
+                        map.Pins.Add(new Pin() { Tag = "End_Listner", Label = "End", Position = pp, IsDraggable = true });
                         SaveToHist(new MapObjects(map.Pins.ToList(), MapLines));
                     }
                 }
@@ -1198,6 +1420,7 @@ namespace Google_sheetAndro.Views
             }
             else
             {
+                fl_handle_ok_to_edit = null;
                 return base.OnBackButtonPressed();
             }
         }
@@ -1349,6 +1572,85 @@ namespace Google_sheetAndro.Views
         private void PopUpDialog_DialogClosed(object sender, EventArgs e)
         {
             PopUpDialog.IsVisible = false;
+        }
+
+        private async void DeletePin_Btn_Clicked(object sender, EventArgs e)
+        {
+            if (fl_handle_ok_to_edit == null)
+            {
+                fl_handle_ok_to_edit = await DisplayAlert("Предупреждение", "Дистанция будет пересчитана, заменять значения в записи?", "Да", "Нет");
+            }//= //await DisplayAlert("Предупреждение", "Сохранять имеющиеся данные о дистанции/высоте?", "Да", "Нет");
+            ad_vis.IsVisible = true;
+            //Device.BeginInvokeOnMainThread(() =>
+            //{
+            //    Toast.MakeText(Android.App.Application.Context, "Перестроение линии, подождите", ToastLength.Short).Show();
+            //}
+            //);
+            await Task.Delay(200);
+            map.Pins.Remove(ActivePin);
+            //ищем в линиях
+            //ручн
+            if (pl_handle.Positions.Contains(ActivePin.Position))
+            {
+                map.Polylines.Remove(pl_handle);
+                pl_handle.Positions.Remove(ActivePin.Position);
+                //Polyline tmp = pl_handle;
+                var tmp = new List<Xamarin.Forms.GoogleMaps.Position>(pl_handle.Positions);
+                pl_handle.Positions.Clear();
+                _dist_handle = 0;
+                foreach (var item in tmp)
+                {
+                    if (map.Pins.Any(t => t.Position == item))
+                    {
+                        var qq = map.Pins.Where(t => t.Position == item).FirstOrDefault();
+                        map.Pins.Remove(qq);
+                    }
+                    SetLine(item, true);
+                }
+                ad_vis.IsVisible = false;
+                //map.Polylines.Add(pl_handle);
+                //dist_handle = CalcDistForLine(pl_handle);
+                ClosePinInfo_Btn_Clicked(this, new EventArgs());
+                return;
+            }
+            if (pl_listner.Positions.Contains(ActivePin.Position))
+            {
+                map.Polylines.Remove(pl_listner);
+                pl_listner.Positions.Remove(ActivePin.Position);
+                var tmp = new List<Xamarin.Forms.GoogleMaps.Position>(pl_listner.Positions);
+                pl_listner.Positions.Clear();
+                dist = 0;
+                foreach (var item in tmp)
+                {
+                    SetLine(item, false);
+                }
+                //map.Polylines.Add(pl_listner);
+                //dist = CalcDistForLine(pl_listner);
+                ad_vis.IsVisible = false;
+                ClosePinInfo_Btn_Clicked(this, new EventArgs());
+            }
+        }
+
+        private async void ClosePinInfo_Btn_Clicked(object sender, EventArgs e)
+        {
+            bool q = await InfoPanelPin.FadeTo(0, 250);
+            InfoPanelPin.IsVisible = false;
+            InfoPanelPin.Opacity = 1;
+        }
+        private Pin _act_pin;
+        public Pin ActivePin { get => _act_pin; set { _act_pin = value; entryPinLbl.Text = value.Label; } }
+
+        private void RenamePin_Btn_Clicked(object sender, EventArgs e)
+        {
+            var tq = map.Pins.IndexOf(map.Pins.Where(t => t == ActivePin).First());
+            map.Pins.RemoveAt(tq);
+            ActivePin.Label = entryPinLbl.Text;
+            map.Pins.Insert(tq, ActivePin);
+        }
+
+        private void savevalswitsh_Toggled(object sender, ToggledEventArgs e)
+        {
+            _fl_handle_ok_to_edit = e.Value;
         }
     }
 }

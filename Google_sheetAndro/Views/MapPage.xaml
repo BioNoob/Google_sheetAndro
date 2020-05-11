@@ -9,6 +9,9 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="Google_sheetAndro.Views.MapPage"
              >
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="settings" Text="Настройки"/>
+    </ContentPage.ToolbarItems>-->
     <Grid x:Name="SL">
         <mp:Map x:Name="map" HeightRequest="500" BackgroundColor="Beige" MapType="Hybrid" 
                             MyLocationEnabled="True"
@@ -17,6 +20,7 @@
             <Grid x:Name="Buttons" Margin="0" HeightRequest="0" WidthRequest="0" Opacity="0"
                 RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToView,ElementName = PopSettings,Property=Height, Factor=1, Constant=1}">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -35,6 +39,17 @@
                 <ImageButton  Source="ClearAll" Grid.Row="1" Grid.Column="1" WidthRequest="40" x:Name="ClearBtn"
                               Clicked="ClearBtn_Clicked" BackgroundColor="Transparent"/>
                 <Button x:Name="ReCalcDist" Grid.Row="2" Grid.ColumnSpan="2" Clicked="ReCalcDist_Clicked" Text="Пересчет дистанции"/>
+                <Frame Grid.Row="3"  Grid.ColumnSpan="2" BorderColor="Orange" Padding="2" Margin="5" BackgroundColor="Transparent">
+                    <StackLayout Padding="0" Margin="0,5">
+                        <Label Text="Сохранение параметров записи" TextColor="White" FontSize="12" HorizontalTextAlignment="Center"/>
+                        <Grid>
+                            <Label Text="Нет" TextColor="White" FontSize="12" Grid.Column="0" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                            <Switch  IsToggled="False" x:Name="savevalswitsh" Toggled="savevalswitsh_Toggled" ThumbColor="Orange" OnColor="#0040ff" VerticalOptions="Center" HorizontalOptions="Center" Scale="1" Margin="0" BackgroundColor="AliceBlue" Grid.Column="1"/>
+                            <Label Text="Да" TextColor="White" FontSize="12" Grid.Column="2" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
                 <!--<Label  Grid.Row="3" Grid.Column="0" Text="Привязка линии к маркерам" TextColor="White" Margin="10,0,0,0"/>-->
                 <!--<Switch Grid.Row="3" Grid.Column="1" IsToggled="false" x:Name="SetToPinRoute"  Toggled="SetToPinRoute_Toggled"/>-->
             </Grid>
@@ -43,6 +58,30 @@
                     HorizontalOptions="CenterAndExpand" Source="settings.png"
                     HeightRequest="40" Clicked="PopSettings_Clicked"
                 />
+        </RelativeLayout>
+        <RelativeLayout x:Name="InfoPanelPin" Margin="10" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="#77000000" IsVisible="False">
+            <Grid RowSpacing="1" Padding="5" WidthRequest="100">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.9*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="Точка:" TextColor="White" FontSize="12" VerticalTextAlignment="Center" 
+                       HorizontalTextAlignment="Center"/>
+                <Button x:Name="ClosePinInfo_Btn" Grid.Row="0" Grid.Column="1" Text="X" Padding="0" WidthRequest="20" HeightRequest="20" TextColor="White"
+                        FontSize="10" FontAttributes="Bold" BackgroundColor="Transparent" Clicked="ClosePinInfo_Btn_Clicked"/>
+                <Entry Grid.Row="1" x:Name="entryPinLbl" Text="" FontSize="10" TextColor="White" HorizontalTextAlignment="Center"
+                       Grid.ColumnSpan="2"/>
+                <Button x:Name="RenamePin_Btn" Grid.Row="2" Text="Переименовть" Padding="0" WidthRequest="70" HeightRequest="40"
+                        FontSize="10" FontAttributes="Bold" Grid.ColumnSpan="2" Clicked="RenamePin_Btn_Clicked"/>
+                <Button x:Name="DeletePin_Btn" Grid.Row="3" Text="Удалить" Padding="0" WidthRequest="70" HeightRequest="40"
+                        FontSize="10" FontAttributes="Bold" Grid.ColumnSpan="2" Clicked="DeletePin_Btn_Clicked"/>
+            </Grid>
         </RelativeLayout>
         <StackLayout VerticalOptions="End" Margin="10,0,0,20" HorizontalOptions="Start">
             <Grid Padding="0" RowSpacing="1.8">
@@ -55,10 +94,10 @@
                     <RowDefinition Height="30"/>-->
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="75"/>
-                    <ColumnDefinition Width="75"/>
-                    <ColumnDefinition Width="75"/>
-                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="65"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name ="b1" Text="Старт" BackgroundColor="#77000000" BorderRadius="4" BorderColor="White" 
                         BorderWidth="2" TextColor="White" Clicked="b1_Clicked" Padding="0" 
@@ -69,37 +108,57 @@
                            BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Handle"/>
                 <Label x:Name="StatusD_handle"  Padding="5" Text="" Grid.Row="2" Grid.Column="1" 
                                BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Handle"/>
-                <Label x:Name="Status_D" Text="Дист зап:" Grid.Row="3" 
-                        Grid.Column="0" BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Listen"/>
+                <Label x:Name="Status_D" Text="Дист зап:" Grid.Row="1" 
+                        Grid.Column="1" BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Listen"/>
                 <Label  x:Name="StatusD" Text="" 
-                        Padding="5" Grid.Row="2" Grid.Column="0" BackgroundColor="#70000000" TextColor="Orange" FontSize="12" AutomationId="Listen"/>
-                <Label x:Name="Status_H" Text="Выс:" Grid.Row="3" Grid.Column="2" BackgroundColor="#70000000" 
-                       TextColor="Orange" FontSize="11" VerticalTextAlignment="Start"/>
-                <Label x:Name="StatusH" Text=""  Padding="5" Grid.Row="2" Grid.Column="2" BackgroundColor="#70000000" 
-                       TextColor="Orange" FontSize="11"/>
-                <Label x:Name="StatusTime" Text="" Padding="5" Grid.Row="0" Grid.Column="1"
+                        Padding="5" Grid.Row="0" Grid.Column="1" BackgroundColor="#70000000" TextColor="Orange" FontSize="12" AutomationId="Listen"/>
+                <Label x:Name="Status_H" Text="Выс тек:" Grid.Row="1" Grid.Column="2" BackgroundColor="#70000000" 
+                       TextColor="Orange" FontSize="11" VerticalTextAlignment="Start" AutomationId="Nor_H"/>
+                <Label x:Name="StatusH" Text=""  Padding="5" Grid.Row="0" Grid.Column="2" BackgroundColor="#70000000" 
+                       TextColor="Orange" FontSize="11" AutomationId="Nor_H"/>
+                <Label x:Name="StatusTime" Text="" Padding="5" Grid.Row="2" Grid.Column="0"
                        BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId=""/>
-                <Label x:Name="LblStatusTime" Text="Время зап." Padding="0" Grid.Row="1" Grid.Column="1"
+                <Label x:Name="LblStatusTime" Text="Время зап." Padding="0" Grid.Row="3" Grid.Column="0"
                        BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId=""
                                               VerticalTextAlignment="Start"/>
-                <Label x:Name="Status_S" Text="Скорость:"  Padding="0" Grid.Row="3" Grid.Column="3" 
+                <Label x:Name="Status_S" Text="Скорость:"  Padding="0" Grid.Row="1" Grid.Column="3" 
                        BackgroundColor="#70000000" TextColor="Orange" FontSize="11"/>
-                <Label x:Name="StatusS" Text="" Padding="5" Grid.Row="2" Grid.Column="3"
+                <Label x:Name="StatusS" Text="" Padding="5" Grid.Row="0" Grid.Column="3"
                        BackgroundColor="#70000000" TextColor="Orange" FontSize="11"/>
+                <Label x:Name="Status_H_m" Text="Выс макс:"  Padding="0" Grid.Row="3" Grid.Column="2" 
+                       BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Max_H"/>
+                <Label x:Name="StatusH_m" Text="{Binding height_max}" Padding="5" Grid.Row="2" Grid.Column="2"
+                       BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Max_H"/>
+                <Label x:Name="Status_H_av" Text="Выс сред:"  Padding="0" Grid.Row="3" Grid.Column="3" 
+                       BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Av_H"/>
+                <Label x:Name="StatusH_av" Text="{Binding height_middle}" Padding="5" Grid.Row="2" Grid.Column="3"
+                       BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Av_H"/>
                 <ImageButton Grid.Row="2" Grid.Column="1" Source="select" Scale="0.7"
                              Grid.RowSpan="2" BackgroundColor="Transparent"
                              IsEnabled="False" x:Name="Handle_imgbtn"
                              Opacity="0"/>
-                <ImageButton Grid.Row="2" Grid.Column="0" Source="select" Scale="0.7"
+                <ImageButton Grid.Row="0" Grid.Column="1" Source="select" Scale="0.7"
                              Grid.RowSpan="2" BackgroundColor="Transparent"
                              IsEnabled="False" x:Name="Listen_imgbtn"
+                             Opacity="0"/>
+                <ImageButton Grid.Row="2" Grid.Column="3" Source="select" Scale="0.7"
+                             Grid.RowSpan="2" BackgroundColor="Transparent"
+                             IsEnabled="False" x:Name="Height_av_imgbtn"
+                             Opacity="0"/>
+                <ImageButton Grid.Row="0" Grid.Column="2" Source="select" Scale="0.7"
+                             Grid.RowSpan="2" BackgroundColor="Transparent"
+                             IsEnabled="False" x:Name="Height_curr_imgbtn"
+                             Opacity="0"/>
+                <ImageButton Grid.Row="2" Grid.Column="2" Source="select" Scale="0.7"
+                             Grid.RowSpan="2" BackgroundColor="Transparent"
+                             IsEnabled="False" x:Name="Height_max_imgbtn"
                              Opacity="0"/>
             </Grid>
 
         </StackLayout>
-        <!--<RelativeLayout BackgroundColor="Transparent" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">
-            <ActivityIndicator IsRunning="{Binding IsBusy}"
-                         IsVisible="{Binding IsBusy}"
+        <RelativeLayout x:Name="ad_vis" BackgroundColor="Transparent" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">
+            <ActivityIndicator IsRunning="true"
+                         IsVisible="true"
                           HeightRequest="80"
                            WidthRequest="80"
                           VerticalOptions="CenterAndExpand"
@@ -107,7 +166,7 @@
                           HorizontalOptions="CenterAndExpand"
                            Color="Orange">
             </ActivityIndicator>
-        </RelativeLayout>-->
+        </RelativeLayout>
         <views1:PopUpDialogView x:Name="PopUpDialog" HeaderTitle="Test Dialog" IsVisible="False" InputTransparent="False">
         </views1:PopUpDialogView>
     </Grid>

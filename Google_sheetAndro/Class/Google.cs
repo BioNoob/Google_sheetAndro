@@ -171,6 +171,7 @@ namespace TableAndro
                                     }
                                 }
                                 TableItem ti = new TableItem();
+                                ti.row_nb_end = row_indx + 1;
                                 if(row[0].ToString() != "")
                                 {
                                     row_mnth = row_indx;

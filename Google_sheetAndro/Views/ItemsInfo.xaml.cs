@@ -202,8 +202,9 @@ namespace Google_sheetAndro.Views
                 LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
                 Toast.MakeText(Android.App.Application.Context, "Удаление прошло успешно", ToastLength.Long).Show();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                var q = ex.Message;
                 Toast.MakeText(Android.App.Application.Context, "Удаление неудачно", ToastLength.Long).Show();
             }
             finally
@@ -237,7 +238,7 @@ namespace Google_sheetAndro.Views
             MapPage mp = LoaderFunction.MapPageAlone;
             tp.setter(Ti);
             mp.AbsSetter(Ti.route, Ti.points);
-
+            mp.TimeSet(Ti.time);
             mp.SetDSetH(Ti.range, Ti.height);
 
             LoaderFunction.ItAlNavPage = new NavigationPage(tp) { Title = "Запись", IconImageSource = "new_one.png" };

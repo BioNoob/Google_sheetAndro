@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Google_sheetAndro
 {
@@ -52,6 +53,14 @@ namespace Google_sheetAndro
         public Time_r(double sec)
         {
             _sec = sec;
+        }
+        public Time_r(string val)
+        {
+            double[] form_val = new double[3];
+            form_val[0] = Convert.ToDouble(val.Split(':')[0], CultureInfo.InvariantCulture);
+            form_val[1] = Convert.ToDouble(val.Split(':')[1], CultureInfo.InvariantCulture);
+            form_val[2] = Convert.ToDouble(val.Split(':')[2], CultureInfo.InvariantCulture);
+            this._sec = form_val[0] * 3600 + form_val[1] * 60 + form_val[2];
         }
         public double Sec
         {
