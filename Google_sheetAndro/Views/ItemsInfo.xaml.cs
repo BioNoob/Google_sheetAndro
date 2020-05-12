@@ -138,6 +138,7 @@ namespace Google_sheetAndro.Views
         void redirect()
         {
             LoaderFunction.CreRow();
+
             //Navigation.PopModalAsync();
         }
         private async void update()
@@ -151,9 +152,11 @@ namespace Google_sheetAndro.Views
             {
                 LoaderFunction.DostatPush("Сбор данных для обновления");
                 TableItem ti = tp.getter();
+                //LoaderFunction.callClearMap();
                 ti.author = StaticInfo.AccountEmail;
-                ti.route = LoaderFunction.MapPageAlone.MapObj.SerializableLine;
-                ti.points = LoaderFunction.MapPageAlone.MapObj.SerializablePins;
+                var t = new MapObjects(LoaderFunction.MapPageAlone.MapObj);
+                ti.route = t.SerializableLine; //LoaderFunction.MapPageAlone.MapObj.SerializableLine;
+                ti.points = t.SerializablePins;//LoaderFunction.MapPageAlone.MapObj.SerializablePins;
                 LoaderFunction.DostatPush("Отправка данных для обновления");
                 Googles.UpdateEntry(ti);
                 Googles.InitService(ti.year.ToString());
@@ -162,6 +165,7 @@ namespace Google_sheetAndro.Views
                     LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
                 }
                 Toast.MakeText(Android.App.Application.Context, "Обновление прошло успешно", ToastLength.Long).Show();
+                LoaderFunction.callClearMap();
             }
             catch (Exception ex)
             {
@@ -182,6 +186,7 @@ namespace Google_sheetAndro.Views
                 Year_pick.SelectedIndex = last;
                 TableItems.SelectedItem = null;
             }
+            if(Navigation.ModalStack.Count > 0)
             await Navigation.PopModalAsync();
         }
         private async void delete()
@@ -196,11 +201,13 @@ namespace Google_sheetAndro.Views
                 LoaderFunction.DostatPush("Сбор данных");
                 TableItem ti = tp.getter();
                 ti.author = StaticInfo.AccountEmail;
-                ti.route = LoaderFunction.MapPageAlone.MapObj.SerializableLine;
-                ti.points = LoaderFunction.MapPageAlone.MapObj.SerializablePins;
+                //var q = LoaderFunction.MapPageAlone.MapObj;
+                //ti.route = LoaderFunction.MapPageAlone.MapObj.SerializableLine;
+                //ti.points = LoaderFunction.MapPageAlone.MapObj.SerializablePins;
                 Googles.DeleteEntry(ti);
                 LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
                 Toast.MakeText(Android.App.Application.Context, "Удаление прошло успешно", ToastLength.Long).Show();
+                LoaderFunction.callClearMap();
             }
             catch (Exception ex)
             {
@@ -222,7 +229,8 @@ namespace Google_sheetAndro.Views
                 Year_pick.SelectedIndex = last;
                 TableItems.SelectedItem = null;
             }
-            await Navigation.PopModalAsync();
+            if (Navigation.ModalStack.Count > 0)
+                await Navigation.PopModalAsync();
 
         }
         private async void TableItems_ItemTapped(object sender, ItemTappedEventArgs e)

@@ -87,7 +87,7 @@ namespace Google_sheetAndro.Views
 
         private MapObjects mapObjects;
         public bool Is_base { get; set; }
-        public MapObjects MapObj { get { if (mapObjects == null) ClearMap(); SerToJsonMapData(); return mapObjects; } }
+        public MapObjects MapObj { get { /*if (mapObjects == null) */SerToJsonMapData(); return mapObjects; } }
         private List<string> History { get; set; }
         bool? _fl_handle_ok_to_edit;
         bool? fl_handle_ok_to_edit { get => _fl_handle_ok_to_edit; set { _fl_handle_ok_to_edit = value; if (value != null) { savevalswitsh.IsToggled = (bool)value; } } }
@@ -558,27 +558,33 @@ namespace Google_sheetAndro.Views
             //if (Is_base)
             {
                 mapObjects = new MapObjects();
-                if (map.Polylines.Count > 0)
-                {
-                    mapObjects.Pins = map.Pins.ToList();
-                    mapObjects.Polylines = MapLines;
-                }
-                map.Pins.Clear();
-                //map.Polylines.Clear();
-                foreach (var item in MapLines)
-                {
-                    item.Positions.Clear();
-                }
-                //pl = new Polyline() { Tag = "Line", StrokeWidth = 10, StrokeColor = Color.Blue };
+                //if (map.Polylines.Count > 0)
+                //{
+                //    mapObjects.Pins = map.Pins.ToList();
+                //    mapObjects.Polylines = MapLines;
+                //}
+                ////map.Pins.Clear();
+                //foreach (var item in MapLines)
+                //{
+                //    item.Positions.Clear();
+                //}
                 SetDSetH(0, 0);
                 History = ShiftList.RepeatedDefault<string>(10);
                 ToinitPos = new Xamarin.Forms.GoogleMaps.Position();
                 times = new Time_r();
                 StatusTime.Text = times.ToString();
                 height_list.Clear();
-                _dist = 0;
-                _dist_handle = 0;
+                fl_handle_ok_to_edit = true;
+                map.Pins.Clear();
+                map.Polylines.Clear();
+                pl_handle.Positions.Clear();
+                pl_listner.Positions.Clear();
+                dist = 0;
+                dist_handle = 0;
+                height = 0;
+                StatusTime.Text = string.Empty;
                 fl_handle_ok_to_edit = null;
+                //mapObjects = new MapObjects();
             }
         }
         private async void init()
@@ -630,6 +636,7 @@ namespace Google_sheetAndro.Views
         {
             PinBuffLbl = e.Pin.Label;
         }
+        //ИСКЛЮЧИТЬ ЗАПИСАНОЕ ПЕРЕТАСКИВАНИЕ?
         private void Map_PinDragEnd(object sender, PinDragEventArgs e)
         {
             //int m = map.Pins.IndexOf(e.Pin);
@@ -644,7 +651,7 @@ namespace Google_sheetAndro.Views
                     pl_handle.Positions.RemoveAt(buff);
                     pl_handle.Positions.Insert(buff, e.Pin.Position);
                     map.Polylines.Add(pl_handle);
-                    CalcDistForLine(pl_handle);
+                    dist_handle = CalcDistForLine(pl_handle);
                     MapObjects mo = new MapObjects();
                     if (MapLines.Count > 0)
                     {
@@ -654,11 +661,6 @@ namespace Google_sheetAndro.Views
                     SaveToHist(mo);
                 }
             }
-            //Debug.WriteLine("PinPosEnd = " + e.Pin.Position.Latitude.ToString() + " : " + e.Pin.Position.Longitude.ToString());
-            //map.Pins.ElementAt(m).Position = new Xamarin.Forms.GoogleMaps.Position(e.Pin.Position.Latitude - PinDeffY.Latitude,
-            //    e.Pin.Position.Longitude);//e.Pin.Position.Latitude - (OffsetCalc), e.Pin.Position.Longitude);
-            //map.Pins.Select(t => DragPin);
-            //throw new NotImplementedException();
         }
         private void SerToJsonMapData()
         {
@@ -792,63 +794,52 @@ namespace Google_sheetAndro.Views
             fl_already_shown = true;
             //Device.BeginInvokeOnMainThread(async () =>
             //{
-                fl_handle_ok_to_edit = await DisplayAlert("Предупреждение", "Сохранять имеющиеся данные о дистанции/высоте?", "Да", "Нет");
-                if (fl_handle_ok_to_edit == false)
+            fl_handle_ok_to_edit = await DisplayAlert("Предупреждение", "Сохранять имеющиеся данные о дистанции/высоте?", "Да", "Нет");
+            if (fl_handle_ok_to_edit == false)
+            {
+                if (fl_dist)
                 {
-                    if (fl_dist)
-                    {
-                        LoaderFunction.ItemsPageAlone.SetDist(_dist);
-                        StatusD.Text = string.Format("{0:#0.0} км", _dist);
-                    }
-                    else
-                    {
-                        LoaderFunction.ItemsPageAlone.SetHeight((int)_height);
-                        StatusH.Text = string.Format("{0:#0.0 м}", _height);
-                    }
-
+                    LoaderFunction.ItemsPageAlone.SetDist(_dist);
+                    StatusD.Text = string.Format("{0:#0.0} км", _dist);
                 }
+                else
+                {
+                    LoaderFunction.ItemsPageAlone.SetHeight((int)_height);
+                    StatusH.Text = string.Format("{0:#0.0 м}", _height);
+                }
+
+            }
             //}
             //);
             fl_already_shown = false;
         }
         private async void AnimateIn()
         {
-            var animate = new Animation(d => r1.WidthRequest = d, r1.Width, SL.Width / 2, Easing.SinInOut);
-            animate.Commit(r1, "BarGraph", 16, 500);
-            var animate2 = new Animation(d => r1.HeightRequest = d, r1.Height, 260, Easing.SinInOut);
-            animate2.Commit(r1, "BarGraph1", 16, 500);
-            await PopSettings.TranslateTo(SL.Width / 2 - cur_pos_w2/*- r1.Bounds.Left - cur_pos_w2*/, PopSettings.Y /*- PopSettings.Height*/, 500, Easing.SinInOut);
-            var animate3 = new Animation(d => Buttons.WidthRequest = d, Buttons.Width, SL.Width / 2, Easing.SinInOut);
-            animate3.Commit(Buttons, "BarGraph2", 16, 100);
-            var animate4 = new Animation(d => Buttons.HeightRequest = d, Buttons.Height, 260, Easing.SinInOut);
-            animate4.Commit(Buttons, "BarGraph3", 16, 100);
-            await Buttons.FadeTo(1, 1000, Easing.SinInOut);
+            //var animate = new Animation(d => r1.WidthRequest = d, r1.Width, SL.Width / 2, Easing.SinInOut);
+            //animate.Commit(r1, "BarGraph", 16, 500);
+            //var animate2 = new Animation(d => r1.HeightRequest = d, r1.Height, 260, Easing.SinInOut);
+            //animate2.Commit(r1, "BarGraph1", 16, 500);
+            //await PopSettings.TranslateTo(SL.Width / 2 - cur_pos_w2/*- r1.Bounds.Left - cur_pos_w2*/, PopSettings.Y /*- PopSettings.Height*/, 500, Easing.SinInOut);
+            //var animate3 = new Animation(d => Buttons.WidthRequest = d, Buttons.Width, SL.Width / 2, Easing.SinInOut);
+            //animate3.Commit(Buttons, "BarGraph2", 16, 100);
+            //var animate4 = new Animation(d => Buttons.HeightRequest = d, Buttons.Height, 260, Easing.SinInOut);
+            //animate4.Commit(Buttons, "BarGraph3", 16, 100);
+            //await Buttons.FadeTo(1, 1000, Easing.SinInOut);
             fl = !fl;
-            //r1.TranslateTo(0, 0, 1200, Easing.SpringOut);
-            //MainImage.LayoutTo(detailsRect, 1200, Easing.SpringOut);
-            //BottomFrame.TranslateTo(0, 0, 1200, Easing.SpringOut);
-            //Title.TranslateTo(0, 0, 1200, Easing.SpringOut);
-            //ExpandBar.FadeTo(.01, 250, Easing.SinInOut);
         }
         private async void AnimateOut()
         {
-            await Buttons.FadeTo(0, 700, Easing.SinInOut);
-            var animate = new Animation(d => r1.WidthRequest = d, SL.Width / 2, cur_pos_w1 - r1.Margin.Right, Easing.SinInOut);
-            animate.Commit(r1, "BarGraph", 16, 500);
-            var animate2 = new Animation(d => r1.HeightRequest = d, 260, cur_pos_h2, Easing.SinInOut);
-            animate2.Commit(r1, "BarGraph1", 16, 500);
-            await PopSettings.TranslateTo(cur_pos_w2 - PopSettings.Width, PopSettings.Y, 500, Easing.SinInOut);
-            var animate3 = new Animation(d => Buttons.WidthRequest = d, SL.Width / 2, 0, Easing.SinInOut);
-            animate3.Commit(Buttons, "BarGraph2", 16, 100);
-            var animate4 = new Animation(d => Buttons.HeightRequest = d, 260, 0, Easing.SinInOut);
-            animate4.Commit(Buttons, "BarGraph3", 16, 100);
-
-
+            //await Buttons.FadeTo(0, 700, Easing.SinInOut);
+            //var animate = new Animation(d => r1.WidthRequest = d, SL.Width / 2, cur_pos_w1 - r1.Margin.Right, Easing.SinInOut);
+            //animate.Commit(r1, "BarGraph", 16, 500);
+            //var animate2 = new Animation(d => r1.HeightRequest = d, 260, cur_pos_h2, Easing.SinInOut);
+            //animate2.Commit(r1, "BarGraph1", 16, 500);
+            //await PopSettings.TranslateTo(cur_pos_w2 - PopSettings.Width, PopSettings.Y, 500, Easing.SinInOut);
+            //var animate3 = new Animation(d => Buttons.WidthRequest = d, SL.Width / 2, 0, Easing.SinInOut);
+            //animate3.Commit(Buttons, "BarGraph2", 16, 100);
+            //var animate4 = new Animation(d => Buttons.HeightRequest = d, 260, 0, Easing.SinInOut);
+            //animate4.Commit(Buttons, "BarGraph3", 16, 100);
             fl = !fl;
-            //MainImage.LayoutTo(expandedRect, 1200, Easing.SpringOut);
-            //BottomFrame.TranslateTo(0, BottomFrame.Height, 1200, Easing.SpringOut);
-            //Title.TranslateTo(-Title.Width, 0, 1200, Easing.SpringOut);
-            //ExpandBar.FadeTo(1, 250, Easing.SinInOut);
         }
         private void PopSettings_Clicked(object sender, EventArgs e)
         {
@@ -858,9 +849,9 @@ namespace Google_sheetAndro.Views
             {
                 if (cur_pos_w1 == 0)
                 {
-                    cur_pos_w1 = r1.Bounds.Right;
-                    cur_pos_w2 = PopSettings.Bounds.Right;
-                    cur_pos_h2 = r1.Bounds.Bottom - 10; //10 = margin
+                    //cur_pos_w1 = r1.Bounds.Right;
+                    //cur_pos_w2 = PopSettings.Bounds.Right;
+                    //cur_pos_h2 = r1.Bounds.Bottom - 10; //10 = margin
                 }
                 AnimateIn();
             }
@@ -1325,7 +1316,7 @@ namespace Google_sheetAndro.Views
                     {
                         //times.Sec = 0;
                         //StaticInfo.Nalet = times.ToString();
-                        var asdf = new List<Pin>(map.Pins.Where(t => t.Tag.ToString() == "Start_"+ "Listner")); //t.Label == "Start"
+                        var asdf = new List<Pin>(map.Pins.Where(t => t.Tag.ToString() == "Start_" + "Listner")); //t.Label == "Start"
                         if (asdf.Count() > 0)
                         {
                             foreach (var item in asdf)
@@ -1336,7 +1327,7 @@ namespace Google_sheetAndro.Views
                                 }
                             }
                         }
-                        asdf = new List<Pin>(map.Pins.Where(t => t.Tag.ToString() == "End_"+ "Listner"));//t.Label == "End"));
+                        asdf = new List<Pin>(map.Pins.Where(t => t.Tag.ToString() == "End_" + "Listner"));//t.Label == "End"));
                         if (asdf.Count() > 0)
                         {
                             foreach (var item in asdf)
@@ -1496,6 +1487,7 @@ namespace Google_sheetAndro.Views
                 dist = 0;
                 dist_handle = 0;
                 height = 0;
+                height_list.Clear();
                 StatusTime.Text = string.Empty;
                 mapObjects = new MapObjects();
             }
@@ -1646,11 +1638,17 @@ namespace Google_sheetAndro.Views
             map.Pins.RemoveAt(tq);
             ActivePin.Label = entryPinLbl.Text;
             map.Pins.Insert(tq, ActivePin);
+            Toast.MakeText(Android.App.Application.Context, "Точка переименнована", ToastLength.Short).Show();
         }
 
         private void savevalswitsh_Toggled(object sender, ToggledEventArgs e)
         {
             _fl_handle_ok_to_edit = e.Value;
+        }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            settest.IsVisible = !settest.IsVisible;
         }
     }
 }

@@ -357,8 +357,10 @@ namespace Google_sheetAndro.Views
             await Navigation.PushModalAsync(new ScreenSaver("Добавление записи...."));
             TableItem ti = getter();
             ti.author = StaticInfo.AccountEmail;
-            ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
-            ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
+            var qq = new MapObjects(LoaderFunction.MapPage.MapObj);
+            ti.route = qq.SerializableLine;//LoaderFunction.MapPage.MapObj.SerializableLine;
+            ti.points = qq.SerializablePins; //LoaderFunction.MapPage.MapObj.SerializablePins;
+            LoaderFunction.callClearMap();
             if (await Googles.ReadEntriesAsync(ti))
             {
 

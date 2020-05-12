@@ -15,6 +15,11 @@ namespace Google_sheetAndro.Class
         public List<Polyline> Polylines { get => polyline; set => polyline = value; }
 
         public MapObjects() { }
+        public MapObjects(MapObjects mo)
+        {
+            Pins = mo.Pins;
+            Polylines = mo.Polylines;
+        }
         public MapObjects(List<Pin> pn, List<Polyline> pl)
         {
             Polylines = pl;

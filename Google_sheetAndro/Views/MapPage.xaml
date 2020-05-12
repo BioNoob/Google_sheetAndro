@@ -5,18 +5,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:mp="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              xmlns:views1="clr-namespace:Google_sheetAndro.Views"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              x:Class="Google_sheetAndro.Views.MapPage"
              >
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="settings" Text="Настройки"/>
-    </ContentPage.ToolbarItems>-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="settings" Text="Настройки" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
     <Grid x:Name="SL">
         <mp:Map x:Name="map" HeightRequest="500" BackgroundColor="Beige" MapType="Hybrid" 
                             MyLocationEnabled="True"
                             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
-        <RelativeLayout x:Name="r1"  Margin="10" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="#77000000">
+        <!--<RelativeLayout x:Name="r1"  Margin="10" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="#77000000">
             <Grid x:Name="Buttons" Margin="0" HeightRequest="0" WidthRequest="0" Opacity="0"
                 RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToView,ElementName = PopSettings,Property=Height, Factor=1, Constant=1}">
                 <Grid.RowDefinitions>
@@ -24,7 +25,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <!--<RowDefinition Height="Auto"/>-->
+                    --><!--<RowDefinition Height="Auto"/>--><!--
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".75*"/>
@@ -34,8 +35,8 @@
                         SelectedIndexChanged="MapTypePick_SelectedIndexChanged"/>
                 <Picker x:Name="RouteTypePick" Grid.Row="1" Grid.Column="0" FontSize="14" TextColor="White"
                         SelectedIndexChanged="RouteTypePick_SelectedIndexChanged"/>
-                <!--<ImageButton  Source="CancelLast" Grid.Row="0" Grid.Column="1" WidthRequest="40" x:Name="CancelBtn"
-                              Clicked="CancelBtn_Clicked" BackgroundColor="Transparent"/>-->
+                --><!--<ImageButton  Source="CancelLast" Grid.Row="0" Grid.Column="1" WidthRequest="40" x:Name="CancelBtn"
+                              Clicked="CancelBtn_Clicked" BackgroundColor="Transparent"/>--><!--
                 <ImageButton  Source="ClearAll" Grid.Row="1" Grid.Column="1" WidthRequest="40" x:Name="ClearBtn"
                               Clicked="ClearBtn_Clicked" BackgroundColor="Transparent"/>
                 <Button x:Name="ReCalcDist" Grid.Row="2" Grid.ColumnSpan="2" Clicked="ReCalcDist_Clicked" Text="Пересчет дистанции"/>
@@ -50,17 +51,17 @@
                     </StackLayout>
                 </Frame>
 
-                <!--<Label  Grid.Row="3" Grid.Column="0" Text="Привязка линии к маркерам" TextColor="White" Margin="10,0,0,0"/>-->
-                <!--<Switch Grid.Row="3" Grid.Column="1" IsToggled="false" x:Name="SetToPinRoute"  Toggled="SetToPinRoute_Toggled"/>-->
-            </Grid>
-            <ImageButton x:Name="PopSettings" VerticalOptions="CenterAndExpand"
+                --><!--<Label  Grid.Row="3" Grid.Column="0" Text="Привязка линии к маркерам" TextColor="White" Margin="10,0,0,0"/>-->
+                <!--<Switch Grid.Row="3" Grid.Column="1" IsToggled="false" x:Name="SetToPinRoute"  Toggled="SetToPinRoute_Toggled"/>--><!--
+            </Grid>-->
+            <!--<ImageButton x:Name="PopSettings" VerticalOptions="CenterAndExpand"
                          BackgroundColor="Transparent"
                     HorizontalOptions="CenterAndExpand" Source="settings.png"
                     HeightRequest="40" Clicked="PopSettings_Clicked"
                 />
-        </RelativeLayout>
+        </RelativeLayout>-->
         <RelativeLayout x:Name="InfoPanelPin" Margin="10" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="#77000000" IsVisible="False">
-            <Grid RowSpacing="1" Padding="5" WidthRequest="100">
+            <Grid RowSpacing="1" Padding="5" WidthRequest="110">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.9*"/>
                     <ColumnDefinition Width="0.2*"/>
@@ -71,16 +72,16 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Text="Точка:" TextColor="White" FontSize="12" VerticalTextAlignment="Center" 
+                <Label Grid.Row="0" Grid.Column="0" Text="Точка:" TextColor="White" FontSize="14" VerticalTextAlignment="Center" 
                        HorizontalTextAlignment="Center"/>
                 <Button x:Name="ClosePinInfo_Btn" Grid.Row="0" Grid.Column="1" Text="X" Padding="0" WidthRequest="20" HeightRequest="20" TextColor="White"
-                        FontSize="10" FontAttributes="Bold" BackgroundColor="Transparent" Clicked="ClosePinInfo_Btn_Clicked"/>
-                <Entry Grid.Row="1" x:Name="entryPinLbl" Text="" FontSize="10" TextColor="White" HorizontalTextAlignment="Center"
+                        FontSize="12" FontAttributes="Bold" BackgroundColor="Transparent" Clicked="ClosePinInfo_Btn_Clicked"/>
+                <Entry Grid.Row="1" x:Name="entryPinLbl" Text="" FontSize="14" TextColor="White" HorizontalTextAlignment="Center"
                        Grid.ColumnSpan="2"/>
                 <Button x:Name="RenamePin_Btn" Grid.Row="2" Text="Переименовть" Padding="0" WidthRequest="70" HeightRequest="40"
-                        FontSize="10" FontAttributes="Bold" Grid.ColumnSpan="2" Clicked="RenamePin_Btn_Clicked"/>
+                        FontSize="12" FontAttributes="Bold" Grid.ColumnSpan="2" Clicked="RenamePin_Btn_Clicked"/>
                 <Button x:Name="DeletePin_Btn" Grid.Row="3" Text="Удалить" Padding="0" WidthRequest="70" HeightRequest="40"
-                        FontSize="10" FontAttributes="Bold" Grid.ColumnSpan="2" Clicked="DeletePin_Btn_Clicked"/>
+                        FontSize="12" FontAttributes="Bold" Grid.ColumnSpan="2" Clicked="DeletePin_Btn_Clicked"/>
             </Grid>
         </RelativeLayout>
         <StackLayout VerticalOptions="End" Margin="10,0,0,20" HorizontalOptions="Start">
@@ -156,6 +157,41 @@
             </Grid>
 
         </StackLayout>
+        <Frame x:Name="settest" IsVisible="False" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="15,0" IsClippedToBounds="False" BorderColor="Orange"
+               BackgroundColor="#2196F3">
+            <Grid x:Name="Buttons1" Margin="0" WidthRequest="250">
+                <!--RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToView,ElementName = PopSettings,Property=Height, Factor=1, Constant=1}">-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="75"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".75*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Picker x:Name="MapTypePick" Grid.Row="0" Grid.Column="0" FontSize="14" TextColor="White" 
+                        SelectedIndexChanged="MapTypePick_SelectedIndexChanged"/>
+                <Button Grid.Row="0" Grid.Column="1"  Clicked="ToolbarItem_Clicked" Text="X" TextColor="White" FontSize="16" BackgroundColor="Transparent"
+                        WidthRequest="30" FontAttributes="Bold"/>
+                <Picker x:Name="RouteTypePick" Grid.Row="1" Grid.Column="0" FontSize="14" TextColor="White"
+                        SelectedIndexChanged="RouteTypePick_SelectedIndexChanged"/>
+                <ImageButton  Source="ClearAll" Grid.Row="1" Grid.Column="1" WidthRequest="40" x:Name="ClearBtn"
+                              Clicked="ClearBtn_Clicked" BackgroundColor="Transparent"/>
+                <Button x:Name="ReCalcDist" Grid.Row="2" Grid.ColumnSpan="2" Clicked="ReCalcDist_Clicked" Text="Пересчет дистанции"/>
+                <Frame Grid.Row="3"  Grid.ColumnSpan="2" BorderColor="Orange" Padding="2" Margin="5" BackgroundColor="Transparent">
+                    <StackLayout Padding="0" Margin="0,5">
+                        <Label Text="Сохранение параметров записи" TextColor="White" FontSize="12" HorizontalTextAlignment="Center"/>
+                        <Grid>
+                            <Label Text="Нет" TextColor="White" FontSize="12" Grid.Column="0" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                            <Switch  IsToggled="False" x:Name="savevalswitsh" Toggled="savevalswitsh_Toggled" ThumbColor="Orange" OnColor="White" VerticalOptions="Center" HorizontalOptions="Center" Scale="1" Margin="0" BackgroundColor="Transparent" Grid.Column="1"/>
+                            <Label Text="Да" TextColor="White" FontSize="12" Grid.Column="2" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </Frame>
         <RelativeLayout x:Name="ad_vis" BackgroundColor="Transparent" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">
             <ActivityIndicator IsRunning="true"
                          IsVisible="true"
