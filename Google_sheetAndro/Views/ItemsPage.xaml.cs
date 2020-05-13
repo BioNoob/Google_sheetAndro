@@ -134,10 +134,12 @@ namespace Google_sheetAndro.Views
             ti_local.comment = Comment_txt.Text;
             return ti_local;
         }
+        bool is_single = false;
         public ItemsPage(bool fl_single = false)
         {
             InitializeComponent();
             Init();
+            is_single = fl_single;
             if (!fl_single)
                 InitEvent();
             this.IsBusy = false;
@@ -387,7 +389,10 @@ namespace Google_sheetAndro.Views
             val = tm.ToString();
             Time_pick.TextChanged -= Time_pick_TextChanged;
             Time_pick.Text = val;
-            LoaderFunction.MapPageAlone.TimeSet(val);
+            if(!is_single)
+                LoaderFunction.MapPage.TimeSet(val);
+            else
+                LoaderFunction.MapPageAlone.TimeSet(val);
             Time_pick.TextChanged += Time_pick_TextChanged;
         }
         private void WindSlider_ValueChanged(object sender, ValueChangedEventArgs e)
@@ -430,7 +435,10 @@ namespace Google_sheetAndro.Views
             if (tm.Sec >= 359999)
                 tm.Sec = 359999;
             Time_pick.Text = tm.ToString();
-            LoaderFunction.MapPageAlone.TimeSet(tm.ToString());
+            if (!is_single)
+                LoaderFunction.MapPage.TimeSet(tm.ToString());
+            else
+                LoaderFunction.MapPageAlone.TimeSet(tm.ToString());
             Time_pick.TextChanged += Time_pick_TextChanged;
             await btn.FadeTo(1, 100);
         }
@@ -465,6 +473,10 @@ namespace Google_sheetAndro.Views
             double.TryParse(Hight_txt_num.Text, out helpers);
             helpers += dop;
             Hight_txt_num.Text = string.Format("{0:F0}",helpers);
+            if (!is_single)
+                LoaderFunction.MapPage.SetHeight(helpers);
+            else
+                LoaderFunction.MapPageAlone.SetHeight(helpers);
             await tb.FadeTo(1, 100);
         }
         private async void Btn_plus_len_Clicked(object sender, EventArgs e)
@@ -497,6 +509,10 @@ namespace Google_sheetAndro.Views
             double.TryParse(Range_txt.Text, out helpers);
             helpers += dop;
             Range_txt.Text = string.Format("{0:F1}", helpers);
+            if (!is_single)
+                LoaderFunction.MapPage.SetDist(helpers);
+            else
+                LoaderFunction.MapPageAlone.SetDist(helpers);
             await tb.FadeTo(1, 100);
         }
 

@@ -133,21 +133,21 @@ namespace Google_sheetAndro.Views
         private void MapPage_Disappearing(object sender, EventArgs e)
         {
             //if(CrossDeviceSensors.Current.Barometer.IsActive)
-            CrossDeviceSensors.Current.Barometer.StopReading();
+            //CrossDeviceSensors.Current.Barometer.StopReading();
         }
         private bool has_barometr = false;
         private void MapPage_Appearing(object sender, EventArgs e)
         {
-            if (CrossDeviceSensors.Current.Barometer.IsSupported)
-            {
-                has_barometr = true;
-                CrossDeviceSensors.Current.Barometer.OnReadingChanged += Barometer_OnReadingChanged;
-                CrossDeviceSensors.Current.Barometer.StartReading();
-            }
-            else
-            {
-                StatusH.Text = "Нет барометра";
-            }
+            //if (CrossDeviceSensors.Current.Barometer.IsSupported)
+            //{
+            //    has_barometr = true;
+            //    //CrossDeviceSensors.Current.Barometer.OnReadingChanged += Barometer_OnReadingChanged;
+            //    //CrossDeviceSensors.Current.Barometer.StartReading();
+            //}
+            //else
+            //{
+            //    StatusH.Text = "Нет барометра";
+            //}
         }
         private Plugin.Geolocator.Abstractions.Position bufferpos { get; set; }
         private double _speed = 0;
@@ -276,6 +276,11 @@ namespace Google_sheetAndro.Views
 
         }
         bool fl_already_shown_2 = false;
+        string active_dist = string.Empty;
+        /// <summary>
+        /// Выставить активную дистанцию
+        /// </summary>
+        /// <param name="_flag">1 = запись, 2 = ручн</param>
         private void setactiveDist(int _flag)
         {
             double act_d = 0;
@@ -283,9 +288,11 @@ namespace Google_sheetAndro.Views
             {
                 case 1:
                     act_d = dist;
+                    active_dist = "Listen";
                     break;
                 case 2:
                     act_d = dist_handle;
+                    active_dist = "Handle";
                     break;
             }
             if (Is_base)
@@ -631,17 +638,24 @@ namespace Google_sheetAndro.Views
             //map.Pins.Add(pin);
         }
         private string PinBuffLbl;
-        private Xamarin.Forms.GoogleMaps.Position PinDeffY;
+        private Xamarin.Forms.GoogleMaps.Position PinDeffY = new Xamarin.Forms.GoogleMaps.Position();
         private void Map_PinDragStart(object sender, PinDragEventArgs e)
         {
-            PinBuffLbl = e.Pin.Label;
+            if (e.Pin.Tag.ToString() != null)
+            {
+                PinBuffLbl = e.Pin.Tag.ToString();
+                //Для отключения перетаскивания ручного маршрута!
+                //var t = LoadFromHistActual(); 
+                //var l = t.Pins.Find(q => q.Tag.ToString() == PinBuffLbl);
+                //PinDeffY = l.Position;
+            }
         }
         //ИСКЛЮЧИТЬ ЗАПИСАНОЕ ПЕРЕТАСКИВАНИЕ?
         private void Map_PinDragEnd(object sender, PinDragEventArgs e)
         {
             //int m = map.Pins.IndexOf(e.Pin);
             var t = LoadFromHistActual();
-            var l = t.Pins.Find(q => q.Label == PinBuffLbl);
+            var l = t.Pins.Find(q => q.Tag.ToString() == PinBuffLbl);
             if (l != null)
             {
                 int buff = pl_handle.Positions.IndexOf(l.Position);
@@ -660,7 +674,31 @@ namespace Google_sheetAndro.Views
                     mo.Pins = map.Pins.ToList();
                     SaveToHist(mo);
                 }
+                //Включена поддержка перетаскивания записанного
+                buff = pl_listner.Positions.IndexOf(l.Position);
+                if (buff >= 0)
+                {
+                    map.Polylines.Remove(pl_listner);
+                    pl_listner.Positions.RemoveAt(buff);
+                    pl_listner.Positions.Insert(buff, e.Pin.Position);
+                    map.Polylines.Add(pl_handle);
+                    dist = CalcDistForLine(pl_listner);
+                    MapObjects mo = new MapObjects();
+                    if (MapLines.Count > 0)
+                    {
+                        mo.Polylines = MapLines;
+                    }
+                    mo.Pins = map.Pins.ToList();
+                    SaveToHist(mo);
+                }
             }
+            //Для отключения перетаскивания ручного маршрута!
+            //if (PinDeffY != new Xamarin.Forms.GoogleMaps.Position())
+            //{
+            //    l.Position = PinDeffY;
+            //    PinDeffY = new Xamarin.Forms.GoogleMaps.Position();
+            //    Toast.MakeText(Android.App.Application.Context, "Перемещение точек записанного маршрута не поддерживается", ToastLength.Short).Show();
+            //}
         }
         private void SerToJsonMapData()
         {
@@ -672,6 +710,48 @@ namespace Google_sheetAndro.Views
             {
                 mapObjects.Pins = map.Pins.ToList();
             }
+
+        }
+        public void TimeSet(string val)
+        {
+            times = new Time_r(val);
+            StatusTime.Text = times.ToString();
+        }
+        public void SetHeight(double val)
+        {
+            bool? buf = fl_handle_ok_to_edit;
+            fl_handle_ok_to_edit = true;
+            height_coord = true;
+            height = val;
+            height_coord = false;
+            fl_handle_ok_to_edit = buf;
+        }
+        public void SetDist(double val)
+        {
+            bool? buf = fl_handle_ok_to_edit;
+            fl_handle_ok_to_edit = true;
+            switch (active_dist)
+            {
+                case "Handle":
+                    dist_handle = val;
+                    break;
+                case "Listen":
+                    dist = val;
+                    break;
+            }
+            fl_handle_ok_to_edit = buf;
+        }
+        public async void AbsSetter(string Route, string Points)
+        {
+            MapObjects mo;
+            mo = await setter_point(Points, Route);
+            //if (setter_route(Route))
+            //{
+            //    mo = new MapObjects(map.Pins.ToList(), MapLines);
+            //}
+            //else
+            //    mo = new MapObjects() { Pins = map.Pins.ToList() };
+            SaveToHist(mo);
 
         }
         private bool setter_route(string Route)
@@ -705,67 +785,145 @@ namespace Google_sheetAndro.Views
                 return false;
             return true;
         }
-        public void TimeSet(string val)
+        private void short_setline(Polyline pl)
         {
-            times = new Time_r(val);
-            StatusTime.Text = times.ToString();
-        }
-        public void AbsSetter(string Route, string Points)
-        {
-            MapObjects mo;
-            setter_point(Points, Route);
-            if (setter_route(Route))
+            foreach (var pos in pl.Positions)
             {
-                mo = new MapObjects(map.Pins.ToList(), MapLines);
+                //if (pl.Positions.Count >= 2)
+                //{
+                if (map.Polylines.Any(t => t.Tag.ToString() == pl.Tag.ToString()))
+                {
+                    map.Polylines.Remove(map.Polylines.Where(t => t.Tag.ToString() == pl.Tag.ToString()).First());
+                }
+                //  map.Polylines.Add(pl);
+                //}
+                //map.Polylines.Where(t => t.Tag.ToString() == pl.Tag.ToString()).First().Positions.Add(pos);
             }
-            else
-                mo = new MapObjects() { Pins = map.Pins.ToList() };
-            SaveToHist(mo);
-
         }
-        private bool setter_point(string Point, string Route)
+        private async Task<MapObjects> setter_point(string Point, string Route)
         {
             mapObjects.Pins = JsonConvert.DeserializeObject<List<Pin>>(Point);
-            List<Polyline> asdf = JsonConvert.DeserializeObject<List<Polyline>>(Route);
+            mapObjects.Polylines = JsonConvert.DeserializeObject<List<Polyline>>(Route);
+            if (mapObjects.Polylines != null)
+            {
+                fl_handle_ok_to_edit = true;
+                foreach (var item in mapObjects.Polylines)
+                {
+                    if (item.Tag.ToString() == "Handle")
+                    {
+                        pl_handle.Positions.Clear();
+                        foreach (var pos in item.Positions)
+                        {
+                            pl_handle.Positions.Add(pos);
+                        }
+                        if (pl_handle.Positions.Count >= 2)
+                            map.Polylines.Add(pl_handle);
+                        await Task.Delay(100);
+                        //short_setline(pl_handle);
 
+                        dist_handle = CalcDistForLine(pl_handle);
+
+                    }
+                    else if (item.Tag.ToString() == "Listner")
+                    {
+                        pl_listner.Positions.Clear();
+                        //pl_listner = item;
+                        foreach (var pos in item.Positions)
+                        {
+                            pl_listner.Positions.Add(pos);
+                        }
+                        if (pl_listner.Positions.Count >= 2)
+                            map.Polylines.Add(pl_listner);
+                        await Task.Delay(100);
+                        //foreach (var pos in item.Positions)
+                        //{
+                        //    map.Polylines.Last().Positions.Add(pos);
+                        //}
+                        dist = CalcDistForLine(pl_listner);
+                    }
+                }
+                fl_handle_ok_to_edit = null;
+            }
             if (mapObjects.Pins != null)
             {
                 foreach (var item in mapObjects.Pins)
                 {
-                    if (asdf != null)
-                    {
-                        if (asdf.Count >= 2)
+                    var _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.DeepSkyBlue);
+                    if (item.Tag != null)
+                        if (item.Tag.ToString().Contains("_"))
                         {
-                            if (!asdf[0].Positions.Contains(item.Position) && !asdf[1].Positions.Contains(item.Position))
-                            {
-                                map.Pins.Add(item);
-                            }
+                            _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Red);
                         }
-                        else if (asdf.Count == 1)
-                        {
-                            if (!asdf[0].Positions.Contains(item.Position))
-                            {
-                                map.Pins.Add(item);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        map.Pins.Add(item);
-                    }
-                    //if(!asdf[0].Positions.Contains(item.Position) && !asdf[1].Positions.Contains(item.Position))
+                    item.Icon = _icon;
+                    map.Pins.Add(item);
                 }
-                if (map.Pins.Count < 1)
-                {
-                    if (asdf != null)
-                    {
-                        ToinitPos = asdf[0].Positions.Last();
-                    }
-                }
-                else
-                    ToinitPos = map.Pins.Last().Position;
+                ToinitPos = map.Pins.Last().Position;
             }
-            return true;
+            return mapObjects;
+            //mapObjects.Pins = JsonConvert.DeserializeObject<List<Pin>>(Point);
+            //List<Polyline> asdf = JsonConvert.DeserializeObject<List<Polyline>>(Route);
+            //mapObjects.Polylines = asdf;
+            //if (mapObjects.Polylines != null)
+            //{
+            //    pl_handle.Positions.Clear();
+            //    pl_listner.Positions.Clear();
+            //    fl_handle_ok_to_edit = true;
+            //    foreach (var item in mapObjects.Polylines)
+            //    {
+            //        foreach (var pos in item.Positions)
+            //        {
+            //            switch (item.Tag.ToString())
+            //            {
+            //                case "Handle":
+            //                    //pl_handle.Positions.Add(pos);
+            //                    SetLine(pos, true);
+            //                    break;
+            //                case "Listner":
+            //                    SetLine(pos, false);
+            //                    //pl_listner.Positions.Add(pos);
+            //                    break;
+            //            }
+            //        }
+            //    }
+            //    fl_handle_ok_to_edit = null;
+            //}
+            //if (mapObjects.Pins != null)
+            //{
+            //    foreach (var item in mapObjects.Pins)
+            //    {
+            //        if (asdf != null)
+            //        {
+            //            if (asdf.Count >= 2)
+            //            {
+            //                if (!asdf[0].Positions.Contains(item.Position) && !asdf[1].Positions.Contains(item.Position))
+            //                {
+            //                    map.Pins.Add(item);
+            //                }
+            //            }
+            //            else if (asdf.Count == 1)
+            //            {
+            //                if (!asdf[0].Positions.Contains(item.Position))
+            //                {
+            //                    map.Pins.Add(item);
+            //                }
+            //            }
+            //        }
+            //        else
+            //        {
+            //            map.Pins.Add(item);
+            //        }
+            //    }
+            //    if (map.Pins.Count < 1)
+            //    {
+            //        if (asdf != null)
+            //        {
+            //            ToinitPos = asdf[0].Positions.Last();
+            //        }
+            //    }
+            //    else
+            //        ToinitPos = map.Pins.Last().Position;
+            //}
+            //return true;
         }
         private double CalcDistForLine(Polyline ple)
         {
@@ -784,6 +942,24 @@ namespace Google_sheetAndro.Views
         {
             //_dist = D;
             //StatusD.Text = string.Format("{0:#0.0} км", _dist);
+            bool? buf = fl_handle_ok_to_edit;
+            fl_handle_ok_to_edit = null;
+            if (Math.Abs(_dist - D) > Math.Abs(_dist_handle - D))
+            {
+                TapGestureRecognizer_Tapped(StatusD_handle, null);
+
+            }
+            else if (_dist == _dist_handle)
+            {
+                TapGestureRecognizer_Tapped(StatusD, null);
+            }
+            else
+            {
+                TapGestureRecognizer_Tapped(StatusD, null);
+                //setactiveDist(1);
+            }
+            SetDist(D);
+            fl_handle_ok_to_edit = buf;
             _height = H;
             height_list.Add(H);
             StatusH.Text = string.Format("{0:#0.0 м}", _height);
@@ -877,20 +1053,29 @@ namespace Google_sheetAndro.Views
             }
         }
 
-        private void Barometer_OnReadingChanged(object sender, Plugin.DeviceSensors.Shared.DeviceSensorReadingEventArgs<double> e)
+        public void Barometer_OnReadingChanged(object sender, Plugin.DeviceSensors.Shared.DeviceSensorReadingEventArgs<double> e)
         {
             //hig = SensorManager.GetAltitude(,);
             //Plugin.Geolocator.Abstractions.Position s= new Plugin.Geolocator.Abstractions.Position();
-
-            //Status.Text = Status.Text.Replace("Выс:", $"Выс: {} м");
-            if (bar != e.Reading)
+            if (!Is_base | fl_run)
             {
-                height = e.Reading;
-                bar = e.Reading;
+                if (CrossDeviceSensors.Current.Barometer.IsSupported)
+                {
+                    has_barometr = true;
+                }
+                else
+                {
+                    StatusH.Text = "Нет барометра";
+                }
+                //Status.Text = Status.Text.Replace("Выс:", $"Выс: {} м");
+                if (bar != e.Reading)
+                {
+                    height = e.Reading;
+                    bar = e.Reading;
+                }
+                else
+                    bar = e.Reading;
             }
-            else
-                bar = e.Reading;
-
             //System.Diagnostics.Debug.WriteLine(e.Reading);
         }
 
@@ -1144,7 +1329,7 @@ namespace Google_sheetAndro.Views
             {
                 if (!fl_transp)
                     _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Blue);
-                map.Pins.Add(new Pin() { Label = $"{map.Pins.Count - 1}", Position = e, IsDraggable = true, Icon = _icon, Tag = "" });
+                map.Pins.Add(new Pin() { Label = $"{map.Pins.Count - 1}", Position = e, IsDraggable = true, Icon = _icon, Tag = $"{map.Pins.Count - 1}_" + Tag_line });
             }
             else
             {
@@ -1618,9 +1803,10 @@ namespace Google_sheetAndro.Views
                 }
                 //map.Polylines.Add(pl_listner);
                 //dist = CalcDistForLine(pl_listner);
-                ad_vis.IsVisible = false;
                 ClosePinInfo_Btn_Clicked(this, new EventArgs());
             }
+            ad_vis.IsVisible = false;
+            await Task.Delay(200);
         }
 
         private async void ClosePinInfo_Btn_Clicked(object sender, EventArgs e)

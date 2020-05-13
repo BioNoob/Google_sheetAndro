@@ -2,6 +2,7 @@
 using Google_sheetAndro.Class;
 using Google_sheetAndro.Views;
 using Newtonsoft.Json;
+using Plugin.DeviceSensors;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -98,6 +99,9 @@ namespace Google_sheetAndro.Models
                 SetterStatus("Загрузка погоды...");
                 if (StaticInfo.Wheather == null)
                     qqw = await StaticInfo.GetWeatherReqAsync(StaticInfo.Pos);
+                CrossDeviceSensors.Current.Barometer.OnReadingChanged += MapPage.Barometer_OnReadingChanged;
+                CrossDeviceSensors.Current.Barometer.OnReadingChanged += MapPageAlone.Barometer_OnReadingChanged;
+                CrossDeviceSensors.Current.Barometer.StartReading();
                 return true;
             }
             catch (Exception)

@@ -31,7 +31,8 @@ namespace Google_sheetAndro.Views
             else
             {
                 LoaderFunction.callClearMap();
-                Navigation.PopToRootAsync();
+                return base.OnBackButtonPressed();
+                //Navigation.PopToRootAsync();
             }
             return true;
         }
