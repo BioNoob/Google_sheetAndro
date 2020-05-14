@@ -664,7 +664,8 @@ namespace Google_sheetAndro.Views
                     map.Polylines.Remove(pl_handle);
                     pl_handle.Positions.RemoveAt(buff);
                     pl_handle.Positions.Insert(buff, e.Pin.Position);
-                    map.Polylines.Add(pl_handle);
+                    if (pl_handle.Positions.Count >= 2)
+                        map.Polylines.Add(pl_handle);
                     dist_handle = CalcDistForLine(pl_handle);
                     MapObjects mo = new MapObjects();
                     if (MapLines.Count > 0)
@@ -681,7 +682,8 @@ namespace Google_sheetAndro.Views
                     map.Polylines.Remove(pl_listner);
                     pl_listner.Positions.RemoveAt(buff);
                     pl_listner.Positions.Insert(buff, e.Pin.Position);
-                    map.Polylines.Add(pl_handle);
+                    if (pl_listner.Positions.Count >= 2)
+                        map.Polylines.Add(pl_listner);
                     dist = CalcDistForLine(pl_listner);
                     MapObjects mo = new MapObjects();
                     if (MapLines.Count > 0)
@@ -1560,7 +1562,7 @@ namespace Google_sheetAndro.Views
             {
                 //bool kek2 = await StopListening();
                 //if (kek2)
-                await StopListening();
+                var t = await StopListening();
                 {
                     fl_run = false;
                     alife = false;
@@ -1576,6 +1578,11 @@ namespace Google_sheetAndro.Views
                     if (map.Polylines.Count > 0)
                     {
                         Xamarin.Forms.GoogleMaps.Position pp = pl_listner.Positions.Last();//map.Polylines.First().Positions.Last();
+                        if (map.Pins.Any(q => q.Tag.ToString() == "End_Listner"))//q.Label == "End"))
+                        {
+                            var pn = map.Pins.Where(i => i.Tag.ToString() == "End_Listner").First();//i.Label == "End").First();
+                            map.Pins.Remove(pn);
+                        }
                         map.Pins.Add(new Pin() { Tag = "End_Listner", Label = "End", Position = pp, IsDraggable = true });
                         SaveToHist(new MapObjects(map.Pins.ToList(), MapLines));
                     }

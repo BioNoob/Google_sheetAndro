@@ -4,6 +4,7 @@ using RefreshSample.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -202,17 +203,19 @@ namespace Google_sheetAndro.Views
             Graph_pick_date.IsEnabled = true;
         }
         //bool fl_fst_init = true;
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
            // if (fl_fst_init)
             {
+                Graph_pick_date.Items.Clear();
+                await Task.Delay(100);
                 tabelValue = LocalTable.SheetsVal;//Googles.GetValueTabel();
                 foreach (string item in tabelValue.Keys)
                 {
                     if (item != "Общий налет")
                     {
-                        int q = 1;
-                        for (int i = 1; i < tabelValue[item].Count - 1; i++)
+                        int q = 0;
+                        for (int i = 1; i < tabelValue[item].Count; i++)
                         {
                             q += tabelValue[item][i].Count;
                         }

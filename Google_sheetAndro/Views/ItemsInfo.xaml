@@ -76,12 +76,12 @@
                         </Frame>
                     </StackLayout>
                 </Grid>
-                <ScrollView>
+                <!--<ScrollView>-->
                     <ListView x:Name="TableItems"
                           HasUnevenRows="True"
                           ItemsSource="{Binding ItemGroups}"
                           ItemTapped="TableItems_ItemTapped"
-                          IsGroupingEnabled="true" Margin="5">
+                          IsGroupingEnabled="true" Margin="10,5">
                         <ListView.GroupHeaderTemplate>
                             <DataTemplate>
                                 <ViewCell Height="30">
@@ -103,7 +103,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </ScrollView>
+                <!--</ScrollView>-->
             </StackLayout>
         </Grid>
     </ContentPage.Content>
