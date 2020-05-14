@@ -35,7 +35,7 @@ namespace Google_sheetAndro.Authentication
             _auth.OnPageLoading(uri);
         }
 
-        private void OnAuthenticationCompleted(object sender, AuthenticatorCompletedEventArgs e)
+        private async void OnAuthenticationCompleted(object sender, AuthenticatorCompletedEventArgs e)
         {
             if (e.IsAuthenticated)
             {
@@ -45,6 +45,8 @@ namespace Google_sheetAndro.Authentication
                     AccessToken = e.Account.Properties["access_token"],
                     TokenAccount = e.Account
                 };
+                await Xamarin.Essentials.SecureStorage.SetAsync("acc_token", token.AccessToken);
+
                 _authenticationDelegate.OnAuthenticationCompleted(token);
             }
             else

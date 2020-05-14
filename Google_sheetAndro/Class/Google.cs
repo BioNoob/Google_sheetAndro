@@ -78,7 +78,12 @@ namespace TableAndro
                 credential = GoogleCredential.FromStream(stream)
                     .CreateScoped(Googles.Scopes);
             }
-
+            //var T = await Xamarin.Essentials.SecureStorage.GetAsync("acc_token");
+            //if (!string.IsNullOrEmpty(T))
+            //{
+            //    credential = GoogleCredential.FromAccessToken(T);
+            //    credential.CreateScoped(Googles.Scopes);
+            //}
             // Create Google Sheets API service.
             Googles.service = new SheetsService(new BaseClientService.Initializer()
             {
@@ -172,7 +177,7 @@ namespace TableAndro
                                 }
                                 TableItem ti = new TableItem();
                                 ti.row_nb_end = row_indx + 1;
-                                if(row[0].ToString() != "")
+                                if (row[0].ToString() != "")
                                 {
                                     row_mnth = row_indx;
                                 }
@@ -436,21 +441,29 @@ namespace TableAndro
             catch (Exception ex)
             {
                 string buff = ex.Message;
-                string outas = "Запись неудачна" + buff;
+                string outas = "Запись неудачна " + buff;
                 LoaderFunction.DostatPush("Запись неудачна");
                 if (network == NetworkAccess.None)
                 {
                     string kk = Preferences.Get("Offline_data", "");
                     var ti_list = JsonConvert.DeserializeObject<List<TableItem>>(kk);
-                    if (ti_list.Count > 0)
+                    if (ti_list != null)
                     {
-                        if (!ti_list.Contains(ti))
+                        if (ti_list.Count > 0)
                         {
-                            ti_list.Add(ti);
+                            if (!ti_list.Contains(ti))
+                            {
+                                ti_list.Add(ti);
+                            }
                         }
+                        else
+                            ti_list.Add(ti);
                     }
                     else
+                    {
+                        ti_list = new List<TableItem>();
                         ti_list.Add(ti);
+                    }
                     string seria = JsonConvert.SerializeObject(ti_list);
                     Preferences.Set("Offline_data", seria);
                     outas += "\nЗапись сохранена для офлайн";
@@ -540,7 +553,7 @@ namespace TableAndro
                 var resp = BUrequest.ExecuteAsync(cts.Token).Result;
                 requestBody = new BatchUpdateSpreadsheetRequest();
                 requestBody.Requests = new List<Request>();
-                requestBody.Requests.Add(google_requests.MergeRq(tbi.sh_id, new Range_border(tbi.row_mounth_firs, num_roh + tbi.row_nb-1 , 0, 1)));
+                requestBody.Requests.Add(google_requests.MergeRq(tbi.sh_id, new Range_border(tbi.row_mounth_firs, num_roh + tbi.row_nb - 1, 0, 1)));
                 cts = new CancellationTokenSource();
                 cts.CancelAfter(15000);
                 BUrequest = service.Spreadsheets.BatchUpdate(requestBody, SpreadsheetId);

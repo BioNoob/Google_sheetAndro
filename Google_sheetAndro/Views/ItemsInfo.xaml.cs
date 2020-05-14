@@ -133,7 +133,8 @@ namespace Google_sheetAndro.Views
         }
         void backbattonimit()
         {
-            Navigation.PopModalAsync();
+            if (Navigation.ModalStack.Count > 0)
+                Navigation.PopModalAsync();
         }
         void redirect()
         {
@@ -186,8 +187,8 @@ namespace Google_sheetAndro.Views
                 Year_pick.SelectedIndex = last;
                 TableItems.SelectedItem = null;
             }
-            if(Navigation.ModalStack.Count > 0)
-            await Navigation.PopModalAsync();
+            if (Navigation.ModalStack.Count > 0)
+                await Navigation.PopModalAsync();
         }
         private async void delete()
         {

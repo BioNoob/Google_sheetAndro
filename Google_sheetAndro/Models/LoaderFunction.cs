@@ -1,10 +1,12 @@
-﻿using Android.Widget;
+﻿using Android.App;
+using Android.Widget;
 using Google_sheetAndro.Class;
 using Google_sheetAndro.Views;
 using Newtonsoft.Json;
 using Plugin.DeviceSensors;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Net;
@@ -119,6 +121,7 @@ namespace Google_sheetAndro.Models
         }
         public static void SetterStatus(string st)
         {
+            Debug.WriteLine(st);
             DoSetStatus?.Invoke(st);
         }
         public static void DostatPush(string tat)
@@ -153,7 +156,10 @@ namespace Google_sheetAndro.Models
         public static void EndLoad()
         {
             ItemsInfoPage.Title = "Записи";
-            LoaderFunction.MenuPage.sett(LoaderFunction.ItemsInfoPage);
+            if(!is_offline)
+            {
+                LoaderFunction.MenuPage.sett(LoaderFunction.ItemsInfoPage);
+            }
             //DoWheatherLoad?.Invoke();
             if (MenuPage != null && StaticInfo.AccountEmail != null)
             {
@@ -191,6 +197,7 @@ namespace Google_sheetAndro.Models
             DoWheatherLoad?.Invoke();
         }
         public static bool is_Loaded;
+        public static bool is_offline = false;
         public static async Task<bool> InitialiserPage()
         {
             SetterStatus("Загрузка базы данных...");
@@ -213,6 +220,7 @@ namespace Google_sheetAndro.Models
                             OfflineList ofl = new OfflineList(true);
                             ofl.SetTableData(ti);
                             StaticInfo.SetPage(ofl);
+                            is_offline = true;
                         }
                     }
                     is_Loaded = true;

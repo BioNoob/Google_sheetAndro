@@ -818,10 +818,10 @@ namespace Google_sheetAndro.Views
                         }
                         if (pl_handle.Positions.Count >= 2)
                             map.Polylines.Add(pl_handle);
-                        await Task.Delay(100);
                         //short_setline(pl_handle);
 
                         dist_handle = CalcDistForLine(pl_handle);
+                        //await Task.Delay(100);
 
                     }
                     else if (item.Tag.ToString() == "Listner")
@@ -834,12 +834,12 @@ namespace Google_sheetAndro.Views
                         }
                         if (pl_listner.Positions.Count >= 2)
                             map.Polylines.Add(pl_listner);
-                        await Task.Delay(100);
                         //foreach (var pos in item.Positions)
                         //{
                         //    map.Polylines.Last().Positions.Add(pos);
                         //}
                         dist = CalcDistForLine(pl_listner);
+                        //await Task.Delay(100);
                     }
                 }
                 fl_handle_ok_to_edit = null;
@@ -850,7 +850,7 @@ namespace Google_sheetAndro.Views
                 {
                     var _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.DeepSkyBlue);
                     if (item.Tag != null)
-                        if (item.Tag.ToString().Contains("_"))
+                        if (item.Tag.ToString().Contains("Start_") | item.Tag.ToString().Contains("End_"))
                         {
                             _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Red);
                         }
@@ -859,6 +859,7 @@ namespace Google_sheetAndro.Views
                 }
                 ToinitPos = map.Pins.Last().Position;
             }
+            await Task.Delay(100);
             return mapObjects;
             //mapObjects.Pins = JsonConvert.DeserializeObject<List<Pin>>(Point);
             //List<Polyline> asdf = JsonConvert.DeserializeObject<List<Polyline>>(Route);

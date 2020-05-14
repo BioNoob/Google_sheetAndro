@@ -140,18 +140,20 @@ namespace Google_sheetAndro.Views
             try
             {
                 ti.author = StaticInfo.AccountEmail;
-                ti.route = "";//MapPageAlone.MapObj.SerializableLine;
-                ti.points = "";//LoaderFunction.MapPageAlone.MapObj.SerializablePins;
+                //ti.route = "";//MapPageAlone.MapObj.SerializableLine;
+                //ti.points = "";//LoaderFunction.MapPageAlone.MapObj.SerializablePins;
                 if (await Googles.ReadEntriesAsync(ti))
                 {
                     Toast.MakeText(Android.App.Application.Context, "Запись успешна", ToastLength.Long).Show();
-                    await Navigation.PopModalAsync();
+                    if (Navigation.ModalStack.Count > 0)
+                        await Navigation.PopModalAsync();
                     return true;
                 }
                 else
                 {
                     Toast.MakeText(Android.App.Application.Context, "Запись неудачна", ToastLength.Long).Show();
-                    await Navigation.PopModalAsync();
+                    if (Navigation.ModalStack.Count > 0)
+                        await Navigation.PopModalAsync();
                     return false;
                 }
                 //LoaderFunction.ExtItNavPage.Navigation.PopModalAsync();
@@ -159,6 +161,7 @@ namespace Google_sheetAndro.Views
             catch (Exception)
             {
                 Toast.MakeText(Android.App.Application.Context, "Обновление неудачно", ToastLength.Long).Show();
+                if(Navigation.ModalStack.Count > 0)
                 await Navigation.PopModalAsync();
                 return false;
             }

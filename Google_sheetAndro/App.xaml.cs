@@ -13,6 +13,9 @@ namespace Google_sheetAndro
             InitializeComponent();
             if (!fl_wait)
             {
+                LoaderFunction.MenuPage = new MenuPage();
+                MainPage = LoaderFunction.MenuPage;
+                //LoaderFunction.asd.Finish();
                 //MainPage = new NavigationPage(new MainPage());
                 LoaderFunction.WheatherPage = new WheatherView();
                 LoaderFunction.InfoPage = new InfoPage();//ok
@@ -54,9 +57,9 @@ namespace Google_sheetAndro
                 LoaderFunction.ItemsInfoPage = new ItemsInfo();//not ok need items
                 LoaderFunction.ItInfoNavPage = new NavigationPage(LoaderFunction.ItemsInfoPage);
 
-                LoaderFunction.MenuPage = new MenuPage();
             }
-            MainPage = LoaderFunction.MenuPage;
+            if (MainPage != LoaderFunction.MenuPage)
+                MainPage = LoaderFunction.MenuPage;
             //LoaderFunction.EndLoad();
             //MainPage = new MenuPage();
             //MainPage = new MenuPage();/*MainPage();*/

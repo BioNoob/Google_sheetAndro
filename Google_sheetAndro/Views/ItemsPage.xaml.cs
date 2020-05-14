@@ -50,7 +50,7 @@ namespace Google_sheetAndro.Views
                 if (ti.temp > 0)
                     Temp_Num.Text = string.Format("+{0:F1}", ti.temp);//.ToString();
                 else
-                    Temp_Num.Text = string.Format("{0:F1}",ti.temp);//.ToString();
+                    Temp_Num.Text = string.Format("{0:F1}", ti.temp);//.ToString();
                 Task_txt.Text = ti.task;
                 Hight_txt_num.Text = string.Format("{0:F0}", ti.height);
                 Range_txt.Text = string.Format("{0:F1}", ti.range); ;
@@ -79,7 +79,7 @@ namespace Google_sheetAndro.Views
 
         private void SetTemp(string temp)
         {
-            Temp_Num.Text = String.Format("{0:F1}",temp);
+            Temp_Num.Text = String.Format("{0:F1}", temp);
         }
         private void SetCloud(string cloud)
         {
@@ -102,7 +102,7 @@ namespace Google_sheetAndro.Views
         }
         public void SetHeight(int height)
         {
-            Hight_txt_num.Text = string.Format("{0:F0}",height);
+            Hight_txt_num.Text = string.Format("{0:F0}", height);
         }
         public TableItem getter()
         {
@@ -371,7 +371,8 @@ namespace Google_sheetAndro.Views
             {
 
             }
-            await Navigation.PopModalAsync();
+            if (Navigation.ModalStack.Count > 0)
+                await Navigation.PopModalAsync();
             //StaticInfo.Busier(false);
             LoaderFunction.DoBack();
             IsBusy = false;
@@ -389,7 +390,7 @@ namespace Google_sheetAndro.Views
             val = tm.ToString();
             Time_pick.TextChanged -= Time_pick_TextChanged;
             Time_pick.Text = val;
-            if(!is_single)
+            if (!is_single)
                 LoaderFunction.MapPage.TimeSet(val);
             else
                 LoaderFunction.MapPageAlone.TimeSet(val);
@@ -472,7 +473,7 @@ namespace Google_sheetAndro.Views
             }
             double.TryParse(Hight_txt_num.Text, out helpers);
             helpers += dop;
-            Hight_txt_num.Text = string.Format("{0:F0}",helpers);
+            Hight_txt_num.Text = string.Format("{0:F0}", helpers);
             if (!is_single)
                 LoaderFunction.MapPage.SetHeight(helpers);
             else
@@ -554,7 +555,7 @@ namespace Google_sheetAndro.Views
         private void TempSlider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             //Temp_Num.TextChanged -= Temp_Num_TextChanged;
-            if(!active_change)
+            if (!active_change)
             {
                 active_change = true;
                 string dob = "";

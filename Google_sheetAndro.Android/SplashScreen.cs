@@ -7,7 +7,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Google_sheetAndro.Models;
-using Plugin.CurrentActivity;
 using Refractored.XamForms.PullToRefresh.Droid;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,10 +27,10 @@ namespace Google_sheetAndro.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
-
+            await Task.Delay(200);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            //CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
             PullToRefreshLayoutRenderer.Init();
             XFGloss.Droid.Library.Init(this, savedInstanceState);
