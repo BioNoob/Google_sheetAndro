@@ -201,19 +201,27 @@ namespace Google_sheetAndro.Views
             }
             Graph_pick_date.IsEnabled = true;
         }
-        bool fl_fst_init = true;
+        //bool fl_fst_init = true;
         protected override void OnAppearing()
         {
-            if (fl_fst_init)
+           // if (fl_fst_init)
             {
                 tabelValue = LocalTable.SheetsVal;//Googles.GetValueTabel();
                 foreach (string item in tabelValue.Keys)
                 {
                     if (item != "Общий налет")
-                        Graph_pick_date.Items.Add(item);
+                    {
+                        int q = 1;
+                        for (int i = 1; i < tabelValue[item].Count - 1; i++)
+                        {
+                            q += tabelValue[item][i].Count;
+                        }
+                        if (q != tabelValue[item].Count - 1)
+                            Graph_pick_date.Items.Add(item);
+                    }
                 }
                 Graph_pick_date.IsEnabled = true;
-                fl_fst_init = false;
+                //fl_fst_init = false;
             }
         }
 

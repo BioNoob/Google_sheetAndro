@@ -286,6 +286,8 @@ namespace TableAndro
             {
                 if (item.Properties.Title == year.ToString())
                 {
+                    if (item.Merges == null)
+                        fl_yearadd = true;
                     sh_name = item.Properties.Title;
                     shID = (int)item.Properties.SheetId;
                 }
