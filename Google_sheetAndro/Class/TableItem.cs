@@ -165,38 +165,75 @@ namespace Google_sheetAndro.Class
         }
         public List<IList<object>> GetVal_points_route()
         {
-            List<IList<object>> val = new List<IList<object>>();
+
             int chet = 0;
             int iter = 49000;
-            var tt = this.points.Length;
-            int q = (int)Math.Ceiling(tt/ 49000.0);
-            for (int i = 0; i < q; i++)
+            var tt_pt = this.points.Length;
+            int count_pt = (int)Math.Ceiling(tt_pt / 49000.0);
+            var tt_rt = this.route.Length;
+            int count_rt = (int)Math.Ceiling(tt_rt / 49000.0);
+            List<IList<object>> val;
+            var ct = 0;
+            if (count_pt > count_rt)
+            {
+                val = new List<IList<object>>(count_pt);
+                ct = count_pt;
+            }
+            else
+            {
+                val = new List<IList<object>>(count_rt);
+                ct = count_rt;
+            }
+            for (int i = 0; i < ct; i++)
+            {
+                val.Add(new List<object>());
+                val[i].Add(new List<string>());
+                val[i].Add(new List<string>());
+                val[i][0] = "";
+                val[i][1] = "";
+            }
+
+            for (int i = 0; i < count_pt; i++)
             {
                 List<object> lst = new List<object>();
-                if (i + 1 == q)
+                if (i + 1 == count_pt)
                 {
-                    iter = tt - chet;
+                    iter = tt_pt - chet;
                 }
                 var tm1 = this.points.Substring(chet, iter);
-                lst.Add(tm1);
+                //lst.Add(tm1);
                 chet += iter;
-                val.Add(lst);
+                val[i][0] = tm1;
+                //val.Add(lst);
             }
             chet = 0;
             iter = 49000;
-            tt = this.route.Length;
-            q = (int)Math.Ceiling(tt / 49000.0);
-            for (int i = 0; i < q; i++)
+            for (int i = 0; i < count_rt; i++)
             {
                 List<object> lst = new List<object>();
-                if (i + 1 == q)
+                if (i + 1 == count_rt)
                 {
-                    iter = tt - chet;
+                    iter = tt_rt - chet;
                 }
                 var tm1 = this.route.Substring(chet, iter);
                 chet += iter;
-                val[i].Add(tm1);
+                val[i][1] = tm1;
             }
+            //for (int i = 0; i < ct; i++)
+            //{
+            //    var q = val[i][0].ToString();
+            //    var qq = val[i][1].ToString();
+            //    val[i][1].
+            //    if (string.IsNullOrEmpty(val[i][0].ToString()))
+            //    {
+            //        val[i][0] = "";
+                    
+            //    }
+            //    if (string.IsNullOrEmpty(val[i][1].ToString()))
+            //    {
+            //        val[i][1] = "";
+            //    }
+            //}
             return val;
         }
     }

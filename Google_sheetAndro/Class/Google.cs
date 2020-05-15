@@ -399,20 +399,23 @@ namespace TableAndro
                             RB.fst_rw = inp_row_mount - 1;
                             RB.sec_rw = inp_row + 1;
                             LoaderFunction.DostatPush("Форматирование строки");
-                            LQReq.Add(Merger(sh_ID));
+                            //LQReq.Add(Merger(sh_ID));
                             Debug.WriteLine("MERGER");
                         }
                         //foreach (Request item in google_requests.FormateRq(sh_ID, inp_row))
                         // {
                         //LQReq.Add(item);
                         //}
-                        BatchUpdateSpreadsheetRequest requestBody = new BatchUpdateSpreadsheetRequest();
-                        requestBody.Requests = LQReq;
-                        LoaderFunction.DostatPush("Отправка данных о строках в базу");
-                        BatchUpdateRequest BUrequest = service.Spreadsheets.BatchUpdate(requestBody, SpreadsheetId);
-                        CancellationTokenSource cts = new CancellationTokenSource();
-                        cts.CancelAfter(15000);
-                        var t = BUrequest.ExecuteAsync(cts.Token).Result;
+                        if (LQReq.Count > 0)
+                        {
+                            BatchUpdateSpreadsheetRequest requestBody = new BatchUpdateSpreadsheetRequest();
+                            requestBody.Requests = LQReq;
+                            LoaderFunction.DostatPush("Отправка данных о строках в базу");
+                            BatchUpdateRequest BUrequest = service.Spreadsheets.BatchUpdate(requestBody, SpreadsheetId);
+                            CancellationTokenSource cts = new CancellationTokenSource();
+                            cts.CancelAfter(15000);
+                            var t = BUrequest.ExecuteAsync(cts.Token).Result;
+                        }
                     }
                     else
                     {

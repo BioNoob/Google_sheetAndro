@@ -802,7 +802,7 @@ namespace Google_sheetAndro.Views
                 //map.Polylines.Where(t => t.Tag.ToString() == pl.Tag.ToString()).First().Positions.Add(pos);
             }
         }
-        private async Task<MapObjects> setter_point(string Point, string Route)
+        private async Task<MapObjects> setter_point(string Point, string Route, bool not_del = false)
         {
             mapObjects.Pins = JsonConvert.DeserializeObject<List<Pin>>(Point);
             mapObjects.Polylines = JsonConvert.DeserializeObject<List<Polyline>>(Route);
@@ -813,7 +813,8 @@ namespace Google_sheetAndro.Views
                 {
                     if (item.Tag.ToString() == "Handle")
                     {
-                        pl_handle.Positions.Clear();
+                        if (!not_del)
+                            pl_handle.Positions.Clear();
                         foreach (var pos in item.Positions)
                         {
                             pl_handle.Positions.Add(pos);
@@ -828,7 +829,8 @@ namespace Google_sheetAndro.Views
                     }
                     else if (item.Tag.ToString() == "Listner")
                     {
-                        pl_listner.Positions.Clear();
+                        if (!not_del)
+                            pl_listner.Positions.Clear();
                         //pl_listner = item;
                         foreach (var pos in item.Positions)
                         {
@@ -1673,16 +1675,34 @@ namespace Google_sheetAndro.Views
             await ClearBtn.FadeTo(0, 100);
             if (await DisplayAlert("Предупреждение", "Очистить карту", "Да", "Нет"))
             {
-                map.Pins.Clear();
-                map.Polylines.Clear();
-                pl_handle.Positions.Clear();
-                pl_listner.Positions.Clear();
-                dist = 0;
-                dist_handle = 0;
-                height = 0;
-                height_list.Clear();
-                StatusTime.Text = string.Empty;
-                mapObjects = new MapObjects();
+                ClearMap();
+                
+                map.IsVisible = false;
+                await Task.Delay(100);
+                map.IsVisible = true;
+                //map.Pins.Clear();
+                //map.Polylines.Clear();
+                //pl_handle.Positions.Clear();
+                //pl_listner.Positions.Clear();
+                //var t = new Xamarin.Forms.GoogleMaps.Map() { MapType = map.MapType, MapStyle = map.MapStyle, MyLocationEnabled = map.MyLocationEnabled, HeightRequest = map.HeightRequest, VerticalOptions = map.VerticalOptions, HorizontalOptions = map.HorizontalOptions};
+                //t.PinDragEnd += Map_PinDragEnd;
+                //t.PinDragStart += Map_PinDragStart;
+                //t.PinDragging += Map_PinDragging;
+                //t.PinClicked += Map_PinClicked;
+                //t.MapLongClicked += map_MapLongClicked;
+                //t.MyLocationEnabled = map.MyLocationEnabled;
+                //t.UiSettings.CompassEnabled = map.UiSettings.CompassEnabled;
+                //t.UiSettings.ZoomControlsEnabled = map.UiSettings.ZoomControlsEnabled;
+                //t.UiSettings.MyLocationButtonEnabled = map.UiSettings.MyLocationButtonEnabled;
+                //t.UiSettings.ZoomGesturesEnabled = map.UiSettings.ZoomGesturesEnabled;
+                //t.UiSettings.MapToolbarEnabled = map.UiSettings.MapToolbarEnabled;
+                //map = t;
+                //dist = 0;
+                //dist_handle = 0;
+                //height = 0;
+                //height_list.Clear();
+                //StatusTime.Text = string.Empty;
+                //mapObjects = new MapObjects();
             }
             await ClearBtn.FadeTo(1, 100);
         }
@@ -1843,6 +1863,17 @@ namespace Google_sheetAndro.Views
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             settest.IsVisible = !settest.IsVisible;
+            //entryjson_points.Text = string.Empty;
+            //entryjson_route.Text = string.Empty;
+        }
+
+        private async void DoneJson_Clicked(object sender, EventArgs e)
+        {
+            //var _route = entryjson_route.Text;
+            //var _points = entryjson_points.Text;
+            //await this.setter_point(_points, _route, true);
+            await Task.Delay(1000);
+            Toast.MakeText(Android.App.Application.Context, "Добавлено переименнована", ToastLength.Short).Show();
         }
     }
 }

@@ -165,11 +165,16 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="75"/>
+                    <!--<RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>-->
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".75*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
+                <!--<Entry x:Name="entryjson_route" Placeholder="маршрут" Grid.Row="4" Grid.Column="1" Text=""/>
+                <Entry x:Name="entryjson_points" Placeholder="точки" Grid.Row="4" Grid.Column="0" Text=""/>
+                <Button x:Name="DoneJson" Clicked="DoneJson_Clicked" Grid.Row="5" Grid.Column="0"/> --><!--ДЕБАЖНАЯ ШНЯГА ДЛЯ МАРШРУТОВ-->
                 <Picker x:Name="MapTypePick" Grid.Row="0" Grid.Column="0" FontSize="14" TextColor="White" 
                         SelectedIndexChanged="MapTypePick_SelectedIndexChanged"/>
                 <Button Grid.Row="0" Grid.Column="1"  Clicked="ToolbarItem_Clicked" Text="X" TextColor="White" FontSize="16" BackgroundColor="Transparent"
