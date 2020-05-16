@@ -1333,12 +1333,15 @@ namespace Google_sheetAndro.Views
             if (map.Pins.Count >= 1)
             {
                 if (!fl_transp)
-                    _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Blue);
+                    _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.DeepSkyBlue);
                 map.Pins.Add(new Pin() { Label = $"{map.Pins.Count - 1}", Position = e, IsDraggable = true, Icon = _icon, Tag = $"{map.Pins.Count - 1}_" + Tag_line });
             }
             else
             {
-                _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Red);
+                if(fl_route)
+                    _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Red);
+                else
+                    _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.DeepSkyBlue);
                 map.Pins.Add(new Pin() { Label = $"Start", Position = e, IsDraggable = true, Icon = _icon, Tag = "Start_" + Tag_line });
             }
             if (!fl_transp)
@@ -1673,7 +1676,7 @@ namespace Google_sheetAndro.Views
         private async void ClearBtn_Clicked(object sender, EventArgs e)
         {
             await ClearBtn.FadeTo(0, 100);
-            if (await DisplayAlert("Предупреждение", "Очистить карту", "Да", "Нет"))
+            if (await DisplayAlert("Предупреждение", "Очистить карту? Данные карты будут очищены!", "Да", "Нет"))
             {
                 ClearMap();
                 

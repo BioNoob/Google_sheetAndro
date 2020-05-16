@@ -35,7 +35,9 @@ namespace Google_sheetAndro.Views
             var tgrs4 = new TapGestureRecognizer();
             tgrs4.Tapped += (s, e) => GoSite();
             SiteLbl.GestureRecognizers.Add(tgrs4);
-
+            var tapinst = new TapGestureRecognizer();
+            tapinst.Tapped += Tapinst_Tapped;
+            Instruction.GestureRecognizers.Add(tapinst);
             APlist = new List<ApiInfo>()
             {
                 new ApiInfo("Яндекс Геокодер API","ya.png","https://tech.yandex.ru/maps/geocoder/"),
@@ -48,6 +50,12 @@ namespace Google_sheetAndro.Views
             };
             BindingContext = this;
         }
+
+        private async void Tapinst_Tapped(object sender, EventArgs e)
+        {
+            await Launcher.OpenAsync(new Uri("https://github.com/BioNoob/Google_sheetAndro/blob/2.1/README.md"));
+        }
+
         private async void GoFb()
         {
             await Launcher.OpenAsync(new Uri("https://www.facebook.com/BlackOrange.Aero.Pilot/"));
