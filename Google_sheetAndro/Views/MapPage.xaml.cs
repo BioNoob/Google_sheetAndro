@@ -115,10 +115,10 @@ namespace Google_sheetAndro.Views
             Status_H_av.GestureRecognizers.Add(tgr);
             StatusH_m.GestureRecognizers.Add(tgr);
             Status_H_m.GestureRecognizers.Add(tgr);
-            StatusH.GestureRecognizers.Add(tgr);
-            Status_H.GestureRecognizers.Add(tgr);
+            //StatusH.GestureRecognizers.Add(tgr);
+            //Status_H.GestureRecognizers.Add(tgr);
             TapGestureRecognizer_Tapped(StatusD, null);
-            TapGestureRecognizer_Tapped(StatusH, null);
+            TapGestureRecognizer_Tapped(StatusH_av, null);
             bufferpos = new Plugin.Geolocator.Abstractions.Position();
             this.Appearing += MapPage_Appearing;
             this.Disappearing += MapPage_Disappearing;
@@ -199,8 +199,8 @@ namespace Google_sheetAndro.Views
                     SetActiveDistLbl(fl);
                     break;
                 case "Nor_H":
-                    Status_H.BackgroundColor = Color.FromHex("#900040ff");
-                    StatusH.BackgroundColor = Color.FromHex("#900040ff");
+                    //Status_H.BackgroundColor = Color.FromHex("#900040ff");
+                    //StatusH.BackgroundColor = Color.FromHex("#900040ff");
                     StatusH_av.BackgroundColor = Color.FromHex("#70000000");
                     Status_H_av.BackgroundColor = Color.FromHex("#70000000");
                     Status_H_m.BackgroundColor = Color.FromHex("#70000000");
@@ -208,8 +208,8 @@ namespace Google_sheetAndro.Views
                     SetActiveHightLbl(1);
                     break;
                 case "Max_H":
-                    Status_H.BackgroundColor = Color.FromHex("#70000000");
-                    StatusH.BackgroundColor = Color.FromHex("#70000000");
+                    //Status_H.BackgroundColor = Color.FromHex("#70000000");
+                    //StatusH.BackgroundColor = Color.FromHex("#70000000");
                     StatusH_av.BackgroundColor = Color.FromHex("#70000000");
                     Status_H_av.BackgroundColor = Color.FromHex("#70000000");
                     Status_H_m.BackgroundColor = Color.FromHex("#900040ff");
@@ -217,8 +217,8 @@ namespace Google_sheetAndro.Views
                     SetActiveHightLbl(3);
                     break;
                 case "Av_H":
-                    Status_H.BackgroundColor = Color.FromHex("#70000000");
-                    StatusH.BackgroundColor = Color.FromHex("#70000000");
+                    //Status_H.BackgroundColor = Color.FromHex("#70000000");
+                    //StatusH.BackgroundColor = Color.FromHex("#70000000");
                     StatusH_av.BackgroundColor = Color.FromHex("#900040ff");
                     Status_H_av.BackgroundColor = Color.FromHex("#900040ff");
                     Status_H_m.BackgroundColor = Color.FromHex("#70000000");
@@ -264,12 +264,14 @@ namespace Google_sheetAndro.Views
                     await Height_curr_imgbtn.FadeTo(0, 700, Easing.SinInOut);
                     break;
                 case 2:
-                    await Height_av_imgbtn.FadeTo(1, 700, Easing.SinInOut);
-                    await Height_av_imgbtn.FadeTo(0, 700, Easing.SinInOut);
-                    break;
-                case 3:
                     await Height_max_imgbtn.FadeTo(1, 700, Easing.SinInOut);
                     await Height_max_imgbtn.FadeTo(0, 700, Easing.SinInOut);
+                    //await Height_av_imgbtn.FadeTo(1, 700, Easing.SinInOut);
+                    //await Height_av_imgbtn.FadeTo(0, 700, Easing.SinInOut);
+                    break;
+                case 3:
+                    await Height_curr_imgbtn.FadeTo(1, 700, Easing.SinInOut);
+                    await Height_curr_imgbtn.FadeTo(0, 700, Easing.SinInOut);
                     break;
             }
 
@@ -446,17 +448,17 @@ namespace Google_sheetAndro.Views
                             break;
                         case false:
                             LoaderFunction.ItemsPageAlone.SetHeight((int)_height);
-                            StatusH.Text = string.Format("{0:#0.0 м}", _height);
+                            //StatusH.Text = string.Format("{0:#0.0 м}", _height);
                             break;
                         case true:
-                            StatusH.Text = string.Format("{0:#0.0 м}", _height);
+                            //StatusH.Text = string.Format("{0:#0.0 м}", _height);
                             break;
                     }
                 }
                 else
                 {
                     StaticInfo.Height = _height;
-                    StatusH.Text = string.Format("{0:#0.0 м}", _height);
+                    //StatusH.Text = string.Format("{0:#0.0 м}", _height);
                     height_list.Add(_height);
                 }
                 height_list.Add(_height);
@@ -465,16 +467,21 @@ namespace Google_sheetAndro.Views
             }
         }
         List<double> height_list = new List<double>();
+        double height_corective = 0;
+        ///теперь это выоста относительная
         public double height_middle
         {
             get
             {
-                if (height_list.Count > 0)
-                {
-                    StatusH_av.Text = string.Format("{0:#0.0 м}", height_list.Average());
-                    return height_list.Average();
-                }
-                else return height;
+                StatusH_av.Text = string.Format("{0:#0.0 м}", height - height_corective);
+                return (height - height_corective);
+                //if (height_list.Count > 0)
+                //{
+
+                //    //StatusH_av.Text = string.Format("{0:#0.0 м}", height_list.Average());
+                //    //return height_list.Average();
+                //}
+                //else return height;
             }
         }
         public double height_max
@@ -964,10 +971,13 @@ namespace Google_sheetAndro.Views
                 //setactiveDist(1);
             }
             SetDist(D);
+            //fl_handle_ok_to_edit = buf;
+            //
+            fl_handle_ok_to_edit = true;
+            SetHeight(H);
+            //height_list.Add(H);
             fl_handle_ok_to_edit = buf;
-            _height = H;
-            height_list.Add(H);
-            StatusH.Text = string.Format("{0:#0.0 м}", _height);
+            //StatusH.Text = string.Format("{0:#0.0 м}", _height);
         }
         private bool fl_already_shown = false;
         private async void DispMes(bool fl_dist)
@@ -986,7 +996,7 @@ namespace Google_sheetAndro.Views
                 else
                 {
                     LoaderFunction.ItemsPageAlone.SetHeight((int)_height);
-                    StatusH.Text = string.Format("{0:#0.0 м}", _height);
+                    //StatusH.Text = string.Format("{0:#0.0 м}", _height);
                 }
 
             }
@@ -1070,7 +1080,7 @@ namespace Google_sheetAndro.Views
                 }
                 else
                 {
-                    StatusH.Text = "Нет барометра";
+                    //StatusH.Text = "Нет барометра";
                 }
                 //Status.Text = Status.Text.Replace("Выс:", $"Выс: {} м");
                 if (bar != e.Reading)
@@ -1877,6 +1887,12 @@ namespace Google_sheetAndro.Views
             //await this.setter_point(_points, _route, true);
             await Task.Delay(1000);
             Toast.MakeText(Android.App.Application.Context, "Добавлено переименнована", ToastLength.Short).Show();
+        }
+
+        private void Height_av_imgbtn_Clicked(object sender, EventArgs e)
+        {
+            height_corective = height;
+            StatusH_av.Text = string.Format("{0:#0.0 м}", 0);
         }
     }
 }

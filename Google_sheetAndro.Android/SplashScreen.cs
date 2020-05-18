@@ -14,7 +14,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-
 namespace Google_sheetAndro.Droid
 {
     [Activity(Label = "Небо для всех", Theme = "@style/Theme.Splash", Icon = "@mipmap/icon",
@@ -28,14 +27,14 @@ namespace Google_sheetAndro.Droid
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
             await Task.Delay(200);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Platform.Init(this, savedInstanceState);
             //CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
             PullToRefreshLayoutRenderer.Init();
             XFGloss.Droid.Library.Init(this, savedInstanceState);
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
             global::Xamarin.Auth.CustomTabsConfiguration.CustomTabsClosingMessage = null;
+            Forms.Init(this, savedInstanceState);
             List<PermissionStatus> ListPerm = new List<PermissionStatus>();
             var stsatus = await Permissions.CheckStatusAsync<Permissions.Media>();
             var status = await Permissions.CheckStatusAsync<Permissions.LocationAlways>();

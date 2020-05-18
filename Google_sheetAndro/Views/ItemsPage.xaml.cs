@@ -1,12 +1,16 @@
 ﻿using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
+using Java.Util.Prefs;
 using System;
+using Xamarin.Essentials;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 using TableAndro;
 using Xamarin.Forms;
+using Android.Widget;
 
 namespace Google_sheetAndro.Views
 {
@@ -23,6 +27,7 @@ namespace Google_sheetAndro.Views
         public event EventHandler<PageOrientationEventArgs> OnOrientationChanged = (e, a) => { };
         public void setter(TableItem ti)
         {
+            var t = new Picker();
             if (ti.date == new DateTime())
             {
                 Date_pick.Date = DateTime.Now;
@@ -33,7 +38,7 @@ namespace Google_sheetAndro.Views
                 Task_txt.Text = "";
                 Hight_txt_num.Text = "0";
                 Range_txt.Text = "0";
-                Place_txt.SelectedIndex = 0;
+                //Place_txt. SelectedIndex = 0;
                 Comment_txt.Text = "";
                 ti_local = getter();
             }
@@ -147,7 +152,14 @@ namespace Google_sheetAndro.Views
             Date_pick.Date = DateTime.Now;
             if (Options.opt.dateTime != new DateTime()) Date_pick.Date = Options.opt.dateTime;
             CloudPicker.ItemsSource = cloud_list;
-            Place_txt.ItemsSource = place_list;
+            var t = Xamarin.Essentials.Preferences.Get("place_list", null);
+            if (t != null)
+            {
+                place_list = t.Split(';').ToList();
+                Place_txt.ItemsSource = place_list;
+            }
+            else
+                Place_txt.ItemsSource = place_list;
             CloudPicker.SelectedIndex = 0;
             Place_txt.SelectedIndex = 0;
             //Time_pick.Time = DateTime.Now.TimeOfDay;
@@ -155,6 +167,7 @@ namespace Google_sheetAndro.Views
             BindingContext = this;
         }
 
+        public Func<string, ICollection<string>, ICollection<string>> SortingAlgorithm = (text, values) => values.Where(x => x.Contains(text)).ToList();
         private void Init()
         {
             _width = this.Width;
@@ -640,6 +653,38 @@ namespace Google_sheetAndro.Views
         private void Tsp_tasksetsucs(object sender, EventArgs e)
         {
             Task_txt.Text = Tsp.OutTask;
+        }
+
+        private async void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            var t = sender as Xamarin.Forms.ImageButton;
+            addplace.IsVisible = true;
+            await t.FadeTo(0, 100);
+            await t.FadeTo(1, 100);
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(New_Place.Text))
+            {
+                if (place_list.Contains(New_Place.Text))
+                    Toast.MakeText(Android.App.Application.Context, "Место уже в списке", ToastLength.Long).Show();
+                else
+                {
+                    place_list.Add(New_Place.Text);
+                    Xamarin.Essentials.Preferences.Set("place_list", string.Join(";", place_list));
+                    Place_txt.ItemsSource = null;
+                    Place_txt.ItemsSource = place_list;
+                    Place_txt.SelectedItem = place_list.Last();
+                    addplace.IsVisible = false;
+                }
+            }
+
+        }
+
+        private void Button_Clicked_1(object sender, EventArgs e)
+        {
+            addplace.IsVisible = false;
         }
     }
 }

@@ -4,8 +4,8 @@
                  xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:control="clr-namespace:Xamarin.Forms.MaskedEntry;assembly=Xamarin.Forms.MaskedEntry"
-                 xmlns:local="clr-namespace:Google_sheetAndro"
-                 mc:Ignorable="d"
+                 xmlns:local="clr-namespace:Google_sheetAndro" xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+             mc:Ignorable="d"
                  x:Class="Google_sheetAndro.Views.ItemsPage"
                  NavigationPage.HasNavigationBar="False"
                  x:Name="BrowseItemsPage">
@@ -458,14 +458,19 @@
                                     <RowDefinition Height="0.3*"/>
                                     <RowDefinition Height="0.7*"/>
                                 </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.9*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
                                 <Label Text="Место" Grid.Row="0" Grid.Column ="0" 
                                        Margin="10,0,10,0" TextColor="#000000" FontSize="18"/>
-                                <Picker
+                                <Picker 
                                        x:Name="Place_txt"
                                        Margin="10,10,10,0" TextColor="#000000" 
-                                       Grid.Row="1"
+                                       Grid.Row="1" Grid.Column="0"
                                        HorizontalOptions="Fill" VerticalOptions="Center" FontSize="18"
                                        />
+                                <ImageButton Grid.Row="1" Grid.Column="1" Source="p.png" BackgroundColor="Transparent" Margin="0,0,15,0" Clicked="ImageButton_Clicked" />
                             </Grid>
                         </Grid>
                         <Grid x:Name="gr_6" Grid.Row="5">
@@ -511,6 +516,25 @@
                 </StackLayout>
 
             </ScrollView>
+            <Frame x:Name="addplace" IsVisible="False" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="15,0" IsClippedToBounds="False" BorderColor="Orange"
+               BackgroundColor="#2196F3" CornerRadius="20">
+                <Grid RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Добавить новое место" TextColor="White" FontSize="18" Grid.Row="0" Grid.Column="0"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    <Button Text="X" FontAttributes="Bold" FontSize="18" TextColor="White" WidthRequest="40" HeightRequest="40" Clicked="Button_Clicked_1" Grid.Row="0" Grid.Column="1"
+                        BackgroundColor="Transparent"/>
+                    <Entry TextColor="White" FontSize="18" Grid.Row="1" Grid.Column="0" x:Name="New_Place"/>
+                    <Button Text="Добавить" TextColor="Black" Clicked="Button_Clicked" FontSize="14" Grid.Row="1" Grid.Column="1" BackgroundColor="White" Padding="0" Margin="0"
+                            BorderColor="Orange" BorderWidth="1" CornerRadius="5"/>
+                </Grid>
+            </Frame>
             <!--<RelativeLayout BackgroundColor="Transparent" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">
                 <ActivityIndicator IsRunning="{Binding IsBusy}"
                          IsVisible="{Binding IsBusy}"

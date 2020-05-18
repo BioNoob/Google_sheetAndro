@@ -113,10 +113,10 @@
                         Grid.Column="1" BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Listen"/>
                 <Label  x:Name="StatusD" Text="" 
                         Padding="5" Grid.Row="0" Grid.Column="1" BackgroundColor="#70000000" TextColor="Orange" FontSize="12" AutomationId="Listen"/>
-                <Label x:Name="Status_H" Text="Выс тек:" Grid.Row="1" Grid.Column="2" BackgroundColor="#70000000" 
+                <!--<Label x:Name="Status_H" Text="Выс тек:" Grid.Row="1" Grid.Column="2" BackgroundColor="#70000000" 
                        TextColor="Orange" FontSize="11" VerticalTextAlignment="Start" AutomationId="Nor_H"/>
                 <Label x:Name="StatusH" Text=""  Padding="5" Grid.Row="0" Grid.Column="2" BackgroundColor="#70000000" 
-                       TextColor="Orange" FontSize="11" AutomationId="Nor_H"/>
+                       TextColor="Orange" FontSize="11" AutomationId="Nor_H"/>-->
                 <Label x:Name="StatusTime" Text="" Padding="5" Grid.Row="2" Grid.Column="0"
                        BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId=""/>
                 <Label x:Name="LblStatusTime" Text="Время зап." Padding="0" Grid.Row="3" Grid.Column="0"
@@ -126,13 +126,13 @@
                        BackgroundColor="#70000000" TextColor="Orange" FontSize="11"/>
                 <Label x:Name="StatusS" Text="" Padding="5" Grid.Row="0" Grid.Column="3"
                        BackgroundColor="#70000000" TextColor="Orange" FontSize="11"/>
-                <Label x:Name="Status_H_m" Text="Выс макс:"  Padding="0" Grid.Row="3" Grid.Column="2" 
+                <Label x:Name="Status_H_m" Text="Выс макс:"  Padding="0" Grid.Row="1" Grid.Column="2" 
                        BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Max_H"/>
-                <Label x:Name="StatusH_m" Text="{Binding height_max}" Padding="5" Grid.Row="2" Grid.Column="2"
+                <Label x:Name="StatusH_m" Text="{Binding height_max}" Padding="5" Grid.Row="0" Grid.Column="2"
                        BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Max_H"/>
-                <Label x:Name="Status_H_av" Text="Выс сред:"  Padding="0" Grid.Row="3" Grid.Column="3" 
+                <Label x:Name="Status_H_av" Text="Выс относ:"  Padding="0" Grid.Row="3" Grid.Column="2" 
                        BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Av_H"/>
-                <Label x:Name="StatusH_av" Text="{Binding height_middle}" Padding="5" Grid.Row="2" Grid.Column="3"
+                <Label x:Name="StatusH_av" Text="{Binding height_middle}" Padding="5" Grid.Row="2" Grid.Column="2"
                        BackgroundColor="#70000000" TextColor="Orange" FontSize="11" AutomationId="Av_H"/>
                 <ImageButton Grid.Row="2" Grid.Column="1" Source="select" Scale="0.7"
                              Grid.RowSpan="2" BackgroundColor="Transparent"
@@ -142,10 +142,13 @@
                              Grid.RowSpan="2" BackgroundColor="Transparent"
                              IsEnabled="False" x:Name="Listen_imgbtn"
                              Opacity="0"/>
-                <ImageButton Grid.Row="2" Grid.Column="3" Source="select" Scale="0.7"
-                             Grid.RowSpan="2" BackgroundColor="Transparent"
-                             IsEnabled="False" x:Name="Height_av_imgbtn"
-                             Opacity="0"/>
+                <Button Grid.Row="2" Grid.Column="3"
+                             Grid.RowSpan="2" BorderColor="Orange" BorderWidth="2"
+                        CornerRadius="15" BackgroundColor="#70000000"
+                        Text="Сброс" TextColor="Orange" FontSize="9"
+                             Margin="5" Clicked="Height_av_imgbtn_Clicked"
+                             IsEnabled="True" x:Name="Height_av_imgbtn"
+                             Opacity="1"/>
                 <ImageButton Grid.Row="0" Grid.Column="2" Source="select" Scale="0.7"
                              Grid.RowSpan="2" BackgroundColor="Transparent"
                              IsEnabled="False" x:Name="Height_curr_imgbtn"
