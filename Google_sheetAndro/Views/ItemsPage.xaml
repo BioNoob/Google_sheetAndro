@@ -4,7 +4,7 @@
                  xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:control="clr-namespace:Xamarin.Forms.MaskedEntry;assembly=Xamarin.Forms.MaskedEntry"
-                 xmlns:local="clr-namespace:Google_sheetAndro" xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+                 xmlns:local="clr-namespace:Google_sheetAndro"
              mc:Ignorable="d"
                  x:Class="Google_sheetAndro.Views.ItemsPage"
                  NavigationPage.HasNavigationBar="False"

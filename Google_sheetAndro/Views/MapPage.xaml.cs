@@ -410,6 +410,7 @@ namespace Google_sheetAndro.Views
             }
         }
         private Polyline _pl_listner;
+        Polyline pl_transparent { get; set; }
         Polyline pl_listner
         {
             get
@@ -518,7 +519,7 @@ namespace Google_sheetAndro.Views
                         case null:
                             if (!fl_already_shown)
                             {
-                                DispMes(true);
+                                DispMes(true,1);
                             }
                             break;
                         case false:
@@ -553,7 +554,7 @@ namespace Google_sheetAndro.Views
                         case null:
                             if (!fl_already_shown)
                             {
-                                DispMes(true);
+                                DispMes(true,2);
                             }
                             break;
                         case false:
@@ -593,6 +594,7 @@ namespace Google_sheetAndro.Views
                 map.Polylines.Clear();
                 pl_handle.Positions.Clear();
                 pl_listner.Positions.Clear();
+                pl_transparent.Positions.Clear();
                 dist = 0;
                 dist_handle = 0;
                 height = 0;
@@ -606,6 +608,9 @@ namespace Google_sheetAndro.Views
             var route_type = await SecureStorage.GetAsync("route");
             var map_type = await SecureStorage.GetAsync("map");
             var switch_s = await SecureStorage.GetAsync("switch");
+            pl_handle = new Polyline() { Tag = "Handle", StrokeColor = Color.Red, StrokeWidth = 7 };
+            pl_listner = new Polyline() { Tag = "Listner", StrokeColor = Color.Blue, StrokeWidth = 7 };
+            pl_transparent = new Polyline() { Tag = "Transparent", StrokeColor = Color.Transparent, StrokeWidth = 7 };
             //bool kk = Preferences.Get("SwitchValue", false);
             //SetToPinRoute.IsToggled = kk;
             MapTypePick.Items.Add("Гибридная");
@@ -624,8 +629,7 @@ namespace Google_sheetAndro.Views
                 MapTypePick.SelectedIndex = 0;
                 RouteTypePick.SelectedIndex = 0;
             }
-            pl_handle = new Polyline() { Tag = "Handle", StrokeColor = Color.Red, StrokeWidth = 7 };
-            pl_listner = new Polyline() { Tag = "Listner", StrokeColor = Color.Blue, StrokeWidth = 7 };
+
             //MapLines = new List<Polyline>() {  },
 
             map.PinDragEnd += Map_PinDragEnd;
@@ -682,7 +686,6 @@ namespace Google_sheetAndro.Views
                     mo.Pins = map.Pins.ToList();
                     SaveToHist(mo);
                 }
-                //Включена поддержка перетаскивания записанного
                 buff = pl_listner.Positions.IndexOf(l.Position);
                 if (buff >= 0)
                 {
@@ -699,6 +702,22 @@ namespace Google_sheetAndro.Views
                     }
                     mo.Pins = map.Pins.ToList();
                     SaveToHist(mo);
+                }
+                buff = pl_transparent.Positions.IndexOf(l.Position);
+                if (buff >= 0)
+                {
+                    pl_transparent.Positions.RemoveAt(buff);
+                    pl_transparent.Positions.Insert(buff, e.Pin.Position);
+                    MapObjects mo = new MapObjects();
+                    mo.Pins = map.Pins.ToList();
+                    if (MapLines.Count > 0)
+                    {
+                        mo.Polylines = MapLines;
+                    }
+                    SaveToHist(mo);
+                    //селектед тип редактирования свич, если точки то
+                    if (!fl_route)
+                        dist_handle = CalcDistForLine(pl_transparent);
                 }
             }
             //Для отключения перетаскивания ручного маршрута!
@@ -813,9 +832,10 @@ namespace Google_sheetAndro.Views
         {
             mapObjects.Pins = JsonConvert.DeserializeObject<List<Pin>>(Point);
             mapObjects.Polylines = JsonConvert.DeserializeObject<List<Polyline>>(Route);
+            fl_handle_ok_to_edit = true;
             if (mapObjects.Polylines != null)
             {
-                fl_handle_ok_to_edit = true;
+
                 foreach (var item in mapObjects.Polylines)
                 {
                     if (item.Tag.ToString() == "Handle")
@@ -853,7 +873,6 @@ namespace Google_sheetAndro.Views
                         //await Task.Delay(100);
                     }
                 }
-                fl_handle_ok_to_edit = null;
             }
             if (mapObjects.Pins != null)
             {
@@ -867,9 +886,21 @@ namespace Google_sheetAndro.Views
                         }
                     item.Icon = _icon;
                     map.Pins.Add(item);
+                    if(item.Tag.ToString().Contains("Transparent"))
+                    {
+                        pl_transparent.Positions.Add(item.Position);
+                    }
                 }
                 ToinitPos = map.Pins.Last().Position;
             }
+            if(pl_transparent.Positions.Count > 0)
+            {
+                if(!fl_route)
+                {
+                    dist_handle = CalcDistForLine(pl_transparent);
+                }
+            }
+            fl_handle_ok_to_edit = null;
             await Task.Delay(100);
             return mapObjects;
             //mapObjects.Pins = JsonConvert.DeserializeObject<List<Pin>>(Point);
@@ -980,7 +1011,12 @@ namespace Google_sheetAndro.Views
             //StatusH.Text = string.Format("{0:#0.0 м}", _height);
         }
         private bool fl_already_shown = false;
-        private async void DispMes(bool fl_dist)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fl_dist"></param>
+        /// <param name="dist_type">1 = listen, 2 = handle</param>
+        private async void DispMes(bool fl_dist, int dist_type = 1)
         {
             fl_already_shown = true;
             //Device.BeginInvokeOnMainThread(async () =>
@@ -990,8 +1026,18 @@ namespace Google_sheetAndro.Views
             {
                 if (fl_dist)
                 {
-                    LoaderFunction.ItemsPageAlone.SetDist(_dist);
-                    StatusD.Text = string.Format("{0:#0.0} км", _dist);
+                    switch (dist_type)
+                    {
+                        case 1:
+                            LoaderFunction.ItemsPageAlone.SetDist(_dist);
+                            StatusD.Text = string.Format("{0:#0.0} км", _dist);
+                            break;
+                        case 2:
+                            LoaderFunction.ItemsPageAlone.SetDist(_dist_handle);
+                            StatusD_handle.Text = string.Format("{0:#0.0} км", _dist_handle);
+                            break;
+                    }
+
                 }
                 else
                 {
@@ -1285,7 +1331,7 @@ namespace Google_sheetAndro.Views
                     }
                     else
                     {
-                        SetPoint(e.Point);
+                        SetPoint(e.Point, "Transparent");
                     }
                 }
                 else
@@ -1340,19 +1386,36 @@ namespace Google_sheetAndro.Views
         private void SetPoint(Xamarin.Forms.GoogleMaps.Position e, string Tag_line = "", bool fl_transp = false)
         {
             var _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.DeepSkyBlue);
-            if (map.Pins.Count >= 1)
+            if (Tag_line != "Transparent")
             {
-                if (!fl_transp)
-                    _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.DeepSkyBlue);
-                map.Pins.Add(new Pin() { Label = $"{map.Pins.Count - 1}", Position = e, IsDraggable = true, Icon = _icon, Tag = $"{map.Pins.Count - 1}_" + Tag_line });
+                if (map.Pins.Count >= 1)
+                {
+                    if (!fl_transp)
+                        _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.DeepSkyBlue);
+                    map.Pins.Add(new Pin() { Label = $"{map.Pins.Count - 1}", Position = e, IsDraggable = true, Icon = _icon, Tag = $"{map.Pins.Count - 1}_" + Tag_line });
+                }
+                else
+                {
+                    if (fl_route)
+                        _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Red);
+                    else
+                        _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.DeepSkyBlue);
+                    map.Pins.Add(new Pin() { Label = $"Start", Position = e, IsDraggable = true, Icon = _icon, Tag = "Start_" + Tag_line });
+                }
             }
             else
             {
-                if(fl_route)
-                    _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.Red);
-                else
-                    _icon = BitmapDescriptorFactory.DefaultMarker(Xamarin.Forms.Color.DeepSkyBlue);
-                map.Pins.Add(new Pin() { Label = $"Start", Position = e, IsDraggable = true, Icon = _icon, Tag = "Start_" + Tag_line });
+                pl_transparent.Positions.Add(e);
+                if (!fl_route)
+                    dist_handle = CalcDistForLine(pl_transparent);
+                //if (pl_transparent.Positions.Count >= 1)
+                //{
+                    map.Pins.Add(new Pin() { Label = $"{pl_transparent.Positions.Count - 1}", Position = e, IsDraggable = true, Icon = _icon, Tag = $"{pl_transparent.Positions.Count - 1}_" + Tag_line });
+                //}
+                //else
+                //{
+                //    map.Pins.Add(new Pin() { Label = $"Start", Position = e, IsDraggable = true, Icon = _icon, Tag = "Start_" + Tag_line });
+                //}
             }
             if (!fl_transp)
             {
@@ -1363,6 +1426,7 @@ namespace Google_sheetAndro.Views
                 }
                 SaveToHist(mo);
             }
+
         }
         private void SetLineInner(Xamarin.Forms.GoogleMaps.Position e, Polyline pl)
         {
@@ -1689,7 +1753,7 @@ namespace Google_sheetAndro.Views
             if (await DisplayAlert("Предупреждение", "Очистить карту? Данные карты будут очищены!", "Да", "Нет"))
             {
                 ClearMap();
-                
+
                 map.IsVisible = false;
                 await Task.Delay(100);
                 map.IsVisible = true;
@@ -1723,15 +1787,26 @@ namespace Google_sheetAndro.Views
         private async void RouteTypePick_SelectedIndexChanged(object sender, EventArgs e)
         {
             await SecureStorage.SetAsync("route", RouteTypePick.SelectedIndex.ToString());
+            var buf = fl_handle_ok_to_edit;
+            fl_handle_ok_to_edit = true;
             switch (RouteTypePick.SelectedIndex)
             {
                 case 0:
                     fl_route = true;
+                    if (pl_handle.Positions.Count > 1)
+                        dist_handle = CalcDistForLine(pl_handle);
+                    else
+                        dist_handle = 0;
                     break;
                 case 1:
                     fl_route = false;
+                    if (pl_transparent.Positions.Count > 1)
+                        dist_handle = CalcDistForLine(pl_transparent);
+                    else
+                        dist_handle = 0;
                     break;
             }
+            fl_handle_ok_to_edit = buf;
         }
 
         private async void MapTypePick_SelectedIndexChanged(object sender, EventArgs e)
@@ -1759,7 +1834,15 @@ namespace Google_sheetAndro.Views
                     q = pl_listner;
                     break;
                 case "Handle":
-                    buff = "ручного";
+                    if(fl_route)
+                    {
+                        buff = "ручного (маршрут)";
+                    }
+                    else
+                    {
+                        q = pl_transparent;
+                        buff = "ручного (точки)";
+                    }
                     break;
             }
             if (await DisplayAlert("Предупреждение", $"Пересчитать дистанцию для {buff} маршрута", "Да", "Нет"))
@@ -1844,6 +1927,15 @@ namespace Google_sheetAndro.Views
                 }
                 //map.Polylines.Add(pl_listner);
                 //dist = CalcDistForLine(pl_listner);
+                ClosePinInfo_Btn_Clicked(this, new EventArgs());
+            }
+            if(pl_transparent.Positions.Contains(ActivePin.Position))
+            {
+                pl_transparent.Positions.Remove(ActivePin.Position);
+                if(!fl_route)
+                {
+                    dist_handle = CalcDistForLine(pl_transparent);
+                }
                 ClosePinInfo_Btn_Clicked(this, new EventArgs());
             }
             ad_vis.IsVisible = false;
