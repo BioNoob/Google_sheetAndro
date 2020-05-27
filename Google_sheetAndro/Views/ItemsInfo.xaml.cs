@@ -127,6 +127,7 @@ namespace Google_sheetAndro.Views
             if (!loading)
             {
                 loading = true;
+                LoaderFunction.MAINNavPage.Title = "Новая";
                 await Navigation.PushModalAsync(LoaderFunction.MAINNavPage);//main);
                 loading = false;
             }
@@ -259,6 +260,7 @@ namespace Google_sheetAndro.Views
             LoaderFunction.ExtItemsViewer.Children.Add(LoaderFunction.MapAlNavPage);
 
             LoaderFunction.ExtItNavPage = new NavigationPage(LoaderFunction.ExtItemsViewer);
+            LoaderFunction.ExtItNavPage.Title = "Просмотр";
             LoaderFunction.ExtItNavPage.ToolbarItems.Clear();
             LoaderFunction.ExtItNavPage.ToolbarItems.Add(new ToolbarItem("Изменить", "", update));
             LoaderFunction.ExtItNavPage.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));
