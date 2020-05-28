@@ -206,7 +206,7 @@
                           >
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <ViewCell>
+                                    <ViewCell Tapped="ViewCell_Tapped">
                                         <Grid Margin="5" ColumnSpacing="15">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>

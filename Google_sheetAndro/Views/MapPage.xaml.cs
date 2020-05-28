@@ -422,7 +422,7 @@ namespace Google_sheetAndro.Views
                 _pl_listner = value;
             }
         }
-        Time_r times = new Time_r();
+        public Time_r times = new Time_r();
         private bool alife = false;
         private bool height_coord = false;
         public double height
@@ -1103,6 +1103,7 @@ namespace Google_sheetAndro.Views
             }
             if (Is_base)
             {
+                await Task.Delay(1000);
                 SetInitVew(new Location(ToinitPos.Latitude, ToinitPos.Longitude));
             }
             else if (StaticInfo.Pos != null)

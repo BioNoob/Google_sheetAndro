@@ -17,18 +17,18 @@ namespace Google_sheetAndro.Views
         }
         private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var q = (windout)e.SelectedItem;
-            if (q != null)
-            {
-                LoaderFunction.SimpPage.ActualWind = q.Wind;
-                if (LoaderFunction.SimpPage.ToolbarItems.Count < 1)
-                {
-                    LoaderFunction.SimpPage.ToolbarItems.Add(new ToolbarItem("Назад", "CancelLast", new System.Action(() => { backpress(); })));
-                }
-                NavigationPage navigationPage = new NavigationPage(LoaderFunction.SimpPage);
-                await Navigation.PushModalAsync(navigationPage);
-            }
-            ((Xamarin.Forms.ListView)sender).SelectedItem = null;
+            //var q = (windout)e.SelectedItem;
+            //if (q != null)
+            //{
+            //    LoaderFunction.SimpPage.ActualWind = q.Wind;
+            //    if (LoaderFunction.SimpPage.ToolbarItems.Count < 1)
+            //    {
+            //        LoaderFunction.SimpPage.ToolbarItems.Add(new ToolbarItem("Назад", "CancelLast", new System.Action(() => { backpress(); })));
+            //    }
+            //    NavigationPage navigationPage = new NavigationPage(LoaderFunction.SimpPage);
+            //    await Navigation.PushModalAsync(navigationPage);
+            //}
+            //((Xamarin.Forms.ListView)sender).SelectedItem = null;
         }
         async void backpress()
         {
@@ -49,6 +49,22 @@ namespace Google_sheetAndro.Views
         private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
         {
             ((WheatherViewModel)this.BindingContext).ErrorVisual = false;
+        }
+
+        private async void ViewCell_Tapped(object sender, System.EventArgs e)
+        {
+            var t = (windout)AAPA.SelectedItem;
+            if (t != null)
+            {
+                LoaderFunction.SimpPage.ActualWind = t.Wind;
+                if (LoaderFunction.SimpPage.ToolbarItems.Count < 1)
+                {
+                    LoaderFunction.SimpPage.ToolbarItems.Add(new ToolbarItem("Назад", "CancelLast", new System.Action(() => { backpress(); })));
+                }
+                NavigationPage navigationPage = new NavigationPage(LoaderFunction.SimpPage);
+                await Navigation.PushModalAsync(navigationPage);
+                AAPA.SelectedItem = null;
+            }
         }
     }
 }

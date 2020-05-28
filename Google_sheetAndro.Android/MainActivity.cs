@@ -150,6 +150,18 @@ namespace Google_sheetAndro.Droid
             fl_wait = true;
             base.OnPause();
         }
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+        }
+        protected override void JavaFinalize()
+        {
+            base.JavaFinalize();    
+        }
         protected override void OnStop()
         {
             base.OnStop();

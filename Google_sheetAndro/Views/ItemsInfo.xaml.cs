@@ -113,7 +113,7 @@ namespace Google_sheetAndro.Views
                 vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0, EmailSync.IsToggled);
         }
         bool loading = false;
-        private async void ToolbarItem_Clicked(object sender, EventArgs e)
+        public async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             int yy = 0;
             if (int.TryParse(Year_pick.SelectedItem.ToString(), out yy) && Mounth_pick.SelectedIndex != 0)
@@ -235,15 +235,8 @@ namespace Google_sheetAndro.Views
                 await Navigation.PopModalAsync();
 
         }
-        private async void TableItems_ItemTapped(object sender, ItemTappedEventArgs e)
+        public async void SetItembyTap(TableItem Ti)
         {
-            if (e.Item == null)
-                return;
-            //LoaderFunction.ItNavPage.ToolbarItems.Clear();
-            //LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Изменить", "", update));
-            //LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));
-            TableItem Ti = (TableItem)e.Item;
-
             ItemsPage tp = LoaderFunction.ItemsPageAlone;
             MapPage mp = LoaderFunction.MapPageAlone;
             tp.setter(Ti);
@@ -269,6 +262,17 @@ namespace Google_sheetAndro.Views
 
             NavigationPage.SetHasNavigationBar(LoaderFunction.ExtItNavPage, false);
             await Navigation.PushModalAsync(LoaderFunction.ExtItNavPage);
+        }
+        private async void TableItems_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item == null)
+                return;
+            //LoaderFunction.ItNavPage.ToolbarItems.Clear();
+            //LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Изменить", "", update));
+            //LoaderFunction.ItNavPage.ToolbarItems.Add(new ToolbarItem("Удалить", "", delete));
+            TableItem Ti = (TableItem)e.Item;
+            SetItembyTap(Ti);
+
             ((Xamarin.Forms.ListView)sender).SelectedItem = null;
         }
         private void ContentPage_Appearing(object sender, EventArgs e)

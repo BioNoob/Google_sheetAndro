@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Widget;
 using Google_sheetAndro.Class;
+using Google_sheetAndro.Services;
 using Google_sheetAndro.Views;
 using Newtonsoft.Json;
 using Plugin.DeviceSensors;
@@ -153,12 +154,74 @@ namespace Google_sheetAndro.Models
         {
             DoCreateRow?.Invoke();
         }
+        public static bool LoadLastState()
+        {
+            try
+            {
+                var q = Xamarin.Essentials.Preferences.Get("last_known_state", "");
+                SaveService ss = SaveService.Deserialize(q);
+                if (!string.IsNullOrEmpty(q) && ss != null & ss.ti.date.Year != 1)
+                {
+                    switch (ss.CurrentMode)
+                    {
+                        case SaveService.ActiveMode.newpage:
+                            LoaderFunction.MapPage.AbsSetter(ss.ti.route, ss.ti.points);
+                            LoaderFunction.ItemsPage.setter(ss.ti);
+                            LoaderFunction.ItemsInfoPage.ToolbarItem_Clicked(null, new System.EventArgs());
+                            switch (ss.CurrentPage)
+                            {
+                                case SaveService.ActivePage.map:
+                                    LoaderFunction.MainPage.CurrentPage = LoaderFunction.MainPage.Children[1];
+                                    break;
+                                case SaveService.ActivePage.item:
+                                    LoaderFunction.MainPage.CurrentPage = LoaderFunction.MainPage.Children[0];
+                                    break;
+                                case SaveService.ActivePage.wheather:
+                                    LoaderFunction.MainPage.CurrentPage = LoaderFunction.MainPage.Children[2];
+                                    break;
+                                case SaveService.ActivePage.items:
+                                    break;
+                            }
+                            break;
+                        case SaveService.ActiveMode.watchpage:
+                            LoaderFunction.ItemsInfoPage.SetItembyTap(ss.ti);
+                            switch (ss.CurrentPage)
+                            {
+                                case SaveService.ActivePage.map:
+                                    LoaderFunction.ExtItemsViewer.CurrentPage = LoaderFunction.ExtItemsViewer.Children[1];
+                                    break;
+                                case SaveService.ActivePage.item:
+                                    LoaderFunction.ExtItemsViewer.CurrentPage = LoaderFunction.ExtItemsViewer.Children[0];
+                                    break;
+                                case SaveService.ActivePage.wheather:
+                                    break;
+                                case SaveService.ActivePage.items:
+                                    break;
+                            }
+                            break;
+                    }
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (System.Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return false;
+            }
+
+        }
         public static void EndLoad()
         {
             ItemsInfoPage.Title = "Записи";
             if(!is_offline)
             {
                 LoaderFunction.MenuPage.sett(LoaderFunction.ItemsInfoPage);
+                if (LoadLastState())
+                {
+                    Xamarin.Essentials.Preferences.Set("last_known_state", "");
+                }
             }
             //DoWheatherLoad?.Invoke();
             if (MenuPage != null && StaticInfo.AccountEmail != null)

@@ -34,5 +34,14 @@ namespace Google_sheetAndro.Services
         {
             return JsonConvert.SerializeObject(this);
         }
+        public static SaveService Deserialize(string json)
+        {
+            if (!string.IsNullOrEmpty(json))
+            {
+                var t = JsonConvert.DeserializeObject<SaveService>(json);
+                return t;
+            }
+            return null;
+        }
     }
 }
