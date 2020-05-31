@@ -1,9 +1,11 @@
 ﻿using Android.Widget;
 using Google_sheetAndro.Class;
+using Google_sheetAndro.Models;
 using RefreshSample.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -209,7 +211,8 @@ namespace Google_sheetAndro.Views
             {
                 Graph_pick_date.Items.Clear();
                 await Task.Delay(100);
-                tabelValue = LocalTable.SheetsVal;//Googles.GetValueTabel();
+                tabelValue = LocalTable.SheetsVal;
+                    //Googles.GetValueTabel();
                 foreach (string item in tabelValue.Keys)
                 {
                     if (item != "Общий налет")

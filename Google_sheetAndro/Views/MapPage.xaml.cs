@@ -519,7 +519,7 @@ namespace Google_sheetAndro.Views
                         case null:
                             if (!fl_already_shown)
                             {
-                                DispMes(true,1);
+                                DispMes(true, 1);
                             }
                             break;
                         case false:
@@ -554,7 +554,7 @@ namespace Google_sheetAndro.Views
                         case null:
                             if (!fl_already_shown)
                             {
-                                DispMes(true,2);
+                                DispMes(true, 2);
                             }
                             break;
                         case false:
@@ -677,7 +677,9 @@ namespace Google_sheetAndro.Views
                     pl_handle.Positions.Insert(buff, e.Pin.Position);
                     if (pl_handle.Positions.Count >= 2)
                         map.Polylines.Add(pl_handle);
-                    dist_handle = CalcDistForLine(pl_handle);
+                    //селектед тип редактирования свич, если точки то
+                    if (fl_route)
+                        dist_handle = CalcDistForLine(pl_handle);
                     MapObjects mo = new MapObjects();
                     if (MapLines.Count > 0)
                     {
@@ -761,6 +763,17 @@ namespace Google_sheetAndro.Views
             switch (active_dist)
             {
                 case "Handle":
+                    double dist_tr = 0;
+                    double dist_hand = 0;
+                    if (pl_transparent.Positions.Count > 1)
+                        dist_tr = CalcDistForLine(pl_transparent);
+                    if (pl_handle.Positions.Count > 1)
+                        dist_hand = CalcDistForLine(pl_handle);
+                    if (Math.Abs((val - dist_hand)) > Math.Abs((val - dist_tr)))
+                        //RouteTypePick_SelectedIndexChanged(null, new EventArgs());
+                        RouteTypePick.SelectedIndex = 1;
+                    else
+                        RouteTypePick.SelectedIndex = 0;
                     dist_handle = val;
                     break;
                 case "Listen":
@@ -886,16 +899,16 @@ namespace Google_sheetAndro.Views
                         }
                     item.Icon = _icon;
                     map.Pins.Add(item);
-                    if(item.Tag.ToString().Contains("Transparent"))
+                    if (item.Tag.ToString().Contains("Transparent"))
                     {
                         pl_transparent.Positions.Add(item.Position);
                     }
                 }
                 ToinitPos = map.Pins.Last().Position;
             }
-            if(pl_transparent.Positions.Count > 0)
+            if (pl_transparent.Positions.Count > 0)
             {
-                if(!fl_route)
+                if (!fl_route)
                 {
                     dist_handle = CalcDistForLine(pl_transparent);
                 }
@@ -1242,6 +1255,8 @@ namespace Google_sheetAndro.Views
                 var tt = Location.CalculateDistance(buf.Latitude, buf.Longitude, e.Position.Latitude, e.Position.Longitude, DistanceUnits.Kilometers) * 1000;
                 if (tt > 5 && tt < 110 && spd != 0)
                 {
+                    if (LoaderFunction.is_sleep)
+                        await LoaderFunction.Sleeping_pills(); //не работает дебаг в слипе
                     SetLine(pos, false);
                     animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
                         new CameraPosition(
@@ -1411,7 +1426,7 @@ namespace Google_sheetAndro.Views
                     dist_handle = CalcDistForLine(pl_transparent);
                 //if (pl_transparent.Positions.Count >= 1)
                 //{
-                    map.Pins.Add(new Pin() { Label = $"{pl_transparent.Positions.Count - 1}", Position = e, IsDraggable = true, Icon = _icon, Tag = $"{pl_transparent.Positions.Count - 1}_" + Tag_line });
+                map.Pins.Add(new Pin() { Label = $"{pl_transparent.Positions.Count - 1}", Position = e, IsDraggable = true, Icon = _icon, Tag = $"{pl_transparent.Positions.Count - 1}_" + Tag_line });
                 //}
                 //else
                 //{
@@ -1835,7 +1850,7 @@ namespace Google_sheetAndro.Views
                     q = pl_listner;
                     break;
                 case "Handle":
-                    if(fl_route)
+                    if (fl_route)
                     {
                         buff = "ручного (маршрут)";
                     }
@@ -1930,10 +1945,10 @@ namespace Google_sheetAndro.Views
                 //dist = CalcDistForLine(pl_listner);
                 ClosePinInfo_Btn_Clicked(this, new EventArgs());
             }
-            if(pl_transparent.Positions.Contains(ActivePin.Position))
+            if (pl_transparent.Positions.Contains(ActivePin.Position))
             {
                 pl_transparent.Positions.Remove(ActivePin.Position);
-                if(!fl_route)
+                if (!fl_route)
                 {
                     dist_handle = CalcDistForLine(pl_transparent);
                 }

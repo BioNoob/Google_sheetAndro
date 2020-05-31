@@ -65,7 +65,7 @@
                        Margin="10" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
                                 <Switch  Grid.Column="1" Margin="10" HorizontalOptions="Center"  x:Name="EmailSync"
                         VerticalOptions="Center" Scale="1.4" ThumbColor="Orange" OnColor="#2196F3"
-                            Toggled="Switch_Toggled" IsToggled="True"/>
+                            Toggled="Switch_Toggled"/>
                             </Grid>
                         </Frame>
                         <Frame Margin="10" VerticalOptions="Center" 

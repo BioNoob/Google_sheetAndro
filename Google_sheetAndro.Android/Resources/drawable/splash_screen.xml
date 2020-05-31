@@ -7,12 +7,21 @@
     <bitmap
         android:src="@drawable/back_book"
         android:tileMode="disabled"
-        android:gravity="center"/>
+        android:gravity=""/>
   </item>
-  <item>
-    <bitmap
-  android:src="@drawable/back_helper"
-    android:tileMode="disabled"
-    android:gravity="center"/>
+  <item
+   android:top="550dp">
+    <bitmap android:src="@drawable/a0_3"
+      android:gravity="center" />
+  </item>
+  <item
+      android:width="350dp"
+      android:height="350dp"
+      android:drawable="@drawable/a0_2"
+      android:gravity="center">
+  </item>
+  <item android:bottom="450dp">
+    <bitmap android:src="@drawable/a0_1"
+      android:gravity="center" />
   </item>
 </layer-list>

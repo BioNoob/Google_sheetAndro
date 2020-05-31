@@ -81,104 +81,13 @@ namespace Google_sheetAndro
             }
         }
 
-        protected override void OnSleep()
+        protected override async void OnSleep()
         {
             fl_wait = true;
+            LoaderFunction.is_sleep = true;
             //if (!string.IsNullOrEmpty(Application.Current.MainPage.Title) & Application.Current.MainPage.Title != "Detail")
             {
-                var t = ((NavigationPage)((MasterDetailPage)Application.Current.MainPage).Detail).RootPage;
-                SaveService ss = new SaveService();
-                ss.CurrentPage = SaveService.ActivePage.items;
-                ss.CurrentMode = SaveService.ActiveMode.newpage;
-                //узнать последнюю страницу
-                //
-                var type = t.GetType();
-                switch (t.Title)
-                {
-                    case "Записи":
-                        if (t.Navigation.ModalStack.Count > 0)
-                        {
-                            var page = t.Navigation.ModalStack;
-                            foreach (var item in page)
-                            {
-                                bool pass = false;
-                                switch (item.Title)
-                                {
-                                    case "Просмотр":
-                                        ss.CurrentMode = SaveService.ActiveMode.watchpage;
-                                        if(LoaderFunction.MapPageAlone.fl_run)
-                                        {
-                                            LoaderFunction.ItemsPageAlone.SetNal(LoaderFunction.MapPageAlone.times.ToString()); 
-                                        }
-                                        ss.ti = LoaderFunction.ItemsPageAlone.getter();
-                                        ss.ti.route = LoaderFunction.MapPageAlone.MapObj.SerializableLine;
-                                        ss.ti.points = LoaderFunction.MapPageAlone.MapObj.SerializablePins;
-                                        pass = true;
-                                        break;
-                                    case "Новая":
-                                        ss.CurrentMode = SaveService.ActiveMode.newpage;
-                                        if (LoaderFunction.MapPage.fl_run)
-                                        {
-                                            LoaderFunction.ItemsPage.SetNal(LoaderFunction.MapPage.times.ToString());
-                                        }
-                                        ss.ti = LoaderFunction.ItemsPage.getter();
-                                        ss.ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
-                                        ss.ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
-                                        pass = true;
-                                        break;
-                                }
-                                if (pass)
-                                {
-                                    var q = item as NavigationPage;
-                                    if (q.RootPage is TabbedPage)
-                                    {
-                                        var qq = q.RootPage as TabbedPage;
-                                        var qqq = qq.CurrentPage;
-                                        switch (qqq.Title)
-                                        {
-                                            case "Данные":
-                                            case "Запись":
-                                                ss.CurrentPage = SaveService.ActivePage.item;
-                                                break;
-                                            case "Навигация":
-                                                ss.CurrentPage = SaveService.ActivePage.map;
-                                                break;
-                                            case "Погода":
-                                                ss.CurrentPage = SaveService.ActivePage.wheather;
-                                                break;
-                                        }
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                        break;
-                    case "Карта":
-                        ss.CurrentMode = SaveService.ActiveMode.newpage;
-                        ss.CurrentPage = SaveService.ActivePage.map;
-                        ss.ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
-                        ss.ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
-                        break;
-                    default:
-                        if (LoaderFunction.MapPage.MapObj != new MapObjects())
-                        {
-                            ss.ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
-                            ss.ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
-                        }
-                        break;
-                }
-                switch (t.Title)
-                {
-                    case "Погода":
-                        ss.CurrentPage = SaveService.ActivePage.wheather;
-                        break;
-                }
-                string returned = string.Empty;
-                if (ss != new SaveService() & ss.ti != new TableItem())
-                {
-                    returned = ss.Serialize();
-                }
-                Xamarin.Essentials.Preferences.Set("last_known_state", returned);
+                LoaderFunction.SaveLastState();
             }
 
             // Handle when your app sleeps
@@ -186,6 +95,7 @@ namespace Google_sheetAndro
 
         protected override void OnResume()
         {
+            LoaderFunction.is_sleep = false;
             LoaderFunction.ItemsInfoPage.fl_init = false;
             // Handle when your app resumes
         }

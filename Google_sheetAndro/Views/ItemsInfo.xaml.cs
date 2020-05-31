@@ -2,6 +2,7 @@
 using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
 using Google_sheetAndro.ViewModels;
+using Java.Security;
 using System;
 using System.Linq;
 using TableAndro;
@@ -36,6 +37,8 @@ namespace Google_sheetAndro.Views
             ImgBtn.GestureRecognizers.Add(tgr);
             //Year_pick.SelectedIndex = Year_pick.Items.Count - 1;
             Mounth_pick.SelectedIndex = 0;
+            EmailSync.IsToggled = Xamarin.Essentials.Preferences.Get("only_user",true);
+            LoaderFunction.is_only_user_shown = EmailSync.IsToggled;
             BindingContext = vM;
         }
 
@@ -295,7 +298,8 @@ namespace Google_sheetAndro.Views
                 else
                     vM.ItemGroups = LocalTable.SortItems(Year_pick.SelectedItem.ToString(), 0, EmailSync.IsToggled);
             }
-
+            LoaderFunction.is_only_user_shown = EmailSync.IsToggled;
+            Xamarin.Essentials.Preferences.Set("only_user", EmailSync.IsToggled);
         }
     }
 }

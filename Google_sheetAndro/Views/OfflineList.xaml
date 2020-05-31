@@ -23,7 +23,6 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Button Text="Сохранить" x:Name="SaveAllBtn" BackgroundColor="#98FFFFFF"
-                    WidthRequest="110"
                     Grid.Column="0" Clicked="SaveAllBtn_Clicked" CornerRadius="20"/>
                 <Button Text="Удалить" x:Name="DellAllBtn" CornerRadius="20" 
                     BackgroundColor="#98FFFFFF" WidthRequest="110"

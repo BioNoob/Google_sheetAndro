@@ -573,6 +573,20 @@ namespace TableAndro
                 cts.CancelAfter(15000);
                 appendReponse = qqqreq.ExecuteAsync(cts.Token).Result;
             }
+            else
+            {
+                if (tbi.sh_id == 0)
+                {
+                    tbi.sh_id = sheet_id;
+                }
+                BatchUpdateSpreadsheetRequest requestBody = new BatchUpdateSpreadsheetRequest();
+                requestBody.Requests = new List<Request>();
+                requestBody.Requests.Add(google_requests.MergeRq(tbi.sh_id, new Range_border(tbi.row_mounth_firs, 1 + tbi.row_nb - 1, 0, 1)));
+                cts = new CancellationTokenSource();
+                cts.CancelAfter(15000);
+                var BUrequest = service.Spreadsheets.BatchUpdate(requestBody, SpreadsheetId);
+                var resp = BUrequest.ExecuteAsync(cts.Token).Result;
+            }
         }
         public static void DeleteEntry(TableItem tbl, bool fl_spec = false)
         {

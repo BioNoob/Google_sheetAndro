@@ -1,4 +1,5 @@
 ﻿using Google_sheetAndro.Class;
+using Google_sheetAndro.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -170,6 +171,13 @@ namespace Google_sheetAndro
                         {
                             if (cell[1].ToString() != "")
                             {
+                                if(LoaderFunction.is_only_user_shown)
+                                {
+                                    if(cell[11].ToString()!=StaticInfo.AccountEmail)
+                                    {
+                                        continue;
+                                    }
+                                }
                                 DateTime dtt = new DateTime(1899, 12, 30, new GregorianCalendar());
                                 int daybuf = 0;
                                 int.TryParse(cell[1].ToString(), out daybuf);
