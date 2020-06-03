@@ -120,17 +120,19 @@ namespace Google_sheetAndro.Class
         public double range { get; set; }
         public string plase { get; set; }
         public string comment { get; set; }
-        public string tabelplase { get; set; }
         public string exect_mounth { get; set; }
         public int sh_id { get; set; }
+        public string points { get; set; }
+        public string route { get; set; }
+
+        public string tabelplase { get; set; }
         public int row_nb { get; set; }
         public int row_nb_end { get; set; }
         public int row_mounth_firs { get; set; }
 
 
         public string author { get; set; }
-        public string points { get; set; }
-        public string route { get; set; }
+
         //public int Col_vo_zapr()
         //{
         //    double answ = this.lenght_point_row() / 45000;
@@ -141,6 +143,31 @@ namespace Google_sheetAndro.Class
         //    else
         //        return 1;
         //}
+        public enum CompareStatus
+        {
+            equal,
+            position,
+            more
+        }
+        public CompareStatus Comparer(TableItem ti)
+        {
+            if(ti == this)//не факт
+            {
+                return CompareStatus.equal;
+            }
+            if((ti.row_nb != row_nb | ti.row_nb_end != row_nb_end | ti.row_mounth_firs != row_mounth_firs |
+                ti.tabelplase != tabelplase) & (ti.year == year & ti.mounth == mounth & ti.date == date & ti.time == time &
+                ti.wind == wind & ti.cloud == cloud & ti.temp == temp & ti.task == task & ti.height == height & ti.range == range &
+                ti.plase == plase & ti.comment == comment & ti.exect_mounth == exect_mounth & ti.sh_id == sh_id & ti.points == points & ti.route == route))
+            {
+                return CompareStatus.position;
+            }
+            else
+            {
+                return CompareStatus.more;
+            }
+            
+        }
         public List<object> GetListForEntry()
         {
             List<object> lst = new List<object>();

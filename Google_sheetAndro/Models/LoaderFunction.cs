@@ -252,13 +252,35 @@ namespace Google_sheetAndro.Models
             Xamarin.Essentials.Preferences.Set("last_known_state", returned);
             return true;
         }
+        //к тесту
         public static bool LoadLastState()
         {
             try
             {
                 var q = Xamarin.Essentials.Preferences.Get("last_known_state", "");
                 SaveService ss = SaveService.Deserialize(q);
-
+                int counter = 0;
+                bool help = false;
+                foreach (var item in LocalTable.ListItems)
+                {
+                    switch (ss.ti.Comparer(item))
+                    {
+                        case TableItem.CompareStatus.equal:
+                            help = true;
+                            break;
+                        case TableItem.CompareStatus.position:
+                            ss.ti.tabelplase = item.tabelplase;
+                            ss.ti.row_nb = item.row_nb;
+                            ss.ti.row_nb_end = item.row_nb_end;
+                            ss.ti.row_mounth_firs = item.row_mounth_firs;
+                            help = true;
+                            break;
+                        case TableItem.CompareStatus.more:
+                            break;
+                    }
+                }
+                if (!help)
+                    ss.CurrentMode = SaveService.ActiveMode.newpage;
                 if (!string.IsNullOrEmpty(q) && ss != null & ss.ti.date.Year != 1)
                 {
                     switch (ss.CurrentMode)
@@ -283,6 +305,7 @@ namespace Google_sheetAndro.Models
                             }
                             break;
                         case SaveService.ActiveMode.watchpage:
+                            //ss.ti.
                             LoaderFunction.ItemsInfoPage.SetItembyTap(ss.ti);
                             switch (ss.CurrentPage)
                             {
