@@ -56,7 +56,7 @@ namespace Google_sheetAndro.Models
                 cts.CancelAfter(1000);
                 var request = new GeolocationRequest(GeolocationAccuracy.Best);
                 SetterStatus("Получение текущих координат...");
-                var s = await Geolocation.GetLocationAsync(request,cts.Token);
+                var s = await Geolocation.GetLocationAsync(request, cts.Token);
                 //var ssd = await Geolocation.GetLastKnownLocationAsync();
                 StaticInfo.Pos = s;
             }
@@ -259,7 +259,6 @@ namespace Google_sheetAndro.Models
             {
                 var q = Xamarin.Essentials.Preferences.Get("last_known_state", "");
                 SaveService ss = SaveService.Deserialize(q);
-                int counter = 0;
                 bool help = false;
                 foreach (var item in LocalTable.ListItems)
                 {
@@ -278,9 +277,13 @@ namespace Google_sheetAndro.Models
                         case TableItem.CompareStatus.more:
                             break;
                     }
+                    if (!help)
+                    {
+                        ss.CurrentMode = SaveService.ActiveMode.newpage;
+                        break;
+                    }
                 }
-                if (!help)
-                    ss.CurrentMode = SaveService.ActiveMode.newpage;
+
                 if (!string.IsNullOrEmpty(q) && ss != null & ss.ti.date.Year != 1)
                 {
                     switch (ss.CurrentMode)
@@ -337,7 +340,7 @@ namespace Google_sheetAndro.Models
         public static void EndLoad()
         {
             ItemsInfoPage.Title = "Записи";
-            if(!is_offline)
+            if (!is_offline)
             {
                 LoaderFunction.MenuPage.sett(LoaderFunction.ItemsInfoPage);
                 if (LoadLastState())

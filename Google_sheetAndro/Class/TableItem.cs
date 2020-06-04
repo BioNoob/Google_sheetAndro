@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 
 namespace Google_sheetAndro.Class
 {
@@ -149,16 +150,46 @@ namespace Google_sheetAndro.Class
             position,
             more
         }
+        public static bool operator ==(TableItem x, TableItem y)
+        {
+            foreach (PropertyInfo propertyInfo in x.GetType().GetProperties())
+            {
+                // do stuff here
+                //if (propertyInfo.GetValue(x) != propertyInfo.GetValue(y))
+                //{
+                var t = propertyInfo.GetValue(x);
+                var q = propertyInfo.GetValue(y);
+                if (!t.Equals(q))
+                    return false;
+                //}
+
+            }
+            return true;
+        }
+        public static bool operator !=(TableItem x, TableItem y)
+        {
+            foreach (PropertyInfo propertyInfo in x.GetType().GetProperties())
+            {
+                // do stuff here
+                var t = propertyInfo.GetValue(x);
+                var q = propertyInfo.GetValue(y);
+                if (t.Equals(q))
+                    return false;
+            }
+            return true;
+        }
         public CompareStatus Comparer(TableItem ti)
         {
-            if(ti == this)//не факт
+            if (ti == this)//не факт
             {
                 return CompareStatus.equal;
             }
-            if((ti.row_nb != row_nb | ti.row_nb_end != row_nb_end | ti.row_mounth_firs != row_mounth_firs |
-                ti.tabelplase != tabelplase) & (ti.year == year & ti.mounth == mounth & ti.date == date & ti.time == time &
+            var q = (ti.row_nb != row_nb | ti.row_nb_end != row_nb_end | ti.row_mounth_firs != row_mounth_firs |
+                ti.tabelplase != tabelplase);
+            var bq = (ti.year == year & ti.mounth == mounth & ti.date == date & ti.time == time &
                 ti.wind == wind & ti.cloud == cloud & ti.temp == temp & ti.task == task & ti.height == height & ti.range == range &
-                ti.plase == plase & ti.comment == comment & ti.exect_mounth == exect_mounth & ti.sh_id == sh_id & ti.points == points & ti.route == route))
+                ti.plase == plase & ti.comment == comment & ti.exect_mounth == exect_mounth & ti.sh_id == sh_id & ti.points == points & ti.route == route);
+            if (q & bq)
             {
                 return CompareStatus.position;
             }
@@ -166,7 +197,7 @@ namespace Google_sheetAndro.Class
             {
                 return CompareStatus.more;
             }
-            
+
         }
         public List<object> GetListForEntry()
         {
@@ -254,7 +285,7 @@ namespace Google_sheetAndro.Class
             //    if (string.IsNullOrEmpty(val[i][0].ToString()))
             //    {
             //        val[i][0] = "";
-                    
+
             //    }
             //    if (string.IsNullOrEmpty(val[i][1].ToString()))
             //    {

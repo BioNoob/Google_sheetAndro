@@ -112,7 +112,7 @@ namespace Google_sheetAndro.Views
         public TableItem getter()
         {
             //TableItem tb = new TableItem();
-            if (ti_local == null)
+            if ((object)ti_local == null)
             {
                 ti_local = new TableItem();
             }
