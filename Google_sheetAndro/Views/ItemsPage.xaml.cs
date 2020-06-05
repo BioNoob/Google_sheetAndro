@@ -38,7 +38,7 @@ namespace Google_sheetAndro.Views
                 Task_txt.Text = "";
                 Hight_txt_num.Text = "0";
                 Range_txt.Text = "0";
-                //Place_txt. SelectedIndex = 0;
+                Place_txt.SelectedIndex = 0;
                 Comment_txt.Text = "";
                 ti_local = getter();
             }
@@ -49,19 +49,33 @@ namespace Google_sheetAndro.Views
                 Time_pick.Text = ti.time;
                 SetWind(ti.wind);
                 //Wind_Num.Text = string.Format("{0:F0}", ti.wind); //ti.wind.ToString();
-                if (!cloud_list.Contains(ti.cloud))
-                    cloud_list.Add(ti.cloud);
-                CloudPicker.SelectedItem = ti.cloud;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    CloudPicker.ItemsSource = null;
+                    if (!cloud_list.Contains(ti.cloud))
+                    {
+                        cloud_list.Add(ti.cloud);
+                    }
+                    CloudPicker.ItemsSource = cloud_list;
+                    CloudPicker.SelectedItem = ti.cloud;
+                });
                 if (ti.temp > 0)
                     Temp_Num.Text = string.Format("+{0:F1}", ti.temp);//.ToString();
                 else
                     Temp_Num.Text = string.Format("{0:F1}", ti.temp);//.ToString();
                 Task_txt.Text = ti.task;
                 Hight_txt_num.Text = string.Format("{0:F0}", ti.height);
-                Range_txt.Text = string.Format("{0:F1}", ti.range); ;
-                if (!place_list.Contains(ti.plase))
-                    place_list.Add(ti.plase);
-                Place_txt.SelectedItem = ti.plase;
+                Range_txt.Text = string.Format("{0:F1}", ti.range);
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Place_txt.ItemsSource = null;
+                    if (!place_list.Contains(ti.plase))
+                    {
+                        place_list.Add(ti.plase);
+                    }
+                    Place_txt.ItemsSource = place_list;
+                    Place_txt.SelectedItem = ti.plase;
+                });
                 Comment_txt.Text = ti.comment;
             }
         }
@@ -155,7 +169,10 @@ namespace Google_sheetAndro.Views
             var t = Xamarin.Essentials.Preferences.Get("place_list", null);
             if (t != null)
             {
-                place_list = t.Split(';').ToList();
+                Place_txt.ItemsSource = null;
+                var b_place_list = t.Split(';').ToList();
+                place_list.AddRange(b_place_list);
+                place_list = place_list.Distinct().ToList();
                 Place_txt.ItemsSource = place_list;
             }
             else
@@ -679,7 +696,40 @@ namespace Google_sheetAndro.Views
                     addplace.IsVisible = false;
                 }
             }
+        }
+        protected override void OnDisappearing()
+        {
+            Xamarin.Essentials.Preferences.Set("place_list", string.Join(";", place_list));
+            Xamarin.Essentials.Preferences.Set("cloud_list", string.Join(";", cloud_list));
+            base.OnDisappearing();
+        }
+        protected override void OnAppearing()
+        {
+            var t = Xamarin.Essentials.Preferences.Get("place_list", null);
+            if (t != null)
+            {
+                Place_txt.ItemsSource = null;
+                var b_place_list = t.Split(';').ToList();
+                place_list.AddRange(b_place_list);
+                place_list = place_list.Distinct().ToList();
+                Place_txt.ItemsSource = place_list;
+            }
+            else
+                Place_txt.ItemsSource = place_list;
 
+            var ts = Xamarin.Essentials.Preferences.Get("cloud_list", null);
+            if (ts != null)
+            {
+                CloudPicker.ItemsSource = null;
+                var b_cloud_list = ts.Split(';').ToList();
+                cloud_list.AddRange(b_cloud_list);
+                cloud_list = place_list.Distinct().ToList();
+                CloudPicker.ItemsSource = cloud_list;
+            }
+            else
+                CloudPicker.ItemsSource = cloud_list;
+
+            base.OnAppearing();
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)
