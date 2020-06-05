@@ -156,100 +156,105 @@ namespace Google_sheetAndro.Models
             DoCreateRow?.Invoke();
         }
         public static bool SaveLastState()
-        {
-            var t = ((NavigationPage)((MasterDetailPage)Xamarin.Forms.Application.Current.MainPage).Detail).RootPage;
-            SaveService ss = new SaveService();
-            ss.CurrentPage = SaveService.ActivePage.items;
-            ss.CurrentMode = SaveService.ActiveMode.newpage;
-            //узнать последнюю страницу
-            //
-            var type = t.GetType();
-            switch (t.Title)
+        {   if(Xamarin.Forms.Application.Current.MainPage is MasterDetailPage)
             {
-                case "Записи":
-                    if (t.Navigation.ModalStack.Count > 0)
+                if (((MasterDetailPage)Xamarin.Forms.Application.Current.MainPage).Detail is NavigationPage)
+                {
+                    Page t = ((NavigationPage)((MasterDetailPage)Xamarin.Forms.Application.Current.MainPage).Detail).RootPage;
+                    SaveService ss = new SaveService();
+                    ss.CurrentPage = SaveService.ActivePage.items;
+                    ss.CurrentMode = SaveService.ActiveMode.newpage;
+                    //узнать последнюю страницу
+                    //
+                    var type = t.GetType();
+                    switch (t.Title)
                     {
-                        var page = t.Navigation.ModalStack;
-                        foreach (var item in page)
-                        {
-                            bool pass = false;
-                            switch (item.Title)
+                        case "Записи":
+                            if (t.Navigation.ModalStack.Count > 0)
                             {
-                                case "Просмотр":
-                                    ss.CurrentMode = SaveService.ActiveMode.watchpage;
-                                    if (LoaderFunction.MapPageAlone.fl_run)
-                                    {
-                                        LoaderFunction.ItemsPageAlone.SetNal(LoaderFunction.MapPageAlone.times.ToString());
-                                    }
-                                    ss.ti = LoaderFunction.ItemsPageAlone.getter();
-                                    ss.ti.route = LoaderFunction.MapPageAlone.MapObj.SerializableLine;
-                                    ss.ti.points = LoaderFunction.MapPageAlone.MapObj.SerializablePins;
-                                    pass = true;
-                                    break;
-                                case "Новая":
-                                    ss.CurrentMode = SaveService.ActiveMode.newpage;
-                                    if (LoaderFunction.MapPage.fl_run)
-                                    {
-                                        LoaderFunction.ItemsPage.SetNal(LoaderFunction.MapPage.times.ToString());
-                                    }
-                                    ss.ti = LoaderFunction.ItemsPage.getter();
-                                    ss.ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
-                                    ss.ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
-                                    pass = true;
-                                    break;
-                            }
-                            if (pass)
-                            {
-                                var q = item as NavigationPage;
-                                if (q.RootPage is TabbedPage)
+                                var page = t.Navigation.ModalStack;
+                                foreach (var item in page)
                                 {
-                                    var qq = q.RootPage as TabbedPage;
-                                    var qqq = qq.CurrentPage;
-                                    switch (qqq.Title)
+                                    bool pass = false;
+                                    switch (item.Title)
                                     {
-                                        case "Данные":
-                                        case "Запись":
-                                            ss.CurrentPage = SaveService.ActivePage.item;
+                                        case "Просмотр":
+                                            ss.CurrentMode = SaveService.ActiveMode.watchpage;
+                                            if (LoaderFunction.MapPageAlone.fl_run)
+                                            {
+                                                LoaderFunction.ItemsPageAlone.SetNal(LoaderFunction.MapPageAlone.times.ToString());
+                                            }
+                                            ss.ti = LoaderFunction.ItemsPageAlone.getter();
+                                            ss.ti.route = LoaderFunction.MapPageAlone.MapObj.SerializableLine;
+                                            ss.ti.points = LoaderFunction.MapPageAlone.MapObj.SerializablePins;
+                                            pass = true;
                                             break;
-                                        case "Навигация":
-                                            ss.CurrentPage = SaveService.ActivePage.map;
+                                        case "Новая":
+                                            ss.CurrentMode = SaveService.ActiveMode.newpage;
+                                            if (LoaderFunction.MapPage.fl_run)
+                                            {
+                                                LoaderFunction.ItemsPage.SetNal(LoaderFunction.MapPage.times.ToString());
+                                            }
+                                            ss.ti = LoaderFunction.ItemsPage.getter();
+                                            ss.ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
+                                            ss.ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
+                                            pass = true;
                                             break;
-                                        case "Погода":
-                                            ss.CurrentPage = SaveService.ActivePage.wheather;
-                                            break;
+                                    }
+                                    if (pass)
+                                    {
+                                        var q = item as NavigationPage;
+                                        if (q.RootPage is TabbedPage)
+                                        {
+                                            var qq = q.RootPage as TabbedPage;
+                                            var qqq = qq.CurrentPage;
+                                            switch (qqq.Title)
+                                            {
+                                                case "Данные":
+                                                case "Запись":
+                                                    ss.CurrentPage = SaveService.ActivePage.item;
+                                                    break;
+                                                case "Навигация":
+                                                    ss.CurrentPage = SaveService.ActivePage.map;
+                                                    break;
+                                                case "Погода":
+                                                    ss.CurrentPage = SaveService.ActivePage.wheather;
+                                                    break;
+                                            }
+                                        }
+                                        break;
                                     }
                                 }
-                                break;
                             }
-                        }
+                            break;
+                        case "Карта":
+                            ss.CurrentMode = SaveService.ActiveMode.newpage;
+                            ss.CurrentPage = SaveService.ActivePage.map;
+                            ss.ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
+                            ss.ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
+                            break;
+                        default:
+                            if (LoaderFunction.MapPage.MapObj != new MapObjects())
+                            {
+                                ss.ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
+                                ss.ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
+                            }
+                            break;
                     }
-                    break;
-                case "Карта":
-                    ss.CurrentMode = SaveService.ActiveMode.newpage;
-                    ss.CurrentPage = SaveService.ActivePage.map;
-                    ss.ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
-                    ss.ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
-                    break;
-                default:
-                    if (LoaderFunction.MapPage.MapObj != new MapObjects())
+                    switch (t.Title)
                     {
-                        ss.ti.route = LoaderFunction.MapPage.MapObj.SerializableLine;
-                        ss.ti.points = LoaderFunction.MapPage.MapObj.SerializablePins;
+                        case "Погода":
+                            ss.CurrentPage = SaveService.ActivePage.wheather;
+                            break;
                     }
-                    break;
+                    string returned = string.Empty;
+                    if (ss != new SaveService() & ss.ti != new TableItem())
+                    {
+                        returned = ss.Serialize();
+                    }
+                    Xamarin.Essentials.Preferences.Set("last_known_state", returned);
+                }
             }
-            switch (t.Title)
-            {
-                case "Погода":
-                    ss.CurrentPage = SaveService.ActivePage.wheather;
-                    break;
-            }
-            string returned = string.Empty;
-            if (ss != new SaveService() & ss.ti != new TableItem())
-            {
-                returned = ss.Serialize();
-            }
-            Xamarin.Essentials.Preferences.Set("last_known_state", returned);
             return true;
         }
         //к тесту
