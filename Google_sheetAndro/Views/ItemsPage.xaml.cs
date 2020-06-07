@@ -49,8 +49,8 @@ namespace Google_sheetAndro.Views
                 Time_pick.Text = ti.time;
                 SetWind(ti.wind);
                 //Wind_Num.Text = string.Format("{0:F0}", ti.wind); //ti.wind.ToString();
-                Device.BeginInvokeOnMainThread(() =>
-                {
+                //Device.BeginInvokeOnMainThread(() =>
+                //{
                     CloudPicker.ItemsSource = null;
                     if (!cloud_list.Contains(ti.cloud))
                     {
@@ -58,7 +58,7 @@ namespace Google_sheetAndro.Views
                     }
                     CloudPicker.ItemsSource = cloud_list;
                     CloudPicker.SelectedItem = ti.cloud;
-                });
+                //});
                 if (ti.temp > 0)
                     Temp_Num.Text = string.Format("+{0:F1}", ti.temp);//.ToString();
                 else
@@ -66,8 +66,8 @@ namespace Google_sheetAndro.Views
                 Task_txt.Text = ti.task;
                 Hight_txt_num.Text = string.Format("{0:F0}", ti.height);
                 Range_txt.Text = string.Format("{0:F1}", ti.range);
-                Device.BeginInvokeOnMainThread(() =>
-                {
+                //Device.BeginInvokeOnMainThread(() =>
+                //{
                     Place_txt.ItemsSource = null;
                     if (!place_list.Contains(ti.plase))
                     {
@@ -75,7 +75,7 @@ namespace Google_sheetAndro.Views
                     }
                     Place_txt.ItemsSource = place_list;
                     Place_txt.SelectedItem = ti.plase;
-                });
+                //});
                 Comment_txt.Text = ti.comment;
             }
         }
@@ -708,11 +708,13 @@ namespace Google_sheetAndro.Views
             var t = Xamarin.Essentials.Preferences.Get("place_list", null);
             if (t != null)
             {
+                var q = Place_txt.SelectedItem;
                 Place_txt.ItemsSource = null;
                 var b_place_list = t.Split(';').ToList();
                 place_list.AddRange(b_place_list);
                 place_list = place_list.Distinct().ToList();
                 Place_txt.ItemsSource = place_list;
+                Place_txt.SelectedItem = q;
             }
             else
                 Place_txt.ItemsSource = place_list;
@@ -720,11 +722,13 @@ namespace Google_sheetAndro.Views
             var ts = Xamarin.Essentials.Preferences.Get("cloud_list", null);
             if (ts != null)
             {
+                var qq = CloudPicker.SelectedItem;
                 CloudPicker.ItemsSource = null;
                 var b_cloud_list = ts.Split(';').ToList();
                 cloud_list.AddRange(b_cloud_list);
-                cloud_list = place_list.Distinct().ToList();
+                cloud_list = cloud_list.Distinct().ToList();
                 CloudPicker.ItemsSource = cloud_list;
+                CloudPicker.SelectedItem = qq;
             }
             else
                 CloudPicker.ItemsSource = cloud_list;
