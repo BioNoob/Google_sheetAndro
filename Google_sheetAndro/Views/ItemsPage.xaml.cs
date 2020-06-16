@@ -177,6 +177,17 @@ namespace Google_sheetAndro.Views
             }
             else
                 Place_txt.ItemsSource = place_list;
+            t = Xamarin.Essentials.Preferences.Get("cloud_list", null);
+            if (t != null)
+            {
+                CloudPicker.ItemsSource = null;
+                var b_cl_list = t.Split(';').ToList();
+                cloud_list.AddRange(b_cl_list);
+                cloud_list = cloud_list.Distinct().ToList();
+                CloudPicker.ItemsSource = cloud_list;
+            }
+            else
+                CloudPicker.ItemsSource = cloud_list;
             CloudPicker.SelectedIndex = 0;
             Place_txt.SelectedIndex = 0;
             //Time_pick.Time = DateTime.Now.TimeOfDay;

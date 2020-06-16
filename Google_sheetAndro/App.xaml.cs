@@ -88,6 +88,7 @@ namespace Google_sheetAndro
             //if (!string.IsNullOrEmpty(Application.Current.MainPage.Title) & Application.Current.MainPage.Title != "Detail")
             {
                 LoaderFunction.SaveLastState();
+                Debug.WriteLine("Saved");
             }
 
             // Handle when your app sleeps

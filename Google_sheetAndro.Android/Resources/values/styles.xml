@@ -38,7 +38,8 @@
   </style>
 
   <style name="Theme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
-    <item name="android:windowBackground">@drawable/splash_screen</item>
+    <!--<item name="android:windowBackground">@layout/layout1</item>-->
+    <item name="android:windowBackground">@layout/splash_screen</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>
     <item name="android:windowActionBar">false</item>

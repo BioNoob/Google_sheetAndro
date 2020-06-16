@@ -243,9 +243,11 @@ namespace Google_sheetAndro.Views
             ItemsPage tp = LoaderFunction.ItemsPageAlone;
             MapPage mp = LoaderFunction.MapPageAlone;
             tp.setter(Ti);
+            mp.Is_set = true;
             mp.AbsSetter(Ti.route, Ti.points);
             mp.TimeSet(Ti.time);
             mp.SetDSetH(Ti.range, Ti.height);
+            mp.Is_set = false;
 
             LoaderFunction.ItAlNavPage = new NavigationPage(tp) { Title = "Запись", IconImageSource = "new_one.png" };
             LoaderFunction.MapAlNavPage = new NavigationPage(mp) { Title = "Навигация", IconImageSource = "gogMap.png" };

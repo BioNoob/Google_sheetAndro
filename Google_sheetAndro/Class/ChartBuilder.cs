@@ -171,9 +171,9 @@ namespace Google_sheetAndro
                         {
                             if (cell[1].ToString() != "")
                             {
-                                if(LoaderFunction.is_only_user_shown)
+                                if (LoaderFunction.is_only_user_shown)
                                 {
-                                    if(cell[11].ToString()!=StaticInfo.AccountEmail)
+                                    if (cell[11].ToString() != StaticInfo.AccountEmail)
                                     {
                                         continue;
                                     }

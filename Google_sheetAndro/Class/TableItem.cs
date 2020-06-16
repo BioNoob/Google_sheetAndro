@@ -95,6 +95,14 @@ namespace Google_sheetAndro.Class
     {
         public TableItem()
         {
+            //foreach (PropertyInfo propertyInfo in this.GetType().GetProperties())
+            //{
+            //    if (propertyInfo.PropertyType == typeof(string))
+            //    {
+            //        if (propertyInfo.CanWrite)
+            //            propertyInfo.SetValue(this, "");
+            //    }
+            //}
             //date = DateTime.Now;
             //time = "00:00:00";
             //wind = 0;
@@ -173,6 +181,10 @@ namespace Google_sheetAndro.Class
                 // do stuff here
                 var t = propertyInfo.GetValue(x);
                 var q = propertyInfo.GetValue(y);
+                if (t == null & q != null)
+                    continue;
+                else if (t != null & q == null)
+                    continue;
                 if (t.Equals(q))
                     return false;
             }

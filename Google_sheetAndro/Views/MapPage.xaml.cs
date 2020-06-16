@@ -279,6 +279,13 @@ namespace Google_sheetAndro.Views
         }
         bool fl_already_shown_2 = false;
         string active_dist = string.Empty;
+        enum ActHeght
+        {
+            current = 0,
+            otnos = 1,
+            max = 2
+        }
+        ActHeght CurHeight { get; set; }
         /// <summary>
         /// Выставить активную дистанцию
         /// </summary>
@@ -335,12 +342,15 @@ namespace Google_sheetAndro.Views
             {
                 case 1:
                     act_h = height;
+                    CurHeight = ActHeght.current;
                     break;
                 case 2:
                     act_h = height_middle;
+                    CurHeight = ActHeght.otnos;
                     break;
                 case 3:
                     act_h = height_max;
+                    CurHeight = ActHeght.max;
                     break;
             }
             if (Is_base)
@@ -448,7 +458,10 @@ namespace Google_sheetAndro.Views
                             }
                             break;
                         case false:
-                            LoaderFunction.ItemsPageAlone.SetHeight((int)_height);
+                            if (CurHeight == ActHeght.max)
+                                LoaderFunction.ItemsPageAlone.SetHeight((int)height_max);
+                            else if (CurHeight == ActHeght.otnos)
+                                LoaderFunction.ItemsPageAlone.SetHeight((int)height_middle);
                             //StatusH.Text = string.Format("{0:#0.0 м}", _height);
                             break;
                         case true:
@@ -458,7 +471,10 @@ namespace Google_sheetAndro.Views
                 }
                 else
                 {
-                    StaticInfo.Height = _height;
+                    if (CurHeight == ActHeght.max)
+                        StaticInfo.Height = (int)height_max;
+                    else if (CurHeight == ActHeght.otnos)
+                        StaticInfo.Height = (int)height_middle;
                     //StatusH.Text = string.Format("{0:#0.0 м}", _height);
                     height_list.Add(_height);
                 }
@@ -615,6 +631,7 @@ namespace Google_sheetAndro.Views
             //SetToPinRoute.IsToggled = kk;
             MapTypePick.Items.Add("Гибридная");
             MapTypePick.Items.Add("Схема");
+            Is_set = true;
             RouteTypePick.Items.Add("Маршрут");
             RouteTypePick.Items.Add("Точки");
             if (map_type != null && route_type != null)
@@ -629,7 +646,7 @@ namespace Google_sheetAndro.Views
                 MapTypePick.SelectedIndex = 0;
                 RouteTypePick.SelectedIndex = 0;
             }
-
+            Is_set = false;
             //MapLines = new List<Polyline>() {  },
 
             map.PinDragEnd += Map_PinDragEnd;
@@ -1277,6 +1294,7 @@ namespace Google_sheetAndro.Views
                         zoom,
                         0)),
                         TimeSpan.FromSeconds(1));
+                ToinitPos = pos;
             }
             if (e.Position.Altitude != 0 && !has_barometr)
             {
@@ -1558,6 +1576,14 @@ namespace Google_sheetAndro.Views
         {
             times.Sec++;
             StatusTime.Text = times.ToString();
+            if (!Is_base)
+            {
+                StaticInfo.Nalet = times.ToString();
+            }
+            else
+            {
+                LoaderFunction.ItemsPageAlone.SetNal(times.ToString());
+            }
             //StaticInfo.Nalet = t.ToString();
             return alife;
         }
@@ -1800,11 +1826,18 @@ namespace Google_sheetAndro.Views
             await ClearBtn.FadeTo(1, 100);
         }
 
+
+        public bool Is_set { get; set; }
+
         private async void RouteTypePick_SelectedIndexChanged(object sender, EventArgs e)
         {
             await SecureStorage.SetAsync("route", RouteTypePick.SelectedIndex.ToString());
-            var buf = fl_handle_ok_to_edit;
-            fl_handle_ok_to_edit = true;
+            bool? buf = false;
+            if (Is_set)
+            {
+                buf = fl_handle_ok_to_edit;
+                fl_handle_ok_to_edit = true;
+            }
             switch (RouteTypePick.SelectedIndex)
             {
                 case 0:
@@ -1822,7 +1855,11 @@ namespace Google_sheetAndro.Views
                         dist_handle = 0;
                     break;
             }
-            fl_handle_ok_to_edit = buf;
+            if (Is_set)
+            {
+                fl_handle_ok_to_edit = buf;
+            }
+
         }
 
         private async void MapTypePick_SelectedIndexChanged(object sender, EventArgs e)

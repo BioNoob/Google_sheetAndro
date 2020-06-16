@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading;
@@ -156,7 +157,8 @@ namespace Google_sheetAndro.Models
             DoCreateRow?.Invoke();
         }
         public static bool SaveLastState()
-        {   if(Xamarin.Forms.Application.Current.MainPage is MasterDetailPage)
+        {
+            if (Xamarin.Forms.Application.Current.MainPage is MasterDetailPage)
             {
                 if (((MasterDetailPage)Xamarin.Forms.Application.Current.MainPage).Detail is NavigationPage)
                 {
@@ -248,7 +250,7 @@ namespace Google_sheetAndro.Models
                             break;
                     }
                     string returned = string.Empty;
-                    if (ss != new SaveService() & ss.ti != new TableItem())
+                    //if (ss != new SaveService() & ss.ti != new TableItem())
                     {
                         returned = ss.Serialize();
                     }
@@ -265,36 +267,28 @@ namespace Google_sheetAndro.Models
                 var q = Xamarin.Essentials.Preferences.Get("last_known_state", "");
                 SaveService ss = SaveService.Deserialize(q);
                 bool help = false;
-                foreach (var item in LocalTable.ListItems)
+                if (ss == null)
                 {
-                    switch (ss.ti.Comparer(item))
-                    {
-                        case TableItem.CompareStatus.equal:
-                            help = true;
-                            break;
-                        case TableItem.CompareStatus.position:
-                            ss.ti.tabelplase = item.tabelplase;
-                            ss.ti.row_nb = item.row_nb;
-                            ss.ti.row_nb_end = item.row_nb_end;
-                            ss.ti.row_mounth_firs = item.row_mounth_firs;
-                            help = true;
-                            break;
-                        case TableItem.CompareStatus.more:
-                            break;
-                    }
-                    if (!help)
-                    {
-                        ss.CurrentMode = SaveService.ActiveMode.newpage;
-                        break;
-                    }
+                    return false;
                 }
+                var t = LocalTable.ListItems.Where(g => g.Comparer(ss.ti) == TableItem.CompareStatus.position).ToList();
+                if (t.Count > 0) help = true;
+                if (help)
+                {
+                    Device.BeginInvokeOnMainThread(() => Toast.MakeText(Android.App.Application.Context, "Найдена буферная запись, места в базе данных отличаются!", ToastLength.Long).Show());
+                    ss.CurrentMode = SaveService.ActiveMode.newpage;
+                }
+                else
+                    Device.BeginInvokeOnMainThread(() => Toast.MakeText(Android.App.Application.Context, "Найдена буферная запись!", ToastLength.Long).Show());
 
                 if (!string.IsNullOrEmpty(q) && ss != null & ss.ti.date.Year != 1)
                 {
                     switch (ss.CurrentMode)
                     {
                         case SaveService.ActiveMode.newpage:
+                            LoaderFunction.MapPage.Is_set = true;
                             LoaderFunction.MapPage.AbsSetter(ss.ti.route, ss.ti.points);
+                            LoaderFunction.MapPage.Is_set = false;
                             LoaderFunction.ItemsPage.setter(ss.ti);
                             LoaderFunction.ItemsInfoPage.ToolbarItem_Clicked(null, new System.EventArgs());
                             switch (ss.CurrentPage)
