@@ -20,6 +20,10 @@ namespace Google_sheetAndro.Droid
         MainLauncher = true, NoHistory = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class SplashScreen : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity//Activity
     {
+        public SplashScreen()
+        {
+            //SetContentView(Resource.Layout.layout1);
+        }
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             this.Window.AddFlags(WindowManagerFlags.KeepScreenOn);
