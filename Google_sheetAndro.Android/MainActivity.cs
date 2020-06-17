@@ -18,7 +18,7 @@ using Xamarin.Forms;
 
 namespace Google_sheetAndro.Droid
 {
-    [Activity(Label = "База полётов", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)] //MainLauncher = false, 
+    [Activity(Label = "Небо для всех", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)] //MainLauncher = false, 
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IGoogleAuthenticationDelegate
     {
         static bool fl_wait = false;
