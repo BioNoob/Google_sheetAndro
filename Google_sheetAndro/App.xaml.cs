@@ -76,7 +76,19 @@ namespace Google_sheetAndro
             if (!fl_wait)
             {
                 Debug.WriteLine("RunStart");
-                bool asd = await LoaderFunction.InitialiserPage();//.ConfigureAwait(true);
+                while (true)
+                {
+                    try
+                    {
+                        bool asd = await LoaderFunction.InitialiserPage();//.ConfigureAwait(true);
+                        break;
+                    }
+                    catch (System.Exception ex)
+                    {
+                        LoaderFunction.SetterStatus("Инициализация неудачна " + ex.Message);
+                        LoaderFunction.SetterStatus("Повторная попытка");
+                    }
+                }
                 Debug.WriteLine("EndStart");
             }
         }

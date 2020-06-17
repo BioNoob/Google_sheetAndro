@@ -98,6 +98,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.DeviceOrientation">
+      <Version>1.0.7</Version>
+    </PackageReference>
     <PackageReference Include="Plugin.DeviceSensors">
       <Version>1.0.0</Version>
     </PackageReference>
@@ -440,6 +443,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\test.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

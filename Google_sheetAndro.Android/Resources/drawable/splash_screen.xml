@@ -3,13 +3,14 @@
   <item>
     <color android:color="@color/splash_background"/>
   </item>
-  <item>
+  <item android:bottom="40dp">
     <bitmap
-        android:src="@drawable/back_book"
+        android:src="@drawable/test"
         android:tileMode="disabled"
-        android:gravity=""/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
   </item>
-  <item
+  <!--<item
    android:top="550dp">
     <bitmap android:src="@drawable/a0_3"
       android:gravity="center" />
@@ -23,5 +24,5 @@
   <item android:bottom="450dp">
     <bitmap android:src="@drawable/a0_1"
       android:gravity="center" />
-  </item>
+  </item>-->
 </layer-list>

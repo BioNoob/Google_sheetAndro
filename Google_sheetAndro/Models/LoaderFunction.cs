@@ -397,33 +397,42 @@ namespace Google_sheetAndro.Models
         public static async Task<bool> InitialiserPage()
         {
             SetterStatus("Загрузка базы данных...");
-            var qzi = await Googles.InitService();
-            SetterStatus("База загружена...");
-            var q = await GetGEOAsync();
-            var qq = await init();
-            while (true)
+            try
             {
-                if (q == true && qq == true)
+                var qzi = await Googles.InitService();
+                SetterStatus("База загружена...");
+                var q = await GetGEOAsync();
+                var qq = await init();
+                while (true)
                 {
-                    //EndLoad();
-                    SetterStatus("Проверка наличия неотправленного...");
-                    string kk = Preferences.Get("Offline_data", "");
-                    List<TableItem> ti = JsonConvert.DeserializeObject<List<TableItem>>(kk);
-                    if (ti != null)
+                    if (q == true && qq == true)
                     {
-                        if (ti.Count > 0)
+                        //EndLoad();
+                        SetterStatus("Проверка наличия неотправленного...");
+                        string kk = Preferences.Get("Offline_data", "");
+                        List<TableItem> ti = JsonConvert.DeserializeObject<List<TableItem>>(kk);
+                        if (ti != null)
                         {
-                            OfflineList ofl = new OfflineList(true);
-                            ofl.SetTableData(ti);
-                            StaticInfo.SetPage(ofl);
-                            is_offline = true;
+                            if (ti.Count > 0)
+                            {
+                                OfflineList ofl = new OfflineList(true);
+                                ofl.SetTableData(ti);
+                                StaticInfo.SetPage(ofl);
+                                is_offline = true;
+                            }
                         }
+                        is_Loaded = true;
+                        break;
                     }
-                    is_Loaded = true;
-                    break;
                 }
+                return true;
             }
-            return true;
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
         static public Dictionary<string, Location> GetCSV()
         {

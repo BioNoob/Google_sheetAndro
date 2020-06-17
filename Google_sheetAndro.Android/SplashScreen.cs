@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Widget;
 using Google_sheetAndro.Models;
 using Refractored.XamForms.PullToRefresh.Droid;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -91,6 +92,12 @@ namespace Google_sheetAndro.Droid
                 await Task.Delay(1000);
                 StartActivity(new Android.Content.Intent(Android.Provider.Settings.ActionLocat‌​ionSourceSettings));
                 Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+                //StartActivityForResult(new Android.Content.Intent(Android.Provider.Settings.ActionLocat‌​ionSourceSettings), 0);
+            }
+            catch (System.OperationCanceledException)
+            {
+                Toast.MakeText(Android.App.Application.Context, "Ответ службы геолокации не получен", ToastLength.Long).Show();
+                await Task.Delay(1000);
                 //StartActivityForResult(new Android.Content.Intent(Android.Provider.Settings.ActionLocat‌​ionSourceSettings), 0);
             }
 

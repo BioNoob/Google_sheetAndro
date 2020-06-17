@@ -1,4 +1,5 @@
-﻿using Android.Widget;
+﻿using Plugin.DeviceOrientation;
+using Android.Widget;
 using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
 using Newtonsoft.Json;
@@ -16,6 +17,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
+using Plugin.DeviceOrientation.Abstractions;
 
 /*
 * ПОРЯДОК СБОРКИ
@@ -1657,11 +1659,17 @@ namespace Google_sheetAndro.Views
                     else
                     {
                         var request = new GeolocationRequest(GeolocationAccuracy.High);
-                        CancellationTokenSource cts = new CancellationTokenSource();
-                        cts.CancelAfter(5000);
-                        var location = await Geolocation.GetLocationAsync(request, cts.Token);
-                        SetLine(new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude), false);
-
+                        try
+                        {
+                            CancellationTokenSource cts = new CancellationTokenSource();
+                            cts.CancelAfter(5000);
+                            var location = await Geolocation.GetLocationAsync(request, cts.Token);
+                            SetLine(new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude), false);
+                        }
+                        catch (Exception)
+                        {
+                            SetLine(pl_listner.Positions.Last(), false);
+                        }
                         //pl_listner.Positions.Add(new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude));
                     }
                 }
@@ -2038,6 +2046,19 @@ namespace Google_sheetAndro.Views
         {
             height_corective = height;
             StatusH_av.Text = string.Format("{0:#0.0 м}", 0);
+        }
+
+        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        {
+            var t = CrossDeviceOrientation.Current.CurrentOrientation;
+            if (e.Value == true)
+            {
+                CrossDeviceOrientation.Current.LockOrientation(DeviceOrientations.Portrait);
+            }
+            else
+            {
+                CrossDeviceOrientation.Current.UnlockOrientation();
+            }
         }
     }
 }

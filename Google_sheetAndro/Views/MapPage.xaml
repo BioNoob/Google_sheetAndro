@@ -159,7 +159,7 @@
                              Opacity="0"/>
             </Grid>
         </StackLayout>
-        <Frame x:Name="settest" IsVisible="False" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="15,0" IsClippedToBounds="False" BorderColor="Orange"
+        <Frame x:Name="settest" IsVisible="false" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="15,0" IsClippedToBounds="False" BorderColor="Orange"
                BackgroundColor="#2196F3" CornerRadius="20">
             <Grid x:Name="Buttons1" Margin="0" WidthRequest="230">
                 <!--RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToView,ElementName = PopSettings,Property=Height, Factor=1, Constant=1}">-->
@@ -168,6 +168,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="75"/>
+                    <RowDefinition Height="Auto"/>
                     <!--<RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>-->
                 </Grid.RowDefinitions>
@@ -197,6 +198,8 @@
                         </Grid>
                     </StackLayout>
                 </Frame>
+                <Switch Grid.Row="4" Grid.Column="1" IsToggled="False" Toggled="Switch_Toggled" ThumbColor="Orange" OnColor="White" VerticalOptions="Center" HorizontalOptions="Center" Scale="1" Margin="0" BackgroundColor="Transparent"/>
+                <Label Text="Блок ориентации" TextColor="White" FontSize="14" Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
             </Grid>
         </Frame>
         <RelativeLayout x:Name="ad_vis" BackgroundColor="Transparent" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0">

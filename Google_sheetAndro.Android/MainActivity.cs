@@ -9,6 +9,7 @@ using Google_sheetAndro.Class;
 using Google_sheetAndro.Models;
 using Google_sheetAndro.Services;
 using Newtonsoft.Json;
+using Plugin.CurrentActivity;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Auth;
@@ -25,6 +26,7 @@ namespace Google_sheetAndro.Droid
         //public static GoogleOauth Auth;
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            CrossCurrentActivity.Current.Activity = this;
             this.Window.AddFlags(WindowManagerFlags.KeepScreenOn);
             base.OnCreate(savedInstanceState);
             if (!fl_wait)
