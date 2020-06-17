@@ -275,11 +275,11 @@ namespace Google_sheetAndro.Models
                 if (t.Count > 0) help = true;
                 if (help)
                 {
-                    Device.BeginInvokeOnMainThread(() => Toast.MakeText(Android.App.Application.Context, "Найдена буферная запись, места в базе данных отличаются!", ToastLength.Long).Show());
+                    //Device.BeginInvokeOnMainThread(() => Toast.MakeText(Android.App.Application.Context, "Найдена буферная запись, места в базе данных отличаются!", ToastLength.Long).Show());
                     ss.CurrentMode = SaveService.ActiveMode.newpage;
                 }
-                else
-                    Device.BeginInvokeOnMainThread(() => Toast.MakeText(Android.App.Application.Context, "Найдена буферная запись!", ToastLength.Long).Show());
+                //else
+                  //  Device.BeginInvokeOnMainThread(() => Toast.MakeText(Android.App.Application.Context, "Найдена буферная запись!", ToastLength.Long).Show());
 
                 if (!string.IsNullOrEmpty(q) && ss != null & ss.ti.date.Year != 1)
                 {
@@ -288,6 +288,7 @@ namespace Google_sheetAndro.Models
                         case SaveService.ActiveMode.newpage:
                             LoaderFunction.MapPage.Is_set = true;
                             LoaderFunction.MapPage.AbsSetter(ss.ti.route, ss.ti.points);
+                            LoaderFunction.MapPage.SetHeight(ss.ti.height);
                             LoaderFunction.MapPage.Is_set = false;
                             LoaderFunction.ItemsPage.setter(ss.ti);
                             LoaderFunction.ItemsInfoPage.ToolbarItem_Clicked(null, new System.EventArgs());
