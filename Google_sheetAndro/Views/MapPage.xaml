@@ -17,6 +17,17 @@
         <mp:Map x:Name="map" HeightRequest="500" BackgroundColor="Beige" MapType="Hybrid" 
                             MyLocationEnabled="True"
                             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+        <StackLayout BackgroundColor="Transparent" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" Margin="10,60,0,0">
+            <Grid VerticalOptions="Start" HorizontalOptions="Start" BackgroundColor="Transparent"
+                  WidthRequest="40">
+                <BoxView x:Name="BerHelp" BackgroundColor="Orange" WidthRequest="20" HeightRequest="20"
+                         HorizontalOptions="Center" VerticalOptions="Center"/>
+                <ImageButton x:Name="BerFl" Source="bearing.png" Scale="0.9" Rotation="-45"
+                         BackgroundColor="Transparent" Clicked="ImageButton_Clicked"/>
+
+            </Grid>
+
+        </StackLayout>
         <!--<RelativeLayout x:Name="r1"  Margin="10" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="#77000000">
             <Grid x:Name="Buttons" Margin="0" HeightRequest="0" WidthRequest="0" Opacity="0"
                 RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToView,ElementName = PopSettings,Property=Height, Factor=1, Constant=1}">

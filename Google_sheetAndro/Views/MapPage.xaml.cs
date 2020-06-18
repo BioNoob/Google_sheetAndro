@@ -626,6 +626,17 @@ namespace Google_sheetAndro.Views
             var route_type = await SecureStorage.GetAsync("route");
             var map_type = await SecureStorage.GetAsync("map");
             var switch_s = await SecureStorage.GetAsync("switch");
+            fl_Bearing = Preferences.Get("fl_Bearing", fl_Bearing);
+            if (fl_Bearing)
+            {
+                BerFl.Rotation = 0;
+                BerHelp.BackgroundColor = Color.Orange;
+            }
+            else
+            {
+                BerFl.Rotation = -45;
+                BerHelp.BackgroundColor = Color.Gray;
+            }
             pl_handle = new Polyline() { Tag = "Handle", StrokeColor = Color.Red, StrokeWidth = 7 };
             pl_listner = new Polyline() { Tag = "Listner", StrokeColor = Color.Blue, StrokeWidth = 7 };
             pl_transparent = new Polyline() { Tag = "Transparent", StrokeColor = Color.Transparent, StrokeWidth = 7 };
@@ -1271,18 +1282,26 @@ namespace Google_sheetAndro.Views
                     Debug.WriteLine("Speed = " + spd);
                 }
                 var buf = pl_listner.Positions.Last();
-                var tt = Location.CalculateDistance(buf.Latitude, buf.Longitude, e.Position.Latitude, e.Position.Longitude, DistanceUnits.Kilometers) * 1000;
-                if (tt > 5 && tt < 110 && spd != 0)
+                var tt = Location.CalculateDistance(buf.Latitude, buf.Longitude, e.Position.Latitude, e.Position.Longitude, DistanceUnits.Kilometers) * 1000.0;
+                if (tt > 5 && tt < 110)//&& spd != 0)
                 {
                     if (LoaderFunction.is_sleep)
                         await LoaderFunction.Sleeping_pills(); //не работает дебаг в слипе
                     SetLine(pos, false);
-                    animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
-                        new CameraPosition(
-                            pos,
-                            zoom,
-                            0)),
-                            TimeSpan.FromSeconds(1));
+                    if (!fl_Bearing)
+                        animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
+                            new CameraPosition(
+                                pos,
+                                zoom,
+                                0)),
+                                TimeSpan.FromSeconds(1));
+                    else
+                        animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
+                            new CameraPosition(
+                                pos,
+                                zoom,
+                                e.Position.Heading)),
+                                TimeSpan.FromSeconds(1));
                     ToinitPos = pos;
                 }
                 //RefreshSpeed(poss);
@@ -1290,12 +1309,20 @@ namespace Google_sheetAndro.Views
             else if (pl_listner.Positions.Count == 0)
             {
                 SetLine(pos, false);
-                animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
-                    new CameraPosition(
-                        pos,
-                        zoom,
-                        0)),
-                        TimeSpan.FromSeconds(1));
+                if (!fl_Bearing)
+                    animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
+                        new CameraPosition(
+                            pos,
+                            zoom,
+                            0)),
+                            TimeSpan.FromSeconds(1));
+                else
+                    animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
+                        new CameraPosition(
+                            pos,
+                            zoom,
+                            e.Position.Heading)),
+                            TimeSpan.FromSeconds(1));
                 ToinitPos = pos;
             }
             if (e.Position.Altitude != 0 && !has_barometr)
@@ -1659,16 +1686,18 @@ namespace Google_sheetAndro.Views
                     else
                     {
                         var request = new GeolocationRequest(GeolocationAccuracy.High);
+                        Location loc = new Location();
                         try
                         {
                             CancellationTokenSource cts = new CancellationTokenSource();
                             cts.CancelAfter(5000);
+                            loc = await Geolocation.GetLastKnownLocationAsync();
                             var location = await Geolocation.GetLocationAsync(request, cts.Token);
                             SetLine(new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude), false);
                         }
                         catch (Exception)
                         {
-                            SetLine(pl_listner.Positions.Last(), false);
+                            SetLine(new Xamarin.Forms.GoogleMaps.Position(loc.Latitude, loc.Longitude), false);
                         }
                         //pl_listner.Positions.Add(new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude));
                     }
@@ -2059,6 +2088,27 @@ namespace Google_sheetAndro.Views
             {
                 CrossDeviceOrientation.Current.UnlockOrientation();
             }
+        }
+        bool fl_Bearing = false;
+        private async void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            var t = sender as Xamarin.Forms.ImageButton;
+            await t.ScaleTo(1.1);
+            if (fl_Bearing)
+            {
+                BerHelp.BackgroundColor = Color.Gray;
+                await t.RotateTo(-45);
+            }
+
+            else
+            {
+                BerHelp.BackgroundColor = Color.Orange;
+                await t.RotateTo(0);
+            }
+
+            fl_Bearing = !fl_Bearing;
+            Preferences.Set("fl_Bearing", fl_Bearing);
+            await t.ScaleTo(0.9);
         }
     }
 }
