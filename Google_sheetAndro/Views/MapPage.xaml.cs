@@ -1249,13 +1249,13 @@ namespace Google_sheetAndro.Views
             if (CrossGeolocator.Current.IsListening)
                 return;
             //CrossGeolocator.Current.DesiredAccuracy = 100;
-            await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromMilliseconds(500), 10, true, new ListenerSettings
+            await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromMilliseconds(500), 5, true, new ListenerSettings
             {
                 ActivityType = ActivityType.OtherNavigation,
                 AllowBackgroundUpdates = true,
                 DeferLocationUpdates = true,
                 DeferralDistanceMeters = 1,
-                DeferralTime = TimeSpan.FromSeconds(1),
+                DeferralTime = TimeSpan.FromMilliseconds(250),
                 ListenForSignificantChanges = true,
                 PauseLocationUpdatesAutomatically = true//false
             });
@@ -1283,7 +1283,7 @@ namespace Google_sheetAndro.Views
                 }
                 var buf = pl_listner.Positions.Last();
                 var tt = Location.CalculateDistance(buf.Latitude, buf.Longitude, e.Position.Latitude, e.Position.Longitude, DistanceUnits.Kilometers) * 1000.0;
-                if (tt > 5 && tt < 110)//&& spd != 0)
+                if (tt > 5 && tt < 110 && spd != 0)
                 {
                     if (LoaderFunction.is_sleep)
                         await LoaderFunction.Sleeping_pills(); //не работает дебаг в слипе

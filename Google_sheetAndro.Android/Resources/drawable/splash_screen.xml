@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-  <item android:bottom="40dp">
+  <!--<item android:bottom="40dp">
     <bitmap 
         android:background= "@color/splash_background"
         android:src="@drawable/test"
@@ -8,8 +8,14 @@
         android:scaleType="centerCrop"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"/>
+  </item>-->
+  <item>
+    <bitmap
+        android:src="@drawable/back_book"
+        android:tileMode="disabled"
+        android:gravity=""/>
   </item>
-  <!--<item
+  <item
    android:top="550dp">
     <bitmap android:src="@drawable/a0_3"
       android:gravity="center" />
@@ -23,5 +29,5 @@
   <item android:bottom="450dp">
     <bitmap android:src="@drawable/a0_1"
       android:gravity="center" />
-  </item>-->
+  </item>
 </layer-list>
