@@ -17,13 +17,13 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 namespace Google_sheetAndro.Droid
 {
-    [Activity(Label = "Небо для всех", Theme = "@style/Theme.Splash", Icon = "@mipmap/icon",
+    [Activity(Label = "Небо для всех", Theme = "@style/Theme.Splash",
         MainLauncher = true, NoHistory = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class SplashScreen : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity//Activity
     {
         public SplashScreen()
         {
-            //SetContentView(Resource.Layout.layout1);
+            //SetContentView(Resource.Layout.layout1); Icon = "@mipmap/icon"
         }
         protected override async void OnCreate(Bundle savedInstanceState)
         {

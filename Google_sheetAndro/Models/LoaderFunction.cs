@@ -289,6 +289,8 @@ namespace Google_sheetAndro.Models
                             LoaderFunction.MapPage.Is_set = true;
                             LoaderFunction.MapPage.AbsSetter(ss.ti.route, ss.ti.points);
                             LoaderFunction.MapPage.SetHeight(ss.ti.height);
+                            var tqwe = Geolocation.GetLastKnownLocationAsync().Result;
+                            MapPage.SetInitVew(tqwe);
                             LoaderFunction.MapPage.Is_set = false;
                             LoaderFunction.ItemsPage.setter(ss.ti);
                             LoaderFunction.ItemsInfoPage.ToolbarItem_Clicked(null, new System.EventArgs());

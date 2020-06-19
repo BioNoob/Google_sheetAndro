@@ -172,7 +172,7 @@ namespace TableAndro
                                             && row[7].ToString() == "" && row[8].ToString() == "" && row[9].ToString() == "" && row[10].ToString() == ""
                                             && row[11].ToString() == "")
                                         {
-                                            if (row[12].ToString() != "")
+                                            if (row[12].ToString() != "" || row[13].ToString() != "")
                                             {
                                                 if (row.Count > 13)
                                                     LocalTable.ListItems.Last().route += row[13].ToString();

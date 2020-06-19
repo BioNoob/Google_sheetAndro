@@ -283,9 +283,9 @@ namespace Google_sheetAndro.Views
         string active_dist = string.Empty;
         enum ActHeght
         {
-            current = 0,
-            otnos = 1,
-            max = 2
+            current = 1,
+            otnos = 2,
+            max = 3
         }
         ActHeght CurHeight { get; set; }
         /// <summary>
@@ -388,6 +388,9 @@ namespace Google_sheetAndro.Views
         }
 
         Xamarin.Forms.GoogleMaps.Position ToinitPos = new Xamarin.Forms.GoogleMaps.Position();
+        double Toinitzoom = 15d;
+        double ToinitBear = 0;
+
         bool fl = false;
         double cur_pos_w1;
         double cur_pos_w2;
@@ -604,6 +607,8 @@ namespace Google_sheetAndro.Views
                 SetDSetH(0, 0);
                 History = ShiftList.RepeatedDefault<string>(10);
                 ToinitPos = new Xamarin.Forms.GoogleMaps.Position();
+                ToinitBear = 0;
+                Toinitzoom = 15d;
                 times = new Time_r();
                 StatusTime.Text = times.ToString();
                 height_list.Clear();
@@ -627,6 +632,7 @@ namespace Google_sheetAndro.Views
             var map_type = await SecureStorage.GetAsync("map");
             var switch_s = await SecureStorage.GetAsync("switch");
             fl_Bearing = Preferences.Get("fl_Bearing", fl_Bearing);
+            OrientBlock.IsToggled = Preferences.Get("OrientBlock", false);
             if (fl_Bearing)
             {
                 BerFl.Rotation = 0;
@@ -1303,6 +1309,11 @@ namespace Google_sheetAndro.Views
                                 e.Position.Heading)),
                                 TimeSpan.FromSeconds(1));
                     ToinitPos = pos;
+                    if (!fl_Bearing)
+                        ToinitBear = 0;
+                    else
+                        ToinitBear = e.Position.Heading;
+                    Toinitzoom = zoom;
                 }
                 //RefreshSpeed(poss);
             }
@@ -1324,6 +1335,11 @@ namespace Google_sheetAndro.Views
                             e.Position.Heading)),
                             TimeSpan.FromSeconds(1));
                 ToinitPos = pos;
+                if (!fl_Bearing)
+                    ToinitBear = 0;
+                else
+                    ToinitBear = e.Position.Heading;
+                Toinitzoom = zoom;
             }
             if (e.Position.Altitude != 0 && !has_barometr)
             {
@@ -1566,19 +1582,20 @@ namespace Google_sheetAndro.Views
                 var animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
                     new CameraPosition(
                         ToinitPos,//StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude), // Tokyo
-                        15d, // zoom
-                        0)),
+                        Toinitzoom, // zoom
+                        ToinitBear)),
                         TimeSpan.FromSeconds(2));
             }
             else
             {
                 if (StaticInfo.Pos != null)
                 {
+                    await Task.Delay(1000);
                     var animState = await map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(
                     new CameraPosition(
                         new Xamarin.Forms.GoogleMaps.Position(location.Latitude, location.Longitude),//StaticInfo.Pos.Latitude, StaticInfo.Pos.Longitude), // Tokyo
-                        15d, // zoom
-                        0)),
+                        Toinitzoom, // zoom
+                        ToinitBear)),
                     TimeSpan.FromSeconds(2));
                 }
             }
@@ -2074,6 +2091,7 @@ namespace Google_sheetAndro.Views
         private void Height_av_imgbtn_Clicked(object sender, EventArgs e)
         {
             height_corective = height;
+            setactiveHeight((int)CurHeight);
             StatusH_av.Text = string.Format("{0:#0.0 м}", 0);
         }
 
@@ -2088,6 +2106,7 @@ namespace Google_sheetAndro.Views
             {
                 CrossDeviceOrientation.Current.UnlockOrientation();
             }
+            Preferences.Set("OrientBlock", e.Value);
         }
         bool fl_Bearing = false;
         private async void ImageButton_Clicked(object sender, EventArgs e)
