@@ -788,7 +788,9 @@ namespace Google_sheetAndro.Views
             bool? buf = fl_handle_ok_to_edit;
             fl_handle_ok_to_edit = true;
             height_coord = true;
-            height = val;
+
+            //height = val;
+            
             height_coord = false;
             fl_handle_ok_to_edit = buf;
         }
