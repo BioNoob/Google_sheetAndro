@@ -10,18 +10,24 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		HalfRelease|Any CPU = HalfRelease|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{83E82780-017F-424D-84CD-7A4F5323CC4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{83E82780-017F-424D-84CD-7A4F5323CC4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83E82780-017F-424D-84CD-7A4F5323CC4E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{83E82780-017F-424D-84CD-7A4F5323CC4E}.HalfRelease|Any CPU.ActiveCfg = HalfRelease|Any CPU
+		{83E82780-017F-424D-84CD-7A4F5323CC4E}.HalfRelease|Any CPU.Build.0 = HalfRelease|Any CPU
+		{83E82780-017F-424D-84CD-7A4F5323CC4E}.HalfRelease|Any CPU.Deploy.0 = HalfRelease|Any CPU
 		{83E82780-017F-424D-84CD-7A4F5323CC4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83E82780-017F-424D-84CD-7A4F5323CC4E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{83E82780-017F-424D-84CD-7A4F5323CC4E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{92C67F1A-BABA-466E-A90C-49B1E6C1463E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{92C67F1A-BABA-466E-A90C-49B1E6C1463E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92C67F1A-BABA-466E-A90C-49B1E6C1463E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{92C67F1A-BABA-466E-A90C-49B1E6C1463E}.HalfRelease|Any CPU.ActiveCfg = HalfRelease|Any CPU
+		{92C67F1A-BABA-466E-A90C-49B1E6C1463E}.HalfRelease|Any CPU.Build.0 = HalfRelease|Any CPU
 		{92C67F1A-BABA-466E-A90C-49B1E6C1463E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92C67F1A-BABA-466E-A90C-49B1E6C1463E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{92C67F1A-BABA-466E-A90C-49B1E6C1463E}.Release|Any CPU.Deploy.0 = Release|Any CPU

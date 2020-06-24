@@ -628,9 +628,17 @@ namespace TableAndro
                     {
                         tbi.sh_id = sheet_id;
                     }
+                    int help_row = 0;
+                    foreach (var item in LocalTable.ListItems.Where(y=>y.year == tbi.year).ToList().Where(o=>o.mounth == tbi.mounth).ToList())
+                    {
+                        if (item.row_nb > tbi.row_nb)
+                            help_row = item.row_nb;
+                    }
+                    if (help_row == 0)
+                        help_row = tbi.row_nb;
                     BatchUpdateSpreadsheetRequest requestBody = new BatchUpdateSpreadsheetRequest();
                     requestBody.Requests = new List<Request>();
-                    requestBody.Requests.Add(google_requests.MergeRq(tbi.sh_id, new Range_border(tbi.row_mounth_firs, 1 + tbi.row_nb - 1, 0, 1)));
+                    requestBody.Requests.Add(google_requests.MergeRq(tbi.sh_id, new Range_border(tbi.row_mounth_firs, help_row, 0, 1)));// 1 + tbi.row_nb - 1, 0, 1)));
                     cts = new CancellationTokenSource();
                     cts.CancelAfter(15000);
                     var BUrequest = service.Spreadsheets.BatchUpdate(requestBody, SpreadsheetId);
