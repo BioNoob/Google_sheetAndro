@@ -41,7 +41,7 @@
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.45.0.1951" />
     <PackageReference Include="Google.Apis.Sheets.v4" Version="1.45.0.1954" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.23" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Plugin.DeviceOrientation" Version="1.0.7" />
     <PackageReference Include="Plugin.DeviceSensors" Version="1.0.0" />
     <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
